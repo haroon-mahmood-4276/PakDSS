@@ -188,6 +188,7 @@ return [
         HaroonMahmood4276\LaravelCommandsHistory\CommandHistoryServiceProvider::class,
         HaroonMahmood4276\LaravelCommandsHistory\CommandEventServiceProvider::class,
         HaroonMahmood4276\LaravelServicePattern\PatternServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
