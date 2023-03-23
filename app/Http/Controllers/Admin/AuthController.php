@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Login\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,18 +16,19 @@ class AuthController extends Controller
         return view('admin.auth.login');
     }
 
-    public function loginPost(Request $request)
+    public function loginPost(LoginRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
-        // $waiter = Waiter::where('fSW_Code', $request->waiter)->first();
-        // if ($waiter && $waiter->fSW_PWord == $request->password) {
-        //     Auth::login($waiter);
-        //     $request->session()->regenerate();
-        //     return redirect()->intended(route('dashboard.index'));
-        // }
+        $credentials = $request->validated();
 
-        return redirect()->route('admin.login.view')->withDanger('Either email or password is wrong!');
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('admin.dashboard.index'));
+        }
+
+        return redirect()->route('admin.login.view')->withDanger('The provided credentials do not match our records')->onlyInput('email');
     }
 
     public function logout(Request $request)
@@ -37,6 +39,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login.view');
+        return redirect()->route('admin.login.view');
     }
 }

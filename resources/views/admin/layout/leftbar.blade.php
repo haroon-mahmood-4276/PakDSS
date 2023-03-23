@@ -29,27 +29,27 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
-        <li class="menu-item {{ request()->routeIs('dashboard.index') ? 'active' : null }}">
-            <a href="{{ route('dashboard.index') }}" class="menu-link">
+        <li class="menu-item {{ request()->routeIs('admin.dashboard.index') ? 'active' : null }}">
+            <a href="{{ route('admin.dashboard.index') }}" class="menu-link">
                 <i class="fa-solid fa-home menu-icon"></i>
                 <div>Dashboard</div>
             </a>
         </li>
 
-        @if (Auth::user()->can('permissions.index') || Auth::user()->can('roles.index'))
+        {{-- @if (Auth::user()->can('permissions.index') || Auth::user()->can('roles.index'))
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Administration</span>
             </li>
-        @endif
+        @endif --}}
 
         {{-- Roles & Permissions --}}
-        @canany(['permissions.index', 'roles.index'])
+        {{-- @canany(['permissions.index', 'roles.index'])
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['roles.index', 'permissions.index'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-lock menu-icon"></i>
                     <div>Roles & Permissions</div>
-                    {{-- <div class="badge bg-label-primary rounded-pill ms-auto">3</div> --}}
+                    <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
                 </a>
                 <ul class="menu-sub">
 
@@ -70,9 +70,9 @@
                     @endcan
                 </ul>
             </li>
-        @endcanany
+        @endcanany --}}
 
-        <li class="menu-header small text-uppercase">
+        {{-- <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Booking & Customers</span>
         </li>
 
@@ -294,7 +294,7 @@
                     @endcanany
                 </ul>
             </li>
-        @endcanany
+        @endcanany --}}
 
     </ul>
 </aside>
