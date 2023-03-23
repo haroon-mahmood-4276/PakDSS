@@ -9,7 +9,6 @@
         "diglactic/laravel-breadcrumbs": "^8.1",
         "garygreen/pretty-routes": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
-        "haroon-mahmood-4276/laravel-commands-history": "*",
         "haroon-mahmood-4276/laravel-service-pattern": "^1.0",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
