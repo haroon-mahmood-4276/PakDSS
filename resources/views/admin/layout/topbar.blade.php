@@ -281,7 +281,7 @@
 
                                 <div class="flex-grow-1">
                                     <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
-                                    <small class="text-muted">{{ implode(', ', auth()->user()->roles->pluck('name')->toArray()) }}</small>
+                                    {{-- <small class="text-muted">{{ implode(', ', auth()->user()->roles->pluck('name')->toArray()) }}</small> --}}
                                 </div>
                             </div>
                         </a>
@@ -305,7 +305,7 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}">
+                        <a class="dropdown-item" href="{{ route('admin.logout') }}">
                             <i class="ti ti-logout me-2 ti-sm"></i>
                             <span class="align-middle">Log Out</span>
                         </a>

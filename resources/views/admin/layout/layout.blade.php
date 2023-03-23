@@ -63,21 +63,21 @@
         <div class="layout-container">
 
             <!-- Menu -->
-            {{ view('layout.leftbar') }}
+            {{ view('admin.layout.leftbar') }}
             <!-- End Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
 
                 <!-- TopBar -->
-                {{ view('layout.topbar') }}
+                {{ view('admin.layout.topbar') }}
                 <!-- End TopBar -->
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        {{ view('layout.alerts') }}
+                        {{ view('admin.layout.alerts') }}
 
                         @yield('breadcrumbs')
 
@@ -86,7 +86,7 @@
                     <!-- End Content -->
 
                     <!-- Footer -->
-                    {{ view('layout.footer') }}
+                    {{ view('admin.layout.footer') }}
                     <!-- End Footer -->
 
                     <div class="content-backdrop fade"></div>

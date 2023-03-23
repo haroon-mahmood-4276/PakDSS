@@ -1,6 +1,6 @@
 {{-- @if ($errors->any()) --}}
 <div class="section mt-30">
-    <div class="container-fluid g-0">
+    <div class="container-fluid p-0">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 mb-30">
                 @if (session()->has('info') || session()->has('status'))
