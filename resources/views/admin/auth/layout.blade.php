@@ -6,8 +6,9 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>Login Page - {{ env('APP_NAME') }}</title <meta name="description" content="Login Page - Markees" />
-    <meta name="keywords" content="login, page, markees, wedding_planner, wedding">
+    <title>Login Page - {{ env('APP_NAME') }}</title>
+    <meta name="description" content="Login Page - {{ env('APP_NAME') }}" />
+    <meta name="keywords" content="login, page, pakdss">
 
     <link rel="icon" type="image/x-icon" href="{{ asset('admin-assets') }}/img/favicon/favicon.ico" />
 
