@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="theme-default"
-    data-assets-path="{{ asset('admin-assets') }}/" data-template="vertical-menu-template">
+<html lang="en" dir="ltr">
 
 <head>
     <meta name="description" content="Login Page - {{ env('APP_NAME') }}" />
@@ -8,8 +7,6 @@
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="">
     <meta property="og:type" content="">
     <meta property="og:url" content="">
