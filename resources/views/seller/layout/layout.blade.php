@@ -20,20 +20,20 @@
 
     <meta property="og:image" content="">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('vendor-assets') }}/imgs/theme/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('seller-assets') }}/imgs/theme/favicon.svg">
 
-    <link rel="stylesheet" href="{{ asset('vendor-assets') }}/css/vendors/normalize.css">
-    <link rel="stylesheet" href="{{ asset('vendor-assets') }}/css/vendors/bootstrap.css">
-    <link rel="stylesheet" href="{{ asset('vendor-assets') }}/css/vendors/material-icon-round.css">
-    <link rel="stylesheet" href="{{ asset('vendor-assets') }}/css/vendors/perfect-scrollbar.css">
-    <link rel="stylesheet" href="{{ asset('vendor-assets') }}/css/vendors/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/normalize.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/material-icon-round.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/perfect-scrollbar.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/select2.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap">
 
-    <link rel="stylesheet" href="{{ asset('vendor-assets') }}/css/style.min.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/style.min.css">
 
     @yield('custom-css')
 
@@ -46,36 +46,36 @@
     <div class="screen-overlay"></div>
 
     <!-- Menu -->
-    {{ view('vendor.layout.leftbar') }}
+    {{ view('seller.layout.leftbar') }}
     <!-- End Menu -->
 
     <main class="main-wrap">
 
         <!-- TopBar -->
-        {{ view('vendor.layout.topbar') }}
+        {{ view('seller.layout.topbar') }}
         <!-- End TopBar -->
 
-        {{-- {{ view('vendor.layout.alerts') }} --}}
+        {{-- {{ view('seller.layout.alerts') }} --}}
         <section class="content-main">
             @yield('breadcrumbs')
             @yield('content')
         </section>
 
         <!-- Footer -->
-        {{ view('vendor.layout.footer') }}
+        {{ view('seller.layout.footer') }}
         <!-- End Footer -->
     </main>
 
-    <script src="{{ asset('vendor-assets') }}/js/vendors/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('vendor-assets') }}/js/vendors/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('vendor-assets') }}/js/vendors/moment/moment.min.js"></script>
-    <script src="{{ asset('vendor-assets') }}/js/vendors/moment/moment-timezone.min.js"></script>
-    <script src="{{ asset('vendor-assets') }}/js/vendors/select2.min.js"></script>
-    <script src="{{ asset('vendor-assets') }}/js/vendors/perfect-scrollbar.js"></script>
-    <script src="{{ asset('vendor-assets') }}/js/vendors/jquery.fullscreen.min.js"></script>
-    <script src="{{ asset('vendor-assets') }}/js/vendors/chart.js"></script>
-    <script src="{{ asset('vendor-assets') }}/js/main.js?v=1.0.0"></script>
-    <script src="{{ asset('vendor-assets') }}/js/custom-chart.js" type="text/javascript"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/moment/moment.min.js"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/moment/moment-timezone.min.js"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/select2.min.js"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/perfect-scrollbar.js"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/chart.js"></script>
+    <script src="{{ asset('seller-assets') }}/js/main.js?v=1.0.0"></script>
+    <script src="{{ asset('seller-assets') }}/js/custom-chart.js" type="text/javascript"></script>
 
 
     <!-- Page JS -->

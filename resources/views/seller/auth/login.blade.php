@@ -1,4 +1,4 @@
-@extends('vendor.auth.layout')
+@extends('seller.auth.layout')
 
 @section('content')
     {{-- <div class="d-flex col-12 col-lg-5 align-items-center p-sm-5 p-4">
@@ -25,11 +25,11 @@
 
             <h3 class="mb-1 fw-bold">Welcome to {{ env('APP_NAME') }}! 👋</h3>
             <p class="mb-4">Please sign-in to your account and start the adventure</p>
-            <form id="formAuthentication" class="mb-3" action="{{ route('vendor.login.post') }}" method="POST">
+            <form id="formAuthentication" class="mb-3" action="{{ route('seller.login.post') }}" method="POST">
 
                 @csrf
 
-                {{ view('vendor.layout.alerts') }}
+                {{ view('seller.layout.alerts') }}
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email or Username</label>
@@ -71,11 +71,11 @@
                     <div class="card-body">
                         <h4 class="card-title mb-4">Sign in</h4>
 
-                        <form id="formAuthentication" class="mb-3" action="{{ route('vendor.login.post') }}" method="POST">
+                        <form id="formAuthentication" class="mb-3" action="{{ route('seller.login.post') }}" method="POST">
 
                             @csrf
 
-                            {{ view('vendor.layout.alerts') }}
+                            {{ view('seller.layout.alerts') }}
                             <div class="mb-3">
                                 <input class="form-control" placeholder="Email" type="text" id="email" name="email">
                             </div>

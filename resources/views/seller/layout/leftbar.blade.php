@@ -1,5 +1,5 @@
 <aside class="navbar-aside" id="offcanvas_aside">
-    <div class="aside-top"><a class="brand-wrap" href="index.html"><img class="logo" src="{{ asset('vendor-assets') }}/imgs/theme/logo.svg"
+    <div class="aside-top"><a class="brand-wrap" href="index.html"><img class="logo" src="{{ asset('seller-assets') }}/imgs/theme/logo.svg"
                 alt="Evara Dashboard"></a>
         <div>
             <button class="btn btn-icon btn-aside-minimize"><i

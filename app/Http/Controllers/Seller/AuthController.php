@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Vendor;
+namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Vendor\Login\LoginRequest;
+use App\Http\Requests\Seller\Login\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        return view('vendor.auth.login');
+        return view('seller.auth.login');
     }
 
     public function loginPost(LoginRequest $request)
@@ -22,13 +22,13 @@ class AuthController extends Controller
 
         $credentials = $request->validated();
 
-        if (Auth::guard('vendor')->attempt($credentials)) {
+        if (Auth::guard('seller')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('vendor.dashboard.index'));
+            return redirect()->intended(route('seller.dashboard.index'));
         }
 
-        return redirect()->route('vendor.login.view')->withDanger('The provided credentials do not match our records')->onlyInput('email');
+        return redirect()->route('seller.login.view')->withDanger('The provided credentials do not match our records')->onlyInput('email');
     }
 
     public function logout(Request $request)
@@ -39,6 +39,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('vendor.login.view');
+        return redirect()->route('seller.login.view');
     }
 }

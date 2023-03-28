@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Vendor;
+use App\Models\Seller;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class VendorsSeeder extends Seeder
+class SellersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26,7 +26,7 @@ class VendorsSeeder extends Seeder
         ];
 
         foreach ($data as $value) {
-            (new Vendor())->create($value);
+            (new Seller())->create($value);
         }
     }
 }

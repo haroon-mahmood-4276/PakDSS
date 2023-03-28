@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Vendor\{AuthController, DashboardController};
+use App\Http\Controllers\Seller\{AuthController, DashboardController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['as' => 'vendor.', 'prefix' => 'vendor'], function () {
+Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
 
-    Route::group(['middleware' => 'guest:vendor'], function () {
+    Route::group(['middleware' => 'guest:seller'], function () {
         Route::get('login', [AuthController::class, 'loginView'])->name('login.view');
         Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
     });
 
 
-    Route::group(['middleware' => 'auth:vendor'], function () {
+    Route::group(['middleware' => 'auth:seller'], function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
