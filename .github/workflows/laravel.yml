@@ -16,7 +16,6 @@ jobs:
         host: 103.115.199.57
         username: iyesoft
         key: ${{ secrets.IYESERVERSSH }}
-        php-version: '8.1'
         scripts: |
           cd /var/www/pakdss.com
           git branch
