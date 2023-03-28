@@ -16,7 +16,7 @@ jobs:
         host: 103.115.199.57
         username: iyesoft
         key: ${{ secrets.IYESERVERSSH }}
-        scripts: |
+        script: |
           cd /var/www/pakdss.com
           git branch
           git pull origin main
