@@ -17,6 +17,6 @@ jobs:
     - name: Install Dependencies
       run: composer update
     - name: Optimization
-      run: php artisan optimzie:clear
+      run: php artisan optimize:clear
     - name: Cache Clear
       run: php artisan cache:clear
