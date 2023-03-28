@@ -1,73 +1,197 @@
-<aside class="navbar-aside" id="offcanvas_aside">
-    <div class="aside-top"><a class="brand-wrap" href="index.html"><img class="logo" src="{{ asset('seller-assets') }}/imgs/theme/logo.svg"
-                alt="Evara Dashboard"></a>
-        <div>
-            <button class="btn btn-icon btn-aside-minimize"><i
-                    class="text-muted material-icons md-menu_open"></i></button>
-        </div>
-    </div>
-    <nav>
-        <ul class="menu-aside">
-            <li class="menu-item active"><a class="menu-link" href="index.html"><i
-                        class="icon material-icons md-home"></i><span class="text">Dashboard</span></a></li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="page-products-list.html"><i
-                        class="icon material-icons md-shopping_bag"></i><span class="text">Products</span></a>
-                <div class="submenu"><a href="page-products-list.html">Product List</a><a
-                        href="page-products-grid.html">Product grid</a><a href="page-products-grid-2.html">Product
-                        grid 2</a><a href="page-categories.html">Categories</a></div>
-            </li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
-                        class="icon material-icons md-shopping_cart"></i><span class="text">Orders</span></a>
-                <div class="submenu"><a href="page-orders-1.html">Order list 1</a><a href="page-orders-2.html">Order
-                        list
-                        2</a><a href="page-orders-detail.html">Order detail</a><a href="page-orders-tracking.html">Order
-                        tracking</a><a href="page-invoice.html">Invoice</a></div>
-            </li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="page-sellers-cards.html"><i
-                        class="icon material-icons md-store"></i><span class="text">Sellers</span></a>
-                <div class="submenu"><a href="page-sellers-cards.html">Sellers cards</a><a
-                        href="page-sellers-list.html">Sellers list</a><a href="page-seller-detail.html">Seller
-                        profile</a></div>
-            </li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="page-form-product-1.html"><i
-                        class="icon material-icons md-add_box"></i><span class="text">Add product</span></a>
-                <div class="submenu"><a href="page-form-product-1.html">Add product 1</a><a
-                        href="page-form-product-2.html">Add product 2</a><a href="page-form-product-3.html">Add
-                        product 3</a><a href="page-form-product-4.html">Add product 4</a></div>
-            </li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="page-transactions-1.html"><i
-                        class="icon material-icons md-monetization_on"></i><span class="text">Transactions</span></a>
-                <div class="submenu"><a href="page-transactions-1.html">Transaction 1</a><a
-                        href="page-transactions-2.html">Transaction 2</a><a
-                        href="page-transactions-details.html">Transaction
-                        Details</a></div>
-            </li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="#"><i
-                        class="icon material-icons md-person"></i><span class="text">Account</span></a>
-                <div class="submenu"><a href="page-account-login.html">User login</a><a
-                        href="page-account-register.html">User
-                        registration</a><a href="page-error-404.html">Error 404</a></div>
-            </li>
-            <li class="menu-item"><a class="menu-link" href="page-reviews.html"><i
-                        class="icon material-icons md-comment"></i><span class="text">Reviews</span></a></li>
-            <li class="menu-item"><a class="menu-link" href="page-brands.html"><i
-                        class="icon material-icons md-stars"></i><span class="text">Brands</span></a></li>
-            <li class="menu-item"><a class="menu-link" disabled="" href="#"><i
-                        class="icon material-icons md-pie_chart"></i><span class="text">Statistics</span></a>
-            </li>
-        </ul>
-        <hr>
-        <ul class="menu-aside">
-            <li class="menu-item has-submenu"><a class="menu-link" href="#"><i
-                        class="icon material-icons md-settings"></i><span class="text">Settings</span></a>
-                <div class="submenu"><a href="page-settings-1.html">Setting sample 1</a><a
-                        href="page-settings-2.html">Setting
-                        sample 2</a></div>
-            </li>
-            <li class="menu-item"><a class="menu-link" href="page-blank.html"><i
-                        class="icon material-icons md-local_offer"></i><span class="text"> Starter
-                        page</span></a>
-            </li>
-        </ul>
-    </nav>
-</aside>
+<div class="sidebar-left"><a class="btn btn-open" href="#"></a>
+    <ul class="menu-icons hidden">
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/monitor.svg" alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/airpod.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/airpods.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/music-play.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/bluetooth.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/electricity.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/cpu.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/devices.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/driver.svg" alt="Ecom"></a></li>
+        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/lamp.svg" alt="Ecom"></a></li>
+    </ul>
+    <ul class="menu-texts menu-close">
+        <li class="has-children"><a href="shop-grid-2.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/monitor.svg" alt="Ecom"></span><span
+                    class="text-link">Computers &amp; Accessories</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Computer Accessories</a></li>
+                <li><a href="shop-grid.html">Computer Cases</a></li>
+                <li><a href="shop-grid.html">Laptop</a></li>
+                <li><a href="shop-grid.html">HDD</a></li>
+                <li><a href="shop-grid.html">RAM</a></li>
+                <li><a href="shop-grid.html">Headphone</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="#"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></span><span class="text-link">Cell
+                    Phones</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Phone Accessories</a></li>
+                <li><a href="shop-grid.html">Phone Cases</a></li>
+                <li><a href="shop-grid.html">Postpaid Phones</a></li>
+                <li><a href="shop-grid.html">Unlocked Phones</a></li>
+                <li><a href="shop-grid.html">Prepaid Phones</a></li>
+                <li><a href="shop-grid.html">Prepaid Plans</a></li>
+                <li><a href="shop-grid.html">Refurbished Phones</a></li>
+                <li><a href="shop-grid.html">Straight Talk</a></li>
+                <li><a href="shop-grid.html">iPhone</a></li>
+                <li><a href="shop-grid.html">Samsung Galaxy</a></li>
+                <li><a href="shop-grid.html">Samsung Galaxy</a></li>
+                <li><a href="shop-grid.html">Samsung Galaxy</a></li>
+                <li><a href="shop-grid.html">Samsung Galaxy</a></li>
+                <li><a href="shop-grid.html">Samsung Galaxy</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></span><span class="text-link">Gaming
+                    Gatgets</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Wireless Routers</a></li>
+                <li><a href="shop-grid.html">Cool New Gadgets</a></li>
+                <li><a href="shop-grid.html">Tech and Gadgets</a></li>
+                <li><a href="shop-grid.html">Geek Gifts and Gadgets</a></li>
+                <li><a href="shop-grid.html">Xbox Accessories</a></li>
+                <li><a href="shop-grid.html">PlayStation Accessories</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></span><span class="text-link">Smart
+                    watches</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Smart Watches</a></li>
+                <li><a href="shop-grid.html">Fashion Smart Watches</a></li>
+                <li><a href="shop-grid.html">Smart Bracelets</a></li>
+                <li><a href="shop-grid.html">Pocket Watches</a></li>
+                <li><a href="shop-grid.html">Smart Rings</a></li>
+                <li><a href="shop-grid.html">Other Watches</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/airpods.svg" alt="Ecom"></span><span
+                    class="text-link">Wired Headphone</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">On-Ear Headphones</a></li>
+                <li><a href="shop-grid.html">Earbud & In-Ear</a></li>
+                <li><a href="shop-grid.html">DJ Headphones</a></li>
+                <li><a href="shop-grid.html">PC Accessories</a></li>
+                <li><a href="shop-grid.html">PC Game Headsets</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></span><span class="text-link">Mouse
+                    &amp; Keyboard</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Logitech</a></li>
+                <li><a href="shop-grid.html">Redragon</a></li>
+                <li><a href="shop-grid.html">Amazon Basics</a></li>
+                <li><a href="shop-grid.html">Microsoft</a></li>
+                <li><a href="shop-grid.html">MageGee</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/music-play.svg" alt="Ecom"></span><span
+                    class="text-link">Headphone</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Car Audio Systems</a></li>
+                <li><a href="shop-grid.html">Cellphones</a></li>
+                <li><a href="shop-grid.html">Desktops</a></li>
+                <li><a href="shop-grid.html">Gaming Consoles</a></li>
+                <li><a href="shop-grid.html">Telephones</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/bluetooth.svg" alt="Ecom"></span><span
+                    class="text-link">Bluetooth devices</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Player Accessories</a></li>
+                <li><a href="shop-grid.html">Computer Accessories</a></li>
+                <li><a href="shop-grid.html">Speakers & Audio</a></li>
+                <li><a href="shop-grid.html">Computer Networking</a></li>
+                <li><a href="shop-grid.html">Movies & Films</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></span><span class="text-link">Cloud
+                    Software</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Android</a></li>
+                <li><a href="shop-grid.html">Linux & Unix</a></li>
+                <li><a href="shop-grid.html">Macintosh</a></li>
+                <li><a href="shop-grid.html">Windows</a></li>
+                <li><a href="shop-grid.html">iPhone & iOS</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/electricity.svg" alt="Ecom"></span><span
+                    class="text-link">Electric accessories</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Antenna Toppers</a></li>
+                <li><a href="shop-grid.html">Automotive Body Armor</a></li>
+                <li><a href="shop-grid.html">Power Inverter</a></li>
+                <li><a href="shop-grid.html">Gas Tank Doors</a></li>
+                <li><a href="shop-grid.html">Hood Scoops & Vents</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/cpu.svg" alt="Ecom"></span><span
+                    class="text-link">Mainboard &amp; CPU</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Computer CPU Processors</a></li>
+                <li><a href="shop-grid.html">Internal Fans & Cooling</a></li>
+                <li><a href="shop-grid.html">Graphics Cards</a></li>
+                <li><a href="shop-grid.html">Network I/O Port Cards</a></li>
+                <li><a href="shop-grid.html">Internal Memory Card</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/devices.svg" alt="Ecom"></span><span
+                    class="text-link">Desktop PC</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Graphic PC</a></li>
+                <li><a href="shop-grid.html">Office PC</a></li>
+                <li><a href="shop-grid.html">Gaming PC</a></li>
+                <li><a href="shop-grid.html">Server</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/driver.svg" alt="Ecom"></span><span
+                    class="text-link">Speaker</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">JBL</a></li>
+                <li><a href="shop-grid.html">Anker</a></li>
+                <li><a href="shop-grid.html">Pyle</a></li>
+                <li><a href="shop-grid.html">Bose</a></li>
+                <li><a href="shop-grid.html">Logitech</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/airpod.svg" alt="Ecom"></span><span
+                    class="text-link">Bluetooth Headphone</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">On-Ear Headphones</a></li>
+                <li><a href="shop-grid.html">In-Ear Headphones</a></li>
+                <li><a href="shop-grid.html">Earbud</a></li>
+                <li><a href="shop-grid.html">Over-Ear Headphones</a></li>
+                <li><a href="shop-grid.html">Other</a></li>
+            </ul>
+        </li>
+        <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
+                        src="{{ asset('user-assets') }}/imgs/template/lamp.svg" alt="Ecom"></span><span
+                    class="text-link">Computer Decor</span></a>
+            <ul class="sub-menu">
+                <li><a href="shop-grid.html">Copyholders</a></li>
+                <li><a href="shop-grid.html">Office Bookends</a></li>
+                <li><a href="shop-grid.html">Business Card Holders</a></li>
+                <li><a href="shop-grid.html">Lap Desks</a></li>
+                <li><a href="shop-grid.html">Mouse Pads</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

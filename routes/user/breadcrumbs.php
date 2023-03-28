@@ -4,13 +4,13 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 
-Breadcrumbs::for('user.dashboard', function (BreadcrumbTrail $trail) {
-    $trail->push('Dashboard', route('user.dashboard.index'));
+Breadcrumbs::for('user.home', function (BreadcrumbTrail $trail) {
+    $trail->push('Home', route('user.home.index'));
 });
 
 // // Roles Breadcrumbs
 // Breadcrumbs::for('user.roles.index', function (BreadcrumbTrail $trail) {
-//     $trail->parent('dashboard');
+//     $trail->parent('home');
 //     $trail->push('Roles', route('roles.index'));
 // });
 
@@ -26,7 +26,7 @@ Breadcrumbs::for('user.dashboard', function (BreadcrumbTrail $trail) {
 
 // // Permisisons Breadcrumbs
 // Breadcrumbs::for('user.permissions.index', function (BreadcrumbTrail $trail) {
-//     $trail->parent('dashboard');
+//     $trail->parent('home');
 //     $trail->push('Permissions', route('permissions.index'));
 // });
 

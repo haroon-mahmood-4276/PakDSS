@@ -1,64 +1,51 @@
-<header class="main-header navbar">
-    <div class="col-search">
-        <form class="searchform">
-            <div class="input-group">
-                <input class="form-control" list="search_terms" type="text" placeholder="Search term">
-                <button class="btn btn-light bg" type="button"><i class="material-icons md-search"></i></button>
+<div class="topbar">
+    <div class="container-topbar">
+        <div class="menu-topbar-left d-none d-xl-block">
+            <ul class="nav-small">
+                <li><a class="font-xs" href="page-about-us.html">About Us</a></li>
+                <li><a class="font-xs" href="page-careers.html">Careers</a></li>
+                <li><a class="font-xs" href="page-register.html">Open a shop</a></li>
+            </ul>
+        </div>
+        <div class="info-topbar text-center d-none d-xl-block"><span class="font-xs color-brand-3">Free shipping for
+                all orders over</span><span class="font-sm-bold color-success"> $75.00</span></div>
+        <div class="menu-topbar-right"><span class="font-xs color-brand-3">Need help? Call Us:</span><span
+                class="font-sm-bold color-success"> + 1800 900</span>
+            <div class="dropdown dropdown-language">
+                <button class="btn dropdown-toggle" id="dropdownPage" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="true" data-bs-display="static"><span
+                        class="dropdown-right font-xs color-brand-3"><img
+                            src="{{ asset('user-assets') }}/imgs/template/en.svg" alt="Ecom">
+                        English</span></button>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownPage" data-bs-popper="static">
+                    <li><a class="dropdown-item" href="#"><img
+                                src="{{ asset('user-assets') }}/imgs/template/flag-en.svg" alt="Ecom"> English</a>
+                    </li>
+                    <li><a class="dropdown-item" href="#"><img
+                                src="{{ asset('user-assets') }}/imgs/template/flag-fr.svg" alt="Ecom"> Français</a>
+                    </li>
+                    <li><a class="dropdown-item" href="#"><img
+                                src="{{ asset('user-assets') }}/imgs/template/flag-es.svg" alt="Ecom"> Español</a>
+                    </li>
+                    <li><a class="dropdown-item" href="#"><img
+                                src="{{ asset('user-assets') }}/imgs/template/flag-pt.svg" alt="Ecom"> Português</a>
+                    </li>
+                    <li><a class="dropdown-item" href="#"><img
+                                src="{{ asset('user-assets') }}/imgs/template/flag-cn.svg" alt="Ecom"> 中国人</a></li>
+                </ul>
             </div>
-            <datalist id="search_terms">
-                <option value="Products"></option>
-                <option value="New orders"></option>
-                <option value="Apple iphone"></option>
-                <option value="Ahmed Hassan"></option>
-            </datalist>
-        </form>
+            <div class="dropdown dropdown-language">
+                <button class="btn dropdown-toggle" id="dropdownPage2" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="true" data-bs-display="static"><span
+                        class="dropdown-right font-xs color-brand-3">USD</span></button>
+                <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownPage2"
+                    data-bs-popper="static">
+                    <li><a class="dropdown-item active" href="#">USD</a></li>
+                    <li><a class="dropdown-item" href="#">EUR</a></li>
+                    <li><a class="dropdown-item" href="#">AUD</a></li>
+                    <li><a class="dropdown-item" href="#">SGP</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="col-nav">
-        <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"><i
-                class="material-icons md-apps"></i></button>
-        <ul class="nav">
-            <li class="nav-item"><a class="nav-link btn-icon" href="#"><i
-                        class="material-icons md-notifications animation-shake"></i><span
-                        class="badge rounded-pill">3</span></a></li>
-            <li class="nav-item"><a class="nav-link btn-icon darkmode" href="#"><i
-                        class="material-icons md-nights_stay"></i></a></li>
-            <li class="nav-item"><a class="requestfullscreen nav-link btn-icon" href="#"><i
-                        class="material-icons md-cast"></i></a></li>
-            <li class="dropdown nav-item"><a class="dropdown-toggle" id="dropdownLanguage" data-bs-toggle="dropdown"
-                    href="#" aria-expanded="false"><i class="material-icons md-public"></i></a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage"><a
-                        class="dropdown-item text-brand" href="#"><img
-                            src="{{ asset('seller-assets') }}/imgs/theme/flag-us.png" alt="English">English</a><a
-                        class="dropdown-item" href="#"><img
-                            src="{{ asset('seller-assets') }}/imgs/theme/flag-fr.png"
-                            alt="Français">Fran&ccedil;ais</a><a class="dropdown-item" href="#"><img
-                            src="{{ asset('seller-assets') }}/imgs/theme/flag-jp.png"
-                            alt="Français">&#x65E5;&#x672C;&#x8A9E;</a><a class="dropdown-item" href="#"><img
-                            src="{{ asset('seller-assets') }}/imgs/theme/flag-cn.png"
-                            alt="Français">&#x4E2D;&#x56FD;&#x4EBA;</a>
-                </div>
-            </li>
-            <li class="dropdown nav-item"><a class="dropdown-toggle" id="dropdownAccount" data-bs-toggle="dropdown"
-                    href="#" aria-expanded="false"><img class="img-xs rounded-circle"
-                        src="{{ asset('seller-assets') }}/imgs/people/avatar2.jpg" alt="User"></a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount"><a class="dropdown-item"
-                        href="#"><i class="material-icons md-perm_identity"></i>Edit
-                        Profile</a><a class="dropdown-item" href="#"><i
-                            class="material-icons md-settings"></i>Account Settings</a><a class="dropdown-item"
-                        href="#"><i class="material-icons md-account_balance_wallet"></i>Wallet</a><a
-                        class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a><a
-                        class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
-                        center</a>
-
-                        <div class="dropdown-divider mb-0"></div>
-
-                    <a class="dropdown-item bg-danger" style="border-radius: 0 0 .25rem .25rem;"
-                        href="{{ route('seller.logout') }}">
-                        <i class="material-icons md-exit_to_app text-white"></i>
-                        <span class="text-white">Logout</span>
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</header>
+</div>

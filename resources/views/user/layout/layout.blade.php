@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
     <meta name="description" content="Login Page - {{ env('APP_NAME') }}" />
@@ -20,20 +19,22 @@
 
     <meta property="og:image" content="">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('seller-assets') }}/imgs/theme/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('user-assets') }}/imgs/theme/favicon.svg">
 
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/normalize.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/bootstrap.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/material-icon-round.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/perfect-scrollbar.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/normalize.css">
+    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/slick.css">
+    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/animate.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap">
 
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/style.min.css">
+    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/style.min.css">
 
     @yield('custom-css')
 
@@ -41,44 +42,48 @@
 
 </head>
 
-<body style="overflow-y: scroll">
+<body>
 
-    <div class="screen-overlay"></div>
+    {{-- Preloader --}}
+    {{ view('user.layout.preloader') }}
 
-    <!-- Menu -->
-    {{ view('seller.layout.leftbar') }}
-    <!-- End Menu -->
+    {{-- Topbar --}}
+    {{ view('user.layout.topbar') }}
 
-    <main class="main-wrap">
+    {{-- Header --}}
+    {{ view('user.layout.header') }}
 
-        <!-- TopBar -->
-        {{ view('seller.layout.topbar') }}
-        <!-- End TopBar -->
+    {{-- Leftbar --}}
+    {{ view('user.layout.leftbar') }}
 
-        {{-- {{ view('seller.layout.alerts') }} --}}
-        <section class="content-main">
-            @yield('breadcrumbs')
-            @yield('content')
-        </section>
+    @yield('content')
 
-        <!-- Footer -->
-        {{ view('seller.layout.footer') }}
-        <!-- End Footer -->
-    </main>
+    {{-- Footer --}}
+    {{ view('user.layout.footer') }}
 
-    <script src="{{ asset('seller-assets') }}/js/vendors/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/moment/moment.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/moment/moment-timezone.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/select2.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/perfect-scrollbar.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/jquery.fullscreen.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/chart.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/main.js?v=1.0.0"></script>
-    <script src="{{ asset('seller-assets') }}/js/custom-chart.js" type="text/javascript"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/modernizr-3.6.0.min.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/jquery-migrate-3.3.0.min.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/waypoints.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/wow.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/magnific-popup.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/perfect-scrollbar.min.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/select2.min.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/isotope.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/scrollup.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/swiper-bundle.min.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/noUISlider.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/slider.js"></script>
+    <!-- Count down-->
+    <script src="{{ asset('user-assets') }}/js/vendors/counterup.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/jquery.countdown.min.js"></script>
+    <!-- Count down-->
+    <script src="{{ asset('user-assets') }}/js/vendors/jquery.elevatezoom.js"></script>
+    <script src="{{ asset('user-assets') }}/js/vendors/slick.js"></script>
+    <script src="{{ asset('user-assets') }}/js/main.js?v=3.0.0"></script>
+    <script src="{{ asset('user-assets') }}/js/shop.js?v=1.2.1"></script>
 
-
-    <!-- Page JS -->
     @yield('page-js')
 
     <script>
