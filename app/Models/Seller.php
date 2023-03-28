@@ -12,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Vendor extends Authenticatable
+class Seller extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids, LogsActivity, SoftDeletes;
 

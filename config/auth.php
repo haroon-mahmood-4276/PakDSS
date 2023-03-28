@@ -40,9 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'vendor' => [
+        'seller' => [
             'driver' => 'session',
-            'provider' => 'vendors',
+            'provider' => 'sellers',
         ],
         'web' => [
             'driver' => 'session',
@@ -72,9 +72,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-        'vendors' => [
+        'sellers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Vendor::class,
+            'model' => App\Models\Seller::class,
         ],
         'users' => [
             'driver' => 'eloquent',
@@ -113,8 +113,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'vendors' => [
-            'provider' => 'vendors',
+        'sellers' => [
+            'provider' => 'sellers',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

@@ -28,19 +28,19 @@
                     href="#" aria-expanded="false"><i class="material-icons md-public"></i></a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage"><a
                         class="dropdown-item text-brand" href="#"><img
-                            src="{{ asset('vendor-assets') }}/imgs/theme/flag-us.png" alt="English">English</a><a
+                            src="{{ asset('seller-assets') }}/imgs/theme/flag-us.png" alt="English">English</a><a
                         class="dropdown-item" href="#"><img
-                            src="{{ asset('vendor-assets') }}/imgs/theme/flag-fr.png"
+                            src="{{ asset('seller-assets') }}/imgs/theme/flag-fr.png"
                             alt="Français">Fran&ccedil;ais</a><a class="dropdown-item" href="#"><img
-                            src="{{ asset('vendor-assets') }}/imgs/theme/flag-jp.png"
+                            src="{{ asset('seller-assets') }}/imgs/theme/flag-jp.png"
                             alt="Français">&#x65E5;&#x672C;&#x8A9E;</a><a class="dropdown-item" href="#"><img
-                            src="{{ asset('vendor-assets') }}/imgs/theme/flag-cn.png"
+                            src="{{ asset('seller-assets') }}/imgs/theme/flag-cn.png"
                             alt="Français">&#x4E2D;&#x56FD;&#x4EBA;</a>
                 </div>
             </li>
             <li class="dropdown nav-item"><a class="dropdown-toggle" id="dropdownAccount" data-bs-toggle="dropdown"
                     href="#" aria-expanded="false"><img class="img-xs rounded-circle"
-                        src="{{ asset('vendor-assets') }}/imgs/people/avatar2.jpg" alt="User"></a>
+                        src="{{ asset('seller-assets') }}/imgs/people/avatar2.jpg" alt="User"></a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount"><a class="dropdown-item"
                         href="#"><i class="material-icons md-perm_identity"></i>Edit
                         Profile</a><a class="dropdown-item" href="#"><i
@@ -53,7 +53,7 @@
                         <div class="dropdown-divider mb-0"></div>
 
                     <a class="dropdown-item bg-danger" style="border-radius: 0 0 .25rem .25rem;"
-                        href="{{ route('vendor.logout') }}">
+                        href="{{ route('seller.logout') }}">
                         <i class="material-icons md-exit_to_app text-white"></i>
                         <span class="text-white">Logout</span>
                     </a>

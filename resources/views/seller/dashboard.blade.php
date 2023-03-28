@@ -1,7 +1,7 @@
-@extends('vendor.layout.layout')
+@extends('seller.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'vendor.dashboard') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'seller.dashboard') }}
 @endsection
 
 @section('page-title', 'Dashboard')
@@ -17,7 +17,7 @@
             <div class="d-flex justify-content-start align-items-center position-relative">
                 <h2 class="content-title card-title">Dashboard</h2>
                 <div class="breadcrumb-divider mx-2"></div>
-                <div class="custom-breadcrumb">{{ Breadcrumbs::render('vendor.dashboard') }}</div>
+                <div class="custom-breadcrumb">{{ Breadcrumbs::render('seller.dashboard') }}</div>
             </div>
             <p>Whole data about your business here</p>
         </div>
