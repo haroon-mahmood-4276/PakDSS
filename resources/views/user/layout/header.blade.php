@@ -115,12 +115,12 @@
                                             <span>Login</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="page-account.html">
                                             <i class="bi fs-5 bi-person-add"></i>
                                             <span>Register</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 @endauth
                             </ul>
                         </div>
