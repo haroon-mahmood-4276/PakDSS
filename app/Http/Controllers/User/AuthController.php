@@ -22,10 +22,10 @@ class AuthController extends Controller
 
         $credentials = $request->validated();
 
-        if (Auth::guard('user')->attempt($credentials)) {
+        if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('user.dashboard.index'));
+            return redirect()->intended(route('user.home.index'));
         }
 
         return redirect()->route('user.login.view')->withDanger('The provided credentials do not match our records')->onlyInput('email');

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="main-header">
             <div class="header-left">
-                <div class="header-logo"><a class="d-flex" href="index.html"><img alt="Ecom"
+                <div class="header-logo"><a class="d-flex" href="{{ route('user.home.index') }}"><img alt="Ecom"
                             src="{{ asset('user-assets') }}/imgs/template/logo.svg"></a></div>
                 <div class="header-search">
                     <div class="box-header-search">
@@ -101,12 +101,27 @@
                             class="font-lg icon-list icon-account"><span>Account</span></span>
                         <div class="dropdown-account">
                             <ul>
-                                <li><a href="page-account.html">My Account</a></li>
-                                <li><a href="page-account.html">Order Tracking</a></li>
-                                <li><a href="page-account.html">My Orders</a></li>
-                                <li><a href="page-account.html">My Wishlist</a></li>
-                                <li><a href="page-account.html">Setting</a></li>
-                                <li><a href="page-login.html">Sign out</a></li>
+                                @auth
+                                    <li><a href="page-account.html">My Account</a></li>
+                                    <li><a href="page-account.html">Order Tracking</a></li>
+                                    <li><a href="page-account.html">My Orders</a></li>
+                                    <li><a href="page-account.html">My Wishlist</a></li>
+                                    <li><a href="page-account.html">Setting</a></li>
+                                    <li><a href="{{ route('user.logout') }}">Sign out</a></li>
+                                @else
+                                    <li>
+                                        <a href="{{ route('user.login.view') }}">
+                                            <i class="bi fs-5 bi-person-check"></i>
+                                            <span>Login</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="page-account.html">
+                                            <i class="bi fs-5 bi-person-add"></i>
+                                            <span>Register</span>
+                                        </a>
+                                    </li>
+                                @endauth
                             </ul>
                         </div>
                     </div><a class="font-lg icon-list icon-wishlist"
@@ -161,7 +176,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-content-area">
             <div class="mobile-logo"><a class="d-flex" href="index.html"><img alt="Ecom"
-                        src="{{ asset('user-assets') }}/imgs/template/logo.svg"></a></div>
+                        src="assets/imgs/template/logo.svg"></a></div>
             <div class="perfect-scroll">
                 <div class="mobile-menu-wrap mobile-header-border">
                     <nav class="mt-15">
@@ -232,7 +247,7 @@
                 <div class="mobile-account">
                     <div class="mobile-header-top">
                         <div class="user-account"><a href="page-account.html"><img
-                                    src="{{ asset('user-assets') }}/imgs/template/ava_1.png" alt="Ecom"></a>
+                                    src="assets/imgs/template/ava_1.png" alt="Ecom"></a>
                             <div class="content">
                                 <h6 class="user-name">Hello<span class="text-brand"> Steven !</span></h6>
                                 <p class="font-xs text-muted">You have 3 new messages</p>
@@ -240,12 +255,27 @@
                         </div>
                     </div>
                     <ul class="mobile-menu">
-                        <li><a href="page-account.html">My Account</a></li>
-                        <li><a href="page-account.html">Order Tracking</a></li>
-                        <li><a href="page-account.html">My Orders</a></li>
-                        <li><a href="page-account.html">My Wishlist</a></li>
-                        <li><a href="page-account.html">Setting</a></li>
-                        <li><a href="page-login.html">Sign out</a></li>
+                        @auth
+                            <li><a href="page-account.html">My Account</a></li>
+                            <li><a href="page-account.html">Order Tracking</a></li>
+                            <li><a href="page-account.html">My Orders</a></li>
+                            <li><a href="page-account.html">My Wishlist</a></li>
+                            <li><a href="page-account.html">Setting</a></li>
+                            <li><a href="{{ route('user.logout') }}">Sign out</a></li>
+                        @else
+                            <li>
+                                <a href="{{ route('user.login.view') }}">
+                                    <i class="bi fs-5 bi-person-check"></i>
+                                    <span>Login</span>
+                                </a>
+                            </li>
+                            {{-- <li>
+                                <a href="page-account.html">
+                                    <i class="bi fs-5 bi-person-add"></i>
+                                    <span>Register</span>
+                                </a>
+                            </li> --}}
+                        @endauth
                     </ul>
                 </div>
                 <div class="mobile-banner">

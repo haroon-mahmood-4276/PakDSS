@@ -19,10 +19,11 @@
 
     <meta property="og:image" content="">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('user-assets') }}/imgs/theme/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('user-assets') }}/imgs/template/favicon.svg">
 
     <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/normalize.css">
     <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/uicons-regular-rounded.css">
     <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/select2.min.css">
