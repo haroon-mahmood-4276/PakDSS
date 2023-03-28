@@ -1,41 +1,3 @@
-/***
- Theme Name: Ecom
- Description: Multipurpose Marketplace HTML Template + RTL
- Version: 3.0
- License: GNU General Public License v2 or later
- License URI: http://www.gnu.org/licenses/gpl-2.0.html
-==============================
-TABLE CONTENT
- Import Google Fonts
- Include Third Party CSS Library
- GENERAL
- HEADER
- Offcanvas Sidebar
- Search form
- Main header
- Mega menu
- Header layouts
- Page layouts
- Pagination
- Breadcrumb
- CATEGORY PAGES
- SINGLE POST
- Author box
- comment
- Post share social
- WP STYPE
- Custom amine
-***/
-@import url(https://fonts.bunny.net/css?family=dm-sans:400,500,700|kanit:700);
-/*import vendors*/
-@import url(../css/vendors/normalize.css);
-@import url(../css/vendors/bootstrap.min.css);
-@import url(../css/vendors/uicons-regular-rounded.css);
-@import url(../css/plugins/swiper-bundle.min.css);
-@import url(../css/plugins/select2.min.css);
-@import url(../css/plugins/slick.css);
-@import url(../css/plugins/animate.min.css);
-/*RESET*/
 html,
 body,
 div,
@@ -5441,7 +5403,7 @@ a.text-brand-3:hover {
 }
 
 /***************************
-    Page section margin 
+    Page section margin
 ****************************/
 .mtb-0 {
   margin: 0;

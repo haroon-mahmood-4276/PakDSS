@@ -24,7 +24,7 @@ class Authenticate extends Middleware
                 break;
 
             default:
-                $route = route('login.view');
+                $route = route('user.login.view');
                 break;
         }
         return $request->expectsJson() ? null : $route;
