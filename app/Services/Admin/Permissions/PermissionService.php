@@ -2,7 +2,6 @@
 
 namespace App\Services\Admin\Permissions;
 
-use App\Services\Admin\Permissions\PermissionInterface;
 use Spatie\Permission\Models\Permission;
 
 class PermissionService implements PermissionInterface

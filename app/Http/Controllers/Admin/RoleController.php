@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\Admin\RolesDataTable;
 use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Services\Admin\Roles\RoleInterface;
 use Exception;
 
@@ -28,7 +30,7 @@ class RoleController extends Controller
         }
 
         $roles = (new Role())->inRandomOrder()->limit(5)->get();
-        return $dataTable->render('roles.index', ['roles' => $roles]);
+        return $dataTable->render('admin.roles.index', ['roles' => $roles]);
     }
 
     /**

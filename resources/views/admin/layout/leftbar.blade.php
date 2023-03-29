@@ -36,7 +36,7 @@
             </a>
         </li>
 
-        @canany(['admin.permissions.index', 'admin.roles.index'])
+        @canany(['admin.permissions.index', 'admin.roles.index'], )
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Administration</span>
             </li>
@@ -45,7 +45,7 @@
         <!-- Roles & Permissions -->
         @canany(['admin.permissions.index', 'admin.roles.index'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.roles.index', 'admin.permissions.index'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.roles.index', 'admin.permissions.index'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-lock menu-icon"></i>
                     <div>Roles & Permissions</div>
