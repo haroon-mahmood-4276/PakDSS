@@ -23,14 +23,7 @@
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            @can('cache.flush')
-                <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="{{ route('cache.flush') }}" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" title="Click to clear cache (Automatically resets in 10 minutes)">
-                        <i class="ti ti-refresh ti-md"></i>
-                    </a>
-                </li>
-            @endcan
+
 
             <!-- Notification -->
             {{-- <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
@@ -327,7 +320,7 @@
                 aria-label="Search..." autocomplete="off" spellcheck="false" dir="auto"
                 style="position: relative; vertical-align: top;">
             <pre aria-hidden="true"
-                style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Public Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 15px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
+                style="position: absolute; visibility: hidden; white-space: pre; font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 15px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
             <div class="tt-menu navbar-search-suggestion ps"
                 style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
                 <div class="tt-dataset tt-dataset-pages"></div>

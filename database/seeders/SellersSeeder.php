@@ -16,6 +16,7 @@ class SellersSeeder extends Seeder
      */
     public function run()
     {
+        Seller::truncate();
         $data = [
             [
                 'name' => 'Haroon Mahmood',

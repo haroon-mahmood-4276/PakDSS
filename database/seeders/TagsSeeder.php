@@ -15,6 +15,7 @@ class TagsSeeder extends Seeder
      */
     public function run ()
     {
+        Tag::truncate();
         ( new Tag() )->insert( [
             [
                 'id' => 1,

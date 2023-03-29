@@ -11,10 +11,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasUuids, LogsActivity, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids, LogsActivity, SoftDeletes, HasRoles;
 
     protected $dateFormat = 'U';
 

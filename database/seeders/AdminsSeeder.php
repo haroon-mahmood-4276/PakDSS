@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\{Admin, Role};
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class AdminsSeeder extends Seeder
 {
@@ -16,6 +15,9 @@ class AdminsSeeder extends Seeder
      */
     public function run()
     {
+        Admin::truncate();
+        $adminRole = (new Role())->where('guard_name', 'admin')->first();
+
         $data = [
             [
                 'name' => 'Haroon Mahmood',
@@ -25,8 +27,9 @@ class AdminsSeeder extends Seeder
             ],
         ];
 
-        foreach ($data as $value) {
-            (new Admin())->create($value);
+        foreach ($data as $key => $admin) {
+            $admin = (new Admin())->create($admin);
+            $admin->assignRole($adminRole);
         }
     }
 }

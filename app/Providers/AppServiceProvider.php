@@ -11,7 +11,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(RoleInterface::class, RoleService::class);
+        $this->app->bind(PaymentMethodInterface::class, PaymentMethodService::class);
     }
 
     /**

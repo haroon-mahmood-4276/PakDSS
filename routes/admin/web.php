@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{AuthController, DashboardController};
+use App\Http\Controllers\Admin\{AuthController, DashboardController, PermissionController, RoleController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +25,30 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::group(['middleware' => 'auth:admin'], function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    });
+
+    //Role Routes
+    Route::group(['prefix' => 'roles', 'as' => 'roles.'], function () {
+        Route::get('/', [RoleController::class, 'index'])->middleware('permission:roles.index')->name('index');
+
+        Route::group(['middleware' => 'permission:roles.create'], function () {
+            Route::get('create', [RoleController::class, 'create'])->name('create');
+            Route::post('store', [RoleController::class, 'store'])->name('store');
+        });
+
+        Route::get('delete', [RoleController::class, 'destroy'])->middleware('permission:roles.destroy')->name('destroy');
+
+        Route::group(['prefix' => '/{id}', 'middleware' => 'permission:roles.edit'], function () {
+            Route::get('edit', [RoleController::class, 'edit'])->name('edit');
+            Route::put('update', [RoleController::class, 'update'])->name('update');
+        });
+    });
+
+    //Permissions Routes
+    Route::group(['prefix' => 'permissions', 'as' => 'permissions.'], function () {
+        Route::get('/', [PermissionController::class, 'index'])->middleware('permission:permissions.index')->name('index');
+
+        Route::post('assign-permission', [PermissionController::class, 'assignPermissionToRole'])->middleware('permission:permissions.assign-permission')->name('assign-permission');
+        Route::post('revoke-permission', [PermissionController::class, 'revokePermissionToRole'])->middleware('permission:permissions.revoke-permission')->name('revoke-permission');
     });
 });
