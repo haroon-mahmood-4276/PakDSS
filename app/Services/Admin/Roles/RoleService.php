@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services\Roles;
+namespace App\Services\Admin\Roles;
 
 use App\Models\Role;
-use App\Services\Roles\RoleInterface;
 use Illuminate\Support\Facades\DB;
 
 class RoleService implements RoleInterface

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\Admin\Roles\RoleInterface;
 use Exception;
 
 class RoleController extends Controller
