@@ -118,7 +118,7 @@
     <!-- Vendors JS -->
     <script src="{{ asset('admin-assets') }}/vendor/libs/sweetalert2/sweetalert2.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/select2/select2.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/moment/moment.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/moment/moment.min.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/moment/moment-timezone.min.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/flatpickr/flatpickr.js"></script>
     @yield('vendor-js')
