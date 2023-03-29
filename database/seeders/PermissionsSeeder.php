@@ -28,19 +28,9 @@ class PermissionsSeeder extends Seeder
                 'show_name' => 'Can Create Role',
             ],
             [
-                'name' => 'admin.roles.store',
-                'guard_name' => 'admin',
-                'show_name' => 'Can Store Role',
-            ],
-            [
                 'name' => 'admin.roles.edit',
                 'guard_name' => 'admin',
                 'show_name' => 'Can Edit Role',
-            ],
-            [
-                'name' => 'admin.roles.update',
-                'guard_name' => 'admin',
-                'show_name' => 'Can Update Role',
             ],
             [
                 'name' => 'admin.roles.destroy',
@@ -110,20 +100,6 @@ class PermissionsSeeder extends Seeder
                 'show_name' => 'Can Edit Own Permission',
             ],
 
-            // Sites Routes
-            [
-                'name' => 'admin.cache.flush',
-                'guard_name' => 'admin',
-                'show_name' => 'Can Refresh Site Cache',
-            ],
-
-            // Commands Routes
-            [
-                'name' => 'admin.commands.command',
-                'guard_name' => 'admin',
-                'show_name' => 'Can Run Artisan Commands',
-            ],
-
             // Payment Method Routes
             // [
             //     'name' => 'admin.payment-methods.index',
@@ -136,19 +112,9 @@ class PermissionsSeeder extends Seeder
             //     'show_name' => 'Can Create Payment Method',
             // ],
             // [
-            //     'name' => 'admin.payment-methods.store',
-            //     'guard_name' => 'admin',
-            //     'show_name' => 'Can Store Payment Method',
-            // ],
-            // [
             //     'name' => 'admin.payment-methods.edit',
             //     'guard_name' => 'admin',
             //     'show_name' => 'Can Edit Payment Method',
-            // ],
-            // [
-            //     'name' => 'admin.payment-methods.update',
-            //     'guard_name' => 'admin',
-            //     'show_name' => 'Can Update Payment Method',
             // ],
             // [
             //     'name' => 'admin.payment-methods.destroy',

@@ -1,4 +1,4 @@
-@extends('admin.app.layout.layout')
+@extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
     {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.permissions.index') }}
@@ -7,7 +7,7 @@
 @section('page-title', __('lang.permissions.permission_plural'))
 
 @section('page-vendor')
-    {{ view('admin.app.layout.datatables.css') }}
+    {{ view('admin.layout.datatables.css') }}
 @endsection
 
 @section('page-css')
@@ -38,7 +38,7 @@
 @endsection
 
 @section('vendor-js')
-    {{ view('admin.app.layout.datatables.js') }}
+    {{ view('admin.layout.datatables.js') }}
 @endsection
 
 @section('page-js')
