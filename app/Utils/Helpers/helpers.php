@@ -157,52 +157,6 @@ if (!function_exists('getTreeData')) {
         }
 
         return $typesTmp;
-        // dd($typesTmp);
-    }
-}
-if (!function_exists('getStakeholderTreeData')) {
-    function getStakeholderTreeData(collection $collectionData, $model, $getFromDB = false): array
-    {
-        $stakeholderTmp = [];
-
-        $dbTypes = ($getFromDB ? $model::all() : $collectionData);
-
-        foreach ($collectionData as $key => $row) {
-            $stakeholderTmp[] = $row;
-            $stakeholderTmp[$key]["tree"] = ($getFromDB ? getStakholderParentTreeElequent($model, $row, $row->full_name, $collectionData, $dbTypes) : getStakeholderParentTreeCollection($row, $row->full_name, $collectionData));
-        }
-        return $stakeholderTmp;
-    }
-}
-
-if (!function_exists('getStakholderParentTreeElequent')) {
-    function getStakholderParentTreeElequent($model, $row, $name, collection $parent, $dbTypes)
-    {
-        if ($row->parent_id == 0) {
-            return $name;
-        }
-
-        $nextRow = $model::find($row->parent_id);
-        $name = $nextRow->full_name . ' > ' . $name;
-
-        return getStakholderParentTreeElequent($model, $nextRow, $name, $parent, $dbTypes);
-    }
-}
-
-if (!function_exists('getStakeholderParentTreeCollection')) {
-    function getStakeholderParentTreeCollection($row, $name, collection $parent): string
-    {
-        if ($row->parent_id == 0) {
-            return $name;
-        }
-
-        $nextRow = $parent->firstWhere('id', $row->parent_id);
-        $name = (is_null($nextRow) ?? empty($nextRow) ? '' : $nextRow->full_name) . ' > ' . $name;
-        if (is_null($nextRow) ?? empty($nextRow)) {
-            return $name;
-        }
-
-        return getStakeholderParentTreeCollection($nextRow, $name, $parent, $parent);
     }
 }
 

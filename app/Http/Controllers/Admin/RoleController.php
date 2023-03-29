@@ -6,6 +6,7 @@ use App\DataTables\Admin\RolesDataTable;
 use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Roles\{storeRequest, updateRequest};
 use App\Models\Role;
 use App\Services\Admin\Roles\RoleInterface;
 use Exception;
@@ -45,7 +46,7 @@ class RoleController extends Controller
         $data = [
             'roles' => $this->roleInterface->getAll(with_tree: true),
         ];
-        return view('roles.create', $data);
+        return view('admin.roles.create', $data);
     }
 
     /**
@@ -54,18 +55,18 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(roleStoreRequest $request)
+    public function store(storeRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
         try {
             $inputs = $request->validated();
             $record = $this->roleInterface->store($inputs);
-            return redirect()->route('roles.index')->withSuccess('Data saved!');
+            return redirect()->route('admin.roles.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('roles.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
     }
 
@@ -96,17 +97,17 @@ class RoleController extends Controller
             if ($role && !empty($role)) {
                 $data = [
                     'role' => $role,
-                    'roles' => $this->roleInterface->getAll(ignore: $role->id, with_tree: true),
+                    'roles' => $this->roleInterface->getAll(with_tree: true),
                 ];
 
-                return view('roles.edit', $data);
+                return view('admin.roles.edit', $data);
             }
 
-            return redirect()->route('roles.index')->withWarning('Record not found!');
+            return redirect()->route('admin.roles.index')->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('roles.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
     }
 
@@ -117,7 +118,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(roleUpdateRequest $request, $id)
+    public function update(updateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
         try {
@@ -128,11 +129,11 @@ class RoleController extends Controller
 
             $record = $this->roleInterface->update($id, $inputs);
 
-            return redirect()->route('roles.index')->withSuccess('Data saved!');
+            return redirect()->route('admin.roles.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('roles.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
     }
 
@@ -146,14 +147,14 @@ class RoleController extends Controller
                 $record = $this->roleInterface->destroy($request->checkForDelete);
 
                 if (!$record) {
-                    return redirect()->route('roles.index')->withDanger('Data not found!');
+                    return redirect()->route('admin.roles.index')->withDanger('Data not found!');
                 }
             }
-            return redirect()->route('roles.index')->withSuccess('Data deleted!');
+            return redirect()->route('admin.roles.index')->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('roles.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
     }
 }
