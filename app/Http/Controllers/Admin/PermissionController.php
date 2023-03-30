@@ -17,6 +17,11 @@ class PermissionController extends Controller
     public function __construct(PermissionInterface $permissionInterface)
     {
         $this->permissionInterface = $permissionInterface;
+        $this->middleware('permission:' . permission_list('Admin.Permission.Index'), ['only' => ['index', 'show']]);
+        // $this->middleware('permission:' . permission_list('Admin.Permission.Assign-permission'), ['only' => ['assignPermissionToRole', 'revokePermissionToRole']]);
+        // $this->middleware('permission:' . permission_list('Admin.Permission.Create'), ['only' => ['create', 'store']]);
+        // $this->middleware('permission:' . permission_list('Admin.Permission.Update'), ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:' . permission_list('Admin.Permission.Destroy'), ['only' => ['destroy']]);
     }
 
     /**
@@ -129,7 +134,7 @@ class PermissionController extends Controller
     public function assignPermissionToRole(Request $request)
     {
         try {
-            $role = (new Role())->find($request->role_id)->givePermissionTo((new Permission())->find($request->permission_id)->name);
+            $permission = Permission::find($request->permission_id)->assignRole(Role::find($request->role_id));
 
             return response()->json([
                 'success' => true,
@@ -143,7 +148,7 @@ class PermissionController extends Controller
     public function revokePermissionToRole(Request $request)
     {
         try {
-            $role = (new Role())->find($request->role_id)->revokePermissionTo((new Permission())->find($request->permission_id)->name);
+            $permission = Permission::find($request->permission_id)->removeRole(Role::find($request->role_id));
 
             return response()->json([
                 'success' => true,

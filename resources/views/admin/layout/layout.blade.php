@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/animate-css/animate.css" />
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/sweetalert2/sweetalert2.css" />
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/toastr/toastr.css" />
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/flatpickr/flatpickr.css" />
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/load-awesome/fire.min.css">
     @yield('page-vendor')
@@ -117,6 +118,7 @@
 
     <!-- Vendors JS -->
     <script src="{{ asset('admin-assets') }}/vendor/libs/sweetalert2/sweetalert2.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/toastr/toastr.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/select2/select2.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/moment/moment.min.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/moment/moment-timezone.min.js"></script>
@@ -137,17 +139,17 @@
             }
         });
 
-        // const Toast = Swal.mixin({
-        //     toast: true,
-        //     position: 'top-end',
-        //     showConfirmButton: false,
-        //     timer: 3000,
-        //     timerProgressBar: true,
-        //     didOpen: (toast) => {
-        //         toast.addEventListener('mouseenter', Swal.stopTimer)
-        //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-        //     }
-        // });
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
 
         function showBlockUI(element = null) {
             blockUIOptions = {

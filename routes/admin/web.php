@@ -46,10 +46,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         //Permissions Routes
         Route::group(['prefix' => 'permissions', 'as' => 'permissions.'], function () {
-            Route::get('/', [PermissionController::class, 'index'])->middleware('permission:admin.permissions.index')->name('index');
+            Route::get('/', [PermissionController::class, 'index'])->name('index');
 
-            Route::post('assign-permission', [PermissionController::class, 'assignPermissionToRole'])->middleware('permission:admin.permissions.assign-permission')->name('assign-permission');
-            Route::post('revoke-permission', [PermissionController::class, 'revokePermissionToRole'])->middleware('permission:admin.permissions.revoke-permission')->name('revoke-permission');
+            Route::post('assign-permission', [PermissionController::class, 'assignPermissionToRole'])->name('assign-permission');
+            Route::post('revoke-permission', [PermissionController::class, 'revokePermissionToRole'])->name('revoke-permission');
         });
     });
 });

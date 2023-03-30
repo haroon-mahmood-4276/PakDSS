@@ -32,7 +32,7 @@ class AdminsSeeder extends Seeder
         foreach ($data as $key => $admin) {
             $admin = (new Admin())->create($admin);
             $admin->assignRole($adminRole);
-            $admin->givePermissionTo($permission);
+            // $admin->givePermissionTo($permission);
         }
     }
 }

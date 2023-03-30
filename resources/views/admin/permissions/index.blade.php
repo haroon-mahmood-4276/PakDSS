@@ -85,7 +85,7 @@
 
         function changeRolePermission(role_id, permission_id) {
 
-            var checkBoxState = $('#chkRolePermission_' + role_id + '_' + permission_id).is(':checked');
+            var checkBoxState = $('#chkRolePermission_' + role_id + '__' + permission_id).is(':checked');
 
             var url = "";
             if (checkBoxState) {
@@ -106,8 +106,8 @@
                     if (response.success) {
                         toastr.success(response.message,
                             "Success!", {
-                                showMethod: "slideDown",
-                                hideMethod: "slideUp",
+                                // showMethod: "slideDown",
+                                // hideMethod: "slideUp",
                                 timeOut: 2e3,
                                 closeButton: !0,
                                 tapToDismiss: !1,

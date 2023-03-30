@@ -1,22 +1,21 @@
 <?php
 
 return [
-    'admin' => [
-        'roles' => [
-            'index' => 'admin.roles.index',
-            'create' => 'admin.roles.create',
-            'update' => 'admin.roles.update',
-            'destroy' => 'admin.roles.destroy',
-            'export' => 'admin.roles.export',
+    'Admin' => [
+        'Roles' => [
+            'Index' => 'admin.roles.index',
+            'Create' => 'admin.roles.create',
+            'Update' => 'admin.roles.update',
+            'Destroy' => 'admin.roles.destroy',
+            'Export' => 'admin.roles.export',
         ],
-        'permission' => [
-            'index' => 'admin.permissions.index',
-            'create' => 'admin.permissions.create',
-            'update' => 'admin.permissions.update',
-            'destroy' => 'admin.permissions.destroy',
-            'export' => 'admin.permissions.export',
-            'assign-permission' => 'admin.permissions.assign-permission',
-            'revoke-permission' => 'admin.permissions.revoke-permission',
+        'Permission' => [
+            'Index' => 'admin.permissions.index',
+            'Create' => 'admin.permissions.create',
+            'Update' => 'admin.permissions.update',
+            'Destroy' => 'admin.permissions.destroy',
+            'Export' => 'admin.permissions.export',
+            'Assign-permission' => 'admin.permissions.assign-permission',
         ]
     ]
 ];

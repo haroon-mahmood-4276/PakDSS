@@ -49,11 +49,6 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Can View Permissions',
             ],
-            [
-                'name' => 'admin.permissions.view_all',
-                'guard_name' => 'admin',
-                'show_name' => 'Can View All Site Roles Permissions',
-            ],
             // [
             //     'name' => 'admin.permissions.create',
             //     'guard_name' => 'admin',
@@ -88,11 +83,6 @@ class PermissionsSeeder extends Seeder
                 'name' => 'admin.permissions.assign-permission',
                 'guard_name' => 'admin',
                 'show_name' => 'Can Assign Permission',
-            ],
-            [
-                'name' => 'admin.permissions.revoke-permission',
-                'guard_name' => 'admin',
-                'show_name' => 'Can Revoke Permission',
             ],
 
             // Payment Method Routes
