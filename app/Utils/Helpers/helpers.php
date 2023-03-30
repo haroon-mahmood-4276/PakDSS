@@ -8,11 +8,16 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
 
 if (!function_exists('permission_list')) {
-    function permission_list($key)
+    function permission_list(...$keys)
     {
         $permissionList = include app_path('Utils/PermissionList.php');
         $permissionList = Arr::dot($permissionList);
-        return $permissionList[$key];
+
+        if (count($keys) > 1) {
+            return array_values(array_intersect_key($permissionList, array_flip($keys)));
+        } else {
+            return $permissionList[$keys[0]];
+        }
     }
 }
 

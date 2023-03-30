@@ -36,7 +36,7 @@
             </a>
         </li>
 
-        @canany(['admin.permissions.index', 'admin.roles.index'], )
+        @canany(permission_list('admin.roles.index', 'admin.permission.index'))
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Administration</span>
             </li>

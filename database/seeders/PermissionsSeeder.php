@@ -94,11 +94,6 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Can Revoke Permission',
             ],
-            [
-                'name' => 'admin.permissions.edit-own-permission',
-                'guard_name' => 'admin',
-                'show_name' => 'Can Edit Own Permission',
-            ],
 
             // Payment Method Routes
             // [

@@ -18,6 +18,10 @@ class RoleController extends Controller
     public function __construct(RoleInterface $roleInterface)
     {
         $this->roleInterface = $roleInterface;
+        $this->middleware('permission:' . permission_list('admin.roles.index'), ['only' => ['index', 'show']]);
+        $this->middleware('permission:' . permission_list('admin.roles.create'), ['only' => ['create', 'store']]);
+        $this->middleware('permission:' . permission_list('admin.roles.update'), ['only' => ['edit', 'update']]);
+        $this->middleware('permission:' . permission_list('admin.roles.destroy'), ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

@@ -29,16 +29,16 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         //Role Routes
         Route::group(['prefix' => 'roles', 'as' => 'roles.'], function () {
-            Route::get('/', [RoleController::class, 'index'])->middleware('permission:admin.roles.index')->name('index');
+            Route::get('/', [RoleController::class, 'index'])->name('index');
 
-            Route::group(['middleware' => 'permission:admin.roles.create'], function () {
+            Route::group([], function () {
                 Route::get('create', [RoleController::class, 'create'])->name('create');
                 Route::post('store', [RoleController::class, 'store'])->name('store');
             });
 
-            Route::get('delete', [RoleController::class, 'destroy'])->middleware('permission:admin.roles.destroy')->name('destroy');
+            Route::get('delete', [RoleController::class, 'destroy'])->name('destroy');
 
-            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.roles.edit'], function () {
+            Route::group(['prefix' => '/{id}'], function () {
                 Route::get('edit', [RoleController::class, 'edit'])->name('edit');
                 Route::put('update', [RoleController::class, 'update'])->name('update');
             });

@@ -9,7 +9,6 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        dd( permission_list('admin.roles.delete'));
         return view('admin.dashboard');
     }
 }
