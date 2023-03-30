@@ -5,6 +5,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\{Collection};
 use Illuminate\Support\Facades\{Crypt, File};
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Arr;
+
+if (!function_exists('permission_list')) {
+    function permission_list($key)
+    {
+        $permissionList = include app_path('Utils/PermissionList.php');
+        $permissionList = Arr::dot($permissionList);
+        return $permissionList[$key];
+    }
+}
 
 if (!function_exists('filter_strip_tags')) {
 
