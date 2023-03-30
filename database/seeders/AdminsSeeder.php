@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Admin, Role};
+use App\Models\{Admin, Permission, Role};
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,9 +27,12 @@ class AdminsSeeder extends Seeder
             ],
         ];
 
+        $permission = (new Permission())->first();
+
         foreach ($data as $key => $admin) {
             $admin = (new Admin())->create($admin);
             $admin->assignRole($adminRole);
+            $admin->givePermissionTo($permission);
         }
     }
 }

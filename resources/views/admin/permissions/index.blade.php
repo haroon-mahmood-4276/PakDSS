@@ -4,7 +4,7 @@
     {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.permissions.index') }}
 @endsection
 
-@section('page-title', __('lang.permissions.permission_plural'))
+@section('page-title', 'Permissions')
 
 @section('page-vendor')
     {{ view('admin.layout.datatables.css') }}
