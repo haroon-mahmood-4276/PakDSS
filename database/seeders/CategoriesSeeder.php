@@ -15,6 +15,7 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
+        Category::truncate();
         (new Category())->insert([
             [
                 'id' => 1,

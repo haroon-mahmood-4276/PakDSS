@@ -16,6 +16,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        User::truncate();
         $data = [
             [
                 'name' => 'Haroon Mahmood',
