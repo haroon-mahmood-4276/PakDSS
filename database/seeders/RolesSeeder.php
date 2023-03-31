@@ -22,8 +22,8 @@ class RolesSeeder extends Seeder
 
         $data = [
             [
-                'name' => 'Seller',
-                'guard_name' => 'seller',
+                'name' => 'Admin1',
+                'guard_name' => 'admin',
                 'parent_id' => $AdminRole->id,
             ],
         ];
