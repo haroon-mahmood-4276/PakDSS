@@ -36,16 +36,16 @@
             </a>
         </li>
 
-        @canany(permission_list('Admin.Roles.Index', 'Admin.Permission.Index'))
+        @canany(['admin.Ioles.index', 'admin.permissions.index'])
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Administration</span>
             </li>
         @endcanany
 
         <!-- Roles & Permissions -->
-        @canany(permission_list('Admin.Roles.Index', 'Admin.Permission.Index'))
+        @canany(['admin.roles.index', 'admin.permissions.index'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(), permission_list('Admin.Roles.Index', 'Admin.Permission.Index'))? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.roles.index', 'admin.permissions.index']) ? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-lock menu-icon"></i>
                     <div>Roles & Permissions</div>
@@ -53,7 +53,7 @@
                 </a>
                 <ul class="menu-sub">
 
-                    @can(permission_list('Admin.Roles.Index'))
+                    @can('admin.roles.index')
                         <li class="menu-item {{ request()->routeIs('admin.roles.index') ? 'active' : null }}">
                             <a href="{{ route('admin.roles.index') }}" class="menu-link">
                                 <div>Roles</div>
@@ -61,7 +61,7 @@
                         </li>
                     @endcan
 
-                    @can(permission_list('Admin.Permission.Index'))
+                    @can('admin.permissions.index')
                         <li class="menu-item {{ request()->routeIs('admin.permissions.index') ? 'active' : null }}">
                             <a href="{{ route('admin.permissions.index') }}" class="menu-link">
                                 <div>Permissions</div>
