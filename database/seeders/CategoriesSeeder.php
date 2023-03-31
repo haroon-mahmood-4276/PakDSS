@@ -15,7 +15,6 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        // dd(Str::orderedUuid()->toString());
         Category::truncate();
         $data = [
             [
