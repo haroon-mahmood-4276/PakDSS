@@ -24,10 +24,9 @@ class Category extends Model
         'slug',
     ];
 
-    public $rules = [
-        'parent_id' => 'required|uuid',
+    public array $rules = [
+        'parent_id' => 'nullable|uuid',
         'name' => 'required|string|between:1,254',
-        'slug' => 'required|string|between:1,254',
     ];
 
     public function getActivitylogOptions(): LogOptions

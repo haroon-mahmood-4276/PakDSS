@@ -45,7 +45,7 @@
         <!-- Roles & Permissions -->
         @canany(['admin.roles.index', 'admin.permissions.index'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(), ['admin.roles.index', 'admin.permissions.index']) ? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.roles.index', 'admin.permissions.index'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-lock menu-icon"></i>
                     <div>Roles & Permissions</div>
@@ -72,31 +72,32 @@
             </li>
         @endcanany
 
-        {{-- @canany(['customers.index', 'customers.create'])
-        <li class="menu-item {{ in_array(request()->route()->getName(),['customers.index', 'customers.create'])? 'open active': null }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="fa-solid fa-user menu-icon"></i>
-                <div>Customers</div>
-            </a>
-            <ul class="menu-sub">
+        @canany(['admin.categories.index', 'admin.categories.create'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.categories.index', 'admin.categories.create'])? 'open active': null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-user menu-icon"></i>
+                    <div>Categories</div>
+                </a>
+                <ul class="menu-sub">
 
-                @can('customers.index')
-                <li class="menu-item {{ request()->routeIs('customers.index') ? 'active' : null }}">
-                    <a href="{{ route('customers.index') }}" class="menu-link">
-                        <div>View All</div>
-                    </a>
-                </li>
-                @endcan
+                    @can('admin.categories.index')
+                        <li class="menu-item {{ request()->routeIs('admin.categories.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.categories.index') }}" class="menu-link">
+                                <div>View All</div>
+                            </a>
+                        </li>
+                    @endcan
 
-                @can('customers.create')
-                <li class="menu-item {{ request()->routeIs('customers.create') ? 'active' : null }}">
-                    <a href="{{ route('customers.create') }}" class="menu-link">
-                        <div>Add New</div>
-                    </a>
-                </li>
-                @endcan
-            </ul>
-        </li>
-        @endcanany --}}
+                    @can('admin.categories.create')
+                        <li class="menu-item {{ request()->routeIs('admin.categories.create') ? 'active' : null }}">
+                            <a href="{{ route('admin.categories.create') }}" class="menu-link">
+                                <div>Add New</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcanany
     </ul>
 </aside>

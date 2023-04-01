@@ -39,3 +39,19 @@ Breadcrumbs::for('admin.permissions.edit', function (BreadcrumbTrail $trail, $pe
     $trail->parent('admin.permissions.index');
     $trail->push('Edit Permission',  route('admin.permissions.edit', ['id' => $permission_id]));
 });
+
+// Categories Breadcrumbs
+Breadcrumbs::for('admin.categories.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Categories', route('admin.categories.index'));
+});
+
+Breadcrumbs::for('admin.categories.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.categories.index');
+    $trail->push('Create Category', route('admin.categories.create'));
+});
+
+Breadcrumbs::for('admin.categories.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.categories.index');
+    $trail->push('Edit Category');
+});

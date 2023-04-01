@@ -25,17 +25,20 @@ class CategoriesDataTable extends DataTable
     {
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
-            ->editColumn('created_at', function ($bookingSource) {
-                return editDateColumn($bookingSource->created_at);
+            ->editColumn('check', function ($category) {
+                return $category;
             })
-            ->editColumn('updated_at', function ($bookingSource) {
-                return editDateColumn($bookingSource->updated_at);
+            ->editColumn('parent_id', function ($category) {
+                return Str::of(getParentByParentId($category->parent_id, Category::class))->ucfirst();
             })
-            ->editColumn('actions', function ($bookingSource) {
-                return view('admin.categories.actions', ['id' => $bookingSource->id]);
+            ->editColumn('created_at', function ($category) {
+                return editDateColumn($category->created_at);
             })
-            ->editColumn('check', function ($bookingSource) {
-                return $bookingSource;
+            ->editColumn('updated_at', function ($category) {
+                return editDateColumn($category->updated_at);
+            })
+            ->editColumn('actions', function ($category) {
+                return view('admin.categories.actions', ['id' => $category->id]);
             })
             ->setRowId('id')
             ->rawColumns(array_merge($columns, ['action', 'check']));
@@ -101,10 +104,10 @@ class CategoriesDataTable extends DataTable
             ->deferRender()
             ->dom('BlfrtipC')
             ->scrollX()
-            ->lengthMenu([10, 20, 30, 50, 70, 100])
+            ->lengthMenu([20, 30, 50, 70, 100, 120])
             ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
             ->buttons($buttons)
-            // ->rowGroupDataSrc('parent_id')
+            ->rowGroupDataSrc('parent_id')
             ->columnDefs([
                 [
                     'targets' => 0,
@@ -123,7 +126,7 @@ class CategoriesDataTable extends DataTable
                 ],
             ])
             ->orders([
-                [3, 'asc'],
+                [2, 'asc'],
             ]);
     }
 
@@ -142,9 +145,10 @@ class CategoriesDataTable extends DataTable
 
         $columns = [
             $checkColumn,
-            Column::make('name')->title('Booking Source')->addClass('text-nowarp'),
-            Column::make('created_at')->addClass('text-nowarp'),
-            Column::make('updated_at')->addClass('text-nowarp'),
+            Column::make('name')->title('Name')->addClass('text-nowrap'),
+            Column::make('parent_id')->title('Parent'),
+            Column::make('created_at')->addClass('text-nowrap'),
+            Column::make('updated_at')->addClass('text-nowrap'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),
         ];
         return $columns;
@@ -157,7 +161,7 @@ class CategoriesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'BookingSource_' . date('YmdHis');
+        return 'category_' . date('YmdHis');
     }
 
     /**

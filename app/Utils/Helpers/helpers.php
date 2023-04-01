@@ -365,9 +365,9 @@ if (!function_exists('editBadgeColumn')) {
 }
 
 if (!function_exists('getRoleParentByParentId')) {
-    function getRoleParentByParentId($parent_id)
+    function getParentByParentId($parent_id, $model)
     {
-        $role =  (new Role())->where('id', $parent_id)->first();
+        $role =  $model::where('id', $parent_id)->first();
         if ($role) {
             return $role->name;
         }

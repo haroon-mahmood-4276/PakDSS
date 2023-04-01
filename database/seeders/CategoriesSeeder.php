@@ -771,8 +771,8 @@ class CategoriesSeeder extends Seeder
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Curiculum Books',
-                                'slug' =>  Str::slug('E Curiculum Books'),
+                                'name' => 'Curriculum Books',
+                                'slug' =>  Str::slug('E Curriculum Books'),
                                 'parent_id' => null,
                             ],
                             [
@@ -876,7 +876,7 @@ class CategoriesSeeder extends Seeder
 
     private function triverseAndSave($data, $parent_id = null)
     {
-        foreach ($data as $key => $value) {
+        foreach ($data as $value) {
 
             $value['id'] = Str::orderedUuid()->toString();
 
