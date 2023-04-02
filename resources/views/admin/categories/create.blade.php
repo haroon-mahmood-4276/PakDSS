@@ -98,7 +98,7 @@
                 }
             });
 
-            $('#name').on('keyup', function() {
+            $('#name').on('keyup blur', function() {
                 $("#slug").val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g, ' ').replace(/[^a-z0-9 ]/gi, '').replace(/\s/g, '-'));
             });
         });
