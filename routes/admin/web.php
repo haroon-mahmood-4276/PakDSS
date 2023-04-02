@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{AuthController, CategoryController, DashboardController, PermissionController, RoleController};
+use App\Http\Controllers\Admin\{AuthController, CategoryController, DashboardController, PermissionController, RoleController, TagController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,6 +67,23 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::get('delete', [CategoryController::class, 'destroy'])->middleware('permission:admin.categories.destroy')->name('destroy');
+        });
+
+        //Tags Routes
+        Route::group(['prefix' => 'tags', 'as' => 'tags.'], function () {
+            Route::get('/', [TagController::class, 'index'])->middleware('permission:admin.tags.index')->name('index');
+
+            Route::group(['middleware' => 'permission:admin.tags.create'], function () {
+                Route::get('create', [TagController::class, 'create'])->name('create');
+                Route::post('store', [TagController::class, 'store'])->name('store');
+            });
+
+            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.tags.edit'], function () {
+                Route::get('edit', [TagController::class, 'edit'])->name('edit');
+                Route::put('update', [TagController::class, 'update'])->name('update');
+            });
+
+            Route::get('delete', [TagController::class, 'destroy'])->middleware('permission:admin.tags.destroy')->name('destroy');
         });
     });
 });

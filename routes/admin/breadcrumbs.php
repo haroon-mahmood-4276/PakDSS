@@ -55,3 +55,20 @@ Breadcrumbs::for('admin.categories.edit', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.categories.index');
     $trail->push('Edit Category');
 });
+
+
+// Tags Breadcrumbs
+Breadcrumbs::for('admin.tags.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Tags', route('admin.tags.index'));
+});
+
+Breadcrumbs::for('admin.tags.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.tags.index');
+    $trail->push('Create Category', route('admin.tags.create'));
+});
+
+Breadcrumbs::for('admin.tags.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.tags.index');
+    $trail->push('Edit Category');
+});

@@ -13,31 +13,23 @@ class TagsSeeder extends Seeder
      *
      * @return void
      */
-    public function run ()
+    public function run()
     {
         Tag::truncate();
-        ( new Tag() )->insert( [
+        $data = [
             [
-                'id' => 1,
-                'name' => 'Food',
-                'slug' => Str::slug( 'Food' ),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'name' => Str::slug('Food'),
             ],
             [
-                'id' => 2,
-                'name' => 'Blog',
-                'slug' => Str::slug( 'Blog' ),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'name' => Str::slug('Blog'),
             ],
             [
-                'id' => 3,
-                'name' => 'Electronics',
-                'slug' => Str::slug( 'Electronics' ),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'name' => Str::slug('Electronics'),
             ],
-        ] );
+        ];
+
+        foreach ($data as $key => $value) {
+            Tag::create($value);
+        }
     }
 }
