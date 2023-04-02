@@ -7,7 +7,6 @@ use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Categories\{storeRequest, updateRequest};
-use App\Models\Role;
 use App\Services\Admin\Categories\CategoryInterface;
 use Exception;
 
@@ -130,8 +129,10 @@ class CategoryController extends Controller
             $record = $this->categoryInterface->update($id, $inputs);
 
             return redirect()->route('admin.categories.index')->withSuccess('Data updated!');
-        } catch (Exception|GeneralException $ex) {
+        } catch (GeneralException $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        } catch (Exception $ex) {
+            return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }
     }
 

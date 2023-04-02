@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Category extends Model
 {
-    use HasUuids, HasFactory, LogsActivity;
+    use HasUuids, HasFactory, LogsActivity, SoftDeletes;
 
     protected $dateFormat = 'U';
 
@@ -19,10 +20,6 @@ class Category extends Model
         'name',
         'slug',
     ];
-
-    // protected $hidden = [
-    //     'slug',
-    // ];
 
     public $rules = [
         'parent_category' => 'nullable|uuid',
