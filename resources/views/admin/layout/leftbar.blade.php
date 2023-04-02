@@ -99,5 +99,33 @@
                 </ul>
             </li>
         @endcanany
+
+        @canany(['admin.tags.index', 'admin.tags.create'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.tags.index', 'admin.tags.create'])? 'open active': null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-user menu-icon"></i>
+                    <div>Tags</div>
+                </a>
+                <ul class="menu-sub">
+
+                    @can('admin.tags.index')
+                        <li class="menu-item {{ request()->routeIs('admin.tags.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.tags.index') }}" class="menu-link">
+                                <div>View All</div>
+                            </a>
+                        </li>
+                    @endcan
+
+                    @can('admin.tags.create')
+                        <li class="menu-item {{ request()->routeIs('admin.tags.create') ? 'active' : null }}">
+                            <a href="{{ route('admin.tags.create') }}" class="menu-link">
+                                <div>Add New</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcanany
     </ul>
 </aside>

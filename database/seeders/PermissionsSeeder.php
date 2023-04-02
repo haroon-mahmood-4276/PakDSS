@@ -81,6 +81,33 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Can Export Categories',
             ],
+
+            // Tags Permissions
+            [
+                'name' => 'admin.tags.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Can View Tags',
+            ],
+            [
+                'name' => 'admin.tags.create',
+                'guard_name' => 'admin',
+                'show_name' => 'Can Create Tag',
+            ],
+            [
+                'name' => 'admin.tags.edit',
+                'guard_name' => 'admin',
+                'show_name' => 'Can Edit Tag',
+            ],
+            [
+                'name' => 'admin.tags.destroy',
+                'guard_name' => 'admin',
+                'show_name' => 'Can Delete Tag',
+            ],
+            [
+                'name' => 'admin.tags.export',
+                'guard_name' => 'admin',
+                'show_name' => 'Can Export Tags',
+            ],
         ];
 
         $role = (new Role())->first();
