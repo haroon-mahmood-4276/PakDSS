@@ -36,7 +36,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::post('store', [RoleController::class, 'store'])->name('store');
             });
 
-            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.roles.update'], function () {
+            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.roles.edit'], function () {
                 Route::get('edit', [RoleController::class, 'edit'])->name('edit');
                 Route::put('update', [RoleController::class, 'update'])->name('update');
             });
@@ -61,7 +61,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::post('store', [CategoryController::class, 'store'])->name('store');
             });
 
-            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.categories.update'], function () {
+            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.categories.edit'], function () {
                 Route::get('edit', [CategoryController::class, 'edit'])->name('edit');
                 Route::put('update', [CategoryController::class, 'update'])->name('update');
             });

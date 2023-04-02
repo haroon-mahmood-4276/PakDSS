@@ -82,25 +82,29 @@
 @endsection
 
 @section('custom-js')
-<script>
-    $(document).ready(function() {
-        e = $("#category");
-        e.wrap('<div class="position-relative"></div>');
-        e.select2({
-            dropdownAutoWidth: !0,
-            dropdownParent: e.parent(),
-            width: "100%",
-            containerCssClass: "select-lg",
-            templateResult: c,
-            templateSelection: c,
-            escapeMarkup: function(e) {
-                return e
-            }
-        });
-    });
+    <script>
+        $(document).ready(function() {
+            e = $("#category");
+            e.wrap('<div class="position-relative"></div>');
+            e.select2({
+                dropdownAutoWidth: !0,
+                dropdownParent: e.parent(),
+                width: "100%",
+                containerCssClass: "select-lg",
+                templateResult: c,
+                templateSelection: c,
+                escapeMarkup: function(e) {
+                    return e
+                }
+            });
 
-    function c(e) {
-        return e.id ? "<i class='" + $(e.element).data("icon") + " me-2'></i>" + e.text : e.text
-    }
-</script>
+            $('#name').on('keyup', function() {
+                $("#slug").val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g, ' ').replace(/[^a-z0-9 ]/gi, '').replace(/\s/g, '-'));
+            });
+        });
+
+        function c(e) {
+            return e.id ? "<i class='" + $(e.element).data("icon") + " me-2'></i>" + e.text : e.text
+        }
+    </script>
 @endsection

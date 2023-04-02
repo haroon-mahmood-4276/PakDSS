@@ -4,6 +4,7 @@ namespace App\Services\Admin\Categories;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CategoryService implements CategoryInterface
 {
@@ -37,12 +38,12 @@ class CategoryService implements CategoryInterface
         $returnData = DB::transaction(function () use ($inputs) {
             $data = [
                 'name' => $inputs['name'],
-                'guard_name' => $inputs['guard_name'],
-                'parent_id' => $inputs['parent_id'],
+                'slug' => Str::slug($inputs['name']) ,
+                'parent_id' => $inputs['parent_category'],
             ];
 
-            $role = $this->model()->create($data);
-            return $role;
+            $category = $this->model()->create($data);
+            return $category;
         });
 
         return $returnData;
@@ -53,12 +54,12 @@ class CategoryService implements CategoryInterface
         $returnData = DB::transaction(function () use ($id, $inputs) {
             $data = [
                 'name' => $inputs['name'],
-                'guard_name' => $inputs['guard_name'],
-                'parent_id' => $inputs['parent_id'],
+                'slug' => Str::slug($inputs['name']) ,
+                'parent_id' => $inputs['parent_category'],
             ];
 
-            $role = $this->model()->find($id)->update($data);
-            return $role;
+            $category = $this->model()->find($id)->update($data);
+            return $category;
         });
 
         return $returnData;
@@ -68,11 +69,11 @@ class CategoryService implements CategoryInterface
     {
         $returnData = DB::transaction(function () use ($inputs) {
 
-            $roles = $this->model()->whereIn('id', $inputs)->get()->each(function ($role) {
-                $role->delete();
+            $categorys = $this->model()->whereIn('id', $inputs)->get()->each(function ($category) {
+                $category->delete();
             });
 
-            return $roles;
+            return $categorys;
         });
 
         return $returnData;

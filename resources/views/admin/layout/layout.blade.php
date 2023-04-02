@@ -51,8 +51,17 @@
     @yield('page-vendor')
 
     <script src="{{ asset('admin-assets') }}/vendor/js/helpers.js"></script>
-    {{-- <script src="{{ asset('admin-assets') }}/vendor/js/template-customizer.min.js"></script> --}}
+    <script src="{{ asset('admin-assets') }}/vendor/js/template-customizer.min.js"></script>
     <script src="{{ asset('admin-assets') }}/js/config.js"></script>
+
+    <style>
+        .dataTables_scroll {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    </style>
+
     @yield('page-css')
 
     @yield('custom-css')
@@ -195,6 +204,12 @@
 
         function changeAllTableRowColor() {
             $('.dt-checkboxes').trigger('change');
+        }
+
+        function convertToSlug(Text) {
+            return Text.toLowerCase()
+                .replace(/ /g, '-')
+                .replace(/[^\w-]+/g, '');
         }
     </script>
 

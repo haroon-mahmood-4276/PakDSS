@@ -1,10 +1,10 @@
-@extends('layout.layout')
+@extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'cabin-types.edit', encryptParams($cabin_type->id)) }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.categories.edit', encryptParams($category->id)) }}
 @endsection
 
-@section('page-title', 'Edit Cabin Type')
+@section('page-title', 'Edit Category')
 
 @section('page-vendor')
 @endsection
@@ -17,13 +17,13 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Edit Cabin Type</h2>
-        {{ Breadcrumbs::render('cabin-types.edit', encryptParams($cabin_type->id)) }}
+        <h2 class="content-header-title float-start mb-0 mx-3">Edit Category</h2>
+        {{ Breadcrumbs::render('admin.categories.edit', encryptParams($category->id)) }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('cabin-types.update', ['id' => encryptParams($cabin_type->id)]) }}"
+    <form class="form form-vertical" action="{{ route('admin.categories.update', ['id' => encryptParams($category->id)]) }}"
         method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">
@@ -32,7 +32,7 @@
                 @csrf
                 @method('PUT')
 
-                {{ view('cabin-types.form-fields', ['cabin_type' => $cabin_type]) }}
+                {{ view('admin.categories.form-fields', ['categories' => $categories, 'category' => $category]) }}
 
             </div>
 
@@ -44,11 +44,11 @@
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1">
                                         <i class="fa-solid fa-floppy-disk icon me-2"></i>
-                                        Update Cabin Type
+                                        Update Category
                                     </button>
                                 </div>
                                 <div class="col-md-12">
-                                    <a href="{{ route('cabin-types.index') }}" class="btn btn-danger w-100 ">
+                                    <a href="{{ route('admin.categories.index') }}" class="btn btn-danger w-100 ">
                                         <i class="fa-solid fa-xmark icon me-2"></i>
                                         Cancel
                                     </a>
@@ -84,4 +84,29 @@
 @endsection
 
 @section('custom-js')
+    <script>
+        $(document).ready(function() {
+            e = $("#category");
+            e.wrap('<div class="position-relative"></div>');
+            e.select2({
+                dropdownAutoWidth: !0,
+                dropdownParent: e.parent(),
+                width: "100%",
+                containerCssClass: "select-lg",
+                templateResult: c,
+                templateSelection: c,
+                escapeMarkup: function(e) {
+                    return e
+                }
+            });
+
+            $('#name').on('keyup', function() {
+                $("#slug").val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g, ' ').replace(/[^a-z0-9 ]/gi, '').replace(/\s/g, '-'));
+            });
+        });
+
+        function c(e) {
+            return e.id ? "<i class='" + $(e.element).data("icon") + " me-2'></i>" + e.text : e.text
+        }
+    </script>
 @endsection

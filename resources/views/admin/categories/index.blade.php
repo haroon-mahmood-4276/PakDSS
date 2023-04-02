@@ -54,10 +54,10 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Are you sure you want to delete the selected items?',
+                    text: 'Are you sure you want to delete the selected categories?',
                     showCancelButton: true,
                     cancelButtonText: 'No',
-                    confirmButtonText: 'Yes',
+                    confirmButtonText: 'Yes (' + selectedCheckboxes + ' categories)',
                     confirmButtonClass: 'btn-danger',
                     buttonsStyling: false,
                     customClass: {
@@ -73,11 +73,10 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Please select at least one item!',
+                    text: 'Please select at least one category!',
                     buttonsStyling: false,
                     customClass: {
-                        confirmButton: 'btn btn-danger me-1',
-                        cancelButton: 'btn btn-success me-1'
+                        confirmButton: 'btn btn-warning me-1',
                     },
                 });
             }

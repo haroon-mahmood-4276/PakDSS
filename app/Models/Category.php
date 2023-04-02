@@ -20,13 +20,14 @@ class Category extends Model
         'slug',
     ];
 
-    protected $hidden = [
-        'slug',
-    ];
+    // protected $hidden = [
+    //     'slug',
+    // ];
 
-    public array $rules = [
-        'parent_id' => 'nullable|uuid',
+    public $rules = [
+        'parent_category' => 'nullable|uuid',
         'name' => 'required|string|between:1,254',
+        'slug' => 'required|string|between:1,254|unique:categories,slug',
     ];
 
     public function getActivitylogOptions(): LogOptions

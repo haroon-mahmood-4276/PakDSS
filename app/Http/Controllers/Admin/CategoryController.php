@@ -92,12 +92,12 @@ class CategoryController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $role = (new Role())->find(decryptParams($id));
+            $category = $this->categoryInterface->getById($id);
 
-            if ($role && !empty($role)) {
+            if ($category && !empty($category)) {
                 $data = [
-                    'role' => $role,
-                    'roles' => $this->categoryInterface->getAll(with_tree: true),
+                    'category' => $category,
+                    'categories' => $this->categoryInterface->getAll(with_tree: true),
                 ];
 
                 return view('admin.categories.edit', $data);
@@ -129,11 +129,9 @@ class CategoryController extends Controller
 
             $record = $this->categoryInterface->update($id, $inputs);
 
-            return redirect()->route('admin.categories.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
+            return redirect()->route('admin.categories.index')->withSuccess('Data updated!');
+        } catch (Exception|GeneralException $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        } catch (Exception $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }
     }
 
