@@ -13,7 +13,6 @@ class Role extends SpatieRole
     use HasUuids, HasFactory, LogsActivity;
 
     protected $dateFormat = 'U';
-    protected $keyType = 'uuid';
 
     protected $fillable = [
         'parent_id',

@@ -17,11 +17,6 @@ class PermissionController extends Controller
     public function __construct(PermissionInterface $permissionInterface)
     {
         $this->permissionInterface = $permissionInterface;
-        $this->middleware('permission:' . permission_list('Admin.Permission.Index'), ['only' => ['index', 'show']]);
-        // $this->middleware('permission:' . permission_list('Admin.Permission.Assign-permission'), ['only' => ['assignPermissionToRole', 'revokePermissionToRole']]);
-        // $this->middleware('permission:' . permission_list('Admin.Permission.Create'), ['only' => ['create', 'store']]);
-        // $this->middleware('permission:' . permission_list('Admin.Permission.Update'), ['only' => ['edit', 'update']]);
-        // $this->middleware('permission:' . permission_list('Admin.Permission.Destroy'), ['only' => ['destroy']]);
     }
 
     /**

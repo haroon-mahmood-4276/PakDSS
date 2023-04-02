@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{AuthController, DashboardController, PermissionController, RoleController};
+use App\Http\Controllers\Admin\{AuthController, CategoryController, DashboardController, PermissionController, RoleController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,19 +29,19 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         //Role Routes
         Route::group(['prefix' => 'roles', 'as' => 'roles.'], function () {
-            Route::get('/', [RoleController::class, 'index'])->name('index');
+            Route::get('/', [RoleController::class, 'index'])->middleware('permission:admin.roles.index')->name('index');
 
-            Route::group([], function () {
+            Route::group(['middleware' => 'permission:admin.roles.create'], function () {
                 Route::get('create', [RoleController::class, 'create'])->name('create');
                 Route::post('store', [RoleController::class, 'store'])->name('store');
             });
 
-            Route::get('delete', [RoleController::class, 'destroy'])->name('destroy');
-
-            Route::group(['prefix' => '/{id}'], function () {
+            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.roles.edit'], function () {
                 Route::get('edit', [RoleController::class, 'edit'])->name('edit');
                 Route::put('update', [RoleController::class, 'update'])->name('update');
             });
+
+            Route::get('delete', [RoleController::class, 'destroy'])->middleware('permission:admin.roles.destroy')->name('destroy');
         });
 
         //Permissions Routes
@@ -50,6 +50,23 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
             Route::post('assign-permission', [PermissionController::class, 'assignPermissionToRole'])->name('assign-permission');
             Route::post('revoke-permission', [PermissionController::class, 'revokePermissionToRole'])->name('revoke-permission');
+        });
+
+        //Role Routes
+        Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+            Route::get('/', [CategoryController::class, 'index'])->middleware('permission:admin.categories.index')->name('index');
+
+            Route::group(['middleware' => 'permission:admin.categories.create'], function () {
+                Route::get('create', [CategoryController::class, 'create'])->name('create');
+                Route::post('store', [CategoryController::class, 'store'])->name('store');
+            });
+
+            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.categories.edit'], function () {
+                Route::get('edit', [CategoryController::class, 'edit'])->name('edit');
+                Route::put('update', [CategoryController::class, 'update'])->name('update');
+            });
+
+            Route::get('delete', [CategoryController::class, 'destroy'])->middleware('permission:admin.categories.destroy')->name('destroy');
         });
     });
 });

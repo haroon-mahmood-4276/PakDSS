@@ -10,5 +10,4 @@ class Permission extends SpatiePermission
     use HasUuids;
 
     protected $dateFormat = 'U';
-    protected $keyType = 'uuid';
 }

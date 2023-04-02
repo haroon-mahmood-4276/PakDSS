@@ -2,6 +2,7 @@
 
 namespace App\DataTables\Admin;
 
+use App\Models\Category;
 use App\Models\Role;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
@@ -12,7 +13,7 @@ use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class RolesDataTable extends DataTable
+class CategoriesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -24,21 +25,20 @@ class RolesDataTable extends DataTable
     {
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
-            ->editColumn('parent_id', function ($role) {
-                return Str::of(getRoleParentByParentId($role->parent_id))->ucfirst();
+            ->editColumn('check', function ($category) {
+                return $category;
             })
-            ->editColumn('created_at', function ($role) {
-                return editDateColumn($role->created_at);
+            ->editColumn('parent_id', function ($category) {
+                return Str::of(getParentByParentId($category->parent_id, Category::class))->ucfirst();
             })
-            ->editColumn('updated_at', function ($role) {
-                return editDateColumn($role->updated_at);
+            ->editColumn('created_at', function ($category) {
+                return editDateColumn($category->created_at);
             })
-            ->editColumn('actions', function ($role) {
-                if ($role->name != 'Admin')
-                    return view('admin.roles.actions', ['id' => $role->id]);
+            ->editColumn('updated_at', function ($category) {
+                return editDateColumn($category->updated_at);
             })
-            ->editColumn('check', function ($role) {
-                return $role;
+            ->editColumn('actions', function ($category) {
+                return view('admin.categories.actions', ['id' => $category->id]);
             })
             ->setRowId('id')
             ->rawColumns(array_merge($columns, ['action', 'check']));
@@ -47,10 +47,10 @@ class RolesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Role $model
+     * @param \App\Models\Category $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Role $model): QueryBuilder
+    public function query(Category $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -59,16 +59,16 @@ class RolesDataTable extends DataTable
     {
         $buttons = [];
 
-        // if (auth()->user()->can('admin.roles.create')) {
-        //     $buttons[] = Button::raw('delete-selected')
-        //         ->addClass('btn btn-primary waves-effect waves-float waves-light m-1')
-        //         ->text('<i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add New')
-        //         ->attr([
-        //             'onclick' => 'addNew()',
-        //         ]);
-        // }
+        if (auth()->user()->can('admin.categories.create')) {
+            $buttons[] = Button::raw('delete-selected')
+                ->addClass('btn btn-primary waves-effect waves-float waves-light m-1')
+                ->text('<i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add New')
+                ->attr([
+                    'onclick' => 'addNew()',
+                ]);
+        }
 
-        if (auth()->user()->can('admin.roles.export')) {
+        if (auth()->user()->can('admin.categories.export')) {
             $buttons[] = Button::make('export')
                 ->addClass('btn btn-primary waves-effect waves-float waves-light dropdown-toggle m-1')
                 ->buttons([
@@ -85,7 +85,7 @@ class RolesDataTable extends DataTable
             Button::make('reload')->addClass('btn btn-primary waves-effect waves-float waves-light m-1'),
         ]);
 
-        if (auth()->user()->can('admin.roles.destroy')) {
+        if (auth()->user()->can('admin.categories.destroy')) {
             $buttons[] = Button::raw('delete-selected')
                 ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
                 ->text('<i class="fa-solid fa-minus"></i>&nbsp;&nbsp;Delete Selected')
@@ -95,21 +95,22 @@ class RolesDataTable extends DataTable
         }
 
         return $this->builder()
-            ->setTableId('roles-table')
+            ->setTableId('booking-sources-table')
+            ->addTableClass('table-borderless table-striped table-hover')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->serverSide()
             ->processing()
             ->deferRender()
             ->dom('BlfrtipC')
+            ->scrollX()
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
                 [30, 50, 70, 100, 120, 150, "All"],
             ])
             ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
             ->buttons($buttons)
-            ->scrollX()
-            ->rowGroupDataSrc('parent_id')
+            // ->rowGroupDataSrc('parent_id')
             ->columnDefs([
                 [
                     'targets' => 0,
@@ -120,21 +121,15 @@ class RolesDataTable extends DataTable
                     'responsivePriority' => 3,
                     'render' => "function (data, type, full, setting) {
                         var role = JSON.parse(data);
-                        if(role.name != 'Admin') {
-                            return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this)\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
-                        }
-                        return null;
+                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this)\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
                         'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ]
                 ],
             ])
-            ->select([
-                'style' => 'multi',
-            ])
             ->orders([
-                [1, 'asc'],
+                [4, 'desc'],
             ]);
     }
 
@@ -145,19 +140,20 @@ class RolesDataTable extends DataTable
      */
     protected function getColumns(): array
     {
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowarp');
 
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60);
-        if (auth()->user()->can('admin.roles.destroy')) {
+        if (auth()->user()->can('admin.categories.destroy')) {
             $checkColumn->addClass('disabled');
         }
 
         $columns = [
             $checkColumn,
-            Column::make('name')->title('Role Name'),
+            Column::make('name')->title('Name')->addClass('text-nowrap'),
+            Column::make('slug')->title('Slug'),
             Column::make('parent_id')->title('Parent'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center'),
+            Column::make('created_at')->addClass('text-nowrap'),
+            Column::make('updated_at')->addClass('text-nowrap'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),
         ];
         return $columns;
     }
@@ -169,7 +165,7 @@ class RolesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Roles_' . date('YmdHis');
+        return 'category_' . date('YmdHis');
     }
 
     /**
