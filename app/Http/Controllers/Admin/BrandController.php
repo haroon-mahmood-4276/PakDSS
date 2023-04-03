@@ -8,16 +8,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Brands\{storeRequest, updateRequest};
 use App\Services\Admin\Brands\BrandInterface;
+use App\Services\Admin\Categories\CategoryInterface;
 use Exception;
 
 class BrandController extends Controller
 {
-    private $brandInterface;
+    private $brandInterface, $categoryInterface;
 
-    public function __construct(BrandInterface $brandInterface)
+    public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface)
     {
         $this->brandInterface = $brandInterface;
+        $this->categoryInterface = $categoryInterface;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +43,12 @@ class BrandController extends Controller
     public function create()
     {
         abort_if(request()->ajax(), 403);
-        return view('admin.brands.create');
+
+        $data = [
+            'categories' => $this->categoryInterface->getAll(with_tree: true),
+        ];
+
+        return view('admin.brands.create', $data);
     }
 
     /**
@@ -53,15 +61,15 @@ class BrandController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        try {
+        // try {
             $inputs = $request->validated();
             $record = $this->brandInterface->store($inputs);
             return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
-        }
+        // } catch (GeneralException $ex) {
+        //     return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        // } catch (Exception $ex) {
+        //     return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
+        // }
     }
 
     /**
@@ -86,12 +94,13 @@ class BrandController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $brand = $this->brandInterface->getById($id);
+            $brand = $this->brandInterface->getById($id, ['categories:id']);
 
             if ($brand && !empty($brand)) {
                 $data = [
                     'brand' => $brand,
                     'brand_logo' => $brand->getMedia('brands'),
+                    'categories' => $this->categoryInterface->getAll(with_tree: true),
                 ];
 
                 return view('admin.brands.edit', $data);

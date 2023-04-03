@@ -30,7 +30,7 @@
             <div class="col-lg-9 col-md-9 col-sm-12 position-relative">
 
                 @csrf
-                {{ view('admin.categories.form-fields', ['categories' => $categories]) }}
+                {{ view('admin.categories.form-fields', ['brands' => $brands, 'categories' => $categories]) }}
 
             </div>
 
@@ -84,22 +84,25 @@
 @section('custom-js')
     <script>
         $(document).ready(function() {
-            e = $("#category");
-            e.wrap('<div class="position-relative"></div>');
-            e.select2({
-                dropdownAutoWidth: !0,
-                dropdownParent: e.parent(),
-                width: "100%",
-                containerCssClass: "select-lg",
-                templateResult: c,
-                templateSelection: c,
-                escapeMarkup: function(e) {
-                    return e
-                }
+            $(".select2-size-lg").each(function() {
+                var e = $(this);
+                e.wrap('<div class="position-relative"></div>');
+                e.select2({
+                    dropdownAutoWidth: !0,
+                    dropdownParent: e.parent(),
+                    width: "100%",
+                    containerCssClass: "select-lg",
+                    templateResult: c,
+                    templateSelection: c,
+                    escapeMarkup: function(e) {
+                        return e
+                    }
+                });
             });
 
             $('#name').on('keyup blur', function() {
-                $("#slug").val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g, ' ').replace(/[^a-z0-9 ]/gi, '').replace(/\s/g, '-'));
+                $("#slug").val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g,
+                    ' ').replace(/[^a-z0-9 ]/gi, '').replace(/\s/g, '-'));
             });
         });
 

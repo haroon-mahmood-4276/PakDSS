@@ -26,6 +26,9 @@ class BrandsDataTable extends DataTable
             ->editColumn('check', function ($brand) {
                 return $brand;
             })
+            ->editColumn('logo_image', function ($brand) {
+                return editImageColumn($brand->getFirstMediaUrl('brands'));
+            })
             ->editColumn('created_at', function ($brand) {
                 return editDateColumn($brand->created_at);
             })
@@ -143,6 +146,7 @@ class BrandsDataTable extends DataTable
 
         $columns = [
             $checkColumn,
+            Column::computed('logo_image')->width(60)->addClass('text-center text-nowrap'),
             Column::make('name')->title('Name')->addClass('text-nowrap'),
             Column::make('slug')->title('Slug')->addClass('text-nowrap'),
             Column::make('created_at')->addClass('text-nowrap'),

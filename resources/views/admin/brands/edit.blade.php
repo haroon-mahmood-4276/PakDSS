@@ -52,7 +52,7 @@
                 @csrf
                 @method('PUT')
 
-                {{ view('admin.brands.form-fields', ['brand' => $brand]) }}
+                {{ view('admin.brands.form-fields', ['brand' => $brand, 'categories' => $categories]) }}
 
             </div>
 
@@ -142,18 +142,20 @@
         );
 
         $(document).ready(function() {
-            e = $("#category");
-            e.wrap('<div class="position-relative"></div>');
-            e.select2({
-                dropdownAutoWidth: !0,
-                dropdownParent: e.parent(),
-                width: "100%",
-                containerCssClass: "select-lg",
-                templateResult: c,
-                templateSelection: c,
-                escapeMarkup: function(e) {
-                    return e
-                }
+            $(".select2-size-lg").each(function() {
+                var e = $(this);
+                e.wrap('<div class="position-relative"></div>');
+                e.select2({
+                    dropdownAutoWidth: !0,
+                    dropdownParent: e.parent(),
+                    width: "100%",
+                    containerCssClass: "select-lg",
+                    templateResult: c,
+                    templateSelection: c,
+                    escapeMarkup: function(e) {
+                        return e
+                    }
+                });
             });
 
             $('#name').on('keyup blur', function() {

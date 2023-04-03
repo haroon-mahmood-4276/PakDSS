@@ -7,17 +7,19 @@ use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Categories\{storeRequest, updateRequest};
-use App\Services\Admin\Categories\CategoryInterface;
+use App\Services\Admin\{Brands\BrandInterface, Categories\CategoryInterface};
 use Exception;
 
 class CategoryController extends Controller
 {
-    private $categoryInterface;
+    private $brandInterface, $categoryInterface;
 
-    public function __construct(CategoryInterface $categoryInterface)
+    public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface)
     {
+        $this->brandInterface = $brandInterface;
         $this->categoryInterface = $categoryInterface;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,6 +44,7 @@ class CategoryController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
+            'brands' => $this->brandInterface->getAll(),
             'categories' => $this->categoryInterface->getAll(with_tree: true),
         ];
 
@@ -91,10 +94,11 @@ class CategoryController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $category = $this->categoryInterface->getById($id);
+            $category = $this->categoryInterface->getById($id, ['brands:id']);
 
             if ($category && !empty($category)) {
                 $data = [
+                    'brands' => $this->brandInterface->getAll(),
                     'category' => $category,
                     'categories' => $this->categoryInterface->getAll(with_tree: true),
                 ];
