@@ -56,7 +56,6 @@ Breadcrumbs::for('admin.categories.edit', function (BreadcrumbTrail $trail) {
     $trail->push('Edit Category');
 });
 
-
 // Tags Breadcrumbs
 Breadcrumbs::for('admin.tags.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
@@ -65,10 +64,26 @@ Breadcrumbs::for('admin.tags.index', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('admin.tags.create', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.tags.index');
-    $trail->push('Create Category', route('admin.tags.create'));
+    $trail->push('Create Tag', route('admin.tags.create'));
 });
 
 Breadcrumbs::for('admin.tags.edit', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.tags.index');
-    $trail->push('Edit Category');
+    $trail->push('Edit Tag');
+});
+
+// Brands Breadcrumbs
+Breadcrumbs::for('admin.brands.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Brands', route('admin.brands.index'));
+});
+
+Breadcrumbs::for('admin.brands.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.brands.index');
+    $trail->push('Create Brand', route('admin.brands.create'));
+});
+
+Breadcrumbs::for('admin.brands.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.brands.index');
+    $trail->push('Edit Brand');
 });

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             SellersSeeder::class,
             UsersSeeder::class,
             CategoriesSeeder::class,
+            BrandsSeeder::class,
             TagsSeeder::class,
             ProductsSeeder::class,
         ]);
