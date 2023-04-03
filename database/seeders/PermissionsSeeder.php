@@ -20,93 +20,93 @@ class PermissionsSeeder extends Seeder
             [
                 'name' => 'admin.roles.index',
                 'guard_name' => 'admin',
-                'show_name' => 'Can View Roles',
+                'show_name' => 'Roles - Can View',
             ],
             [
                 'name' => 'admin.roles.create',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Create Role',
+                'show_name' => 'Roles - Can Create',
             ],
             [
                 'name' => 'admin.roles.edit',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Edit Role',
+                'show_name' => 'Roles - Can Edit',
             ],
             [
                 'name' => 'admin.roles.destroy',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Delete Role',
+                'show_name' => 'Roles - Can Delete',
             ],
             [
                 'name' => 'admin.roles.export',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Export Roles',
+                'show_name' => 'Roles - Can Export',
             ],
 
             // Permissions Permissions
             [
                 'name' => 'admin.permissions.index',
                 'guard_name' => 'admin',
-                'show_name' => 'Can View Permissions',
+                'show_name' => 'Permissions - Can View',
             ],
             [
                 'name' => 'admin.permissions.assign-permission',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Assign Permission',
+                'show_name' => 'Permissions - Can Assign',
             ],
 
             // Categories Permissions
             [
                 'name' => 'admin.categories.index',
                 'guard_name' => 'admin',
-                'show_name' => 'Can View Categories',
+                'show_name' => 'Categories - Can View',
             ],
             [
                 'name' => 'admin.categories.create',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Create Category',
+                'show_name' => 'Categories - Can Create',
             ],
             [
                 'name' => 'admin.categories.edit',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Edit Category',
+                'show_name' => 'Categories - Can Edit',
             ],
             [
                 'name' => 'admin.categories.destroy',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Delete Category',
+                'show_name' => 'Categories - Can Delete',
             ],
             [
                 'name' => 'admin.categories.export',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Export Categories',
+                'show_name' => 'Categories - Can Export',
             ],
 
             // Tags Permissions
             [
                 'name' => 'admin.tags.index',
                 'guard_name' => 'admin',
-                'show_name' => 'Can View Tags',
+                'show_name' => 'Tags - Can View',
             ],
             [
                 'name' => 'admin.tags.create',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Create Tag',
+                'show_name' => 'Tags - Can Create',
             ],
             [
                 'name' => 'admin.tags.edit',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Edit Tag',
+                'show_name' => 'Tags - Can Edit',
             ],
             [
                 'name' => 'admin.tags.destroy',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Delete Tag',
+                'show_name' => 'Tags - Can Delete',
             ],
             [
                 'name' => 'admin.tags.export',
                 'guard_name' => 'admin',
-                'show_name' => 'Can Export Tags',
+                'show_name' => 'Tags - Can Export',
             ],
         ];
 
