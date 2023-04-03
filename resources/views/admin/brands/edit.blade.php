@@ -142,22 +142,6 @@
         );
 
         $(document).ready(function() {
-            $(".select2-size-lg").each(function() {
-                var e = $(this);
-                e.wrap('<div class="position-relative"></div>');
-                e.select2({
-                    dropdownAutoWidth: !0,
-                    dropdownParent: e.parent(),
-                    width: "100%",
-                    containerCssClass: "select-lg",
-                    templateResult: c,
-                    templateSelection: c,
-                    escapeMarkup: function(e) {
-                        return e
-                    }
-                });
-            });
-
             $('#name').on('keyup blur', function() {
                 $('#slug').val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g,
                         ' ')
@@ -195,9 +179,5 @@
             });
 
         });
-
-        function c(e) {
-            return e.id ? "<i class='" + $(e.element).data("icon") + " me-2'></i>" + e.text : e.text
-        }
     </script>
 @endsection

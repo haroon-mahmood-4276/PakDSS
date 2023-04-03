@@ -31,6 +31,9 @@ class CategoriesDataTable extends DataTable
             ->editColumn('parent_id', function ($category) {
                 return Str::of(getParentByParentId($category->parent_id, Category::class))->ucfirst();
             })
+            ->editColumn('linked_brands_count', function ($brand) {
+                return $brand->brands_count > 0 ? $brand->brands_count: '-';
+            })
             ->editColumn('created_at', function ($category) {
                 return editDateColumn($category->created_at);
             })
@@ -52,7 +55,7 @@ class CategoriesDataTable extends DataTable
      */
     public function query(Category $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->withCount('brands');
     }
 
     public function html(): HtmlBuilder
@@ -151,6 +154,7 @@ class CategoriesDataTable extends DataTable
             Column::make('name')->title('Name')->addClass('text-nowrap'),
             Column::make('slug')->title('Slug'),
             Column::make('parent_id')->title('Parent'),
+            Column::computed('linked_brands_count')->title('Associated <br>Brands')->addClass('text-center'),
             Column::make('created_at')->addClass('text-nowrap'),
             Column::make('updated_at')->addClass('text-nowrap'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),

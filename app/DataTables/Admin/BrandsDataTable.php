@@ -29,6 +29,9 @@ class BrandsDataTable extends DataTable
             ->editColumn('logo_image', function ($brand) {
                 return editImageColumn($brand->getFirstMediaUrl('brands'));
             })
+            ->editColumn('linked_categories_count', function ($brand) {
+                return $brand->categories_count > 0 ? $brand->categories_count: '-';
+            })
             ->editColumn('created_at', function ($brand) {
                 return editDateColumn($brand->created_at);
             })
@@ -50,7 +53,7 @@ class BrandsDataTable extends DataTable
      */
     public function query(Brand $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->withCount('categories');
     }
 
     public function html(): HtmlBuilder
@@ -127,7 +130,7 @@ class BrandsDataTable extends DataTable
                 ],
             ])
             ->orders([
-                [4, 'desc'],
+                [5, 'desc'],
             ]);
     }
 
@@ -149,6 +152,7 @@ class BrandsDataTable extends DataTable
             Column::computed('logo_image')->width(60)->addClass('text-center text-nowrap'),
             Column::make('name')->title('Name')->addClass('text-nowrap'),
             Column::make('slug')->title('Slug')->addClass('text-nowrap'),
+            Column::computed('linked_categories_count')->title('Associated <br>Categories')->addClass('text-center'),
             Column::make('created_at')->addClass('text-nowrap'),
             Column::make('updated_at')->addClass('text-nowrap'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),
