@@ -30,8 +30,8 @@
         }
 
         /* .filepond--item {
-                            width: calc(20% - 0.5em);
-                        } */
+                    width: calc(20% - 0.5em);
+                } */
     </style>
 @endsection
 
@@ -49,7 +49,7 @@
             <div class="col-lg-9 col-md-9 col-sm-12 position-relative">
 
                 @csrf
-                {{ view('admin.brands.form-fields') }}
+                {{ view('admin.brands.form-fields', ['categories' => $categories]) }}
 
             </div>
 
@@ -63,8 +63,8 @@
                                         <label class="form-label" style="font-size: 15px" for="brand_image">Brand
                                             Logo</label>
                                         <input id="brand_image" type="file"
-                                            class="filepond m-0 @error('brand_image') is-invalid @enderror" name="brand_image"
-                                            accept="image/png, image/jpeg, image/gif" />
+                                            class="filepond m-0 @error('brand_image') is-invalid @enderror"
+                                            name="brand_image" accept="image/png, image/jpeg, image/gif" />
                                         @error('brand_image')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @else
@@ -139,24 +139,9 @@
         );
 
         $(document).ready(function() {
-            e = $("#category");
-            e.wrap('<div class="position-relative"></div>');
-            e.select2({
-                dropdownAutoWidth: !0,
-                dropdownParent: e.parent(),
-                width: "100%",
-                containerCssClass: "select-lg",
-                templateResult: c,
-                templateSelection: c,
-                escapeMarkup: function(e) {
-                    return e
-                }
-            });
-
             $('#name').on('keyup blur', function() {
                 $('#slug').val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g,
-                        ' ')
-                    .replace(/[^a-z0-9- ]/gi, '').replace(/-+/g, '-').replace(/\s/g, '-'));
+                    ' ').replace(/[^a-z0-9- ]/gi, '').replace(/-+/g, '-').replace(/\s/g, '-'));
             });
         });
 
@@ -178,9 +163,5 @@
             });
 
         });
-
-        function c(e) {
-            return e.id ? "<i class='" + $(e.element).data("icon") + " me-2'></i>" + e.text : e.text
-        }
     </script>
 @endsection

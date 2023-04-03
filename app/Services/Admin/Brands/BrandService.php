@@ -28,9 +28,15 @@ class BrandService implements BrandInterface
         return $brand;
     }
 
-    public function getById($id)
+    public function getById($id, $relationships = [])
     {
-        return $this->model()->find($id);
+        $brand = $this->model();
+
+        if(count($relationships) > 0) {
+            $brand = $brand->with($relationships);
+        }
+
+        return $brand->find($id);
     }
 
     public function store($inputs)
@@ -42,6 +48,8 @@ class BrandService implements BrandInterface
             ];
 
             $brand = $this->model()->create($data);
+
+            $brand->categories()->sync($inputs['categories'] ?? []);
 
             if (isset($inputs['brand_image'])) {
                 $attachment = $inputs['brand_image'];
@@ -66,6 +74,8 @@ class BrandService implements BrandInterface
             ];
 
             $brand->update($data);
+
+            $brand->categories()->sync($inputs['categories'] ?? []);
 
             $brand->clearMediaCollection('brands');
 

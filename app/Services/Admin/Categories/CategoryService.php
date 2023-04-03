@@ -28,9 +28,15 @@ class CategoryService implements CategoryInterface
         return $categories;
     }
 
-    public function getById($id)
+    public function getById($id, $relationships = [])
     {
-        return $this->model()->find($id);
+        $brand = $this->model();
+
+        if(count($relationships) > 0) {
+            $brand = $brand->with($relationships);
+        }
+
+        return $brand->find($id);
     }
 
     public function store($inputs)
@@ -43,6 +49,9 @@ class CategoryService implements CategoryInterface
             ];
 
             $category = $this->model()->create($data);
+
+            $category->brands()->sync($inputs['brands'] ?? []);
+
             return $category;
         });
 
@@ -52,13 +61,18 @@ class CategoryService implements CategoryInterface
     public function update($id, $inputs)
     {
         $returnData = DB::transaction(function () use ($id, $inputs) {
+            $category = $this->model()->find($id);
+
             $data = [
                 'name' => $inputs['name'],
                 'slug' => Str::slug($inputs['name']) ,
                 'parent_id' => $inputs['parent_category'],
             ];
 
-            $category = $this->model()->find($id)->update($data);
+            $category->update($data);
+
+            $category->brands()->sync($inputs['brands'] ?? []);
+
             return $category;
         });
 
