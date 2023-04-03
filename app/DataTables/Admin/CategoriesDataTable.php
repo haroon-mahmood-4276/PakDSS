@@ -95,7 +95,7 @@ class CategoriesDataTable extends DataTable
         }
 
         return $this->builder()
-            ->setTableId('booking-sources-table')
+            ->setTableId('categories-table')
             ->addTableClass('table-borderless table-striped table-hover')
             ->columns($this->getColumns())
             ->minifiedAjax()
