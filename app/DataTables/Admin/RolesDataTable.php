@@ -25,7 +25,7 @@ class RolesDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
             ->editColumn('parent_id', function ($role) {
-                return Str::of(getRoleParentByParentId($role->parent_id))->ucfirst();
+                return Str::of(getParentByParentId($role->parent_id, Role::class))->ucfirst();
             })
             ->editColumn('created_at', function ($role) {
                 return editDateColumn($role->created_at);
