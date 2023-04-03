@@ -84,6 +84,7 @@ class BrandService implements BrandInterface
         $returnData = DB::transaction(function () use ($inputs) {
 
             $brand = $this->model()->whereIn('id', $inputs)->get()->each(function ($brand) {
+                $brand->clearMediaCollection('brands');
                 $brand->delete();
             });
 
