@@ -127,5 +127,33 @@
                 </ul>
             </li>
         @endcanany
+
+        @canany(['admin.brands.index', 'admin.brands.create'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.brands.index', 'admin.brands.create'])? 'open active': null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-user menu-icon"></i>
+                    <div>Brands</div>
+                </a>
+                <ul class="menu-sub">
+
+                    @can('admin.brands.index')
+                        <li class="menu-item {{ request()->routeIs('admin.brands.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.brands.index') }}" class="menu-link">
+                                <div>View All</div>
+                            </a>
+                        </li>
+                    @endcan
+
+                    @can('admin.brands.create')
+                        <li class="menu-item {{ request()->routeIs('admin.brands.create') ? 'active' : null }}">
+                            <a href="{{ route('admin.brands.create') }}" class="menu-link">
+                                <div>Add New</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcanany
     </ul>
 </aside>

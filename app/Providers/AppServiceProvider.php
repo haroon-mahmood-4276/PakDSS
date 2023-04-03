@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Admin\Brands\{BrandInterface, BrandService};
 use App\Services\Admin\Categories\{CategoryInterface, CategoryService};
 use App\Services\Admin\Permissions\{PermissionInterface, PermissionService};
 use App\Services\Admin\Roles\{RoleInterface, RoleService};
@@ -15,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(BrandInterface::class, BrandService::class);
         $this->app->bind(RoleInterface::class, RoleService::class);
         $this->app->bind(PermissionInterface::class, PermissionService::class);
         $this->app->bind(CategoryInterface::class, CategoryService::class);

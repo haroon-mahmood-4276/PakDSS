@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{AuthController, CategoryController, DashboardController, PermissionController, RoleController, TagController};
+use App\Http\Controllers\Admin\{AuthController, BrandController, CategoryController, DashboardController, PermissionController, RoleController, TagController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +20,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
         Route::get('login', [AuthController::class, 'loginView'])->name('login.view');
         Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
     });
-
 
     Route::group(['middleware' => 'auth:admin'], function () {
 
@@ -52,7 +51,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::post('revoke-permission', [PermissionController::class, 'revokePermissionToRole'])->name('revoke-permission');
         });
 
-        //Role Routes
+        //Categories Routes
         Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
             Route::get('/', [CategoryController::class, 'index'])->middleware('permission:admin.categories.index')->name('index');
 
@@ -84,6 +83,23 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::get('delete', [TagController::class, 'destroy'])->middleware('permission:admin.tags.destroy')->name('destroy');
+        });
+
+        //Brands Routes
+        Route::group(['prefix' => 'brands', 'as' => 'brands.'], function () {
+            Route::get('/', [BrandController::class, 'index'])->middleware('permission:admin.brands.index')->name('index');
+
+            Route::group(['middleware' => 'permission:admin.brands.create'], function () {
+                Route::get('create', [BrandController::class, 'create'])->name('create');
+                Route::post('store', [BrandController::class, 'store'])->name('store');
+            });
+
+            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.brands.edit'], function () {
+                Route::get('edit', [BrandController::class, 'edit'])->name('edit');
+                Route::put('update', [BrandController::class, 'update'])->name('update');
+            });
+
+            Route::get('delete', [BrandController::class, 'destroy'])->middleware('permission:admin.brands.destroy')->name('destroy');
         });
     });
 });

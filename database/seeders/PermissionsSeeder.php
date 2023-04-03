@@ -108,6 +108,33 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Tags - Can Export',
             ],
+
+            // Brands Permissions
+            [
+                'name' => 'admin.brands.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Brands - Can View',
+            ],
+            [
+                'name' => 'admin.brands.create',
+                'guard_name' => 'admin',
+                'show_name' => 'Brands - Can Create',
+            ],
+            [
+                'name' => 'admin.brands.edit',
+                'guard_name' => 'admin',
+                'show_name' => 'Brands - Can Edit',
+            ],
+            [
+                'name' => 'admin.brands.destroy',
+                'guard_name' => 'admin',
+                'show_name' => 'Brands - Can Delete',
+            ],
+            [
+                'name' => 'admin.brands.export',
+                'guard_name' => 'admin',
+                'show_name' => 'Brands - Can Export',
+            ],
         ];
 
         $role = (new Role())->first();
