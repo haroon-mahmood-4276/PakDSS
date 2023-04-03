@@ -23,10 +23,6 @@ class PermissionsDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            // ->editColumn('class', function ($permission) {
-            //     $explodedArray = explode('.', $permission->name);
-            //     return Str::of($explodedArray[count($explodedArray) > 1 ? count($explodedArray) - 2 : 0])->title();
-            // })
             ->editColumn('roles', function ($permission) {
                 return [
                     'permission_id' => $permission->id,
@@ -116,7 +112,7 @@ class PermissionsDataTable extends DataTable
             ->rowGroupDataSrc('class')
             ->scrollX()
             ->orders([
-                [2, 'asc'],
+                [1, 'asc'],
             ]);
     }
 
@@ -135,8 +131,6 @@ class PermissionsDataTable extends DataTable
         $colArray = [
             Column::computed('DT_RowIndex')->title('#'),
             Column::make('show_name')->title('Permission Name')->ucfirst(),
-            Column::make('name')->title('Slug')->ucfirst(),
-            // Column::computed('class')->title('Class')->visible(true),
         ];
 
         foreach ($roles as $key => $role) {
