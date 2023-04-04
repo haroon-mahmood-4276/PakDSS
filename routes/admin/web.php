@@ -36,8 +36,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.roles.edit'], function () {
-                Route::get('edit', [RoleController::class, 'edit'])->name('edit');
-                Route::put('update', [RoleController::class, 'update'])->name('update');
+                Route::get('edit', [RoleController::class, 'edit'])->whereUuid('id')->name('edit');
+                Route::put('update', [RoleController::class, 'update'])->whereUuid('id')->name('update');
             });
 
             Route::get('delete', [RoleController::class, 'destroy'])->middleware('permission:admin.roles.destroy')->name('destroy');
@@ -61,8 +61,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.categories.edit'], function () {
-                Route::get('edit', [CategoryController::class, 'edit'])->name('edit');
-                Route::put('update', [CategoryController::class, 'update'])->name('update');
+                Route::get('edit', [CategoryController::class, 'edit'])->whereUuid('id')->name('edit');
+                Route::put('update', [CategoryController::class, 'update'])->whereUuid('id')->name('update');
             });
 
             Route::get('delete', [CategoryController::class, 'destroy'])->middleware('permission:admin.categories.destroy')->name('destroy');
@@ -78,8 +78,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.tags.edit'], function () {
-                Route::get('edit', [TagController::class, 'edit'])->name('edit');
-                Route::put('update', [TagController::class, 'update'])->name('update');
+                Route::get('edit', [TagController::class, 'edit'])->whereUuid('id')->name('edit');
+                Route::put('update', [TagController::class, 'update'])->whereUuid('id')->name('update');
             });
 
             Route::get('delete', [TagController::class, 'destroy'])->middleware('permission:admin.tags.destroy')->name('destroy');
@@ -95,8 +95,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.brands.edit'], function () {
-                Route::get('edit', [BrandController::class, 'edit'])->name('edit');
-                Route::put('update', [BrandController::class, 'update'])->name('update');
+                Route::get('edit', [BrandController::class, 'edit'])->whereUuid('id')->name('edit');
+                Route::put('update', [BrandController::class, 'update'])->whereUuid('id')->name('update');
             });
 
             Route::get('delete', [BrandController::class, 'destroy'])->middleware('permission:admin.brands.destroy')->name('destroy');

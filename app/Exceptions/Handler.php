@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -47,16 +48,32 @@ class Handler extends ExceptionHandler
         });
     }
 
-    // public function render($request, Throwable $exception)
-    // {
+    public function render($request, Throwable $exception)
+    {
 
-    //     dd($request->segment(1), $exception);
-    //     // if ($exception instanceof AuthenticationException) {
-    //     //     $guard = $exception->guards()[0];
-    //     //     $theme = $guard === 'web' ? 'theme1' : 'theme2';
-    //     //     return response()->view("errors.{$theme}.401", [], 401);
-    //     // }
+        $exceptionCode = method_exists($exception, 'getStatusCode') ? $exception->getStatusCode() : $exception->getCode();
+        $exceptionCode = $exceptionCode > 0 ? $exceptionCode : 500;
 
-    //     return parent::render($request, $exception);
-    // }
+        if (in_array($exceptionCode, [401, 402, 403, 404, 419, 500, 503])) {
+            $view = '';
+            switch ($request->segment(1)) {
+                case 'admin':
+                    $view = 'admin.errors.';
+                    break;
+
+                case 'seller':
+                    $view = 'seller.errors.';
+                    break;
+
+                default:
+                    $view = 'user.errors.';
+                    break;
+            }
+
+            $view .= $exceptionCode;
+            return response()->view($view);
+        }
+
+        return parent::render($request, $exception);
+    }
 }

@@ -125,7 +125,7 @@ class PermissionsDataTable extends DataTable
     {
         $currentAuthRoles = auth()->user()->roles;
         $roles = getLinkedTreeData(new Role(), $currentAuthRoles->pluck('id'));
-        // $roles = array_merge($currentAuthRoles->toArray(), $roles); // Add current role to the list
+        $roles = array_merge($currentAuthRoles->toArray(), $roles); // Add current role to the list
         unset($roles[0]['pivot']);
 
         $colArray = [
