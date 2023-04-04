@@ -71,7 +71,7 @@ class Handler extends ExceptionHandler
             }
 
             $view .= $exceptionCode;
-            return response()->view($view, []);
+            return response()->view($view);
         }
 
         return parent::render($request, $exception);
