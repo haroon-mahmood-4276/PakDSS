@@ -62,8 +62,20 @@ class SellerService implements SellerInterface
     {
         $returnData = DB::transaction(function () use ($id, $inputs) {
             $data = [
-                'name' => Str::slug($inputs['name']),
+                "first_name" => $inputs['first_name'],
+                "middle_name" => $inputs['middle_name'] ?? null,
+                "last_name" => $inputs['last_name'],
+                "cnic" => $inputs['cnic'],
+                "ntn_number" => $inputs['ntn_number'],
+                "phone_primary" => $inputs['phone_primary'],
+                "phone_secondary" => $inputs['phone_secondary'],
+                "status" => $inputs['status'],
+                "reason" => $inputs['reason'],
             ];
+
+            if ($inputs['password']) {
+                $data['password'] = Hash::make($inputs['password']);
+            }
 
             $seller = $this->model()->find($id)->update($data);
             return $seller;

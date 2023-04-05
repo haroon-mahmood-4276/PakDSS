@@ -24,6 +24,11 @@ class updateRequest extends FormRequest
      */
     public function rules()
     {
-        return (new Seller())->rules;
+        $rules = (new Seller())->rules;
+        $rules['password'][0] = 'nullable';
+        $id = decryptParams($this->id);
+        $rules['email'] .= ',' . $id;
+        $rules['cnic'] .= ',' . $id;
+        return $rules;
     }
 }

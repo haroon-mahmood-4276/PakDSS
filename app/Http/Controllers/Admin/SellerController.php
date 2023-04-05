@@ -59,15 +59,15 @@ class SellerController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        // try {
+        try {
             $inputs = $request->validated();
             $record = $this->sellerInterface->store($inputs);
             return redirect()->route('admin.sellers.index')->withSuccess('Data saved!');
-        // } catch (GeneralException $ex) {
-        //     return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        // } catch (Exception $ex) {
-        //     return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
-        // }
+        } catch (GeneralException $ex) {
+            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        } catch (Exception $ex) {
+            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+        }
     }
 
     /**
@@ -92,11 +92,12 @@ class SellerController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $tag = $this->sellerInterface->getById($id);
+            $seller = $this->sellerInterface->getById($id);
 
-            if ($tag && !empty($tag)) {
+            if ($seller && !empty($seller)) {
                 $data = [
-                    'tag' => $tag,
+                    'seller' => $seller,
+                    'statuses' => SellerStatus::array(),
                 ];
 
                 return view('admin.sellers.edit', $data);
@@ -123,9 +124,7 @@ class SellerController extends Controller
         try {
 
             $id = decryptParams($id);
-
             $inputs = $request->validated();
-
             $record = $this->sellerInterface->update($id, $inputs);
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data updated!');

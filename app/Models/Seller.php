@@ -56,13 +56,13 @@ class Seller extends Authenticatable
         parent::__construct($attributes);
 
         $this->rules = [
-            "email" => "required|email",
+            "email" => "required|email|unique:sellers,email",
             "password" => ["required", (new Password)],
             // "password" => ["required", (new Password)->requireUppercase()->requireNumeric()->requireSpecialCharacter()],
             "first_name" => 'required|string|between:3,254',
             "middle_name" => 'nullable|string|between:3,254',
             "last_name" => 'required|string|between:3,254',
-            "cnic" => 'required|numeric|digits:13',
+            "cnic" => 'required|numeric|digits:13|unique:sellers,cnic',
             "ntn_number" => "required|numeric|max_digits:20",
             "phone_primary" => "required|numeric|max_digits:20",
             "phone_secondary" => "nullable|numeric|max_digits:20",

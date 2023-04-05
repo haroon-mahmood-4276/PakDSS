@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.sellers.create') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.sellers.edit') }}
 @endsection
 
 @section('page-title', 'Edit Seller')
@@ -18,12 +18,12 @@
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
         <h2 class="content-header-title float-start mb-0 mx-3">Edit Seller</h2>
-        {{ Breadcrumbs::render('admin.sellers.create') }}
+        {{ Breadcrumbs::render('admin.sellers.edit') }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('admin.sellers.update', ['id' => encryptParams($role->id)]) }}"
+    <form class="form form-vertical" action="{{ route('admin.sellers.update', ['id' => encryptParams($seller->id)]) }}"
         method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">
@@ -32,7 +32,7 @@
                 @csrf
                 @method('PUT')
 
-                {{ view('admin.sellers.form-fields', ['statuses' => $statuses]) }}
+                {{ view('admin.sellers.form-fields', ['seller' => $seller, 'statuses' => $statuses]) }}
 
             </div>
 
@@ -42,17 +42,9 @@
                         <div class="card-body">
                             <div class="row g-3">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1"
-                                        name="submit" value="save">
+                                    <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1">
                                         <i class="fa-solid fa-floppy-disk icon mx-2"></i>
                                         Save Seller
-                                    </button>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1"
-                                        name="submit" value="save_save">
-                                        <i class="fa-solid fa-user-check icon mx-2"></i>
-                                        Save & Active Seller
                                     </button>
                                 </div>
                                 <div class="col-md-12">

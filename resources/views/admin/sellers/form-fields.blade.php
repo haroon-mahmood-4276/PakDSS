@@ -11,7 +11,7 @@
                         <label class="form-label" style="font-size: 15px" for="email">Email <span
                                 class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
-                            name="email" placeholder="Email"
+                            name="email" placeholder="Email" {{ isset($seller) ? 'readonly' : null }}
                             value="{{ isset($seller) ? $seller->email : old('email') }}" minlength="3"
                             maxlength="50" />
                         @error('email')
@@ -29,13 +29,13 @@
                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                             id="password" name="password"
                             placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                            value="{{ isset($seller) ? $seller->password : old('password') }}" minlength="3"
-                            maxlength="50" />
+                            value="" />
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
                             <p class="m-0">
-                                <small class="text-muted">Enter login password.</small>
+                                <small class="text-muted">Enter login password. Leave blank if you don't want to
+                                    change.</small>
                             </p>
                         @enderror
                     </div>
