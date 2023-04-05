@@ -87,3 +87,20 @@ Breadcrumbs::for('admin.brands.edit', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.brands.index');
     $trail->push('Edit Brand');
 });
+
+
+// Sellers Breadcrumbs
+Breadcrumbs::for('admin.sellers.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Sellers', route('admin.sellers.index'));
+});
+
+Breadcrumbs::for('admin.sellers.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.sellers.index');
+    $trail->push('Create Seller', route('admin.sellers.create'));
+});
+
+Breadcrumbs::for('admin.sellers.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.sellers.index');
+    $trail->push('Edit Seller');
+});
