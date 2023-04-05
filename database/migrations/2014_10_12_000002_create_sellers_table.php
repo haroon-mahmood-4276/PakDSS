@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->nullable();
+
+            $table->string('first_name')->nullable();
+            $table->string('middle_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->integer('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('cnic')->nullable();
+            $table->string('ntn_number')->nullable();
+            $table->string('phone_primary')->nullable();
+            $table->string('phone_secondary')->nullable();
             $table->rememberToken();
 
             $table->integer('created_at')->nullable();

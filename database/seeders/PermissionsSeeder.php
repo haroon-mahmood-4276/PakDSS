@@ -135,6 +135,33 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Brands - Can Export',
             ],
+
+            // Sellers Permissions
+            [
+                'name' => 'admin.sellers.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Sellers - Can View',
+            ],
+            [
+                'name' => 'admin.sellers.create',
+                'guard_name' => 'admin',
+                'show_name' => 'Sellers - Can Create',
+            ],
+            [
+                'name' => 'admin.sellers.edit',
+                'guard_name' => 'admin',
+                'show_name' => 'Sellers - Can Edit',
+            ],
+            [
+                'name' => 'admin.sellers.destroy',
+                'guard_name' => 'admin',
+                'show_name' => 'Sellers - Can Delete',
+            ],
+            [
+                'name' => 'admin.sellers.export',
+                'guard_name' => 'admin',
+                'show_name' => 'Sellers - Can Export',
+            ],
         ];
 
         $role = (new Role())->first();

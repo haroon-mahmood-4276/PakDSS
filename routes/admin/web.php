@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{AuthController, BrandController, CategoryController, DashboardController, PermissionController, RoleController, TagController};
+use App\Http\Controllers\Admin\{AuthController, BrandController, CategoryController, DashboardController, PermissionController, RoleController, SellerController, TagController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
+
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard.index');
+    });
 
     Route::group(['middleware' => 'guest:admin'], function () {
         Route::get('login', [AuthController::class, 'loginView'])->name('login.view');
@@ -100,6 +104,23 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::get('delete', [BrandController::class, 'destroy'])->middleware('permission:admin.brands.destroy')->name('destroy');
+        });
+
+        //Seller Routes
+        Route::group(['prefix' => 'sellers', 'as' => 'sellers.'], function () {
+            Route::get('/', [SellerController::class, 'index'])->middleware('permission:admin.sellers.index')->name('index');
+
+            Route::group(['middleware' => 'permission:admin.sellers.create'], function () {
+                Route::get('create', [SellerController::class, 'create'])->name('create');
+                Route::post('store', [SellerController::class, 'store'])->name('store');
+            });
+
+            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.sellers.edit'], function () {
+                Route::get('edit', [SellerController::class, 'edit'])->whereUuid('id')->name('edit');
+                Route::put('update', [SellerController::class, 'update'])->whereUuid('id')->name('update');
+            });
+
+            Route::get('delete', [SellerController::class, 'destroy'])->middleware('permission:admin.sellers.destroy')->name('destroy');
         });
     });
 });

@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Seller extends Authenticatable
 {
@@ -19,11 +20,17 @@ class Seller extends Authenticatable
     protected $dateFormat = 'U';
 
     protected $fillable = [
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
         'email',
         'password',
+        'email_verified_at',
         'remember_token',
-        'email_verified_at'
+        'cnic',
+        'ntn_number',
+        'phone_primary',
+        'phone_secondary',
     ];
 
     protected $hidden = [
@@ -38,5 +45,17 @@ class Seller extends Authenticatable
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->useLogName(self::class)->logFillable();
+    }
+
+    protected $appends = ['name'];
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: function (mixed $value, array $attributes) {
+                $name = (!is_null($attributes['first_name']) ? ' ' . $attributes['first_name'] : '') . (!is_null($attributes['middle_name']) ? ' ' . $attributes['middle_name'] : '') . (!is_null($attributes['last_name']) ? ' ' . $attributes['last_name'] : '');
+                return trim($name);
+            },
+        );
     }
 }
