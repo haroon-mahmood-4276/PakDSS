@@ -3,17 +3,23 @@ name: Automatic Deployment on Ubuntu Server
 on:
   push:
     branches: [ "main" ]
-    
+
 jobs:
   laravel-deployment:
     name: Deploy
     runs-on: ubuntu-latest
-    steps: 
-      - name: testing deployment
+    steps:
+      - name: laravel deployment
         uses: appleboy/ssh-action@v0.1.9
         with:
           host: 103.115.199.57
           username: iyesoft
           key: ${{ secrets.IYESERVERSSH }}
           script: |
-            whoami
+            cd /var/www/pakdss.com
+            git branch
+            git reset --hard
+            git checkout main
+            git pull origin main
+            php artisan optimize:clear
+            php artisan cache:clear
