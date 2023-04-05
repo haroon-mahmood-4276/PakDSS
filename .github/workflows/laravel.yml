@@ -16,4 +16,8 @@ jobs:
           username: iyesoft
           key: ${{ secrets.IYESERVERSSH }}
           script: |
-            whoami
+            git reset --hard
+            git checkout main
+            git pull origin main
+            php artisan optimize:clear
+            php artisan cache:clear
