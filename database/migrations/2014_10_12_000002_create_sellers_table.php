@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('phone_primary')->nullable();
             $table->string('phone_secondary')->nullable();
             $table->rememberToken();
+            $table->string('status')->default('inactive');
+            $table->string('reason')->nullable();
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();

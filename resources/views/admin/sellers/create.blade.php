@@ -29,7 +29,7 @@
             <div class="col-lg-9 col-md-9 col-sm-12 position-relative">
 
                 @csrf
-                {{ view('admin.sellers.form-fields') }}
+                {{ view('admin.sellers.form-fields', ['statuses' => $statuses]) }}
 
             </div>
 
@@ -42,12 +42,6 @@
                                     <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1">
                                         <i class="fa-solid fa-floppy-disk icon mx-2"></i>
                                         Save Seller
-                                    </button>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1">
-                                        <i class="fa-solid fa-user-check icon mx-2"></i>
-                                        Save & Active Seller
                                     </button>
                                 </div>
                                 <div class="col-md-12">

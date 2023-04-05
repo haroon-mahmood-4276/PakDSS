@@ -1,10 +1,10 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.tags.edit', encryptParams($tag->id)) }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.sellers.create') }}
 @endsection
 
-@section('page-title', 'Edit Tag')
+@section('page-title', 'Edit Seller')
 
 @section('page-vendor')
 @endsection
@@ -17,13 +17,13 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Edit Tag</h2>
-        {{ Breadcrumbs::render('admin.tags.edit', encryptParams($tag->id)) }}
+        <h2 class="content-header-title float-start mb-0 mx-3">Edit Seller</h2>
+        {{ Breadcrumbs::render('admin.sellers.create') }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('admin.tags.update', ['id' => encryptParams($tag->id)]) }}"
+    <form class="form form-vertical" action="{{ route('admin.sellers.update', ['id' => encryptParams($role->id)]) }}"
         method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">
@@ -32,7 +32,7 @@
                 @csrf
                 @method('PUT')
 
-                {{ view('admin.tags.form-fields', ['tag' => $tag]) }}
+                {{ view('admin.sellers.form-fields', ['statuses' => $statuses]) }}
 
             </div>
 
@@ -42,14 +42,22 @@
                         <div class="card-body">
                             <div class="row g-3">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1">
-                                        <i class="fa-solid fa-floppy-disk icon me-2"></i>
-                                        Update Tag
+                                    <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1"
+                                        name="submit" value="save">
+                                        <i class="fa-solid fa-floppy-disk icon mx-2"></i>
+                                        Save Seller
                                     </button>
                                 </div>
                                 <div class="col-md-12">
-                                    <a href="{{ route('admin.tags.index') }}" class="btn btn-danger w-100 ">
-                                        <i class="fa-solid fa-xmark icon me-2"></i>
+                                    <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1"
+                                        name="submit" value="save_save">
+                                        <i class="fa-solid fa-user-check icon mx-2"></i>
+                                        Save & Active Seller
+                                    </button>
+                                </div>
+                                <div class="col-md-12">
+                                    <a href="{{ route('admin.sellers.index') }}" class="btn btn-danger w-100 ">
+                                        <i class="fa-solid fa-xmark icon mx-2"></i>
                                         Cancel
                                     </a>
                                 </div>
@@ -67,7 +75,7 @@
                                     <span class="text-danger">**</span> means required field and must be unique.
                                 </div>
                                 {{-- <button type="button" class="btn-close" data-bs-dismiss="alert"
-                        aria-label="Close"></button> --}}
+                            aria-label="Close"></button> --}}
                             </div>
                         </div>
                     </div>
@@ -86,7 +94,7 @@
 @section('custom-js')
     <script>
         $(document).ready(function() {
-            e = $("#tag");
+            e = $("#category");
             e.wrap('<div class="position-relative"></div>');
             e.select2({
                 dropdownAutoWidth: !0,
@@ -100,9 +108,9 @@
                 }
             });
 
-            $('#name').on('keyup', function() {
+            $('#name').on('keyup blur', function() {
                 $(this).val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g, ' ')
-                    .replace(/[^a-z0-9 ]/gi, '').replace(/\s/g, '-'));
+                    .replace(/[^a-z0-9- ]/gi, '').replace(/-+/g, '-').replace(/\s/g, '-'));
             });
         });
 

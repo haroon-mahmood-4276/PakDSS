@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Sellers\{storeRequest, updateRequest};
 use App\Services\Admin\Sellers\SellerInterface;
+use App\Utils\Enums\SellerStatus;
 use Exception;
 
 class SellerController extends Controller
@@ -41,7 +42,11 @@ class SellerController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        return view('admin.sellers.create');
+        $data = [
+            'statuses' => SellerStatus::array(),
+        ];
+
+        return view('admin.sellers.create', $data);
     }
 
     /**
@@ -54,15 +59,15 @@ class SellerController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        try {
+        // try {
             $inputs = $request->validated();
             $record = $this->sellerInterface->store($inputs);
             return redirect()->route('admin.sellers.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
-        }
+        // } catch (GeneralException $ex) {
+        //     return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        // } catch (Exception $ex) {
+        //     return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+        // }
     }
 
     /**

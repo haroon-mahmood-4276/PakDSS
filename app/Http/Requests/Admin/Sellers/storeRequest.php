@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Admin\Sellers;
 
 use App\Models\Seller;
+use App\Rules\Password;
+use App\Utils\Enums\SellerStatus;
 use Illuminate\Foundation\Http\FormRequest;
 
 class storeRequest extends FormRequest
@@ -14,7 +16,7 @@ class storeRequest extends FormRequest
 
     public function rules()
     {
-        dd($this->input());
-        return (new Seller())->rules;
+        $rules = (new Seller())->rules;
+        return $rules;
     }
 }

@@ -29,6 +29,8 @@ class SellersSeeder extends Seeder
                 'ntn_number' => '000001',
                 'phone_primary' => '03000000000',
                 'phone_secondary' => null,
+                'status' => 'active',
+                'reason' => null,
             ],
         ];
 

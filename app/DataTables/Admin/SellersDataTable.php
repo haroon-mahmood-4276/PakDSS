@@ -32,6 +32,9 @@ class SellersDataTable extends DataTable
             ->editColumn('updated_at', function ($seller) {
                 return editDateColumn($seller->updated_at);
             })
+            ->editColumn('status', function ($seller) {
+                return editStatusColumn($seller->status);
+            })
             ->editColumn('actions', function ($seller) {
                 return view('admin.sellers.actions', ['id' => $seller->id]);
             })
@@ -144,6 +147,7 @@ class SellersDataTable extends DataTable
         $columns = [
             $checkColumn,
             Column::make('name')->title('Name')->addClass('text-nowrap'),
+            Column::make('status')->title('Status')->addClass('text-nowrap'),
             Column::make('created_at')->addClass('text-nowrap'),
             Column::make('updated_at')->addClass('text-nowrap'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),
