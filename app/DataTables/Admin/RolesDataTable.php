@@ -133,6 +133,10 @@ class RolesDataTable extends DataTable
             ->select([
                 'style' => 'multi',
             ])
+            ->fixedColumns([
+                'left' => 1,
+                'right' => 1,
+            ])
             ->orders([
                 [1, 'asc'],
             ]);

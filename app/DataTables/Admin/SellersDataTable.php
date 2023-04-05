@@ -126,8 +126,12 @@ class SellersDataTable extends DataTable
                     ]
                 ],
             ])
+            ->fixedColumns([
+                'left' => 1,
+                'right' => 1,
+            ])
             ->orders([
-                [4, 'desc'],
+                [8, 'desc'],
             ]);
     }
 
@@ -147,6 +151,10 @@ class SellersDataTable extends DataTable
         $columns = [
             $checkColumn,
             Column::make('name')->title('Name')->addClass('text-nowrap'),
+            Column::make('email')->title('email')->addClass('text-nowrap'),
+            Column::make('cnic')->title('cnic')->addClass('text-nowrap'),
+            Column::make('ntn_number')->title('ntn')->addClass('text-nowrap'),
+            Column::make('phone_primary')->title('phone 1')->addClass('text-nowrap'),
             Column::make('status')->title('Status')->addClass('text-nowrap'),
             Column::make('created_at')->addClass('text-nowrap'),
             Column::make('updated_at')->addClass('text-nowrap'),

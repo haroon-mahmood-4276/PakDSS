@@ -126,6 +126,10 @@ class TagsDataTable extends DataTable
                     ]
                 ],
             ])
+            ->fixedColumns([
+                'left' => 1,
+                'right' => 1,
+            ])
             ->orders([
                 [4, 'desc'],
             ]);
