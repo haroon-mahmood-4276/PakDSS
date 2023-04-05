@@ -9,13 +9,15 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: testing deployment
+      - name: laravel deployment
         uses: appleboy/ssh-action@v0.1.9
         with:
           host: 103.115.199.57
           username: iyesoft
           key: ${{ secrets.IYESERVERSSH }}
           script: |
+            cd /var/www/pakdss.com
+            git branch
             git reset --hard
             git checkout main
             git pull origin main
