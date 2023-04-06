@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
 
+    Route::get('/', function () {
+        return redirect()->route('seller.dashboard.index');
+    });
+
     Route::group(['middleware' => 'guest:seller'], function () {
         Route::get('login', [AuthController::class, 'loginView'])->name('login.view');
         Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
