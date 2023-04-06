@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Seller\{AuthController, DashboardController};
+use App\Http\Controllers\Seller\{AuthController, BrandController, DashboardController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +25,8 @@ Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
     Route::group(['middleware' => 'auth:seller'], function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+        Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
+
     });
 });
