@@ -2,13 +2,15 @@
 
 namespace App\Providers;
 
-use App\Services\Admin\Brands\{BrandInterface, BrandService};
-use App\Services\Admin\Categories\{CategoryInterface, CategoryService};
-use App\Services\Admin\Permissions\{PermissionInterface, PermissionService};
-use App\Services\Admin\Roles\{RoleInterface, RoleService};
-use App\Services\Admin\Tags\{TagInterface, TagService};
-use App\Services\Admin\Sellers\{SellerInterface, SellerService};
 use Illuminate\Support\ServiceProvider;
+use App\Services\Admin\Brands\{BrandInterface as AdminBrandInterface, BrandService as AdminBrandService};
+use App\Services\Admin\Categories\{CategoryInterface as AdminCategoryInterface, CategoryService as AdminCategoryService};
+use App\Services\Admin\Permissions\{PermissionInterface as AdminPermissionInterface, PermissionService as AdminPermissionService};
+use App\Services\Admin\Roles\{RoleInterface as AdminRoleInterface, RoleService as AdminRoleService};
+use App\Services\Admin\Tags\{TagInterface as AdminTagInterface, TagService as AdminTagService};
+use App\Services\Admin\Sellers\{SellerInterface as AdminSellerInterface, SellerService as AdminSellerService};
+
+use App\Services\Seller\Brands\{BrandInterface as SellerBrandInterface, BrandService as SellerBrandService};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,12 +19,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(BrandInterface::class, BrandService::class);
-        $this->app->bind(RoleInterface::class, RoleService::class);
-        $this->app->bind(PermissionInterface::class, PermissionService::class);
-        $this->app->bind(CategoryInterface::class, CategoryService::class);
-        $this->app->bind(TagInterface::class, TagService::class);
-        $this->app->bind(SellerInterface::class, SellerService::class);
+        $this->app->bind(AdminBrandInterface::class, AdminBrandService::class);
+        $this->app->bind(AdminRoleInterface::class, AdminRoleService::class);
+        $this->app->bind(AdminPermissionInterface::class, AdminPermissionService::class);
+        $this->app->bind(AdminCategoryInterface::class, AdminCategoryService::class);
+        $this->app->bind(AdminTagInterface::class, AdminTagService::class);
+        $this->app->bind(AdminSellerInterface::class, AdminSellerService::class);
+
+        // Seller
+        $this->app->bind(SellerBrandInterface::class, SellerBrandService::class);
     }
 
     /**

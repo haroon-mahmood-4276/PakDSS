@@ -18,25 +18,18 @@
     <meta property="og:url" content="">
 
     <meta property="og:image" content="">
-
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('user-assets') }}/imgs/theme/favicon.svg"
-
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/normalize.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/uicons-regular-rounded.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/swiper-bundle.min.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/select2.min.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/slick.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/animate.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('seller-assets') }}/imgs/theme/favicon.svg">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/normalize.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/material-icon-round.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/perfect-scrollbar.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/style.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap">
-
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/style.min.css">
-
-    @yield('custom-css')
 
     <title>@yield('page-title') - {{ env('APP_NAME') }}</title>
 </head>
@@ -45,7 +38,8 @@
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
-                <div class="text-center"><img class="mb-10" src="{{ asset('user-assets') }}/imgs/template/favicon.svg" alt="Ecom">
+                <div class="text-center"><img class="mb-10" src="{{ asset('user-assets') }}/imgs/template/favicon.svg"
+                        alt="Ecom">
                     <div class="preloader-dots"></div>
                 </div>
             </div>
@@ -67,20 +61,26 @@
                 <div class="dropdown dropdown-language">
                     <button class="btn dropdown-toggle" id="dropdownPage" type="button" data-bs-toggle="dropdown"
                         aria-expanded="true" data-bs-display="static"><span
-                            class="dropdown-right font-xs color-brand-3"><img src="{{ asset('user-assets') }}/imgs/template/en.svg"
-                                alt="Ecom"> English</span></button>
+                            class="dropdown-right font-xs color-brand-3"><img
+                                src="{{ asset('user-assets') }}/imgs/template/en.svg" alt="Ecom">
+                            English</span></button>
                     <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownPage"
                         data-bs-popper="static">
-                        <li><a class="dropdown-item" href="#"><img src="{{ asset('user-assets') }}/imgs/template/flag-en.svg"
-                                    alt="Ecom"> English</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="{{ asset('user-assets') }}/imgs/template/flag-fr.svg"
-                                    alt="Ecom"> Français</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="{{ asset('user-assets') }}/imgs/template/flag-es.svg"
-                                    alt="Ecom"> Español</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="{{ asset('user-assets') }}/imgs/template/flag-pt.svg"
-                                    alt="Ecom"> Português</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="{{ asset('user-assets') }}/imgs/template/flag-cn.svg"
-                                    alt="Ecom"> 中国人</a></li>
+                        <li><a class="dropdown-item" href="#"><img
+                                    src="{{ asset('user-assets') }}/imgs/template/flag-en.svg" alt="Ecom">
+                                English</a></li>
+                        <li><a class="dropdown-item" href="#"><img
+                                    src="{{ asset('user-assets') }}/imgs/template/flag-fr.svg" alt="Ecom">
+                                Français</a></li>
+                        <li><a class="dropdown-item" href="#"><img
+                                    src="{{ asset('user-assets') }}/imgs/template/flag-es.svg" alt="Ecom">
+                                Español</a></li>
+                        <li><a class="dropdown-item" href="#"><img
+                                    src="{{ asset('user-assets') }}/imgs/template/flag-pt.svg" alt="Ecom">
+                                Português</a></li>
+                        <li><a class="dropdown-item" href="#"><img
+                                    src="{{ asset('user-assets') }}/imgs/template/flag-cn.svg" alt="Ecom"> 中国人</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="dropdown dropdown-language">
@@ -217,7 +217,8 @@
                                     class="number-item font-xs">2</span></span>
                             <div class="dropdown-cart">
                                 <div class="item-cart mb-20">
-                                    <div class="cart-image"><img src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                    <div class="cart-image"><img
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
                                             alt="Ecom"></div>
                                     <div class="cart-info"><a class="font-sm-bold color-brand-3"
                                             href="shop-single-product.html">2022 Apple iMac with Retina 5K Display 8GB
@@ -226,7 +227,8 @@
                                     </div>
                                 </div>
                                 <div class="item-cart mb-20">
-                                    <div class="cart-image"><img src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                    <div class="cart-image"><img
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
                                             alt="Ecom"></div>
                                     <div class="cart-info"><a class="font-sm-bold color-brand-3"
                                             href="shop-single-product-2.html">2022 Apple iMac with Retina 5K Display
@@ -365,21 +367,36 @@
     </div>
     <div class="sidebar-left"><a class="btn btn-open" href="#"></a>
         <ul class="menu-icons hidden">
-            <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/monitor.svg" alt="Ecom"></a></li>
-            <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/airpod.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/airpods.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/music-play.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/bluetooth.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/electricity.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/cpu.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/devices.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/driver.svg" alt="Ecom"></a></li>
-            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/lamp.svg" alt="Ecom"></a></li>
+            <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/monitor.svg"
+                        alt="Ecom"></a></li>
+            <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/mobile.svg"
+                        alt="Ecom"></a></li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></a>
+            </li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></a>
+            </li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/airpod.svg" alt="Ecom"></a>
+            </li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/airpods.svg"
+                        alt="Ecom"></a></li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></a>
+            </li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/music-play.svg"
+                        alt="Ecom"></a></li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/bluetooth.svg"
+                        alt="Ecom"></a></li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></a>
+            </li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/electricity.svg"
+                        alt="Ecom"></a></li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/cpu.svg" alt="Ecom"></a>
+            </li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/devices.svg"
+                        alt="Ecom"></a></li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/driver.svg" alt="Ecom"></a>
+            </li>
+            <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/lamp.svg" alt="Ecom"></a>
+            </li>
         </ul>
         <ul class="menu-texts menu-close">
             <li class="has-children"><a href="shop-grid-2.html"><span class="img-link"><img
@@ -395,7 +412,8 @@
                 </ul>
             </li>
             <li class="has-children"><a href="#"><span class="img-link"><img
-                            src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></span><span class="text-link">Cell
+                            src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></span><span
+                        class="text-link">Cell
                         Phones</span></a>
                 <ul class="sub-menu">
                     <li><a href="shop-grid.html">Phone Accessories</a></li>
@@ -415,7 +433,8 @@
                 </ul>
             </li>
             <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                            src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></span><span class="text-link">Gaming
+                            src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></span><span
+                        class="text-link">Gaming
                         Gatgets</span></a>
                 <ul class="sub-menu">
                     <li><a href="shop-grid.html">Wireless Routers</a></li>
@@ -427,7 +446,8 @@
                 </ul>
             </li>
             <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                            src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></span><span class="text-link">Smart
+                            src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></span><span
+                        class="text-link">Smart
                         watches</span></a>
                 <ul class="sub-menu">
                     <li><a href="shop-grid.html">Smart Watches</a></li>
@@ -450,7 +470,8 @@
                 </ul>
             </li>
             <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                            src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></span><span class="text-link">Mouse
+                            src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></span><span
+                        class="text-link">Mouse
                         &amp; Keyboard</span></a>
                 <ul class="sub-menu">
                     <li><a href="shop-grid.html">Logitech</a></li>
@@ -483,7 +504,8 @@
                 </ul>
             </li>
             <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                            src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></span><span class="text-link">Cloud
+                            src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></span><span
+                        class="text-link">Cloud
                         Software</span></a>
                 <ul class="sub-menu">
                     <li><a href="shop-grid.html">Android</a></li>
@@ -494,8 +516,8 @@
                 </ul>
             </li>
             <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                            src="{{ asset('user-assets') }}/imgs/template/electricity.svg" alt="Ecom"></span><span
-                        class="text-link">Electric accessories</span></a>
+                            src="{{ asset('user-assets') }}/imgs/template/electricity.svg"
+                            alt="Ecom"></span><span class="text-link">Electric accessories</span></a>
                 <ul class="sub-menu">
                     <li><a href="shop-grid.html">Antenna Toppers</a></li>
                     <li><a href="shop-grid.html">Automotive Body Armor</a></li>
@@ -779,20 +801,27 @@
                                 <div class="swiper-container swiper-group-7">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide"><a href="shop-grid.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/acer.svg" alt="Ecom"></a></div>
+                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/acer.svg"
+                                                    alt="Ecom"></a></div>
                                         <div class="swiper-slide"><a href="shop-grid.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/nokia.svg" alt="Ecom"></a></div>
+                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/nokia.svg"
+                                                    alt="Ecom"></a></div>
                                         <div class="swiper-slide"><a href="shop-grid.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/assus.svg" alt="Ecom"></a></div>
+                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/assus.svg"
+                                                    alt="Ecom"></a></div>
                                         <div class="swiper-slide"><a href="shop-grid.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/casio.svg" alt="Ecom"></a></div>
+                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/casio.svg"
+                                                    alt="Ecom"></a></div>
                                         <div class="swiper-slide"><a href="shop-grid.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/dell.svg" alt="Ecom"></a></div>
+                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/dell.svg"
+                                                    alt="Ecom"></a></div>
                                         <div class="swiper-slide"><a href="shop-grid.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/panasonic.svg" alt="Ecom"></a>
+                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/panasonic.svg"
+                                                    alt="Ecom"></a>
                                         </div>
                                         <div class="swiper-slide"><a href="shop-grid.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/vaio.svg" alt="Ecom"></a></div>
+                                                    src="{{ asset('user-assets') }}/imgs/slider/logo/vaio.svg"
+                                                    alt="Ecom"></a></div>
                                     </div>
                                 </div>
                             </div>
@@ -804,7 +833,8 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-style-2 card-grid-style-2-small hover-up">
                                 <div class="image-box"><a href="shop-grid.html"><img
-                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/smartphone.png" alt="Ecom"></a></div>
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/smartphone.png"
+                                            alt="Ecom"></a></div>
                                 <div class="info-right"><a class="color-brand-3 font-sm-bold" href="shop-grid.html">
                                         <h6>Smart Phone</h6>
                                     </a>
@@ -820,7 +850,8 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-style-2 card-grid-style-2-small hover-up">
                                 <div class="image-box"><a href="shop-grid.html"><img
-                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/television.png" alt="Ecom"></a></div>
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/television.png"
+                                            alt="Ecom"></a></div>
                                 <div class="info-right"><a class="color-brand-3 font-sm-bold" href="shop-grid.html">
                                         <h6>Television</h6>
                                     </a>
@@ -836,7 +867,8 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-style-2 card-grid-style-2-small hover-up">
                                 <div class="image-box"><a href="shop-grid.html"><img
-                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/computer.png" alt="Ecom"></a></div>
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/computer.png"
+                                            alt="Ecom"></a></div>
                                 <div class="info-right"><a class="color-brand-3 font-sm-bold" href="shop-grid.html">
                                         <h6>Computers</h6>
                                     </a>
@@ -852,7 +884,8 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-style-2 card-grid-style-2-small hover-up">
                                 <div class="image-box"><a href="shop-grid.html"><img
-                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/electric.png" alt="Ecom"></a></div>
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/electric.png"
+                                            alt="Ecom"></a></div>
                                 <div class="info-right"><a class="color-brand-3 font-sm-bold" href="shop-grid.html">
                                         <h6>Electronics</h6>
                                     </a>
@@ -870,7 +903,8 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-style-2 card-grid-style-2-small hover-up">
                                 <div class="image-box"><a href="shop-grid.html"><img
-                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/laptop.png" alt="Ecom"></a></div>
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/laptop.png"
+                                            alt="Ecom"></a></div>
                                 <div class="info-right"><a class="color-brand-3 font-sm-bold" href="shop-grid.html">
                                         <h6>Laptop &amp; Tablet</h6>
                                     </a>
@@ -886,7 +920,8 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-style-2 card-grid-style-2-small hover-up">
                                 <div class="image-box"><a href="shop-grid.html"><img
-                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/smartwatches.png" alt="Ecom"></a>
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/smartwatches.png"
+                                            alt="Ecom"></a>
                                 </div>
                                 <div class="info-right"><a class="color-brand-3 font-sm-bold" href="shop-grid.html">
                                         <h6>Smartwatches</h6>
@@ -903,7 +938,8 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-style-2 card-grid-style-2-small hover-up">
                                 <div class="image-box"><a href="shop-grid.html"><img
-                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/gaming.png" alt="Ecom"></a></div>
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/gaming.png"
+                                            alt="Ecom"></a></div>
                                 <div class="info-right"><a class="color-brand-3 font-sm-bold" href="shop-grid.html">
                                         <h6>Gaming</h6>
                                     </a>
@@ -919,7 +955,8 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card-grid-style-2 card-grid-style-2-small hover-up">
                                 <div class="image-box"><a href="shop-grid.html"><img
-                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/outdoor.png" alt="Ecom"></a></div>
+                                            src="{{ asset('user-assets') }}/imgs/page/homepage1/outdoor.png"
+                                            alt="Ecom"></a></div>
                                 <div class="info-right"><a class="color-brand-3 font-sm-bold" href="shop-grid.html">
                                         <h6>Outdoor Camera</h6>
                                     </a>
@@ -1003,17 +1040,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022
                                             Apple iMac with Retina 5K Display 8GB RAM, 256GB</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1041,18 +1084,24 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Philips</a><br><a
                                             class="color-brand-3 font-sm-bold"
                                             href="shop-single-product.html">Philips H4205 On-Ear Wireless Headphones
                                             with 32mm</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1080,17 +1129,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2020
                                             Apple MacBook Air Laptop: Apple M1 Chip, 13”</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1118,17 +1173,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple
                                             Watch Series 8 [GPS 45mm] Smart Watch</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1156,17 +1217,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Kami Tech</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Kami
                                             by YI 4pc 1080p Home Security Cameras</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1199,17 +1266,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2020
                                             Apple MacBook Air Laptop: Apple M1 Chip, 13”</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1237,17 +1310,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple
                                             Watch Series 8 [GPS 45mm] Smart Watch</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1275,17 +1354,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Kami Tech</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Kami
                                             by YI 4pc 1080p Home Security Cameras</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1313,17 +1398,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022
                                             Apple iMac with Retina 5K Display 8GB RAM, 256GB</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1351,18 +1442,24 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Philips</a><br><a
                                             class="color-brand-3 font-sm-bold"
                                             href="shop-single-product.html">Philips H4205 On-Ear Wireless Headphones
                                             with 32mm</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1395,17 +1492,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2020
                                             Apple MacBook Air Laptop: Apple M1 Chip, 13”</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1433,17 +1536,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple
                                             Watch Series 8 [GPS 45mm] Smart Watch</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1471,17 +1580,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022
                                             Apple iMac with Retina 5K Display 8GB RAM, 256GB</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1509,18 +1624,24 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Philips</a><br><a
                                             class="color-brand-3 font-sm-bold"
                                             href="shop-single-product.html">Philips H4205 On-Ear Wireless Headphones
                                             with 32mm</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1548,17 +1669,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Kami Tech</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Kami
                                             by YI 4pc 1080p Home Security Cameras</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1591,17 +1718,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Kami Tech</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Kami
                                             by YI 4pc 1080p Home Security Cameras</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1629,17 +1762,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022
                                             Apple iMac with Retina 5K Display 8GB RAM, 256GB</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1667,18 +1806,24 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Philips</a><br><a
                                             class="color-brand-3 font-sm-bold"
                                             href="shop-single-product.html">Philips H4205 On-Ear Wireless Headphones
                                             with 32mm</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1706,17 +1851,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2020
                                             Apple MacBook Air Laptop: Apple M1 Chip, 13”</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1744,17 +1895,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple
                                             Watch Series 8 [GPS 45mm] Smart Watch</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -1812,7 +1969,8 @@
                                         <div class="swiper-container swiper-group-1">
                                             <div class="swiper-wrapper pt-5">
                                                 <div class="swiper-slide"><img
-                                                        src="{{ asset('user-assets') }}/imgs/page/homepage1/screen.png" alt="Ecom">
+                                                        src="{{ asset('user-assets') }}/imgs/page/homepage1/screen.png"
+                                                        alt="Ecom">
                                                 </div>
                                                 <div class="swiper-slide"><img
                                                         src="{{ asset('user-assets') }}/imgs/page/homepage1/screen-2.png"
@@ -1837,11 +1995,16 @@
                                         class="color-brand-3 font-sm-bold" href="shop-single-product.html">
                                         <h5>2022 Apple iMac Retina 5K Display</h5>
                                     </a>
-                                    <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                            alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                            alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                            alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                            alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                    <div class="rating"><img
+                                            src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            alt="Ecom"><img
+                                            src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            alt="Ecom"><img
+                                            src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            alt="Ecom"><img
+                                            src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            alt="Ecom"><img
+                                            src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                             alt="Ecom"><span class="font-xs color-gray-500"> (65)</span></div>
                                     <div class="price-info">
                                         <h3 class="color-brand-3 price-main d-inline-block">$2856.3</h3><span
@@ -1885,18 +2048,24 @@
                                                 data-bs-toggle="modal"></a></div>
                                         <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                                 href="shop-single-product.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png" alt="Ecom"></a>
+                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png"
+                                                    alt="Ecom"></a>
                                         </div>
                                         <div class="info-right"><span
                                                 class="font-xs color-gray-500">Samsung</span><br><a
                                                 class="color-brand-3 font-sm-bold"
                                                 href="shop-single-product.html">Samsung 30-100 inches The Freestyle
                                                 FHD HDR Smart Projector</a>
-                                            <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            <div class="rating"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                     alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                             </div>
                                             <div class="price-info"><strong
@@ -1924,18 +2093,24 @@
                                                 data-bs-toggle="modal"></a></div>
                                         <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                                 href="shop-single-product.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png" alt="Ecom"></a>
+                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png"
+                                                    alt="Ecom"></a>
                                         </div>
                                         <div class="info-right"><span
                                                 class="font-xs color-gray-500">Apple</span><br><a
                                                 class="color-brand-3 font-sm-bold"
                                                 href="shop-single-product.html">Lenovo Legion 5i 15.6&quot; Laptop,
                                                 Intel Core i5-10500H</a>
-                                            <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            <div class="rating"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                     alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                             </div>
                                             <div class="price-info"><strong
@@ -1963,18 +2138,24 @@
                                                 data-bs-toggle="modal"></a></div>
                                         <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                                 href="shop-single-product.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png" alt="Ecom"></a>
+                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
+                                                    alt="Ecom"></a>
                                         </div>
                                         <div class="info-right"><span
                                                 class="font-xs color-gray-500">Apple</span><br><a
                                                 class="color-brand-3 font-sm-bold"
                                                 href="shop-single-product.html">Apple AirPods Pro with MagSafe
                                                 Charging Case</a>
-                                            <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            <div class="rating"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                     alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                             </div>
                                             <div class="price-info"><strong
@@ -2002,18 +2183,24 @@
                                                 data-bs-toggle="modal"></a></div>
                                         <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                                 href="shop-single-product.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png" alt="Ecom"></a>
+                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                                    alt="Ecom"></a>
                                         </div>
                                         <div class="info-right"><span
                                                 class="font-xs color-gray-500">Apple</span><br><a
                                                 class="color-brand-3 font-sm-bold"
                                                 href="shop-single-product.html">Razer Power Up Gaming Bundle V2 -
                                                 Cynosa Lite, Gigantus</a>
-                                            <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            <div class="rating"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                     alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                             </div>
                                             <div class="price-info"><strong
@@ -2041,18 +2228,24 @@
                                                 data-bs-toggle="modal"></a></div>
                                         <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                                 href="shop-single-product.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png" alt="Ecom"></a>
+                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                                    alt="Ecom"></a>
                                         </div>
                                         <div class="info-right"><span
                                                 class="font-xs color-gray-500">Apple</span><br><a
                                                 class="color-brand-3 font-sm-bold"
                                                 href="shop-single-product.html">ASUS ROG Strix GL10 Gaming Desktop,
                                                 AMD Ryzen 5-3600X</a>
-                                            <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            <div class="rating"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                     alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                             </div>
                                             <div class="price-info"><strong
@@ -2080,18 +2273,24 @@
                                                 data-bs-toggle="modal"></a></div>
                                         <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                                 href="shop-single-product.html"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png" alt="Ecom"></a>
+                                                    src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
+                                                    alt="Ecom"></a>
                                         </div>
                                         <div class="info-right"><span
                                                 class="font-xs color-gray-500">Apple</span><br><a
                                                 class="color-brand-3 font-sm-bold"
                                                 href="shop-single-product.html">Fujifilm INSTAX Mini Link 2 Smartphone
                                                 Printer Exclusive</a>
-                                            <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                    alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                            <div class="rating"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                    alt="Ecom"><img
+                                                    src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                     alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                             </div>
                                             <div class="price-info"><strong
@@ -2120,17 +2319,23 @@
                                     aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a>
                             </div>
                             <div class="image-box"><span class="label bg-brand-2">-17%</span><a
-                                    href="shop-single-product.html"><img src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
+                                    href="shop-single-product.html"><img
+                                        src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
                                         alt="Ecom"></a>
                             </div>
                             <div class="info-right"><span class="font-xs color-gray-500">Apple</span><br><a
                                     class="color-brand-3 font-sm-bold" href="shop-single-product.html">Klipsch
                                     ProMedia 2.1 Bluetooth Computer Speakers</a>
-                                <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                <div class="rating"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                         alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
                                 <div class="price-info"><strong
                                         class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span
@@ -2153,17 +2358,23 @@
                                     aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a>
                             </div>
                             <div class="image-box"><span class="label bg-brand-2">-17%</span><a
-                                    href="shop-single-product.html"><img src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                    href="shop-single-product.html"><img
+                                        src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
                                         alt="Ecom"></a>
                             </div>
                             <div class="info-right"><span class="font-xs color-gray-500">Apple</span><br><a
                                     class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple TV HD
                                     32GB (2nd Generation) (Latest Model)</a>
-                                <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                <div class="rating"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                         alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
                                 <div class="price-info"><strong
                                         class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span
@@ -2186,17 +2397,23 @@
                                     aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a>
                             </div>
                             <div class="image-box"><span class="label bg-brand-2">-17%</span><a
-                                    href="shop-single-product.html"><img src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                    href="shop-single-product.html"><img
+                                        src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
                                         alt="Ecom"></a>
                             </div>
                             <div class="info-right"><span class="font-xs color-gray-500">Apple</span><br><a
                                     class="color-brand-3 font-sm-bold" href="shop-single-product.html">Hisense
                                     40&quot; Class 2K FHD LED LCD Roku Smart TV H4030F</a>
-                                <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                <div class="rating"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                         alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
                                 <div class="price-info"><strong
                                         class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span
@@ -2219,17 +2436,23 @@
                                     aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a>
                             </div>
                             <div class="image-box"><span class="label bg-brand-2">-17%</span><a
-                                    href="shop-single-product.html"><img src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
+                                    href="shop-single-product.html"><img
+                                        src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
                                         alt="Ecom"></a>
                             </div>
                             <div class="info-right"><span class="font-xs color-gray-500">Apple</span><br><a
                                     class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022 Apple
                                     10.9-inch iPad Air Wi-Fi 64GB - Space Gray</a>
-                                <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                <div class="rating"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                         alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
                                 <div class="price-info"><strong
                                         class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span
@@ -2252,17 +2475,23 @@
                                     aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a>
                             </div>
                             <div class="image-box"><span class="label bg-brand-2">-17%</span><a
-                                    href="shop-single-product.html"><img src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                    href="shop-single-product.html"><img
+                                        src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
                                         alt="Ecom"></a>
                             </div>
                             <div class="info-right"><span class="font-xs color-gray-500">Apple</span><br><a
                                     class="color-brand-3 font-sm-bold" href="shop-single-product.html">LeapFrog
                                     LeapPad Academy Kids Tablet with LeapFrog</a>
-                                <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                        alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                <div class="rating"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        alt="Ecom"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                         alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
                                 <div class="price-info"><strong
                                         class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span
@@ -2367,17 +2596,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022
                                             Apple iMac with Retina 5K Display 8GB RAM, 256GB</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2405,18 +2640,24 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Philips</a><br><a
                                             class="color-brand-3 font-sm-bold"
                                             href="shop-single-product.html">Philips H4205 On-Ear Wireless Headphones
                                             with 32mm</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2444,17 +2685,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2020
                                             Apple MacBook Air Laptop: Apple M1 Chip, 13”</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2482,17 +2729,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple
                                             Watch Series 8 [GPS 45mm] Smart Watch</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2520,17 +2773,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Kami Tech</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Kami
                                             by YI 4pc 1080p Home Security Cameras</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2563,17 +2822,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2020
                                             Apple MacBook Air Laptop: Apple M1 Chip, 13”</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2601,17 +2866,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple
                                             Watch Series 8 [GPS 45mm] Smart Watch</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2639,17 +2910,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Kami Tech</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Kami
                                             by YI 4pc 1080p Home Security Cameras</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2677,17 +2954,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022
                                             Apple iMac with Retina 5K Display 8GB RAM, 256GB</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2715,18 +2998,24 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Philips</a><br><a
                                             class="color-brand-3 font-sm-bold"
                                             href="shop-single-product.html">Philips H4205 On-Ear Wireless Headphones
                                             with 32mm</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2759,17 +3048,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2020
                                             Apple MacBook Air Laptop: Apple M1 Chip, 13”</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2797,17 +3092,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple
                                             Watch Series 8 [GPS 45mm] Smart Watch</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2835,17 +3136,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022
                                             Apple iMac with Retina 5K Display 8GB RAM, 256GB</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2873,18 +3180,24 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp4.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Philips</a><br><a
                                             class="color-brand-3 font-sm-bold"
                                             href="shop-single-product.html">Philips H4205 On-Ear Wireless Headphones
                                             with 32mm</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2912,17 +3225,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Kami Tech</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Kami
                                             by YI 4pc 1080p Home Security Cameras</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2955,17 +3274,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp7.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Kami Tech</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Kami
                                             by YI 4pc 1080p Home Security Cameras</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -2993,17 +3318,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp2.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2022
                                             Apple iMac with Retina 5K Display 8GB RAM, 256GB</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -3031,18 +3362,24 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp1.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Philips</a><br><a
                                             class="color-brand-3 font-sm-bold"
                                             href="shop-single-product.html">Philips H4205 On-Ear Wireless Headphones
                                             with 32mm</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -3070,17 +3407,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp5.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">2020
                                             Apple MacBook Air Laptop: Apple M1 Chip, 13”</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -3108,17 +3451,23 @@
                                             data-bs-toggle="modal"></a></div>
                                     <div class="image-box"><span class="label bg-brand-2">-17%</span><a
                                             href="shop-single-product.html"><img
-                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png" alt="Ecom"></a>
+                                                src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp6.png"
+                                                alt="Ecom"></a>
                                     </div>
                                     <div class="info-right"><a class="font-xs color-gray-500"
                                             href="shop-vendor-single.html">Apple</a><br><a
                                             class="color-brand-3 font-sm-bold" href="shop-single-product.html">Apple
                                             Watch Series 8 [GPS 45mm] Smart Watch</a>
-                                        <div class="rating"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
-                                                alt="Ecom"><img src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                        <div class="rating"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
                                                 alt="Ecom"><span class="font-xs color-gray-500">(65)</span>
                                         </div>
                                         <div class="price-info"><strong
@@ -3531,9 +3880,10 @@
                             <div class="swiper-slide">
                                 <div class="card-grid-style-1">
                                     <div class="image-box"><a href="blog-single-2.html"></a><img
-                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-1.jpg" alt="Ecom"></div><a
-                                        class="tag-dot font-xs" href="blog-list.html">Technology</a><a
-                                        class="color-gray-1100" href="blog-single-2.html">
+                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-1.jpg"
+                                            alt="Ecom"></div><a class="tag-dot font-xs"
+                                        href="blog-list.html">Technology</a><a class="color-gray-1100"
+                                        href="blog-single-2.html">
                                         <h4>The latest technologies to be used for VR in 2022</h4>
                                     </a>
                                     <div class="mt-20"><span class="color-gray-500 font-xs mr-30">September 02,
@@ -3544,9 +3894,10 @@
                             <div class="swiper-slide">
                                 <div class="card-grid-style-1">
                                     <div class="image-box"><a href="blog-single.html"></a><img
-                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-2.jpg" alt="Ecom"></div><a
-                                        class="tag-dot font-xs" href="blog-list.html">Technology</a><a
-                                        class="color-gray-1100" href="blog-single.html">
+                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-2.jpg"
+                                            alt="Ecom"></div><a class="tag-dot font-xs"
+                                        href="blog-list.html">Technology</a><a class="color-gray-1100"
+                                        href="blog-single.html">
                                         <h4>How can Web 3.0 Bring Changes to the Gaming?</h4>
                                     </a>
                                     <div class="mt-20"><span class="color-gray-500 font-xs mr-30">August 30,
@@ -3557,9 +3908,10 @@
                             <div class="swiper-slide">
                                 <div class="card-grid-style-1">
                                     <div class="image-box"><a href="blog-single-3.html"></a><img
-                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-3.jpg" alt="Ecom"></div><a
-                                        class="tag-dot font-xs" href="blog-list.html">Gaming</a><a
-                                        class="color-gray-1100" href="blog-single-3.html">
+                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-3.jpg"
+                                            alt="Ecom"></div><a class="tag-dot font-xs"
+                                        href="blog-list.html">Gaming</a><a class="color-gray-1100"
+                                        href="blog-single-3.html">
                                         <h4>NFT Blockchain Games That Might Take Off</h4>
                                     </a>
                                     <div class="mt-20"><span class="color-gray-500 font-xs mr-30">August 25,
@@ -3570,9 +3922,10 @@
                             <div class="swiper-slide">
                                 <div class="card-grid-style-1">
                                     <div class="image-box"><a href="blog-single-2.html"></a><img
-                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-4.jpg" alt="Ecom"></div><a
-                                        class="tag-dot font-xs" href="blog-list.html">Blockchain</a><a
-                                        class="color-gray-1100" href="blog-single-2.html">
+                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-4.jpg"
+                                            alt="Ecom"></div><a class="tag-dot font-xs"
+                                        href="blog-list.html">Blockchain</a><a class="color-gray-1100"
+                                        href="blog-single-2.html">
                                         <h4>Blockchain Gaming And Its Three Challenges</h4>
                                     </a>
                                     <div class="mt-20"><span class="color-gray-500 font-xs mr-30">August 15,
@@ -3583,9 +3936,10 @@
                             <div class="swiper-slide">
                                 <div class="card-grid-style-1">
                                     <div class="image-box"><a href="blog-single-2.html"></a><img
-                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-5.jpg" alt="Ecom"></div><a
-                                        class="tag-dot font-xs" href="blog-list.html">Development</a><a
-                                        class="color-gray-1100" href="blog-single-2.html">
+                                            src="{{ asset('user-assets') }}/imgs/page/blog/blog-5.jpg"
+                                            alt="Ecom"></div><a class="tag-dot font-xs"
+                                        href="blog-list.html">Development</a><a class="color-gray-1100"
+                                        href="blog-single-2.html">
                                         <h4>HTML5 – The Future of Mobile App Development</h4>
                                     </a>
                                     <div class="mt-20"><span class="color-gray-500 font-xs mr-30">August 12,
@@ -3603,7 +3957,8 @@
                 <ul class="list-col-5">
                     <li>
                         <div class="item-list">
-                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/delivery.svg" alt="Ecom">
+                            <div class="icon-left"><img
+                                    src="{{ asset('user-assets') }}/imgs/template/delivery.svg" alt="Ecom">
                             </div>
                             <div class="info-right">
                                 <h5 class="font-lg-bold color-gray-100">Free Delivery</h5>
@@ -3613,7 +3968,8 @@
                     </li>
                     <li>
                         <div class="item-list">
-                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/support.svg" alt="Ecom">
+                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/support.svg"
+                                    alt="Ecom">
                             </div>
                             <div class="info-right">
                                 <h5 class="font-lg-bold color-gray-100">Support 24/7</h5>
@@ -3623,7 +3979,8 @@
                     </li>
                     <li>
                         <div class="item-list">
-                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/voucher.svg" alt="Ecom">
+                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/voucher.svg"
+                                    alt="Ecom">
                             </div>
                             <div class="info-right">
                                 <h5 class="font-lg-bold color-gray-100">Gift voucher</h5>
@@ -3633,7 +3990,8 @@
                     </li>
                     <li>
                         <div class="item-list">
-                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/return.svg" alt="Ecom">
+                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/return.svg"
+                                    alt="Ecom">
                             </div>
                             <div class="info-right">
                                 <h5 class="font-lg-bold color-gray-100">Return &amp; Refund</h5>
@@ -3643,7 +4001,8 @@
                     </li>
                     <li>
                         <div class="item-list">
-                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/secure.svg" alt="Ecom">
+                            <div class="icon-left"><img src="{{ asset('user-assets') }}/imgs/template/secure.svg"
+                                    alt="Ecom">
                             </div>
                             <div class="info-right">
                                 <h5 class="font-lg-bold color-gray-100">Secure payment</h5>
@@ -3768,12 +4127,17 @@
                                             class="byAUthor color-gray-900 font-xs font-medium"
                                             href="shop-vendor-list.html"> Ecom Tech</a>
                                         <div class="rating d-inline-block"><img
-                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg" alt="Ecom"><img
-                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg" alt="Ecom"><img
-                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg" alt="Ecom"><img
-                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg" alt="Ecom"><img
-                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg" alt="Ecom"><span
-                                                class="font-xs color-gray-500 font-medium"> (65 reviews)</span></div>
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><img
+                                                src="{{ asset('user-assets') }}/imgs/template/icons/star.svg"
+                                                alt="Ecom"><span class="font-xs color-gray-500 font-medium"> (65
+                                                reviews)</span></div>
                                     </div>
                                     <div class="border-bottom pt-10 mb-20"></div>
                                     <div class="box-product-price">
@@ -3795,22 +4159,23 @@
                                                 class="color-brand-2 nameColor">Pink Gold</span></p>
                                         <ul class="list-colors">
                                             <li class="disabled"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-1.jpg" alt="Ecom"
-                                                    title="Pink"></li>
-                                            <li><img src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-2.jpg" alt="Ecom"
-                                                    title="Gold"></li>
-                                            <li><img src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-3.jpg" alt="Ecom"
-                                                    title="Pink Gold"></li>
-                                            <li><img src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-4.jpg" alt="Ecom"
-                                                    title="Silver"></li>
-                                            <li class="active"><img src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-5.jpg"
+                                                    src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-1.jpg"
+                                                    alt="Ecom" title="Pink"></li>
+                                            <li><img src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-2.jpg"
+                                                    alt="Ecom" title="Gold"></li>
+                                            <li><img src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-3.jpg"
+                                                    alt="Ecom" title="Pink Gold"></li>
+                                            <li><img src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-4.jpg"
+                                                    alt="Ecom" title="Silver"></li>
+                                            <li class="active"><img
+                                                    src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-5.jpg"
                                                     alt="Ecom" title="Pink Gold"></li>
                                             <li class="disabled"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-6.jpg" alt="Ecom"
-                                                    title="Black"></li>
+                                                    src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-6.jpg"
+                                                    alt="Ecom" title="Black"></li>
                                             <li class="disabled"><img
-                                                    src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-7.jpg" alt="Ecom"
-                                                    title="Red"></li>
+                                                    src="{{ asset('user-assets') }}/imgs/page/product/img-gallery-7.jpg"
+                                                    alt="Ecom" title="Red"></li>
                                         </ul>
                                     </div>
                                     <div class="box-product-style-size mt-10">
@@ -3916,8 +4281,9 @@
                             <p class="font-md color-gray-900">Download our Apps and get extra 15% Discount on your
                                 first Order&mldr;!</p>
                             <div class="mt-20"><a class="mr-10" href="#"><img
-                                        src="{{ asset('user-assets') }}/imgs/template/appstore.png" alt="Ecom"></a><a
-                                    href="#"><img src="{{ asset('user-assets') }}/imgs/template/google-play.png"
+                                        src="{{ asset('user-assets') }}/imgs/template/appstore.png"
+                                        alt="Ecom"></a><a href="#"><img
+                                        src="{{ asset('user-assets') }}/imgs/template/google-play.png"
                                         alt="Ecom"></a></div>
                             <p class="font-md color-gray-900 mt-20 mb-10">Secured Payment Gateways</p><img
                                 src="{{ asset('user-assets') }}/imgs/template/payment-method.png" alt="Ecom">
@@ -3930,9 +4296,10 @@
             <div class="footer-bottom-1">
                 <div class="container">
                     <div class="footer-2-top mb-20"><a href="index.html"><img alt="Ecom"
-                                src="{{ asset('user-assets') }}/imgs/template/logo-2.svg"></a><a class="font-xs color-gray-1000"
-                            href="#">EcomMarket.com</a><a class="font-xs color-gray-1000"
-                            href="#">Ecom Partners</a><a class="font-xs color-gray-1000" href="#">Ecom
+                                src="{{ asset('user-assets') }}/imgs/template/logo-2.svg"></a><a
+                            class="font-xs color-gray-1000" href="#">EcomMarket.com</a><a
+                            class="font-xs color-gray-1000" href="#">Ecom Partners</a><a
+                            class="font-xs color-gray-1000" href="#">Ecom
                             Bussiness</a><a class="font-xs color-gray-1000" href="#">Ecom Factory</a></div>
                     <div class="footer-2-bottom">
                         <div class="head-left-footer">
