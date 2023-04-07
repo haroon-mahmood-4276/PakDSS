@@ -8,8 +8,17 @@
     </div>
     <nav>
         <ul class="menu-aside">
-            <li class="menu-item active"><a class="menu-link" href="index.html"><i
-                        class="icon material-icons md-home"></i><span class="text">Dashboard</span></a></li>
+            <li class="menu-item {{ request()->routeIs('seller.dashboard.index') ? 'active' : null }}">
+                <a class="menu-link" href="{{ route('seller.dashboard.index') }}">
+                    <i class="icon material-icons md-home"></i>
+                    <span class="text">Dashboard</span></a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('seller.brands.index') ? 'active' : null }}">
+                <a class="menu-link" href="{{ route('seller.brands.index') }}">
+                    <i class="icon material-icons md-stars"></i>
+                    <span class="text">Brands</span>
+                </a>
+            </li>
             <li class="menu-item has-submenu"><a class="menu-link" href="page-products-list.html"><i
                         class="icon material-icons md-shopping_bag"></i><span class="text">Products</span></a>
                 <div class="submenu"><a href="page-products-list.html">Product List</a><a
