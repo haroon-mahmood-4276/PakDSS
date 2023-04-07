@@ -13,6 +13,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('seller-assets') }}/imgs/theme/favicon.svg">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/normalize.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/material-icon-round.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/perfect-scrollbar.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/select2.min.css">
@@ -30,6 +31,18 @@
         {{ view('seller.layout.topbar') }}
 
         <section class="content-main">
+            @if (isset($verifyEmail) && !$verifyEmail)
+                <div class="alert alert-warning d-flex align-items-baseline show fade" role="alert">
+                    <span class="alert-icon alert-icon-lg text-warning me-2">
+                        <i class="material-icons md-48 md-warning"></i>
+                    </span>
+                    <div class="d-flex flex-column ps-1">
+                        <h5 class="alert-heading mb-2">Email Verification Needed!</h5>
+                        <p class="mb-0">Please verify the email or you will not be able to access some pages.</p>
+                    </div>
+                </div>
+            @endif
+
             {{ view('seller.layout.alerts') }}
 
             @yield('breadcrumbs')
