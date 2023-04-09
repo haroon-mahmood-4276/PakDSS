@@ -1,7 +1,7 @@
 @if (session()->has('info') || session()->has('status'))
     <div class="alert alert-primary alert-dismissible d-flex align-items-baseline show fade" role="alert">
-        <span class="alert-icon alert-icon-lg text-primary me-2">
-            <i class="ti ti-user ti-sm"></i>
+        <span class="alert-icon alert-icon-lg text-info me-2">
+            <i class="material-icons md-48 md-info"></i>
         </span>
         <div class="d-flex flex-column ps-1">
             <h5 class="alert-heading mb-2">Information!</h5>
@@ -13,7 +13,7 @@
 @elseif (session()->has('success'))
     <div class="alert alert-success alert-dismissible d-flex align-items-baseline show fade" role="alert">
         <span class="alert-icon alert-icon-lg text-success me-2">
-            <i class="ti ti-check ti-sm"></i>
+            <i class="material-icons md-48 md-check"></i>
         </span>
         <div class="d-flex flex-column ps-1">
             <h5 class="alert-heading mb-2">Success!</h5>
@@ -25,7 +25,7 @@
 @elseif (session()->has('warning'))
     <div class="alert alert-warning alert-dismissible d-flex align-items-baseline show fade" role="alert">
         <span class="alert-icon alert-icon-lg text-warning me-2">
-            <i class="ti ti-bell ti-xs"></i>
+            <i class="material-icons md-48 md-warning"></i>
         </span>
         <div class="d-flex flex-column ps-1">
             <h5 class="alert-heading mb-2">Warning!</h5>
@@ -36,8 +36,8 @@
     </div>
 @elseif (session()->has('danger'))
     <div class="alert alert-danger alert-dismissible d-flex align-items-baseline show fade" role="alert">
-        <span class="alert-icon alert-icon-lg text-danger me-2">
-            <i class="ti ti-ban ti-xs"></i>
+        <span class="alert-icon alert-icon-lg text-error_outline me-2">
+            <i class="material-icons md-48 md-error_outline"></i>
         </span>
         <div class="d-flex flex-column ps-1">
             <h5 class="alert-heading mb-2">Danger!</h5>
@@ -48,8 +48,8 @@
     </div>
 @elseif ($errors->any())
     <div class="alert alert-danger alert-dismissible d-flex align-items-baseline show fade" role="alert">
-        <span class="alert-icon alert-icon-lg text-danger me-2">
-            <i class="ti ti-ban ti-xs"></i>
+        <span class="alert-icon alert-icon-lg text-error_outline me-2">
+            <i class="material-icons md-48 md-error_outline"></i>
         </span>
         <div class="d-flex flex-column ps-1">
             <h5 class="alert-heading mb-2">Danger!</h5>
