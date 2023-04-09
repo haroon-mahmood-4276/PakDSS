@@ -12,3 +12,8 @@ Breadcrumbs::for('seller.brands.index', function (BreadcrumbTrail $trail) {
     $trail->parent('seller.dashboard');
     $trail->push('Brands', route('seller.brands.index'));
 });
+
+Breadcrumbs::for('seller.categories.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('seller.dashboard');
+    $trail->push('Categories', route('seller.categories.index'));
+});

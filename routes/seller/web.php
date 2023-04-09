@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Seller\{AuthController, BrandController, DashboardController};
+use App\Http\Controllers\Seller\{AuthController, BrandController, CategoryController, DashboardController};
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -40,6 +40,7 @@ Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
 
         Route::group(['middleware' => 'verified'], function () {
             Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
+            Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
         });
     });
 });

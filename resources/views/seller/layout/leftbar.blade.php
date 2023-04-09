@@ -19,7 +19,13 @@
                     <span class="text">Brands</span>
                 </a>
             </li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="page-products-list.html"><i
+            <li class="menu-item {{ request()->routeIs('seller.categories.index') ? 'active' : null }}">
+                <a class="menu-link" href="{{ route('seller.categories.index') }}">
+                    <i class="icon material-icons md-stars"></i>
+                    <span class="text">Categories</span>
+                </a>
+            </li>
+            {{-- <li class="menu-item has-submenu"><a class="menu-link" href="page-products-list.html"><i
                         class="icon material-icons md-shopping_bag"></i><span class="text">Products</span></a>
                 <div class="submenu"><a href="page-products-list.html">Product List</a><a
                         href="page-products-grid.html">Product grid</a><a href="page-products-grid-2.html">Product
@@ -62,7 +68,7 @@
                         class="icon material-icons md-stars"></i><span class="text">Brands</span></a></li>
             <li class="menu-item"><a class="menu-link" disabled="" href="#"><i
                         class="icon material-icons md-pie_chart"></i><span class="text">Statistics</span></a>
-            </li>
+            </li> --}}
         </ul>
         <hr>
         <ul class="menu-aside">

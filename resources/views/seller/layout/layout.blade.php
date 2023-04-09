@@ -13,12 +13,17 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('seller-assets') }}/imgs/theme/favicon.svg">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/normalize.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/material-icon-round.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/perfect-scrollbar.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/style.css">
-    <title>Ecom - Marketplace Dashboard Template</title>
+    <title>@yield('page-title') - {{ env('APP_NAME') }}</title>
+
+    @yield('page-css')
+
+    @yield('custom-css')
+
 </head>
 
 <body>
@@ -60,6 +65,10 @@
     <script src="{{ asset('seller-assets') }}/js/vendors/chart.js"></script>
     <script src="{{ asset('seller-assets') }}/js/main.js?v=1.0.0"></script>
     <script src="{{ asset('seller-assets') }}/js/custom-chart.js" type="text/javascript"></script>
+
+    @yield('page-js')
+
+    @yield('custom-js')
 </body>
 
 </html>

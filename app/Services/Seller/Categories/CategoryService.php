@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Services\Admin\Categories;
+namespace App\Services\Seller\Categories;
 
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class CategoryService implements CategoryInterface
 {
@@ -13,83 +11,41 @@ class CategoryService implements CategoryInterface
         return new Category();
     }
 
-    public function getAll($ignore = null, $with_tree = false)
+    public function getAll($relationships = [], $ignore = null, $withCount = false, $withCountOnly = false, $withPagination = false)
     {
-        $categories = $this->model();
+        $category = $this->model();
+
         if (is_array($ignore)) {
-            $categories = $categories->whereNotIn('id', $ignore);
+            $category = $category->whereNotIn('id', $ignore);
         } else if (is_string($ignore)) {
-            $categories = $categories->where('id', '!=', $ignore);
+            $category = $category->where('id', '!=', $ignore);
         }
-        $categories = $categories->get();
-        if ($with_tree) {
-            return getTreeData(collect($categories), $this->model());
+
+        if (!$withCountOnly && count($relationships) > 0) {
+            $category = $category->with($relationships);
         }
-        return $categories;
+
+        if ($withCount) {
+            $category = $category->withCount($relationships);
+        }
+
+        if ($withPagination) {
+            $category = $category->paginate(30);
+        } else {
+            $category = $category->get();
+        }
+
+        return $category;
     }
 
     public function getById($id, $relationships = [])
     {
-        $brand = $this->model();
+        $category = $this->model();
 
-        if(count($relationships) > 0) {
-            $brand = $brand->with($relationships);
+        if (count($relationships) > 0) {
+            $category = $category->with($relationships);
         }
 
-        return $brand->find($id);
-    }
-
-    public function store($inputs)
-    {
-        $returnData = DB::transaction(function () use ($inputs) {
-            $data = [
-                'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']) ,
-                'parent_id' => $inputs['parent_category'],
-            ];
-
-            $category = $this->model()->create($data);
-
-            $category->brands()->sync($inputs['brands'] ?? []);
-
-            return $category;
-        });
-
-        return $returnData;
-    }
-
-    public function update($id, $inputs)
-    {
-        $returnData = DB::transaction(function () use ($id, $inputs) {
-            $category = $this->model()->find($id);
-
-            $data = [
-                'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']) ,
-                'parent_id' => $inputs['parent_category'],
-            ];
-
-            $category->update($data);
-
-            $category->brands()->sync($inputs['brands'] ?? []);
-
-            return $category;
-        });
-
-        return $returnData;
-    }
-
-    public function destroy($inputs)
-    {
-        $returnData = DB::transaction(function () use ($inputs) {
-
-            $categorys = $this->model()->whereIn('id', $inputs)->get()->each(function ($category) {
-                $category->delete();
-            });
-
-            return $categorys;
-        });
-
-        return $returnData;
+        return $category->find($id);
     }
 }
