@@ -33,11 +33,9 @@ class AuthController extends Controller
             'setup' => false,
         ]);
 
-        Auth::guard('seller')->login($seller);
-
         event(new Registered($seller));
 
-        return redirect()->route('verification.notice');
+        return redirect()->route('seller.login.view');
     }
 
     public function loginView(Request $request)
