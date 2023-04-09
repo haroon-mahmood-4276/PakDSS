@@ -147,7 +147,7 @@ class CategoriesDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowarp');
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center');
 
         if (auth()->user()->can('admin.categories.destroy')) {
             $checkColumn->addClass('disabled');
@@ -155,12 +155,12 @@ class CategoriesDataTable extends DataTable
 
         $columns = [
             $checkColumn,
-            Column::make('name')->title('Name')->addClass('text-nowrap'),
+            Column::make('name')->title('Name')->addClass('text-nowrap text-center'),
             Column::make('slug')->title('Slug'),
-            Column::make('parent_id')->title('Parent'),
-            Column::computed('linked_brands_count')->title('Associated <br>Brands')->addClass('text-center'),
-            Column::make('created_at')->addClass('text-nowrap'),
-            Column::make('updated_at')->addClass('text-nowrap'),
+            Column::make('parent_id')->title('Parent')->addClass('text-nowrap text-center'),
+            Column::computed('linked_brands_count')->title('Associated <br>Brands')->addClass('text-nowrap text-center'),
+            Column::make('created_at')->addClass('text-nowrap text-center'),
+            Column::make('updated_at')->addClass('text-nowrap text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),
         ];
         return $columns;

@@ -130,7 +130,7 @@ class PermissionsDataTable extends DataTable
 
         $colArray = [
             Column::computed('DT_RowIndex')->title('#'),
-            Column::make('show_name')->title('Permission Name')->ucfirst(),
+            Column::make('show_name')->title('Permission Name')->addClass('text-nowrap')->ucfirst(),
         ];
 
         foreach ($roles as $key => $role) {

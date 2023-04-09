@@ -142,7 +142,7 @@ class TagsDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowarp');
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center');
 
         if (auth()->user()->can('admin.tags.destroy')) {
             $checkColumn->addClass('disabled');
@@ -150,10 +150,10 @@ class TagsDataTable extends DataTable
 
         $columns = [
             $checkColumn,
-            Column::make('name')->title('Name')->addClass('text-nowrap'),
-            Column::make('created_at')->addClass('text-nowrap'),
-            Column::make('updated_at')->addClass('text-nowrap'),
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),
+            Column::make('name')->title('Name')->addClass('text-nowrap text-center'),
+            Column::make('created_at')->addClass('text-nowrap text-center'),
+            Column::make('updated_at')->addClass('text-nowrap text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center'),
         ];
         return $columns;
     }
