@@ -63,7 +63,7 @@ class AuthController extends Controller
 
     public function verifyEmailView(Request $request)
     {
-        return view('seller.dashboard')->with('verifyEmail', false);
+        return redirect()->route('seller.dashboard.index');
     }
 
     public function verifyEmailPost(EmailVerificationRequest $request)
