@@ -9,6 +9,6 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        return view('seller.dashboard');
+        return view('seller.dashboard')->with('verifyEmail', $request->user()->hasVerifiedEmail());
     }
 }

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('status')->default('inactive');
             $table->string('reason')->nullable();
+            $table->boolean('setup')->default(false);
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();

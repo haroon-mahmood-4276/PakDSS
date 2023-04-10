@@ -50,7 +50,7 @@
                         class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
                         center</a>
 
-                        <div class="dropdown-divider mb-0"></div>
+                    <div class="dropdown-divider mb-0"></div>
 
                     <a class="dropdown-item bg-danger" style="border-radius: 0 0 .25rem .25rem;"
                         href="{{ route('seller.logout') }}">

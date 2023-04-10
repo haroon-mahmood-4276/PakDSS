@@ -31,6 +31,7 @@ class SellersSeeder extends Seeder
                 'phone_secondary' => null,
                 'status' => 'active',
                 'reason' => null,
+                'setup' => true,
             ],
         ];
 

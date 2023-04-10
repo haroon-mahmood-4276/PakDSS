@@ -19,8 +19,8 @@ class Authenticate extends Middleware
                 $route = route('admin.login.view');
                 break;
 
-            case 'vendor':
-                $route = route('vendor.login.view');
+            case 'seller':
+                $route = route('seller.login.view');
                 break;
 
             default:

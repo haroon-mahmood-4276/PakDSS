@@ -11,6 +11,7 @@ use App\Services\Admin\Tags\{TagInterface as AdminTagInterface, TagService as Ad
 use App\Services\Admin\Sellers\{SellerInterface as AdminSellerInterface, SellerService as AdminSellerService};
 
 use App\Services\Seller\Brands\{BrandInterface as SellerBrandInterface, BrandService as SellerBrandService};
+use App\Services\Seller\Categories\{CategoryInterface as SellerCategoryInterface, CategoryService as SellerCategoryService};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Seller
         $this->app->bind(SellerBrandInterface::class, SellerBrandService::class);
+        $this->app->bind(SellerCategoryInterface::class, SellerCategoryService::class);
     }
 
     /**

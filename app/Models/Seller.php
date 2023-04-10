@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Rules\Password;
 use App\Utils\Enums\SellerStatus;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +17,7 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Seller extends Authenticatable
+class Seller extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids, LogsActivity, SoftDeletes;
 
@@ -36,6 +37,7 @@ class Seller extends Authenticatable
         'phone_secondary',
         'status',
         'reason',
+        'setup',
     ];
 
     protected $hidden = [

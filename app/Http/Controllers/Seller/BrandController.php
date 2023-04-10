@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    private $brandInterface, $categoryInterface;
+    private $brandInterface;
 
     public function __construct(BrandInterface $brandInterface)
     {

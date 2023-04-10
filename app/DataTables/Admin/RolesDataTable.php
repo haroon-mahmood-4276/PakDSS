@@ -150,18 +150,18 @@ class RolesDataTable extends DataTable
     protected function getColumns(): array
     {
 
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60);
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center');
         if (auth()->user()->can('admin.roles.destroy')) {
             $checkColumn->addClass('disabled');
         }
 
         $columns = [
             $checkColumn,
-            Column::make('name')->title('Role Name'),
-            Column::make('parent_id')->title('Parent'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center'),
+            Column::make('name')->title('Role Name')->addClass('text-nowrap text-center'),
+            Column::make('parent_id')->title('Parent')->addClass('text-nowrap text-center'),
+            Column::make('created_at')->addClass('text-nowrap text-center'),
+            Column::make('updated_at')->addClass('text-nowrap text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center'),
         ];
         return $columns;
     }

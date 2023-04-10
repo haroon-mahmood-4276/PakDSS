@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Seller\{AuthController, BrandController, DashboardController};
+use App\Http\Controllers\Seller\{AuthController, BrandController, CategoryController, DashboardController};
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +17,33 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
 
+    Route::get('/', function () {
+        return redirect()->route('seller.dashboard.index');
+    });
+
     Route::group(['middleware' => 'guest:seller'], function () {
+        Route::get('register', [AuthController::class, 'registerView'])->name('register.view');
+        Route::post('register', [AuthController::class, 'registerPost'])->name('register.post');
+
         Route::get('login', [AuthController::class, 'loginView'])->name('login.view');
         Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
     });
 
+    Route::group(['middleware' => ['auth:seller']], function () {
 
-    Route::group(['middleware' => 'auth:seller'], function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
+        Route::group(['middleware' => 'auth:seller', 'prefix' => 'email'], function () {
+            Route::get('/verify', [AuthController::class, 'verifyEmailView'])->name('verification.notice');
+            Route::get('/verify/{id}/{hash}', [AuthController::class, 'verifyEmailPost'])->middleware('signed')->name('verification.verify');
 
+            Route::post('/verification-notification', [AuthController::class, 'verificationNotification'])->middleware('throttle:6,1')->name('verification.send');
+        });
+
+        Route::group(['middleware' => 'verified'], function () {
+            Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
+            Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+        });
     });
 });
