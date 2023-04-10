@@ -1,5 +1,5 @@
 <footer class="main-footer font-xs">
-    <div class="row pb-15 pt-15">
+    <div class="row pb-10 pt-10">
         <div class="col-md-4 mb-0 text-body-secondary">
             <span class="text-primary fw-semibold">{{ env('APP_NAME') }}</span> © {{ date('Y') }}, Hand-crafted &
             Made with ❤️ in <a href="https://www.google.com/search?q=Pakistan" target="_blank"

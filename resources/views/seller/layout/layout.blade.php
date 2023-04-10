@@ -41,9 +41,16 @@
                     <span class="alert-icon alert-icon-lg text-warning me-2">
                         <i class="material-icons md-48 md-warning"></i>
                     </span>
-                    <div class="d-flex flex-column ps-1">
+                    <div class="d-flex flex-column ps-1 flex-grow-1">
                         <h5 class="alert-heading mb-2">Email Verification Needed!</h5>
-                        <p class="mb-0">Please verify the email or you will not be able to access some pages.</p>
+                        <p class="mb-0">Please verify the email which is sent on your given email address or you will
+                            not be able to access some pages.</p>
+                    </div>
+                    <div class="d-flex ">
+                        <form action="{{ route('seller.verification.send') }}" method="post">
+                            <button class="btn btn-warning-light" type="submit">Resend Email</button>
+                            @csrf
+                        </form>
                     </div>
                 </div>
             @endif

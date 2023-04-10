@@ -8,6 +8,7 @@ use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Auth, Hash};
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class AuthController extends Controller
 {
@@ -58,6 +59,28 @@ class AuthController extends Controller
         }
 
         return redirect()->route('seller.login.view')->withDanger('The provided credentials do not match our records')->onlyInput('email');
+    }
+
+    public function verifyEmailView(Request $request)
+    {
+        return view('seller.dashboard')->with('verifyEmail', false);
+    }
+
+    public function verifyEmailPost(EmailVerificationRequest $request)
+    {
+        $seller = $request->user();
+        $seller->email_verified_at = now()->timestamp;
+        $seller->save();
+
+        return redirect()->route('seller.dashboard.index');
+    }
+
+    public function verificationNotification(Request $request)
+    {
+        $seller = $request->user();
+        event(new Registered($seller));
+
+        return back()->withSucces('Verification link sent!');
     }
 
     public function logout(Request $request)
