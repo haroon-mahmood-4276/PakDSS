@@ -52,16 +52,41 @@ class CategoriesDataTable extends DataTable
 
     public function html(): HtmlBuilder
     {
+        $buttons = [
+            Button::raw('add-new')
+                ->addClass('btn btn-primary waves-effect waves-float waves-light m-1')
+                ->text('<i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add New')
+                ->attr([
+                    'onclick' => 'addNew()',
+                ]),
+            Button::make('export')
+                ->addClass('btn btn-primary waves-effect waves-float waves-light dropdown-toggle m-1')
+                ->buttons([
+                    Button::make('print')->addClass('dropdown-item')->text('<i class="fa-solid fa-print"></i>&nbsp;&nbsp;Print'),
+                    Button::make('copy')->addClass('dropdown-item')->text('<i class="fa-solid fa-copy"></i>&nbsp;&nbsp;Copy'),
+                    Button::make('csv')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-csv"></i>&nbsp;&nbsp;CSV'),
+                    Button::make('excel')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-excel"></i>&nbsp;&nbsp;Excel'),
+                    Button::make('pdf')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-pdf"></i>&nbsp;&nbsp;PDF'),
+                ]),
+            Button::make('reset')->addClass('btn btn-danger waves-effect waves-float waves-light m-1'),
+            Button::make('reload')->addClass('btn btn-primary waves-effect waves-float waves-light m-1'),
+            Button::raw('delete-selected')
+                ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
+                ->text('<i class="fa-solid fa-minus"></i>&nbsp;&nbsp;Delete Selected')
+                ->attr([
+                    'onclick' => 'deleteSelected()',
+                ])
+        ];
+
         return $this->builder()
+            ->serverSide()
+            ->processing()
+            // ->scrollX()
             ->setTableId('categories-table')
             ->addTableClass('table-borderless table-striped table-hover')
             ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->serverSide()
-            ->processing()
-            ->deferRender()
             ->dom('BlfrtipC')
-            ->scrollX()
+            ->buttons($buttons)
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
                 [30, 50, 70, 100, 120, 150, "All"],
@@ -70,6 +95,9 @@ class CategoriesDataTable extends DataTable
             ->orders([
                 [2, 'desc'],
             ]);
+
+        // ->minifiedAjax()
+        // ->deferRender()
     }
 
     /**
@@ -80,12 +108,12 @@ class CategoriesDataTable extends DataTable
     protected function getColumns(): array
     {
         $columns = [
-            Column::make('name')->title('Name')->addClass('text-nowrap text-center'),
-            Column::make('slug')->title('Slug'),
-            Column::make('parent_id')->title('Parent')->addClass('text-nowrap text-center'),
-            Column::computed('linked_brands_count')->title('Associated Brands')->addClass('text-nowrap text-center'),
-            Column::make('created_at')->addClass('text-nowrap text-center'),
-            Column::make('updated_at')->addClass('text-nowrap text-center'),
+            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
+            Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
+            Column::make('parent_id')->title('Parent')->addClass('text-nowrap align-middle text-center'),
+            Column::computed('linked_brands_count')->title('Associated Brands')->addClass('text-nowrap align-middle text-center'),
+            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
         ];
         return $columns;
     }
