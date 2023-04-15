@@ -107,6 +107,7 @@ class CategoriesDataTable extends DataTable
             ->deferRender()
             ->dom('BlfrtipC')
             ->scrollX()
+            ->pagingType('full_numbers')
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
                 [30, 50, 70, 100, 120, 150, "All"],

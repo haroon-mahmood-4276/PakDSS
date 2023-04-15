@@ -1613,6 +1613,9 @@
 .md-file_copy:after {
   content: '\e253';
 }
+.md-file_download:after {
+  content: '\e2c4';
+}
 
 .md-file_upload:after {
   content: '\e255';
