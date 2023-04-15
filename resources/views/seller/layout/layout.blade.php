@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/perfect-scrollbar.css">
     <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/select2.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/style.css">
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/style.min.css">
     <title>@yield('page-title') - {{ env('APP_NAME') }}</title>
 
     @yield('page-css')

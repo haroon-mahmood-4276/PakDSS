@@ -738,7 +738,7 @@ b {
 .btn.btn-primary {
     font-size: 14px;
     font-weight: 500;
-    padding: 10px 40px;
+    padding: 10px 20px;
     color: #ffffff;
     border: none;
     background-color: #425A8B;
@@ -758,7 +758,7 @@ b {
 .btn.btn-secondary {
     font-size: 14px;
     font-weight: 500;
-    padding: 10px 40px;
+    padding: 10px 20px;
     color: #fff;
     background-color: #6c757d;
     border: none;
@@ -1133,11 +1133,11 @@ textarea.form-control {
     overflow: hidden;
 }
 
-.card:hover {
+/* .card:hover {
     transform: translateY(-2px);
     transition-duration: 0.3s;
     box-shadow: none;
-}
+} */
 
 .icontext {
     display: inline-flex;
