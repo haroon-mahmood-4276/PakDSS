@@ -7,6 +7,8 @@
 @section('page-title', 'Categories')
 
 @section('page-css')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 @endsection
 
 @section('custom-css')
@@ -75,7 +77,8 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <div class="alert alert-primary alert-dismissible d-flex align-items-baseline show fade" role="alert">
+                            <div class="alert alert-primary alert-dismissible d-flex align-items-baseline show fade"
+                                role="alert">
                                 <span class="alert-icon alert-icon-lg text-info me-2">
                                     <i class="material-icons md-48 md-info"></i>
                                 </span>
@@ -90,15 +93,17 @@
                                 </div>
                             </div>
                         </div>
-                         <div class="col-12">
-                            <div class="alert alert-warning alert-dismissible d-flex align-items-baseline show fade" role="alert">
+                        <div class="col-12">
+                            <div class="alert alert-warning alert-dismissible d-flex align-items-baseline show fade"
+                                role="alert">
                                 <span class="alert-icon alert-icon-lg text-warning me-2">
                                     <i class="material-icons md-48 md-warning"></i>
                                 </span>
                                 <div class="d-flex flex-column ps-1">
                                     <h4 class="alert-heading mb-2">Note!</h4>
                                     <div class="alert-body">
-                                        Our inspector will visit your shop for verification. Please try to enter right shop address, latitude & longitude.
+                                        Our inspector will visit your shop for verification. Please try to enter right shop
+                                        address, latitude & longitude.
                                     </div>
                                     {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                                     </button> --}}
@@ -109,11 +114,37 @@
                 </div>
             </div>
         </div>
+        <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
+
     </form>
 @endsection
 
 @section('page-js')
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 @endsection
 
 @section('custom-js')
+    <script>
+        var map = L.map('myMap', {
+            center: [31.589840, 74.393009],
+            zoom: 18
+        });
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(map);
+
+        L.marker([31.589840, 74.393009]).addTo(map)
+            .bindPopup('31.589840, 74.393009')
+            .openPopup();
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup.setLatLng(e.latlng).setContent(e.latlng.toString()).openOn(map);
+        }
+
+        map.on('click', onMapClick);
+    </script>
 @endsection
