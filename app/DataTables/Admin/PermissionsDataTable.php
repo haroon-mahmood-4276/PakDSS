@@ -88,7 +88,7 @@ class PermissionsDataTable extends DataTable
         if (auth()->user()->can('admin.permissions.destroy')) {
             $buttons[] = Button::raw('delete-selected')
                 ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
-                ->text('<i class="fa-solid fa-minus"></i>&nbsp;&nbsp;Delete Selected')
+                ->text('<i class="icon material-icons md-delete"></i><span id="delete_selected_count" style="display:none">0</span> Delete Selected')
                 ->attr([
                     'onclick' => 'deleteSelected()',
                 ]);
@@ -96,6 +96,7 @@ class PermissionsDataTable extends DataTable
 
         return $this->builder()
             ->setTableId('permissions-table')
+            ->addTableClass('table-borderless table-striped table-hover class-datatable-for-event')
             ->columns($this->getColumns())
             ->minifiedAjax()
             // ->stateSave()

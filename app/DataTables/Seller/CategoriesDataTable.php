@@ -3,6 +3,7 @@
 namespace App\DataTables\Seller;
 
 use App\Models\Category;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -18,9 +19,9 @@ class CategoriesDataTable extends DataTable
      * Build DataTable class.
      *
      * @param QueryBuilder $query Results from query() method.
-     * @return \Yajra\DataTables\EloquentDataTable
+     * @return EloquentDataTable
      */
-    public function dataTable(QueryBuilder $query)
+    public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
@@ -43,8 +44,8 @@ class CategoriesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Category $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Category $model
+     * @return QueryBuilder
      */
     public function query(Category $model): QueryBuilder
     {
@@ -54,12 +55,6 @@ class CategoriesDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $buttons = [
-            Button::raw('add-new')
-                ->addClass('btn btn-primary')
-                ->text('<i class="icon material-icons md-add text-white "></i>&nbsp;&nbsp;Add New')
-                ->attr([
-                    'onclick' => 'addNew()',
-                ]),
             Button::make('export')
                 ->addClass('btn btn-primary dropdown-toggle')
                 ->text('<i class="icon material-icons md-cloud_download text-white "></i>&nbsp;&nbsp;Export')
@@ -72,12 +67,6 @@ class CategoriesDataTable extends DataTable
                 ]),
             Button::make('reset')->addClass('btn btn-danger'),
             Button::make('reload')->addClass('btn btn-primary'),
-            Button::raw('delete-selected')
-                ->addClass('btn btn-danger')
-                ->text('<i class="icon material-icons md-delete"></i>&nbsp;&nbsp;Delete Selected')
-                ->attr([
-                    'onclick' => 'deleteSelected()',
-                ])
         ];
 
         return $this->builder()
@@ -87,7 +76,7 @@ class CategoriesDataTable extends DataTable
             ->minifiedAjax()
             ->deferRender()
             ->setTableId('categories-table')
-            ->addTableClass('table-borderless w-100 table-striped table-hover')
+            ->addTableClass('table-borderless table-striped table-hover class-datatable-for-event w-100')
             ->columns($this->getColumns())
             ->buttons($buttons)
             ->pagingType('full_numbers')
@@ -109,7 +98,7 @@ class CategoriesDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $columns = [
+        return [
             Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
             Column::make('parent_id')->title('Parent')->addClass('text-nowrap align-middle text-center'),
@@ -117,7 +106,6 @@ class CategoriesDataTable extends DataTable
             Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
         ];
-        return $columns;
     }
 
     /**
@@ -132,9 +120,9 @@ class CategoriesDataTable extends DataTable
 
     /**
      * Export PDF using DOMPDF
-     * @return mixed
+     * @return Response
      */
-    public function pdf()
+    public function pdf(): Response
     {
         $data = $this->getDataForPrint();
         $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);

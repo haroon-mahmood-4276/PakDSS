@@ -72,7 +72,33 @@
     <script src="{{ asset('seller-assets') }}/js/vendors/chart.js"></script>
     <script src="{{ asset('seller-assets') }}/js/main.js?v=1.0.0"></script>
     <script src="{{ asset('seller-assets') }}/js/custom-chart.js" type="text/javascript"></script>
+    <script src="{{ asset('seller-assets') }}/js/vendors/sweet-alerts/sweetalert2@11.min.js" type="text/javascript">
+    </script>
     <script>
+        $(document).ready(function() {
+            // $(".select2-size-lg").each(function() {
+            //     var e = $(this);
+            //     e.wrap('<div class="position-relative"></div>');
+            //     e.select2({
+            //         dropdownAutoWidth: !0,
+            //         dropdownParent: e.parent(),
+            //         width: "100%",
+            //         containerCssClass: "select-lg",
+            //         templateResult: c,
+            //         templateSelection: c,
+            //         escapeMarkup: function(e) {
+            //             return e
+            //         }
+            //     });
+            // });
+
+            $('.class-datatable-for-event').on('draw.dt', function() {
+                setTimeout(function() {
+                    changeAllTableRowColor();
+                }, 0);
+            });
+        });
+
         function showBlockUI(element = null) {
             const blockUIOptions = {
                 message: `
@@ -108,10 +134,17 @@
         }
 
         function changeTableRowColor(element) {
-            if ($(element).is(':checked'))
+            if ($(element).is(':checked')) {
                 $(element).closest('tr').addClass('table-danger');
-            else {
+            } else {
                 $(element).closest('tr').removeClass('table-danger');
+            }
+
+            let count = $('.dt-checkboxes:checked').length;
+            if (count > 0) {
+                $('#delete_selected_count').show().html("(" + count + ")");
+            } else {
+                $('#delete_selected_count').hide().html(0);
             }
         }
 

@@ -25,7 +25,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('seller.shops.destroy') }}" id="cabin-types-table-form" method="get">
+                    <form action="{{ route('seller.shops.destroy') }}" id="shops-table-form" method="get">
                         {{ $dataTable->table() }}
                     </form>
                 </div>
@@ -42,7 +42,7 @@
     {{ $dataTable->scripts() }}
     <script>
         function deleteSelected() {
-            var selectedCheckboxes = $('.dt-checkboxes:checked').length;
+            const selectedCheckboxes = $('.dt-checkboxes:checked').length;
             if (selectedCheckboxes > 0) {
 
                 Swal.fire({
@@ -67,10 +67,10 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Please select at least one brand!',
+                    text: 'Please select at least one shop!',
                     buttonsStyling: false,
                     customClass: {
-                        confirmButton: 'btn btn-warning me-1',
+                        confirmButton: 'btn btn-warning text-white me-1',
                     },
                 });
             }

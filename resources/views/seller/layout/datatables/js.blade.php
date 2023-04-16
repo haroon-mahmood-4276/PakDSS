@@ -15,3 +15,7 @@
 <script src="{{ asset('seller-assets') }}/js/vendors/datatables/datatable-buttons/dataTables.buttons.min.js"></script>
 <script src="{{ asset('seller-assets') }}/js/vendors/datatables/datatable-buttons/buttons.bootstrap5.min.js"></script>
 <script src="{{ asset('seller-assets') }}/js/vendors/datatables/datatable-buttons/buttons.server-side.js"></script>
+
+<script src="{{ asset('seller-assets') }}/js/vendors/datatables/datatable-fixedColumns/dataTables.fixedColumns.min.js"></script>
+
+<script src="{{ asset('seller-assets') }}/js/vendors/datatables/datatable-checkboxes/dataTables.checkboxes.min.js"></script>
