@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Sellers\{storeRequest, updateRequest};
 use App\Services\Admin\Sellers\SellerInterface;
-use App\Utils\Enums\SellerStatus;
+use App\Utils\Enums\Status;
 use Exception;
 
 class SellerController extends Controller
@@ -43,7 +43,7 @@ class SellerController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'statuses' => SellerStatus::array(),
+            'statuses' => Status::array(),
         ];
 
         return view('admin.sellers.create', $data);
@@ -97,7 +97,7 @@ class SellerController extends Controller
             if ($seller && !empty($seller)) {
                 $data = [
                     'seller' => $seller,
-                    'statuses' => SellerStatus::array(),
+                    'statuses' => Status::array(),
                 ];
 
                 return view('admin.sellers.edit', $data);

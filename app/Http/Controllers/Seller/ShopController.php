@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Shops\{storeRequest, updateRequest};
 use App\Services\Seller\Shops\ShopInterface;
+use App\Utils\Enums\Status;
 use Exception;
 
 class ShopController extends Controller
@@ -43,7 +44,7 @@ class ShopController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'brands' => $this->shopInterface->getAll(),
+            'statuses' => Status::array(),
         ];
 
         return view('seller.shops.create', $data);
@@ -61,7 +62,7 @@ class ShopController extends Controller
 
         try {
             $inputs = $request->validated();
-            $record = $this->categoryInterface->store($inputs);
+            $record = $this->shopInterface->store($inputs);
             return redirect()->route('seller.shops.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
@@ -92,13 +93,12 @@ class ShopController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $category = $this->categoryInterface->getById($id, ['brands:id']);
+            $shop = $this->shopInterface->getById($id, ['brands:id']);
 
-            if ($category && !empty($category)) {
+            if ($shop && !empty($shop)) {
                 $data = [
-                    'brands' => $this->shopInterface->getAll(),
-                    'category' => $category,
-                    'shops' => $this->categoryInterface->getAll(with_tree: true),
+                    'shop' => $shop,
+                    'statuses' => Status::array(),
                 ];
 
                 return view('seller.shops.edit', $data);
@@ -123,13 +123,9 @@ class ShopController extends Controller
     {
         abort_if(request()->ajax(), 403);
         try {
-
             $id = decryptParams($id);
-
             $inputs = $request->validated();
-
-            $record = $this->categoryInterface->update($id, $inputs);
-
+            $record = $this->shopInterface->update($id, $inputs);
             return redirect()->route('seller.shops.index')->withSuccess('Data updated!');
         } catch (GeneralException $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
@@ -145,7 +141,7 @@ class ShopController extends Controller
 
             if ($request->has('checkForDelete')) {
 
-                $record = $this->categoryInterface->destroy($request->checkForDelete);
+                $record = $this->shopInterface->destroy($request->checkForDelete);
 
                 if (!$record) {
                     return redirect()->route('seller.shops.index')->withDanger('Data not found!');

@@ -5,7 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Rules\Password;
-use App\Utils\Enums\SellerStatus;
+use App\Utils\Enums\Status;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -68,7 +68,7 @@ class Seller extends Authenticatable implements MustVerifyEmail
             "ntn_number" => "required|numeric|max_digits:20",
             "phone_primary" => "required|numeric|max_digits:20",
             "phone_secondary" => "nullable|numeric|max_digits:20",
-            "status" => "required|in:" . implode(',', SellerStatus::values()),
+            "status" => "required|in:" . implode(',', Status::values()),
             "reason" => "required_if:status,objected,inactive",
         ];
     }

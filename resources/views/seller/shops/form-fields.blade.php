@@ -91,16 +91,16 @@
                         class="text-danger">*</span></label>
                 <select class="select2-size-lg form-select" id="status" name="status">
                     @foreach ($statuses as $key => $status)
-                        <option data-icon="fa-solid fa-angle-right" value="{{ $key }}"
-                            {{ (isset($seller) ? $seller->status : old('status')) == $key ? 'selected' : '' }}>
-                            {{ $status }}</option>
+                        <option data-icon="material-icons md-keyboard_arrow_right" value="{{ $key }}"
+                            {{ (isset($shop) ? $shop->status : old('status')) == $key ? 'selected' : '' }}>
+                            {{ Str::of($status)->replace('_', ' ') }}</option>
                     @endforeach
                 </select>
                 @error('status')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @else
                     <p class="m-0">
-                        <small class="text-muted">Select status for seller.</small>
+                        <small class="text-muted">Select status for shop.</small>
                     </p>
                 @enderror
             </div>
@@ -109,19 +109,18 @@
         <div class="row mb-3">
             <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
                 <label class="form-label" style="font-size: 15px" for="reason">
-                    Address
-                    <span class="text-danger">*</span>
+                    Reason
                 </label>
 
                 <input type="text" class="form-control @error('reason') is-invalid @enderror" id="reason"
-                    name="reason" placeholder="Address" value="{{ isset($shop) ? $shop->reason : old('reason') }}"
+                    name="reason" placeholder="Reason" value="{{ isset($shop) ? $shop->reason : old('reason') }}"
                     minlength="1" maxlength="254" />
 
                 @error('reason')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @else
                     <p class="m-0">
-                        <small class="text-muted">Enter shop full reason.</small>
+                        <small class="text-muted">Enter reason.</small>
                     </p>
                 @enderror
             </div>

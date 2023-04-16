@@ -15,28 +15,28 @@ class ShopService implements ShopInterface
 
     public function getAll($ignore = null, $with_tree = false)
     {
-        $categories = $this->model();
+        $shop = $this->model();
         if (is_array($ignore)) {
-            $categories = $categories->whereNotIn('id', $ignore);
+            $shop = $shop->whereNotIn('id', $ignore);
         } else if (is_string($ignore)) {
-            $categories = $categories->where('id', '!=', $ignore);
+            $shop = $shop->where('id', '!=', $ignore);
         }
-        $categories = $categories->get();
+        $shop = $shop->get();
         if ($with_tree) {
-            return getTreeData(collect($categories), $this->model());
+            return getTreeData(collect($shop), $this->model());
         }
-        return $categories;
+        return $shop;
     }
 
     public function getById($id, $relationships = [])
     {
-        $brand = $this->model();
+        $shop = $this->model();
 
         if(count($relationships) > 0) {
-            $brand = $brand->with($relationships);
+            $shop = $shop->with($relationships);
         }
 
-        return $brand->find($id);
+        return $shop->find($id);
     }
 
     public function store($inputs)
@@ -45,14 +45,21 @@ class ShopService implements ShopInterface
             $data = [
                 'name' => $inputs['name'],
                 'slug' => Str::slug($inputs['name']) ,
-                'parent_id' => $inputs['parent_category'],
+                'address' => $inputs['name'],
+                'lat' => $inputs['latitude'],
+                'long' => $inputs['longitude'],
+                'status' => $inputs['status'],
+                'reason' => $inputs['reason'],
             ];
 
-            $category = $this->model()->create($data);
+            $shop = $this->model()->create($data);
 
-            $category->brands()->sync($inputs['brands'] ?? []);
+            if (isset($inputs['shop_image'])) {
+                $attachment = $inputs['shop_image'];
+                $shop->addMedia($attachment)->toMediaCollection('shops');
+            }
 
-            return $category;
+            return $shop;
         });
 
         return $returnData;
@@ -61,19 +68,27 @@ class ShopService implements ShopInterface
     public function update($id, $inputs)
     {
         $returnData = DB::transaction(function () use ($id, $inputs) {
-            $category = $this->model()->find($id);
+            $shop = $this->model()->find($id);
 
             $data = [
                 'name' => $inputs['name'],
                 'slug' => Str::slug($inputs['name']) ,
-                'parent_id' => $inputs['parent_category'],
+                'address' => $inputs['name'],
+                'lat' => $inputs['latitude'],
+                'longitude' => $inputs['longitude'],
+                'status' => $inputs['status'],
+                'reason' => $inputs['reason'],
             ];
 
-            $category->update($data);
+            $shop->update($data);
 
-            $category->brands()->sync($inputs['brands'] ?? []);
+            $shop->clearMediaCollection('shops');
+            if (isset($inputs['shop_image'])) {
+                $attachment = $inputs['shop_image'];
+                $shop->addMedia($attachment)->toMediaCollection('shops');
+            }
 
-            return $category;
+            return $shop;
         });
 
         return $returnData;
@@ -83,11 +98,11 @@ class ShopService implements ShopInterface
     {
         $returnData = DB::transaction(function () use ($inputs) {
 
-            $categorys = $this->model()->whereIn('id', $inputs)->get()->each(function ($category) {
-                $category->delete();
+            $shops = $this->model()->whereIn('id', $inputs)->get()->each(function ($shop) {
+                $shop->delete();
             });
 
-            return $categorys;
+            return $shops;
         });
 
         return $returnData;
