@@ -755,6 +755,26 @@ b {
     background-color: #425A8B;
 }
 
+.btn.btn-danger {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    color: #ffffff;
+    border: none;
+    background-color: #cf0000;
+    border-radius: 4px;
+}
+
+.btn.btn-danger i {
+    color: #fff !important;
+    margin-right: 5px;
+    margin-top: -4px;
+}
+
+.btn.btn-danger:hover {
+    background-color: #b60101;
+}
+
 .btn.btn-secondary {
     font-size: 14px;
     font-weight: 500;

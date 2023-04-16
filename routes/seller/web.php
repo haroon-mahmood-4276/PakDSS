@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Seller\{AuthController, BrandController, CategoryController, DashboardController};
+use App\Http\Controllers\Seller\{AuthController, BrandController, CategoryController, DashboardController, ShopController};
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -44,6 +44,23 @@ Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
         Route::group(['middleware' => 'verified'], function () {
             Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
             Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+
+            //Shop Routes
+            Route::group(['prefix' => 'shops', 'as' => 'shops.'], function () {
+                Route::get('/', [ShopController::class, 'index'])->name('index');
+
+                Route::group([], function () {
+                    Route::get('create', [ShopController::class, 'create'])->name('create');
+                    Route::post('store', [ShopController::class, 'store'])->name('store');
+                });
+
+                Route::group(['prefix' => '/{id}'], function () {
+                    Route::get('edit', [ShopController::class, 'edit'])->whereUuid('id')->name('edit');
+                    Route::put('update', [ShopController::class, 'update'])->whereUuid('id')->name('update');
+                });
+
+                Route::get('delete', [ShopController::class, 'destroy'])->name('destroy');
+            });
         });
     });
 });

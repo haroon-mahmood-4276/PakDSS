@@ -72,6 +72,53 @@
     <script src="{{ asset('seller-assets') }}/js/vendors/chart.js"></script>
     <script src="{{ asset('seller-assets') }}/js/main.js?v=1.0.0"></script>
     <script src="{{ asset('seller-assets') }}/js/custom-chart.js" type="text/javascript"></script>
+    <script>
+        function showBlockUI(element = null) {
+            const blockUIOptions = {
+                message: `
+                <div class="d-flex justify-content-center flex-column align-items-center">
+                    <div class="la-fire la-3x text-primary">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <p class="mt-2 text-primary">Please wait...</p>
+                </div>`,
+                css: {
+                    backgroundColor: 'transparent',
+                    border: '0'
+                },
+                overlayCSS: {
+                    opacity: 0.8
+                }
+            };
+            if (element) {
+                $(element).block(blockUIOptions);
+            } else {
+                $.blockUI(blockUIOptions);
+            }
+        }
+
+        function hideBlockUI(element = null) {
+            if (element) {
+                $(element).unblock();
+            } else {
+                $.unblockUI();
+            }
+        }
+
+        function changeTableRowColor(element) {
+            if ($(element).is(':checked'))
+                $(element).closest('tr').addClass('table-danger');
+            else {
+                $(element).closest('tr').removeClass('table-danger');
+            }
+        }
+
+        function changeAllTableRowColor() {
+            $('.dt-checkboxes').trigger('change');
+        }
+    </script>
 
     @yield('page-js')
 

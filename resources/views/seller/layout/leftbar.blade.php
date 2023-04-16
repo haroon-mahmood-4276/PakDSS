@@ -28,13 +28,17 @@
                     <span class="text">Categories</span>
                 </a>
             </li>
-            {{-- <li class="menu-item has-submenu"><a class="menu-link" href="page-products-list.html"><i
-                        class="icon material-icons md-shopping_bag"></i><span class="text">Products</span></a>
-                <div class="submenu"><a href="page-products-list.html">Product List</a><a
-                        href="page-products-grid.html">Product grid</a><a href="page-products-grid-2.html">Product
-                        grid 2</a><a href="page-categories.html">Categories</a></div>
+            <li class="menu-item has-submenu">
+                <a class="menu-link" href="javascript:void(0)">
+                    <i class="icon material-icons md-storefront"></i>
+                    <span class="text">Shops</span>
+                </a>
+                <div class="submenu">
+                    <a href="{{ route('seller.shops.index') }}">View All</a>
+                    <a href="{{ route('seller.shops.create') }}">Add New</a>
+                </div>
             </li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
+            {{-- <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
                         class="icon material-icons md-shopping_cart"></i><span class="text">Orders</span></a>
                 <div class="submenu"><a href="page-orders-1.html">Order list 1</a><a href="page-orders-2.html">Order
                         list 2</a><a href="page-orders-detail.html">Order detail</a><a
