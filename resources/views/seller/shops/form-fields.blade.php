@@ -33,15 +33,15 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-lg-612 col-md-12 col-sm-12 position-relative">
+            <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
                 <label class="form-label" style="font-size: 15px" for="address">
                     Address
                     <span class="text-danger">*</span>
                 </label>
 
-                <textarea class="form-control @error('address') is-invalid @enderror" id="address"
-                    name="address" placeholder="Address" value="{{ isset($shop) ? $shop->address : old('address') }}"
-                    minlength="1" maxlength="254" rows="5" ></textarea>
+                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address"
+                    placeholder="Address" value="{{ isset($shop) ? $shop->address : old('address') }}" minlength="1" maxlength="254"
+                    rows="5"></textarea>
 
                 @error('address')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -58,7 +58,8 @@
                 <label class="form-label" style="font-size: 15px" for="latitude">Latitude <span
                         class="text-danger">*</span></label>
                 <input type="number" class="form-control @error('latitude') is-invalid @enderror" id="latitude"
-                    name="latitude" placeholder="Latitude" value="{{ isset($shop) ? $shop->latitude : old('latitude') }}"/>
+                    name="latitude" placeholder="Latitude"
+                    value="{{ isset($shop) ? $shop->latitude : old('latitude') }}" />
                 @error('latitude')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @else
@@ -72,7 +73,8 @@
                 <label class="form-label" style="font-size: 15px" for="longitude">Longitude <span
                         class="text-danger">*</span></label>
                 <input type="number" class="form-control @error('longitude') is-invalid @enderror" id="longitude"
-                    name="longitude" placeholder="Longitude" value="{{ isset($shop) ? $shop->longitude : old('longitude') }}"/>
+                    name="longitude" placeholder="Longitude"
+                    value="{{ isset($shop) ? $shop->longitude : old('longitude') }}" />
                 @error('longitude')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @else
@@ -83,11 +85,47 @@
             </div>
         </div>
 
+        <div class="row mb-3">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                <label class="form-label" style="font-size: 15px" for="status">Status <span
+                        class="text-danger">*</span></label>
+                <select class="select2-size-lg form-select" id="status" name="status">
+                    @foreach ($statuses as $key => $status)
+                        <option data-icon="fa-solid fa-angle-right" value="{{ $key }}"
+                            {{ (isset($seller) ? $seller->status : old('status')) == $key ? 'selected' : '' }}>
+                            {{ $status }}</option>
+                    @endforeach
+                </select>
+                @error('status')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @else
+                    <p class="m-0">
+                        <small class="text-muted">Select status for seller.</small>
+                    </p>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
+                <label class="form-label" style="font-size: 15px" for="reason">
+                    Address
+                    <span class="text-danger">*</span>
+                </label>
+
+                <input type="text" class="form-control @error('reason') is-invalid @enderror" id="reason"
+                    name="reason" placeholder="Address" value="{{ isset($shop) ? $shop->reason : old('reason') }}"
+                    minlength="1" maxlength="254" />
+
+                @error('reason')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @else
+                    <p class="m-0">
+                        <small class="text-muted">Enter shop full reason.</small>
+                    </p>
+                @enderror
+            </div>
+        </div>
 
     </div>
 </div>
-$table->string('address')->nullable();
-$table->string('lat')->nullable();
-$table->string('long')->nullable();
-$table->string('status')->nullable();
-$table->string('reason')->nullable();
