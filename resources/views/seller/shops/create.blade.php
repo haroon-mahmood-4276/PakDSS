@@ -1,55 +1,32 @@
-@extends('admin.layout.layout')
+@extends('seller.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.brands.create') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'seller.shops.create') }}
 @endsection
 
-@section('page-title', 'Create Brand')
-
-@section('page-vendor')
-@endsection
+@section('page-title', 'Categories')
 
 @section('page-css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets') }}/vendor/libs/filepond/filepond.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.preview.min.css">
 @endsection
 
 @section('custom-css')
-    <style>
-        .filepond--drop-label {
-            color: #7367F0 !important;
-        }
-
-        .filepond--item-panel {
-            background-color: #7367F0;
-        }
-
-        .filepond--panel-root {
-            background-color: #e3e0fd;
-        }
-
-        /* .filepond--item {
-                    width: calc(20% - 0.5em);
-                } */
-    </style>
 @endsection
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Create Brand</h2>
-        {{ Breadcrumbs::render('admin.brands.create') }}
+        <h2 class="content-header-title float-start mb-0 mx-3">Categories</h2>
+        {{ Breadcrumbs::render('seller.shops.create') }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('admin.brands.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="form form-vertical" action="{{ route('seller.shops.store') }}" method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">
             <div class="col-lg-9 col-md-9 col-sm-12 position-relative">
 
                 @csrf
-                {{ view('admin.brands.form-fields', ['categories' => $categories]) }}
+                {{ view('seller.shops.form-fields') }}
 
             </div>
 
@@ -98,15 +75,34 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                <h4 class="alert-heading"><i data-feather="info" class="me-50"></i>Information!</h4>
-                                <div class="alert-body">
-
-                                    <span class="text-danger">*</span> means required field. <br>
-                                    <span class="text-danger">**</span> means required field and must be unique.
+                            <div class="alert alert-primary alert-dismissible d-flex align-items-baseline show fade" role="alert">
+                                <span class="alert-icon alert-icon-lg text-info me-2">
+                                    <i class="material-icons md-48 md-info"></i>
+                                </span>
+                                <div class="d-flex flex-column ps-1">
+                                    <h4 class="alert-heading mb-2">Information!</h4>
+                                    <div class="alert-body">
+                                        <span class="text-danger">*</span> means required field. <br>
+                                        <span class="text-danger">**</span> means required field and must be unique.
+                                    </div>
+                                    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                    </button> --}}
                                 </div>
-                                {{-- <button type="button" class="btn-close" data-bs-dismiss="alert"
-                            aria-label="Close"></button> --}}
+                            </div>
+                        </div>
+                         <div class="col-12">
+                            <div class="alert alert-warning alert-dismissible d-flex align-items-baseline show fade" role="alert">
+                                <span class="alert-icon alert-icon-lg text-warning me-2">
+                                    <i class="material-icons md-48 md-warning"></i>
+                                </span>
+                                <div class="d-flex flex-column ps-1">
+                                    <h4 class="alert-heading mb-2">Note!</h4>
+                                    <div class="alert-body">
+                                        Our inspector will visit your shop for verification. Please try to enter right shop address, latitude & longitude.
+                                    </div>
+                                    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                    </button> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,52 +112,8 @@
     </form>
 @endsection
 
-@section('vendor-js')
-@endsection
-
 @section('page-js')
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.preview.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.typevalidation.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.imagecrop.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.imagesizevalidation.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.filesizevalidation.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/filepond.min.js"></script>
 @endsection
 
 @section('custom-js')
-    <script>
-        FilePond.registerPlugin(
-            FilePondPluginImagePreview,
-            FilePondPluginFileValidateType,
-            FilePondPluginFileValidateSize,
-            FilePondPluginImageValidateSize,
-            FilePondPluginImageCrop,
-        );
-
-        $(document).ready(function() {
-            $('#name').on('keyup blur', function() {
-                $('#slug').val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g,
-                    ' ').replace(/[^a-z0-9- ]/gi, '').replace(/-+/g, '-').replace(/\s/g, '-'));
-            });
-        });
-
-        window.addEventListener('load', function() {
-            FilePond.create(document.getElementById('brand_image'), {
-                styleButtonRemoveItemPosition: 'right',
-                imageCropAspectRatio: '1:1',
-                acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
-                maxFileSize: '536KB',
-                ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
-                storeAsFile: true,
-                // allowMultiple: true,
-                // maxFiles: 2,
-                checkValidity: true,
-                credits: {
-                    label: '',
-                    url: ''
-                }
-            });
-
-        });
-    </script>
 @endsection

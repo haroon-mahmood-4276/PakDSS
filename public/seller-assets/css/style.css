@@ -4684,3 +4684,21 @@ body.dark .dropdown-menu .dropdown-item.text-danger {
     border-left: 2px solid lightgray;
     font-size: x-large;
 }
+
+.menu-aside .submenu a.active {
+    background-color: #eee;
+    padding: 8px 0 10px 25px;
+    border-radius: 5px;
+}
+
+.menu-aside .submenu a.active::before {
+    margin-left: 10px;
+}
+
+.menu-aside .submenu a {
+    padding: 8px 0 10px 25px;
+}
+
+.menu-aside .submenu a::before {
+    margin-left: 10px;
+}
