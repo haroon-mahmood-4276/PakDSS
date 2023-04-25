@@ -16,6 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Seller extends Authenticatable implements MustVerifyEmail
 {
@@ -86,5 +87,10 @@ class Seller extends Authenticatable implements MustVerifyEmail
                 return trim($name);
             },
         );
+    }
+
+    public function shops(): HasMany
+    {
+        return $this->hasMany(Shop::class);
     }
 }

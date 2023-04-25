@@ -4,7 +4,7 @@
     {{ Breadcrumbs::view('breadcrumbs::json-ld', 'seller.shops.create') }}
 @endsection
 
-@section('page-title', 'Shops')
+@section('page-title', 'Create Shops')
 
 @section('page-css')
     {{ view('seller.layout.filepond.css') }}
@@ -15,7 +15,7 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Shops</h2>
+        <h2 class="content-header-title float-start mb-0 mx-3">Create Shops</h2>
         {{ Breadcrumbs::render('seller.shops.create') }}
     </div>
 @endsection

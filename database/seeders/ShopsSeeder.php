@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Seller;
 use App\Models\Shop;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -16,6 +17,9 @@ class ShopsSeeder extends Seeder
     public function run()
     {
         Shop::truncate();
+
+        $seller = Seller::first();
+
         $data = [
             [
                 'name' => 'Shopx',
@@ -29,7 +33,7 @@ class ShopsSeeder extends Seeder
         ];
 
         foreach ($data as $value) {
-            (new Shop())->create($value);
+            $seller->shops()->create($value);
         }
     }
 }

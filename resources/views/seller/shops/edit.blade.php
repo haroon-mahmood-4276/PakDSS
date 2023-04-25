@@ -1,10 +1,10 @@
 @extends('seller.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'seller.shops.create') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'seller.shops.edit') }}
 @endsection
 
-@section('page-title', 'Shops')
+@section('page-title', 'Edit Shops')
 
 @section('page-css')
     {{ view('seller.layout.filepond.css') }}
@@ -15,19 +15,20 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Shops</h2>
-        {{ Breadcrumbs::render('seller.shops.create') }}
+        <h2 class="content-header-title float-start mb-0 mx-3">Edit Shops</h2>
+        {{ Breadcrumbs::render('seller.shops.edit') }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('seller.shops.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="form form-vertical" action="{{ route('seller.shops.update', ['id' => encryptParams($shop->id)]) }}" method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">
             <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 position-relative">
 
+                @method('PUT')
                 @csrf
-                {{ view('seller.shops.form-fields', ['statuses' => $statuses]) }}
+                {{ view('seller.shops.form-fields', ['statuses' => $statuses, 'shop' => $shop]) }}
 
             </div>
 
@@ -130,7 +131,17 @@
         });
 
         window.addEventListener('load', function() {
+
+            var files = [];
+            @forelse($shop_logo as $image)
+                files.push({
+                    source: '{{ $image->getFullUrl() }}',
+                });
+            @empty
+            @endforelse
+
             FilePond.create(document.getElementById('shop_logo'), {
+                files: files,
                 styleButtonRemoveItemPosition: 'right',
                 imageCropAspectRatio: '1:1',
                 acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],

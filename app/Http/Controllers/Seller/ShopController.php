@@ -60,15 +60,15 @@ class ShopController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        try {
+        // try {
             $inputs = $request->validated();
             $record = $this->shopInterface->store($inputs);
             return redirect()->route('seller.shops.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        } catch (Exception $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
-        }
+        // } catch (GeneralException $ex) {
+        //     return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        // } catch (Exception $ex) {
+        //     return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
+        // }
     }
 
     /**
@@ -92,12 +92,13 @@ class ShopController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        try {
-            $shop = $this->shopInterface->getById($id, ['brands:id']);
+        // try {
+            $shop = $this->shopInterface->getById($id);
 
             if ($shop && !empty($shop)) {
                 $data = [
                     'shop' => $shop,
+                    'shop_logo' => $shop->getMedia('shops'),
                     'statuses' => Status::array(),
                 ];
 
@@ -105,11 +106,11 @@ class ShopController extends Controller
             }
 
             return redirect()->route('seller.shops.index')->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        } catch (Exception $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
-        }
+        // } catch (GeneralException $ex) {
+        //     return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        // } catch (Exception $ex) {
+        //     return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
+        // }
     }
 
     /**

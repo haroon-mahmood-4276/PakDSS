@@ -5,10 +5,11 @@ namespace App\Services\Seller\Shops;
 use App\Models\Shop;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Throwable;
 
 class ShopService implements ShopInterface
 {
-    private function model()
+    private function model(): Shop
     {
         return new Shop();
     }
@@ -39,9 +40,12 @@ class ShopService implements ShopInterface
         return $shop->find($id);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function store($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
+        return DB::transaction(function () use ($inputs) {
             $data = [
                 'name' => $inputs['name'],
                 'slug' => Str::slug($inputs['name']) ,
@@ -52,7 +56,7 @@ class ShopService implements ShopInterface
                 'reason' => $inputs['reason'],
             ];
 
-            $shop = $this->model()->create($data);
+            $shop = auth('seller')->user()->shops()->create($data);
 
             if (isset($inputs['shop_image'])) {
                 $attachment = $inputs['shop_image'];
@@ -61,8 +65,6 @@ class ShopService implements ShopInterface
 
             return $shop;
         });
-
-        return $returnData;
     }
 
     public function update($id, $inputs)

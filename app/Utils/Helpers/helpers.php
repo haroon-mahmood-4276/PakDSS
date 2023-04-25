@@ -367,7 +367,6 @@ if (!function_exists('editStatusColumn')) {
                 $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.inactive') . "</span>";
                 break;
 
-
             case 'objected':
                 $badge = "<span class='badge bg-warning bg-glow me-1'>" . __('lang.commons.objected') . "</span>";
                 break;

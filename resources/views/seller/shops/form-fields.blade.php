@@ -40,8 +40,8 @@
                 </label>
 
                 <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address"
-                    placeholder="Address" value="{{ isset($shop) ? $shop->address : old('address') }}" minlength="1" maxlength="254"
-                    rows="5"></textarea>
+                    placeholder="Address" minlength="1" maxlength="254"
+                    rows="5">{{ isset($shop) ? $shop->address : old('address') }}</textarea>
 
                 @error('address')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -59,7 +59,7 @@
                         class="text-danger">*</span></label>
                 <input type="number" class="form-control @error('latitude') is-invalid @enderror" id="latitude"
                     name="latitude" placeholder="Latitude"
-                    value="{{ isset($shop) ? $shop->latitude : old('latitude') }}" />
+                    value="{{ isset($shop) ? $shop->lat : old('latitude') }}" />
                 @error('latitude')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @else
@@ -74,7 +74,7 @@
                         class="text-danger">*</span></label>
                 <input type="number" class="form-control @error('longitude') is-invalid @enderror" id="longitude"
                     name="longitude" placeholder="Longitude"
-                    value="{{ isset($shop) ? $shop->longitude : old('longitude') }}" />
+                    value="{{ isset($shop) ? $shop->long : old('longitude') }}" />
                 @error('longitude')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @else

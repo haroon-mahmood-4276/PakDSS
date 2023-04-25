@@ -48,7 +48,7 @@ class ShopsDataTable extends DataTable
      */
     public function query(Shop $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('seller_id', auth()->guard('seller')->user()->id);
     }
 
     public function html(): HtmlBuilder
