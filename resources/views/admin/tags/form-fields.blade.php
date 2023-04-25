@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <div class="row mb-1">
-            <div class="col-lg-6 col-md-16 col-sm-12 position-relative">
+            <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
                 <label class="form-label" style="font-size: 15px" for="name">Name <span
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"

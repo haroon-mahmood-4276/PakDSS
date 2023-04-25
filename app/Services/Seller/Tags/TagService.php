@@ -33,9 +33,12 @@ class TagService implements TagInterface
         return $this->model()->find($id);
     }
 
+    /**
+     * @throws \Throwable
+     */
     public function store($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
+        return DB::transaction(function () use ($inputs) {
             $data = [
                 'name' => Str::slug($inputs['name']) ,
             ];
@@ -43,8 +46,6 @@ class TagService implements TagInterface
             $tag = $this->model()->create($data);
             return $tag;
         });
-
-        return $returnData;
     }
 
     public function update($id, $inputs)
@@ -61,17 +62,16 @@ class TagService implements TagInterface
         return $returnData;
     }
 
+    /**
+     * @throws \Throwable
+     */
     public function destroy($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
+        return DB::transaction(function () use ($inputs) {
 
-            $tags = $this->model()->whereIn('id', $inputs)->get()->each(function ($tag) {
+            return $this->model()->whereIn('id', $inputs)->get()->each(function ($tag) {
                 $tag->delete();
             });
-
-            return $tags;
         });
-
-        return $returnData;
     }
 }

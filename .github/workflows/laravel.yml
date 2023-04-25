@@ -21,6 +21,5 @@ jobs:
             git reset --hard
             git checkout main
             git pull origin main
-            composer update
             php artisan optimize:clear
             php artisan cache:clear
