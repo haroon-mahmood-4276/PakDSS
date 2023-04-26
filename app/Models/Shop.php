@@ -41,7 +41,7 @@ class Shop extends Model implements HasMedia
             "address" => 'required|string|between:3,254',
             "latitude" => 'required|numeric',
             "longitude" => 'required|numeric',
-            "shop_image" => 'nullable|image|mimes:jpeg,png,jpg|max:536',
+            "shop_logo" => 'nullable|image|mimes:jpeg,png,jpg|max:536',
             "status" => "required|in:" . implode(',', Status::values()),
             "reason" => "required_if:status,objected,inactive",
         ];

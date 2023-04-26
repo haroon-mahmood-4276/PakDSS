@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\ShopsDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
+use Illuminate\Http\{JsonResponse, Request, Response};
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Shops\{storeRequest, updateRequest};
 use App\Services\Seller\Shops\ShopInterface;
@@ -13,7 +15,7 @@ use Exception;
 
 class ShopController extends Controller
 {
-    private $shopInterface;
+    private ShopInterface $shopInterface;
 
     public function __construct(ShopInterface $shopInterface)
     {
@@ -23,9 +25,10 @@ class ShopController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param ShopsDataTable $dataTable
+     * @return JsonResponse|View
      */
-    public function index(ShopsDataTable $dataTable)
+    public function index(ShopsDataTable $dataTable): JsonResponse|View
     {
         if (request()->ajax()) {
             return $dataTable->ajax();
@@ -53,28 +56,28 @@ class ShopController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param storeRequest $request
+     * @return Response
      */
-    public function store(storeRequest $request)
+    public function store(storeRequest $request): Response
     {
         abort_if(request()->ajax(), 403);
 
-        // try {
+        try {
             $inputs = $request->validated();
             $record = $this->shopInterface->store($inputs);
             return redirect()->route('seller.shops.index')->withSuccess('Data saved!');
-        // } catch (GeneralException $ex) {
-        //     return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        // } catch (Exception $ex) {
-        //     return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
-        // }
+        } catch (GeneralException $ex) {
+            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        } catch (Exception $ex) {
+            return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -85,14 +88,14 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Application|Factory|View|
      */
     public function edit($id)
     {
         abort_if(request()->ajax(), 403);
 
-        // try {
+        try {
             $shop = $this->shopInterface->getById($id);
 
             if ($shop && !empty($shop)) {
@@ -101,23 +104,22 @@ class ShopController extends Controller
                     'shop_logo' => $shop->getMedia('shops'),
                     'statuses' => Status::array(),
                 ];
-
                 return view('seller.shops.edit', $data);
             }
 
             return redirect()->route('seller.shops.index')->withWarning('Record not found!');
-        // } catch (GeneralException $ex) {
-        //     return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        // } catch (Exception $ex) {
-        //     return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
-        // }
+        } catch (GeneralException $ex) {
+            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        } catch (Exception $ex) {
+            return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(updateRequest $request, $id)
