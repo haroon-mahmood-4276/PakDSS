@@ -60,7 +60,7 @@
                     },
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $('#cabin-types-table-form').submit();
+                        $('#shops-table-form').submit();
                     }
                 });
             } else {

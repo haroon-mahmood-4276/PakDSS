@@ -57,9 +57,8 @@ class ShopService implements ShopInterface
             ];
 
             $shop = auth('seller')->user()->shops()->create($data);
-
-            if (isset($inputs['shop_image'])) {
-                $attachment = $inputs['shop_image'];
+            if (isset($inputs['shop_logo'])) {
+                $attachment = $inputs['shop_logo'];
                 $shop->addMedia($attachment)->toMediaCollection('shops');
             }
 
@@ -85,8 +84,8 @@ class ShopService implements ShopInterface
             $shop->update($data);
 
             $shop->clearMediaCollection('shops');
-            if (isset($inputs['shop_image'])) {
-                $attachment = $inputs['shop_image'];
+            if (isset($inputs['shop_logo'])) {
+                $attachment = $inputs['shop_logo'];
                 $shop->addMedia($attachment)->toMediaCollection('shops');
             }
 
@@ -101,6 +100,7 @@ class ShopService implements ShopInterface
         $returnData = DB::transaction(function () use ($inputs) {
 
             $shops = $this->model()->whereIn('id', $inputs)->get()->each(function ($shop) {
+                $shop->clearMediaCollection('shops');
                 $shop->delete();
             });
 
