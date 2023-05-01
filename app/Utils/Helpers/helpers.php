@@ -23,9 +23,31 @@ use Illuminate\Support\Arr;
 
 if (!function_exists('filter_strip_tags')) {
 
-    function filter_strip_tags($field): string
+    function filter_strip_tags($text, $with_script_content = false): string
     {
-        return trim(strip_tags($field));
+        $pattern = [
+            '@<[\/\!]*?[^<>]*?>@si',           // Strip out HTML tags
+            '@<style[^>]*?>.*?</style>@siU',  // Strip style tags properly
+            '@<![\s\S]*?--[ \t\n\r]*>@'       // Strip multi-line comments
+        ];
+
+        if ($with_script_content) {
+            $pattern[] = '@<script[^>]*?>.*?</script>@si';
+        }
+
+        return preg_replace($pattern, '', $text);
+    }
+}
+
+if (!function_exists('filter_script_tags')) {
+
+    function filter_script_tags($text): string
+    {
+        $pattern = [
+            '@<script[^>]*?>.*?</script>@si',
+        ];
+
+        return preg_replace($pattern, '', $text);
     }
 }
 

@@ -3,33 +3,16 @@
 namespace App\Services\Admin\Roles;
 
 use App\Models\Role;
+use App\Utils\Traits\ServiceShared;
 use Illuminate\Support\Facades\DB;
 
 class RoleService implements RoleInterface
 {
+    use ServiceShared;
+
     private function model()
     {
         return new Role();
-    }
-
-    public function getAll($ignore = null, $with_tree = false)
-    {
-        $roles = $this->model();
-        if (is_array($ignore)) {
-            $roles = $roles->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
-            $roles = $roles->where('id', '!=', $ignore);
-        }
-        $roles = $roles->get();
-        if ($with_tree) {
-            return getTreeData(collect($roles), $this->model());
-        }
-        return $roles;
-    }
-
-    public function getById($id)
-    {
-        return $this->model()->find($id);
     }
 
     public function store($inputs)

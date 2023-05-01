@@ -85,18 +85,12 @@ class ShopController extends Controller
         abort(403);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Application|Factory|View|
-     */
     public function edit($id)
     {
         abort_if(request()->ajax(), 403);
 
         try {
-            $shop = $this->shopInterface->getById($id);
+            $shop = $this->shopInterface->find(auth('seller')->user()->id, $id);
 
             if ($shop && !empty($shop)) {
                 $data = [

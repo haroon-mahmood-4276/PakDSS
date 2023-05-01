@@ -31,3 +31,18 @@ Breadcrumbs::for('seller.shops.edit', function (BreadcrumbTrail $trail) {
     $trail->parent('seller.shops.index');
     $trail->push('Edit Shop');
 });
+
+Breadcrumbs::for('seller.products.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('seller.dashboard');
+    $trail->push('Products', route('seller.products.index'));
+});
+
+Breadcrumbs::for('seller.products.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('seller.products.index');
+    $trail->push('Create Product');
+});
+
+Breadcrumbs::for('seller.products.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('seller.products.index');
+    $trail->push('Edit Product');
+});

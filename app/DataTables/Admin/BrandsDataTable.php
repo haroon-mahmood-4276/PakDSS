@@ -3,6 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Brand;
+use Illuminate\Http\Response;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
@@ -17,9 +18,9 @@ class BrandsDataTable extends DataTable
      * Build DataTable class.
      *
      * @param QueryBuilder $query Results from query() method.
-     * @return \Yajra\DataTables\EloquentDataTable
+     * @return EloquentDataTable
      */
-    public function dataTable(QueryBuilder $query)
+    public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
@@ -48,8 +49,8 @@ class BrandsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Brand $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Brand $model
+     * @return QueryBuilder
      */
     public function query(Brand $model): QueryBuilder
     {
@@ -103,7 +104,6 @@ class BrandsDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            ->dom('BlfrtipC')
             ->scrollX()
             ->pagingType('full_numbers')
             ->lengthMenu([
@@ -152,7 +152,7 @@ class BrandsDataTable extends DataTable
             $checkColumn->addClass('disabled');
         }
 
-        $columns = [
+        return [
             $checkColumn,
             Column::computed('logo_image')->width(60)->addClass('text-nowrap text-center'),
             Column::make('name')->title('Name')->addClass('text-nowrap text-center'),
@@ -162,7 +162,6 @@ class BrandsDataTable extends DataTable
             Column::make('updated_at')->addClass('text-nowrap text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center'),
         ];
-        return $columns;
     }
 
     /**
@@ -177,9 +176,9 @@ class BrandsDataTable extends DataTable
 
     /**
      * Export PDF using DOMPDF
-     * @return mixed
+     * @return Response
      */
-    public function pdf()
+    public function pdf(): Response
     {
         $data = $this->getDataForPrint();
         $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);

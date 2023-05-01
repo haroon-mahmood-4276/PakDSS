@@ -7,13 +7,16 @@ use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Brands\{storeRequest, updateRequest};
-use App\Services\Admin\Brands\BrandInterface;
-use App\Services\Admin\Categories\CategoryInterface;
+use App\Services\Shared\{
+    Brands\BrandInterface,
+    Categories\CategoryInterface
+};
 use Exception;
 
 class BrandController extends Controller
 {
-    private $brandInterface, $categoryInterface;
+    private CategoryInterface $categoryInterface;
+    private BrandInterface $brandInterface;
 
     public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface)
     {
@@ -45,7 +48,7 @@ class BrandController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'categories' => $this->categoryInterface->getAll(with_tree: true),
+            'categories' => $this->categoryInterface->get(with_tree: true),
         ];
 
         return view('admin.brands.create', $data);
@@ -62,9 +65,9 @@ class BrandController extends Controller
         abort_if(request()->ajax(), 403);
 
         // try {
-            $inputs = $request->validated();
-            $record = $this->brandInterface->store($inputs);
-            return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
+        $inputs = $request->validated();
+        $record = $this->brandInterface->store($inputs);
+        return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
         // } catch (GeneralException $ex) {
         //     return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         // } catch (Exception $ex) {
@@ -94,13 +97,13 @@ class BrandController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $brand = $this->brandInterface->getById($id, ['categories:id']);
+            $brand = $this->brandInterface->find($id, ['categories:id']);
 
             if ($brand && !empty($brand)) {
                 $data = [
                     'brand' => $brand,
                     'brand_logo' => $brand->getMedia('brands'),
-                    'categories' => $this->categoryInterface->getAll(with_tree: true),
+                    'categories' => $this->categoryInterface->get(with_tree: true),
                 ];
 
                 return view('admin.brands.edit', $data);

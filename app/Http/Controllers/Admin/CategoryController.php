@@ -7,7 +7,7 @@ use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Categories\{storeRequest, updateRequest};
-use App\Services\Admin\{Brands\BrandInterface, Categories\CategoryInterface};
+use App\Services\Shared\{Brands\BrandInterface, Categories\CategoryInterface};
 use Exception;
 
 class CategoryController extends Controller
@@ -44,8 +44,8 @@ class CategoryController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'brands' => $this->brandInterface->getAll(),
-            'categories' => $this->categoryInterface->getAll(with_tree: true),
+            'brands' => $this->brandInterface->get(),
+            'categories' => $this->categoryInterface->get(with_tree: true),
         ];
 
         return view('admin.categories.create', $data);
@@ -94,13 +94,13 @@ class CategoryController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $category = $this->categoryInterface->getById($id, ['brands:id']);
+            $category = $this->categoryInterface->find($id, ['brands:id']);
 
             if ($category && !empty($category)) {
                 $data = [
-                    'brands' => $this->brandInterface->getAll(),
+                    'brands' => $this->brandInterface->get(),
                     'category' => $category,
-                    'categories' => $this->categoryInterface->getAll(with_tree: true),
+                    'categories' => $this->categoryInterface->get(with_tree: true),
                 ];
 
                 return view('admin.categories.edit', $data);

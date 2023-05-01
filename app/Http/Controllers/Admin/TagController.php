@@ -7,7 +7,7 @@ use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Tags\{storeRequest, updateRequest};
-use App\Services\Admin\Tags\TagInterface;
+use App\Services\Shared\Tags\TagInterface;
 use Exception;
 
 class TagController extends Controller
@@ -87,7 +87,7 @@ class TagController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $tag = $this->tagInterface->getById($id);
+            $tag = $this->tagInterface->find($id);
 
             if ($tag && !empty($tag)) {
                 $data = [

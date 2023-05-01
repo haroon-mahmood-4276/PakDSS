@@ -2,7 +2,7 @@
 
 namespace App\Utils\Enums;
 
-use App\Utils\Enums\Traits\EnumHelpers;
+use App\Utils\Traits\EnumHelpers;
 
 enum Status: string
 {

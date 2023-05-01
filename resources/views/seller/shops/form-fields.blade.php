@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        {{-- <div class="row mb-3">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
                 <label class="form-label" style="font-size: 15px" for="status">Status <span
                         class="text-danger">*</span></label>
@@ -104,9 +104,9 @@
                     </p>
                 @enderror
             </div>
-        </div>
+        </div> --}}
 
-        <div class="row mb-3">
+        {{-- <div class="row mb-3">
             <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
                 <label class="form-label" style="font-size: 15px" for="reason">
                     Reason
@@ -124,7 +124,7 @@
                     </p>
                 @enderror
             </div>
-        </div>
+        </div> --}}
 
     </div>
 </div>

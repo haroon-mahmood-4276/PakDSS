@@ -2,12 +2,10 @@
 
 namespace App\Services\Admin\Roles;
 
-interface RoleInterface
+use App\Utils\Traits\InterfaceShared;
+
+interface RoleInterface extends InterfaceShared
 {
-    public function getAll($ignore = null, $with_tree = false);
-
-    public function getById($id);
-
     public function store($inputs);
 
     public function update($id, $inputs);
