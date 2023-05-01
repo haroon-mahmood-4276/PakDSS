@@ -119,6 +119,8 @@ class ProductService implements ProductInterface
 
             $products = $this->model()->whereIn('id', $inputs)->get()->each(function ($product) {
                 $product->clearMediaCollection('products');
+                $product->categories()->detach();
+                $product->tags()->detach();
                 $product->delete();
             });
 

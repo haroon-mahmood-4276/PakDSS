@@ -85,13 +85,16 @@ class ProductController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $product = $this->productInterface->find($id);
+            $product = $this->productInterface->find(auth('seller')->user()->id, $id);
 
             if ($product && !empty($product)) {
                 $data = [
+                    'brands' => $this->brandInterface->get(),
+                    'categories' => $this->categoryInterface->get(with_tree: true),
+                    'shops' => $this->shopInterface->get(auth('seller')->user()->id),
+                    'tags' => $this->tagInterface->get(),
                     'product' => $product,
-                    'product_logo' => $product->getMedia('products'),
-                    'statuses' => Status::array(),
+                    'product_images' => $product->getMedia('products'),
                 ];
                 return view('seller.products.edit', $data);
             }
