@@ -6,7 +6,7 @@ interface ProductInterface
 {
     public function get($seller_id, $relationships = [], $ignore = null, $with_tree = false);
 
-    public function find($seller_id, $id, $relationships = []);
+    public function find($id, $relationships = []);
 
     public function store($seller_id, $inputs);
 

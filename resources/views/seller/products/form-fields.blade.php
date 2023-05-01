@@ -12,11 +12,14 @@
                             name="name" placeholder="Name"
                             value="{{ isset($product) ? $product->name : old('name') }}" minlength="1"
                             maxlength="50" />
-                            <input type="hidden" id="permalink" name="permalink" value="">
+                        <input type="hidden" id="permalink" name="permalink"
+                            value="{{ isset($product) ? $product->permalink : old('permalink') }}">
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
-                            <p class="m-0" id="permalink-text">{{ env('APP_URL') }}:8000/products/</p>
+                            <p class="m-0" id="permalink-text">
+                                {{ env('APP_URL') }}:8000/products/{{ isset($product) ? $product->permalink : old('permalink') }}
+                            </p>
                         @enderror
                     </div>
                 </div>
@@ -27,7 +30,7 @@
                                 class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('sku') is-invalid @enderror" id="sku"
                             name="sku" placeholder="SKU"
-                            value="{{ isset($product) ? $product->lat : old('sku') }}" />
+                            value="{{ isset($product) ? $product->sku : old('sku') }}" />
                         @error('sku')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -42,7 +45,7 @@
                                 class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
                             name="price" placeholder="Price"
-                            value="{{ isset($product) ? $product->long : old('price') }}" />
+                            value="{{ isset($product) ? $product->price : old('price') }}" />
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -61,7 +64,8 @@
                         </label>
 
                         <textarea class="form-control descriptions @error('short_description') is-invalid @enderror" id="short_description"
-                            name="short_description" placeholder="Short Description" minlength="1" maxlength="254" rows="5">{{ isset($product) ? $product->short_description : old('short_description') }}</textarea>
+                            name="short_description" placeholder="Short Description" minlength="1" maxlength="254" rows="5">
+                            {!! isset($product) ? $product->short_description : old('short_description') !!}</textarea>
 
                         @error('short_description')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -81,7 +85,8 @@
                         </label>
 
                         <textarea class="form-control descriptions @error('long_description') is-invalid @enderror" id="long_description"
-                            name="long_description" placeholder="Full Description" minlength="1" maxlength="254" rows="5">{{ isset($product) ? $product->long_description : old('long_description') }}</textarea>
+                            name="long_description" placeholder="Full Description" minlength="1" maxlength="254" rows="5">
+                            {!! isset($product) ? $product->long_description : old('long_description') !!}</textarea>
 
                         @error('long_description')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -152,7 +157,7 @@
                                 @foreach ($shops as $key => $shop)
                                     <option data-icon="material-icons md-keyboard_arrow_right"
                                         value="{{ $shop->id }}"
-                                        {{ (isset($product) ? $product->shop : old('shop')) == $key ? 'selected' : '' }}>
+                                        {{ (isset($product) ? $product->shop_id : old('shop')) == $shop->id ? 'selected' : '' }}>
                                         {{ Str::of($shop->name)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
@@ -174,7 +179,7 @@
                                 @foreach ($brands as $key => $brand)
                                     <option data-icon="material-icons md-keyboard_arrow_right"
                                         value="{{ $brand->id }}"
-                                        {{ (isset($product) ? $product->brand : old('brand')) == $key ? 'selected' : '' }}>
+                                        {{ (isset($product) ? $product->brand_id : old('brand')) == $brand->id ? 'selected' : '' }}>
                                         {{ Str::of($brand->name)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
@@ -195,7 +200,8 @@
                             <select class="select2-size-lg-multiple form-select" id="categories" name="categories[]"
                                 multiple>
                                 @foreach ($categories as $key => $category)
-                                    <option value="{{ $category->id }}">
+                                    <option value="{{ $category->id }}"
+                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('tags')) ? 'selected' : '' }}>
                                         {{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
@@ -215,7 +221,9 @@
                             <select class="select2-size-lg-multiple form-select" id="tags" name="tags[]"
                                 multiple>
                                 @foreach ($tags as $key => $tag)
-                                    <option value="{{ $tag->id }}">{{ Str::of($tag->name)->replace('_', ' ') }}
+                                    <option value="{{ $tag->id }}"
+                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags')) ? 'selected' : '' }}>
+                                        {{ Str::of($tag->name)->replace('_', ' ') }}
                                     </option>
                                 @endforeach
                             </select>
@@ -258,7 +266,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <button type="submit" class="btn btn-success w-100 text-white buttonToBlockUI">
                                 <i class="material-icons md-save"></i>
-                                Save Product
+                                {{ isset($product) ? 'Update' : 'Save' }} Product
                             </button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">

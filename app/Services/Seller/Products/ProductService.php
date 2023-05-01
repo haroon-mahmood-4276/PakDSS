@@ -32,9 +32,9 @@ class ProductService implements ProductInterface
         return $product;
     }
 
-    public function find($seller_id, $id, $relationships = [])
+    public function find($id, $relationships = [])
     {
-        $product = $this->model()->where('seller_id', $seller_id);
+        $product = $this->model();
 
         if (count($relationships) > 0) {
             $product = $product->with($relationships);
@@ -68,8 +68,6 @@ class ProductService implements ProductInterface
                 'reason' => null,
             ];
 
-            dd($data);
-
             $product = $this->model()->create($data);
             $product->categories()->sync($inputs['categories']);
             $product->tags()->sync($inputs['tags']);
@@ -90,21 +88,33 @@ class ProductService implements ProductInterface
             $product = $this->model()->find($id);
 
             $data = [
-                'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']),
-                'address' => $inputs['name'],
-                'lat' => $inputs['latitude'],
-                'longitude' => $inputs['longitude'],
-                'status' => Status::PENDING_APPROVAL,
-                'reason' => $inputs['reason'],
-            ];
+                'brand_id' => $inputs['brand'],
+                'shop_id' => $inputs['shop'],
 
+                'name' => $inputs['name'],
+
+                'permalink' => Str::of($inputs['name'])->slug(),
+                'sku' => Str::of($inputs['sku'])->slug()->lower(),
+                'price' => floatval($inputs['price']),
+
+                'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
+                'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
+
+                'meta_keywords' => $inputs['meta_keywords'],
+                'meta_description' => $inputs['meta_description'],
+
+                'status' => Status::PENDING_APPROVAL,
+            ];
             $product->update($data);
 
             $product->clearMediaCollection('products');
-            if (isset($inputs['product_logo'])) {
-                $attachment = $inputs['product_logo'];
-                $product->addMedia($attachment)->toMediaCollection('products');
+            $product->categories()->sync($inputs['categories']);
+            $product->tags()->sync($inputs['tags']);
+
+            if (isset($inputs['product_images'])) {
+                foreach ($inputs['product_images'] as $key => $image) {
+                    $product->addMedia($image)->toMediaCollection('products');
+                }
             }
 
             return $product;

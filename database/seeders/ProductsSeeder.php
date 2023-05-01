@@ -40,8 +40,8 @@ class ProductsSeeder extends Seeder
                 'sku' => 'SHX-1',
                 'price' => 123,
 
-                'short_description' => Str::markdown('#Mouse'),
-                'long_description' => Str::markdown('#Mouse'),
+                'short_description' => Str::markdown('# Mouse'),
+                'long_description' => Str::markdown('# Mouse'),
 
                 'meta_aurthor' => '',
                 'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',

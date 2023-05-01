@@ -85,7 +85,8 @@ class ProductController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $product = $this->productInterface->find(auth('seller')->user()->id, $id);
+            $product = $this->productInterface->find($id, ['categories', 'tags']);
+            // dd($product);
 
             if ($product && !empty($product)) {
                 $data = [
@@ -110,16 +111,16 @@ class ProductController extends Controller
     public function update(updateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
-        try {
+        // try {
             $id = decryptParams($id);
             $inputs = $request->validated();
             $record = $this->productInterface->update($id, $inputs);
             return redirect()->route('seller.products.index')->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        } catch (Exception $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
-        }
+        // } catch (GeneralException $ex) {
+        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        // } catch (Exception $ex) {
+        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+        // }
     }
 
     public function destroy(Request $request)
