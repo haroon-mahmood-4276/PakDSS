@@ -2,14 +2,9 @@
 
 namespace App\Services\Admin\Permissions;
 
-interface PermissionInterface
+use App\Utils\Traits\InterfaceShared;
+
+interface PermissionInterface extends InterfaceShared
 {
-    public function get();
-    public function find($id);
-
-    public function store($inputs);
-    public function update($id, $inputs);
-
-    public function destroySelected($ids);
-
+    //
 }

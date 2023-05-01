@@ -7,7 +7,7 @@ use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Categories\{storeRequest, updateRequest};
-use App\Services\Admin\{Brands\BrandInterface, Categories\CategoryInterface};
+use App\Services\Shared\{Brands\BrandInterface, Categories\CategoryInterface};
 use Exception;
 
 class CategoryController extends Controller

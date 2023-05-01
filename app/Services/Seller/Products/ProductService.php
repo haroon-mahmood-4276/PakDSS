@@ -6,7 +6,6 @@ use App\Models\Product;
 use App\Utils\Enums\Status;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Throwable;
 
 class ProductService implements ProductInterface
 {
@@ -15,13 +14,16 @@ class ProductService implements ProductInterface
         return new Product();
     }
 
-    public function get($ignore = null, $with_tree = false)
+    public function get($shop_id, $relationships = [], $ignore = null, $with_tree = false)
     {
-        $product = $this->model();
+        $product = $this->model()->where('shop_id', $shop_id);
         if (is_array($ignore)) {
             $product = $product->whereNotIn('id', $ignore);
         } else if (is_string($ignore)) {
             $product = $product->where('id', '!=', $ignore);
+        }
+        if (count($relationships) > 0) {
+            $product = $product->with($relationships);
         }
         $product = $product->get();
         if ($with_tree) {
@@ -30,37 +32,50 @@ class ProductService implements ProductInterface
         return $product;
     }
 
-    public function find($id, $relationships = [])
+    public function find($shop_id, $id, $relationships = [])
     {
-        $product = $this->model();
+        $product = $this->model()->where('shop_id', $shop_id);
 
-        if(count($relationships) > 0) {
+        if (count($relationships) > 0) {
             $product = $product->with($relationships);
         }
 
         return $product->find($id);
     }
 
-    /**
-     * @throws Throwable
-     */
     public function store($inputs)
     {
         return DB::transaction(function () use ($inputs) {
+
             $data = [
+                'brand_id' => $inputs['brand'],
+                'shop_id' => $inputs['shop'],
+
                 'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']) ,
-                'address' => $inputs['name'],
-                'lat' => $inputs['latitude'],
-                'long' => $inputs['longitude'],
+
+                'permalink' => Str::of($inputs['name'])->slug(),
+                'sku' => Str::of($inputs['sku'])->slug()->lower(),
+                'price' => floatval($inputs['price']),
+
+                'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
+                'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
+
+                'meta_aurthor' => $inputs['meta_aurthor'],
+                'meta_keywords' => $inputs['meta_keywords'],
+                'meta_description' => $inputs['meta_description'],
+
                 'status' => Status::PENDING_APPROVAL,
-                'reason' => $inputs['reason'],
+                'reason' => null,
             ];
 
-            $product = auth('seller')->user()->products()->create($data);
-            if (isset($inputs['product_logo'])) {
-                $attachment = $inputs['product_logo'];
-                $product->addMedia($attachment)->toMediaCollection('products');
+            $product = $this->model()->create($data);
+            $product->categories()->sync($inputs['categories']);
+            $product->tags()->sync($inputs['tags']);
+
+            if (isset($inputs['product_images'])) {
+                foreach ($inputs['product_images'] as $key => $image) {
+                    $product->addMedia($image)->toMediaCollection('products');
+                }
             }
 
             return $product;
@@ -74,7 +89,7 @@ class ProductService implements ProductInterface
 
             $data = [
                 'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']) ,
+                'slug' => Str::slug($inputs['name']),
                 'address' => $inputs['name'],
                 'lat' => $inputs['latitude'],
                 'longitude' => $inputs['longitude'],

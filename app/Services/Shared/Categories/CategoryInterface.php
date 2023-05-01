@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Admin\Tags;
+namespace App\Services\Shared\Categories;
 
-interface TagInterface
+interface CategoryInterface
 {
     public function get($ignore = null, $with_tree = false);
 
-    public function find($id);
+    public function find($id, $relationships = []);
 
     public function store($inputs);
 

@@ -7,7 +7,8 @@
 @section('page-title', 'Create Products')
 
 @section('page-css')
-    {{ view('seller.layout.filepond.css') }}
+    {{ view('seller.layout.filepond.css', ['isHalf' => true]) }}
+    <link rel="stylesheet" href="{{ asset('seller-assets') }}/vendors/tagify/tagify.min.css">
 @endsection
 
 @section('custom-css')
@@ -23,109 +24,62 @@
 @section('content')
     <form class="form form-vertical" action="{{ route('seller.products.store') }}" method="POST" enctype="multipart/form-data">
 
-        <div class="row g-3">
-            <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 position-relative">
+        @csrf
+        {{ view('seller.products.form-fields', ['brands' => $brands, 'categories' => $categories, 'shops' => $shops, 'tags' => $tags]) }}
 
-                @csrf
-                {{ view('seller.products.form-fields') }}
-
-            </div>
-
-            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 position-relative">
-                <div class="sticky-md-top top-lg-20px top-md-20px top-sm-10px" style="z-index: auto;">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col-md-12">
-                                    <div class="d-block mb-1">
-                                        <label class="form-label" style="font-size: 15px" for="product_images">Product
-                                            Logo</label>
-                                        <input id="product_images" type="file"
-                                            class="filepond m-0 @error('product_images') is-invalid @enderror" name="product_images"
-                                            accept="image/png, image/jpeg, image/gif" />
-                                        @error('product_images')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @else
-                                            <p class="m-0">
-                                                <small class="text-muted">Upload shop logo.</small>
-                                            </p>
-                                        @enderror
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="row g-3">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <button type="submit" class="btn btn-success w-100 text-white buttonToBlockUI">
-                                        <i class="material-icons md-save"></i>
-                                        Save Product
-                                    </button>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <a href="{{ route('seller.products.index') }}" class="btn btn-danger w-100 ">
-                                        <i class="material-icons md-cancel"></i>
-                                        Cancel
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="alert alert-primary alert-dismissible d-flex align-items-baseline show fade"
-                                role="alert">
-                                <span class="alert-icon alert-icon-lg text-info me-2">
-                                    <i class="material-icons md-48 md-info"></i>
-                                </span>
-                                <div class="d-flex flex-column ps-1">
-                                    <h4 class="alert-heading mb-2">Information!</h4>
-                                    <div class="alert-body">
-                                        <span class="text-danger">*</span> means required field. <br>
-                                        <span class="text-danger">**</span> means required field and must be unique.
-                                    </div>
-                                    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                    </button> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="alert alert-warning alert-dismissible d-flex align-items-baseline show fade"
-                                role="alert">
-                                <span class="alert-icon alert-icon-lg text-warning me-2">
-                                    <i class="material-icons md-48 md-warning"></i>
-                                </span>
-                                <div class="d-flex flex-column ps-1">
-                                    <h4 class="alert-heading mb-2">Note!</h4>
-                                    <div class="alert-body">
-                                        Our inspector will visit your products for verification. Please try to enter right
-                                        product information.
-                                    </div>
-                                    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                    </button> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </form>
 @endsection
 
 @section('page-js')
     {{ view('seller.layout.filepond.js') }}
+
+    <script src="{{ asset('seller-assets') }}/vendors/tagify/tagify.min.js"></script>
+    <script src="{{ asset('seller-assets') }}/vendors/tagify/tagify.polyfills.min.js"></script>
+
+    <script src="{{ asset('seller-assets') }}/vendors/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{{ asset('seller-assets') }}/vendors/tinymce/tinymce-jquery.min.js"></script>
+
 @endsection
 
 @section('custom-js')
     <script>
         $(document).ready(function() {
             $('#name').on('keyup blur', function() {
-                $('#permalink').html('{{ env("APP_URL") }}:8000/products/' + $(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g,
-                    ' ').replace(/[^a-z0-9- ]/gi, '').replace(/-+/g, '-').replace(/\s/g, '-'));
+                let permalink = $(this).val().toLowerCase()
+                    .trim().replace(/[\/\\]/g, '').replace(/\s+/g,
+                        ' ').replace(/[^a-z0-9- ]/gi, '').replace(/-+/g, '-').replace(/\s/g, '-');
+                $('#permalink').val(permalink);
+                $('#permalink-text').html('{{ env('APP_URL') }}:8000/products/' + permalink);
+            });
+
+            $('.descriptions').each(function(elem) {
+                $(this).tinymce({
+                    height: 500,
+                    schema: 'html5-strict',
+                    invalid_elements: 'script,style',
+                    menubar: true,
+                    branding: false,
+                    plugins: [
+                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                        'anchor', 'searchreplace', 'visualblocks', 'fullscreen',
+                        'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                    ],
+                    toolbar: 'undo redo | blocks | bold italic backcolor | ' +
+                        'alignleft aligncenter alignright alignjustify | ' +
+                        'bullist numlist outdent indent | removeformat | help',
+                    maxlength: 2,
+                    setup: function(editor) {
+                        editor.on('keydown', function(e) {
+                            var words = editor.plugins.wordcount.getCount();
+                            if (words >= 2 && e.keyCode !== 8 && !e.ctrlKey && !e
+                                .metaKey) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                return false;
+                            }
+                        });
+                    }
+                });
             });
         });
 
@@ -137,8 +91,8 @@
                 maxFileSize: '536KB',
                 ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
                 storeAsFile: true,
-                // allowMultiple: true,
-                // maxFiles: 2,
+                allowMultiple: true,
+                maxFiles: 6,
                 checkValidity: true,
                 credits: {
                     label: '',
@@ -146,6 +100,9 @@
                 }
             });
 
+            var tagify = new Tagify(document.getElementById('meta_keywords'), {
+
+            });
         });
     </script>
 @endsection

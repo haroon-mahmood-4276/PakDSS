@@ -3,36 +3,22 @@
 namespace App\Services\Admin\Sellers;
 
 use App\Models\Seller;
+use App\Utils\Traits\ServiceShared;
 use Illuminate\Support\Facades\{DB, Hash};
-use Illuminate\Support\Str;
+use Throwable;
 
 class SellerService implements SellerInterface
 {
+    use ServiceShared;
+
     private function model()
     {
         return new Seller();
     }
 
-    public function get($ignore = null, $with_tree = false)
-    {
-        $sellers = $this->model();
-        if (is_array($ignore)) {
-            $sellers = $sellers->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
-            $sellers = $sellers->where('id', '!=', $ignore);
-        }
-        $sellers = $sellers->get();
-        if ($with_tree) {
-            return getTreeData(collect($sellers), $this->model());
-        }
-        return $sellers;
-    }
-
-    public function find($id)
-    {
-        return $this->model()->find($id);
-    }
-
+    /**
+     * @throws Throwable
+     */
     public function store($inputs)
     {
         $returnData = DB::transaction(function () use ($inputs) {

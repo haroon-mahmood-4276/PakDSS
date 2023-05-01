@@ -17,7 +17,7 @@ class ShopService implements ShopInterface
 
     public function get($seller_id, $ignore = null, $relationships = [])
     {
-        $shop = $this->model()->where('seller_id', $seller_id);
+        $shop = $this->model()->where('seller_id', $seller_id)->where('status', Status::ACTIVE);
         if (is_array($ignore)) {
             $shop = $shop->whereNotIn('id', $ignore);
         } else if (is_string($ignore)) {

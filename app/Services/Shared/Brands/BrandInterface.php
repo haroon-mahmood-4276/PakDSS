@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Admin\Categories;
+namespace App\Services\Shared\Brands;
 
-interface CategoryInterface
+interface BrandInterface
 {
     public function get($ignore = null, $with_tree = false);
 

@@ -90,6 +90,19 @@
                 });
             });
 
+            $(".select2-size-lg-multiple").each(function() {
+                var e = $(this);
+                e.wrap('<div class="position-relative"></div>');
+                e.select2({
+                    dropdownAutoWidth: !0,
+                    width: "100%",
+                    containerCssClass: "select-lg",
+                    escapeMarkup: function(e) {
+                        return e
+                    }
+                });
+            });
+
             $('.class-datatable-for-event').on('draw.dt', function() {
                 setTimeout(function() {
                     changeAllTableRowColor();

@@ -3,7 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Category;
-use App\Models\Role;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -19,9 +19,9 @@ class CategoriesDataTable extends DataTable
      * Build DataTable class.
      *
      * @param QueryBuilder $query Results from query() method.
-     * @return \Yajra\DataTables\EloquentDataTable
+     * @return EloquentDataTable
      */
-    public function dataTable(QueryBuilder $query)
+    public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
@@ -50,8 +50,8 @@ class CategoriesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Category $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Category $model
+     * @return QueryBuilder
      */
     public function query(Category $model): QueryBuilder
     {
@@ -105,7 +105,6 @@ class CategoriesDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            ->dom('BlfrtipC')
             ->stateSave(false)
             ->scrollX()
             ->pagingType('full_numbers')
@@ -155,7 +154,7 @@ class CategoriesDataTable extends DataTable
             $checkColumn->addClass('disabled');
         }
 
-        $columns = [
+        return [
             $checkColumn,
             Column::make('name')->title('Name')->addClass('text-nowrap text-center'),
             Column::make('slug')->title('Slug'),
@@ -165,7 +164,6 @@ class CategoriesDataTable extends DataTable
             Column::make('updated_at')->addClass('text-nowrap text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),
         ];
-        return $columns;
     }
 
     /**
@@ -180,9 +178,9 @@ class CategoriesDataTable extends DataTable
 
     /**
      * Export PDF using DOMPDF
-     * @return mixed
+     * @return Response
      */
-    public function pdf()
+    public function pdf(): Response
     {
         $data = $this->getDataForPrint();
         $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);

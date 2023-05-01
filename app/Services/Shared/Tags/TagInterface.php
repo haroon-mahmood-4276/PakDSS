@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Admin\Brands;
+namespace App\Services\Shared\Tags;
 
-interface BrandInterface
+interface TagInterface
 {
     public function get($ignore = null, $with_tree = false);
 
-    public function find($id, $relationships = []);
+    public function find($id);
 
     public function store($inputs);
 

@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\ProductsDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\{Factory, View};
-use Illuminate\Http\{JsonResponse, Request, Response};
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Products\{storeRequest, updateRequest};
-use App\Services\Seller\{
+use App\Services\Shared\{
     Brands\BrandInterface,
     Categories\CategoryInterface,
+    Tags\TagInterface,
+};
+use App\Services\Seller\{
     Products\ProductInterface,
-    Shops\ShopInterface
+    Shops\ShopInterface,
 };
 use App\Utils\Enums\Status;
 use Exception;
@@ -24,22 +25,18 @@ class ProductController extends Controller
     private CategoryInterface $categoryInterface;
     private ProductInterface $productInterface;
     private ShopInterface $shopInterface;
+    private TagInterface $tagInterface;
 
-    public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface, ProductInterface $productInterface, ShopInterface $shopInterface)
+    public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface, ProductInterface $productInterface, ShopInterface $shopInterface, TagInterface $tagInterface)
     {
         $this->brandInterface = $brandInterface;
         $this->categoryInterface = $categoryInterface;
         $this->productInterface = $productInterface;
         $this->shopInterface = $shopInterface;
+        $this->tagInterface = $tagInterface;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @param ProductsDataTable $dataTable
-     * @return JsonResponse|View
-     */
-    public function index(ProductsDataTable $dataTable): JsonResponse|View
+    public function index(ProductsDataTable $dataTable)
     {
         if (request()->ajax()) {
             return $dataTable->ajax();
@@ -48,65 +45,41 @@ class ProductController extends Controller
         return $dataTable->render('seller.products.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'brand' => $this->brandInterface->get(),
-            'categories' => $this->categoryInterface->get(),
+            'brands' => $this->brandInterface->get(),
+            'categories' => $this->categoryInterface->get(with_tree: true),
             'shops' => $this->shopInterface->get(auth('seller')->user()->id),
-            // 'statuses' => Status::array(),
+            'tags' => $this->tagInterface->get(),
         ];
-
-        dd($data);
 
         return view('seller.products.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param storeRequest $request
-     * @return Response
-     */
-    public function store(storeRequest $request): Response
+    public function store(storeRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
-        try {
+        // try {
             $inputs = $request->validated();
+            $inputs['meta_aurthor'] = auth('seller')->user()->first_name;
             $record = $this->productInterface->store($inputs);
             return redirect()->route('seller.products.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        } catch (Exception $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
-        }
+        // } catch (GeneralException $ex) {
+        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        // } catch (Exception $ex) {
+        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+        // }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         abort(403);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Application|Factory|View|
-     */
     public function edit($id)
     {
         abort_if(request()->ajax(), 403);
@@ -131,13 +104,6 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(updateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);

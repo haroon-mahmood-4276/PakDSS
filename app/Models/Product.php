@@ -21,7 +21,7 @@ class Product extends Model implements HasMedia
     protected $dateFormat = 'U';
 
     protected $fillable = [
-        'seller_id',
+        'brand_id',
         'shop_id',
 
         'name',
@@ -33,8 +33,6 @@ class Product extends Model implements HasMedia
         'short_description',
         'long_description',
 
-        'keywords',
-
         'meta_aurthor',
         'meta_keywords',
         'meta_description',
@@ -43,50 +41,33 @@ class Product extends Model implements HasMedia
         'reason',
     ];
 
-    public array $rules = [];
+    public array $rules = [
+        'shop' => 'required|uuid|exists:shops,id',
+        'brand' => 'required|uuid|exists:brands,id',
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
+        'categories' => 'required|array|min:1',
+        'categories.*' => 'uuid|exists:categories,id',
+        'tags' => 'required|array|min:1',
+        'tags.*' => 'uuid|exists:tags,id',
 
-        $this->rules = [
-            'seller_id',
-            'shop_id',
+        'name' => 'required|string|between:3,254',
+        'permalink' => 'required|string|between:3,254|unique:products,permalink',
+        'sku' => 'required|string|between:3,10|unique:products,sku',
+        'price' => 'required|decimal:0,2|gte:0',
 
-            'name' => 'required|string|between:3,254',
+        'short_description' => 'required',
+        'long_description' => 'nullable',
 
-            'permalink' => 'required|string|between:3,254|unique:products,permalink',
-            'sku',
-            'price',
+        'meta_keywords' => 'nullable|json',
+        'meta_description' => 'nullable|string',
 
-            'short_description',
-            'long_description',
-
-            'keywords',
-
-            'meta_aurthor',
-            'meta_keywords',
-            'meta_description',
-
-            'shop_logo' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
-
-            'status' => "required|in:" . implode(',', Status::values()),
-            'reason' => "required_if:status,objected,inactive",
-        ];
-    }
-
-    protected $casts = [
-        'keywords' => 'array'
+        'product_images' => 'nullable|array',
+        'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
     ];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->useLogName(self::class)->logFillable();
-    }
-
-    public function seller(): BelongsTo
-    {
-        return $this->belongsTo(Seller::class);
     }
 
     public function categories(): BelongsToMany

@@ -1,42 +1,19 @@
 <?php
 
-namespace App\Services\Admin\Brands;
+namespace App\Services\Shared\Brands;
 
 use App\Models\Brand;
+use App\Utils\Traits\ServiceShared;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class BrandService implements BrandInterface
 {
+    use ServiceShared;
+
     private function model()
     {
         return new Brand();
-    }
-
-    public function get($ignore = null, $with_tree = false)
-    {
-        $brand = $this->model();
-        if (is_array($ignore)) {
-            $brand = $brand->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
-            $brand = $brand->where('id', '!=', $ignore);
-        }
-        $brand = $brand->get();
-        if ($with_tree) {
-            return getTreeData(collect($brand), $this->model());
-        }
-        return $brand;
-    }
-
-    public function find($id, $relationships = [])
-    {
-        $brand = $this->model();
-
-        if(count($relationships) > 0) {
-            $brand = $brand->with($relationships);
-        }
-
-        return $brand->find($id);
     }
 
     public function store($inputs)

@@ -7,13 +7,16 @@ use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Brands\{storeRequest, updateRequest};
-use App\Services\Admin\Brands\BrandInterface;
-use App\Services\Admin\Categories\CategoryInterface;
+use App\Services\Shared\{
+    Brands\BrandInterface,
+    Categories\CategoryInterface
+};
 use Exception;
 
 class BrandController extends Controller
 {
-    private $brandInterface, $categoryInterface;
+    private CategoryInterface $categoryInterface;
+    private BrandInterface $brandInterface;
 
     public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface)
     {
@@ -62,9 +65,9 @@ class BrandController extends Controller
         abort_if(request()->ajax(), 403);
 
         // try {
-            $inputs = $request->validated();
-            $record = $this->brandInterface->store($inputs);
-            return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
+        $inputs = $request->validated();
+        $record = $this->brandInterface->store($inputs);
+        return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
         // } catch (GeneralException $ex) {
         //     return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         // } catch (Exception $ex) {

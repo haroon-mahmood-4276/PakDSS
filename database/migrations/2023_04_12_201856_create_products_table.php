@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->foreignUuid('seller_id')->constrained();
+            $table->foreignUuid('brand_id')->constrained();
             $table->foreignUuid('shop_id')->constrained();
 
             $table->string('name', 150)->nullable();
@@ -27,8 +27,6 @@ return new class extends Migration
 
             $table->text('short_description')->nullable();
             $table->longText('long_description')->nullable();
-
-            $table->json('keywords')->nullable();
 
             $table->string('meta_aurthor', 50)->nullable();
             $table->text('meta_keywords')->nullable();

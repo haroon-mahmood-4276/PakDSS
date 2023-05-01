@@ -1,172 +1,312 @@
-<div class="card">
-    <div class="card-body">
+<div class="row g-3">
+    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 position-relative">
 
-        <div class="row mb-3">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
-                <label class="form-label" style="font-size: 15px" for="status">Status <span
-                        class="text-danger">*</span></label>
-                <select class="select2-size-lg form-select" id="status" name="status">
-                    @foreach ($statuses as $key => $status)
-                        <option data-icon="material-icons md-keyboard_arrow_right" value="{{ $key }}"
-                            {{ (isset($product) ? $product->status : old('status')) == $key ? 'selected' : '' }}>
-                            {{ Str::of($status)->replace('_', ' ') }}</option>
-                    @endforeach
-                </select>
-                @error('status')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @else
-                    <p class="m-0">
-                        <small class="text-muted">Select status for product.</small>
-                    </p>
-                @enderror
+        <div class="card mb-3">
+            <div class="card-body">
+
+                <div class="row mb-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="name">Name <span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                            name="name" placeholder="Name"
+                            value="{{ isset($product) ? $product->name : old('name') }}" minlength="1"
+                            maxlength="50" />
+                            <input type="hidden" id="permalink" name="permalink" value="">
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0" id="permalink-text">{{ env('APP_URL') }}:8000/products/</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="sku">SKU <span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('sku') is-invalid @enderror" id="sku"
+                            name="sku" placeholder="SKU"
+                            value="{{ isset($product) ? $product->lat : old('sku') }}" />
+                        @error('sku')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter product SKU.</small>
+                            </p>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="price">Price <span
+                                class="text-danger">*</span></label>
+                        <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
+                            name="price" placeholder="Price"
+                            value="{{ isset($product) ? $product->long : old('price') }}" />
+                        @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter product price.</small>
+                            </p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="short_description">
+                            Short Description
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <textarea class="form-control descriptions @error('short_description') is-invalid @enderror" id="short_description"
+                            name="short_description" placeholder="Short Description" minlength="1" maxlength="254" rows="5">{{ isset($product) ? $product->short_description : old('short_description') }}</textarea>
+
+                        @error('short_description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter product short description.</small>
+                            </p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="long_description">
+                            Full Description
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <textarea class="form-control descriptions @error('long_description') is-invalid @enderror" id="long_description"
+                            name="long_description" placeholder="Full Description" minlength="1" maxlength="254" rows="5">{{ isset($product) ? $product->long_description : old('long_description') }}</textarea>
+
+                        @error('long_description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter product full description.</small>
+                            </p>
+                        @enderror
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
-                <label class="form-label" style="font-size: 15px" for="name">Name <span
-                        class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                    name="name" placeholder="Name" value="{{ isset($product) ? $product->name : old('name') }}"
-                    minlength="1" maxlength="50" />
-                @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @else
-                    <p class="m-0" id="permalink">{{ env('APP_URL') }}:8000/products/</p>
-                @enderror
+        <div class="card">
+            <div class="card-header">
+                <h3>Meta Information</h3>
             </div>
+            <div class="card-body">
 
-            {{-- <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
-                <label class="form-label" style="font-size: 15px" for="permalink">Slug</label>
-                <input type="text" class="form-control @error('permalink') is-invalid @enderror" id="permalink"
-                    placeholder="Slug" name="permalink" value="{{ isset($product) ? $product->permalink : old('permalink') }}"
-                    minlength="1" readonly maxlength="50" />
+                <div class="row mb-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="meta_keywords">Meta Keywords </label>
+                        <input type="text" class="form-control-tagify @error('meta_keywords') is-invalid @enderror"
+                            id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords"
+                            value="{{ isset($product) ? $product->meta_keywords : old('meta_keywords') }}" />
+                        @error('meta_keywords')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <small class="text-muted">Enter keywords for meta.</small>
+                        @enderror
+                    </div>
+                </div>
 
-                @error('permalink')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @else
-                    <p class="m-0">
-                        <small class="text-muted">Shop unique permalink.</small>
-                    </p>
-                @enderror
-            </div> --}}
-        </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="meta_description">
+                            Meta Description
+                            <span class="text-danger">*</span>
+                        </label>
 
-        <div class="row mb-3">
-            <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
-                <label class="form-label" style="font-size: 15px" for="address">
-                    Address
-                    <span class="text-danger">*</span>
-                </label>
+                        <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
+                            name="meta_description" placeholder="Meta Description" minlength="1" maxlength="254" rows="5">{{ isset($product) ? $product->meta_description : old('meta_description') }}</textarea>
 
-                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address"
-                    placeholder="Address" minlength="1" maxlength="254" rows="5">{{ isset($product) ? $product->address : old('address') }}</textarea>
-
-                @error('address')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @else
-                    <p class="m-0">
-                        <small class="text-muted">Enter product full address.</small>
-                    </p>
-                @enderror
+                        @error('meta_description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter product full description.</small>
+                            </p>
+                        @enderror
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="row mb-3">
-            <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
-                <label class="form-label" style="font-size: 15px" for="latitude">Latitude <span
-                        class="text-danger">*</span></label>
-                <input type="number" class="form-control @error('latitude') is-invalid @enderror" id="latitude"
-                    name="latitude" placeholder="Latitude"
-                    value="{{ isset($product) ? $product->lat : old('latitude') }}" />
-                @error('latitude')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @else
-                    <p class="m-0">
-                        <small class="text-muted">Enter product latitude.</small>
-                    </p>
-                @enderror
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
-                <label class="form-label" style="font-size: 15px" for="longitude">Longitude <span
-                        class="text-danger">*</span></label>
-                <input type="number" class="form-control @error('longitude') is-invalid @enderror" id="longitude"
-                    name="longitude" placeholder="Longitude"
-                    value="{{ isset($product) ? $product->long : old('longitude') }}" />
-                @error('longitude')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @else
-                    <p class="m-0">
-                        <small class="text-muted">Enter product longitude.</small>
-                    </p>
-                @enderror
-            </div>
-        </div>
-
-        {{-- <div class="row mb-3">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
-                <label class="form-label" style="font-size: 15px" for="status">Status <span
-                        class="text-danger">*</span></label>
-                <select class="select2-size-lg form-select" id="status" name="status">
-                    @foreach ($statuses as $key => $status)
-                        <option data-icon="material-icons md-keyboard_arrow_right" value="{{ $key }}"
-                            {{ (isset($product) ? $product->status : old('status')) == $key ? 'selected' : '' }}>
-                            {{ Str::of($status)->replace('_', ' ') }}</option>
-                    @endforeach
-                </select>
-                @error('status')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @else
-                    <p class="m-0">
-                        <small class="text-muted">Select status for product.</small>
-                    </p>
-                @enderror
-            </div>
-        </div> --}}
-
-        {{-- <div class="row mb-3">
-            <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
-                <label class="form-label" style="font-size: 15px" for="reason">
-                    Reason
-                </label>
-
-                <input type="text" class="form-control @error('reason') is-invalid @enderror" id="reason"
-                    name="reason" placeholder="Reason" value="{{ isset($product) ? $product->reason : old('reason') }}"
-                    minlength="1" maxlength="254" />
-
-                @error('reason')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @else
-                    <p class="m-0">
-                        <small class="text-muted">Enter reason.</small>
-                    </p>
-                @enderror
-            </div>
-        </div> --}}
 
     </div>
+
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 position-relative">
+        <div class="sticky-md-top top-lg-20px top-md-20px top-sm-10px" style="z-index: auto;">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label" style="font-size: 15px" for="shop">Shops <span
+                                    class="text-danger">*</span></label>
+                            <select class="select2-size-lg form-select" id="shop" name="shop">
+                                @foreach ($shops as $key => $shop)
+                                    <option data-icon="material-icons md-keyboard_arrow_right"
+                                        value="{{ $shop->id }}"
+                                        {{ (isset($product) ? $product->shop : old('shop')) == $key ? 'selected' : '' }}>
+                                        {{ Str::of($shop->name)->replace('_', ' ') }}</option>
+                                @endforeach
+                            </select>
+                            @error('shop')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Select shop for product.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label" style="font-size: 15px" for="brand">Brand <span
+                                    class="text-danger">*</span></label>
+                            <select class="select2-size-lg form-select" id="brand" name="brand">
+                                @foreach ($brands as $key => $brand)
+                                    <option data-icon="material-icons md-keyboard_arrow_right"
+                                        value="{{ $brand->id }}"
+                                        {{ (isset($product) ? $product->brand : old('brand')) == $key ? 'selected' : '' }}>
+                                        {{ Str::of($brand->name)->replace('_', ' ') }}</option>
+                                @endforeach
+                            </select>
+                            @error('brand')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Select brand for product.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label" style="font-size: 15px" for="categories">Categories <span
+                                    class="text-danger">*</span></label>
+                            <select class="select2-size-lg-multiple form-select" id="categories" name="categories[]"
+                                multiple>
+                                @foreach ($categories as $key => $category)
+                                    <option value="{{ $category->id }}">
+                                        {{ Str::of($category->tree)->replace('_', ' ') }}</option>
+                                @endforeach
+                            </select>
+                            @error('categories')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Select categories for product.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label" style="font-size: 15px" for="tags">Tags</label>
+                            <select class="select2-size-lg-multiple form-select" id="tags" name="tags[]"
+                                multiple>
+                                @foreach ($tags as $key => $tag)
+                                    <option value="{{ $tag->id }}">{{ Str::of($tag->name)->replace('_', ' ') }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('tags')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Select tags for product.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="d-block mb-1">
+                                <label class="form-label" style="font-size: 15px" for="product_images">Images</label>
+                                <input id="product_images" type="file"
+                                    class="filepond m-0 @error('product_images') is-invalid @enderror"
+                                    name="product_images[]" accept="image/png, image/jpeg, image/gif" multiple />
+                                @error('product_images')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @else
+                                    <p class="m-0">
+                                        <small class="text-muted">Upload product images.</small>
+                                    </p>
+                                @enderror
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row g-3">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <button type="submit" class="btn btn-success w-100 text-white buttonToBlockUI">
+                                <i class="material-icons md-save"></i>
+                                Save Product
+                            </button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <a href="{{ route('seller.products.index') }}" class="btn btn-danger w-100 ">
+                                <i class="material-icons md-cancel"></i>
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-primary alert-dismissible d-flex align-items-baseline show fade"
+                        role="alert">
+                        <span class="alert-icon alert-icon-lg text-info me-2">
+                            <i class="material-icons md-48 md-info"></i>
+                        </span>
+                        <div class="d-flex flex-column ps-1">
+                            <h4 class="alert-heading mb-2">Information!</h4>
+                            <div class="alert-body">
+                                <span class="text-danger">*</span> means required field. <br>
+                                <span class="text-danger">**</span> means required field and must be unique.
+                            </div>
+                            {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        </button> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="alert alert-warning alert-dismissible d-flex align-items-baseline show fade"
+                        role="alert">
+                        <span class="alert-icon alert-icon-lg text-warning me-2">
+                            <i class="material-icons md-48 md-warning"></i>
+                        </span>
+                        <div class="d-flex flex-column ps-1">
+                            <h4 class="alert-heading mb-2">Note!</h4>
+                            <div class="alert-body">
+                                Our inspector will visit your products for verification. Please try to enter right
+                                product information.
+                            </div>
+                            {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        </button> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
-{{-- 'seller_id',
-'shop_id',
-
-'name',
-
-'permalink',
-'sku',
-'price',
-
-'short_description',
-'long_description',
-
-'keywords',
-
-'meta_aurthor',
-'meta_keywords',
-'meta_description',
-
-'status',
-'reason', --}}

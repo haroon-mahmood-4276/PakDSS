@@ -1,42 +1,19 @@
 <?php
 
-namespace App\Services\Admin\Categories;
+namespace App\Services\Shared\Categories;
 
 use App\Models\Category;
+use App\Utils\Traits\ServiceShared;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CategoryService implements CategoryInterface
 {
+    use ServiceShared;
+
     private function model()
     {
         return new Category();
-    }
-
-    public function get($ignore = null, $with_tree = false)
-    {
-        $categories = $this->model();
-        if (is_array($ignore)) {
-            $categories = $categories->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
-            $categories = $categories->where('id', '!=', $ignore);
-        }
-        $categories = $categories->get();
-        if ($with_tree) {
-            return getTreeData(collect($categories), $this->model());
-        }
-        return $categories;
-    }
-
-    public function find($id, $relationships = [])
-    {
-        $brand = $this->model();
-
-        if(count($relationships) > 0) {
-            $brand = $brand->with($relationships);
-        }
-
-        return $brand->find($id);
     }
 
     public function store($inputs)

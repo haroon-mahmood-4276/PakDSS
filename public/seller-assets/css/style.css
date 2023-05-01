@@ -3947,8 +3947,9 @@ body.offcanvas-active {
 
 .navbar-aside .aside-top .logo {
     max-width: 120px;
-    margin-top: 5px;
+    margin-top: 10px;
     min-width: 120px;
+    margin-bottom: 5px;
 }
 
 .main-header {
@@ -5105,4 +5106,15 @@ body.dark .dropdown-menu .dropdown-item.text-danger {
     .top-xxl-100px {
         top: 100px !important;
     }
+}
+
+.form-control-tagify {
+    background-color: #f4f5f9;
+    border: 2px solid #f4f5f9;
+    font-size: 13px;
+    box-shadow: none;
+    padding-left: 20px;
+    color: #4f5d77;
+    width: 100%;
+    border-radius: 4px;
 }

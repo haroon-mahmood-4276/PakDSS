@@ -1,36 +1,19 @@
 <?php
 
-namespace App\Services\Admin\Tags;
+namespace App\Services\Shared\Tags;
 
 use App\Models\Tag;
+use App\Utils\Traits\ServiceShared;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class TagService implements TagInterface
 {
+    use ServiceShared;
+
     private function model()
     {
         return new Tag();
-    }
-
-    public function get($ignore = null, $with_tree = false)
-    {
-        $tags = $this->model();
-        if (is_array($ignore)) {
-            $tags = $tags->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
-            $tags = $tags->where('id', '!=', $ignore);
-        }
-        $tags = $tags->get();
-        if ($with_tree) {
-            return getTreeData(collect($tags), $this->model());
-        }
-        return $tags;
-    }
-
-    public function find($id)
-    {
-        return $this->model()->find($id);
     }
 
     public function store($inputs)
