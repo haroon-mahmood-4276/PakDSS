@@ -45,7 +45,7 @@ class BrandController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'categories' => $this->categoryInterface->getAll(with_tree: true),
+            'categories' => $this->categoryInterface->get(with_tree: true),
         ];
 
         return view('admin.brands.create', $data);
@@ -94,13 +94,13 @@ class BrandController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $brand = $this->brandInterface->getById($id, ['categories:id']);
+            $brand = $this->brandInterface->find($id, ['categories:id']);
 
             if ($brand && !empty($brand)) {
                 $data = [
                     'brand' => $brand,
                     'brand_logo' => $brand->getMedia('brands'),
-                    'categories' => $this->categoryInterface->getAll(with_tree: true),
+                    'categories' => $this->categoryInterface->get(with_tree: true),
                 ];
 
                 return view('admin.brands.edit', $data);

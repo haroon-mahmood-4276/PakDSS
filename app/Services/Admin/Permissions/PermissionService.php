@@ -13,12 +13,12 @@ class PermissionService implements PermissionInterface
     }
 
     // Get
-    public function getByAll()
+    public function get()
     {
         return $this->model()->all();
     }
 
-    public function getById($id)
+    public function find($id)
     {
         $id = decryptParams($id);
         return $this->model()->find($id);

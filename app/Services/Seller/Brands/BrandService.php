@@ -11,7 +11,7 @@ class BrandService implements BrandInterface
         return new Brand();
     }
 
-    public function getAll($relationships = [], $ignore = null, $withCount = false, $withCountOnly = false, $withPagination = false)
+    public function get($relationships = [], $ignore = null, $withCount = false, $withCountOnly = false, $withPagination = false)
     {
         $brand = $this->model();
         if (is_array($ignore)) {
@@ -37,7 +37,7 @@ class BrandService implements BrandInterface
         return $brand;
     }
 
-    public function getById($id, $relationships = [])
+    public function find($id, $relationships = [])
     {
         $brand = $this->model();
 

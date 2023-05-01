@@ -87,7 +87,7 @@ class TagController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $tag = $this->tagInterface->getById($id);
+            $tag = $this->tagInterface->find($id);
 
             if ($tag && !empty($tag)) {
                 $data = [

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Admin\Brands;
+namespace App\Services\Seller\Products;
 
-interface BrandInterface
+interface ProductInterface
 {
     public function get($ignore = null, $with_tree = false);
 

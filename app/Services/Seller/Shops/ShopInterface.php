@@ -4,9 +4,9 @@ namespace App\Services\Seller\Shops;
 
 interface ShopInterface
 {
-    public function getAll($ignore = null, $with_tree = false);
+    public function get($seller_id, $ignore = null, $with_tree = false);
 
-    public function getById($id, $relationships = []);
+    public function find($seller_id, $id, $relationships = []);
 
     public function store($inputs);
 

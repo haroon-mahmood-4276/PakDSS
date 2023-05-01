@@ -13,7 +13,7 @@ class TagService implements TagInterface
         return new Tag();
     }
 
-    public function getAll($ignore = null, $with_tree = false)
+    public function get($ignore = null, $with_tree = false)
     {
         $tags = $this->model();
         if (is_array($ignore)) {
@@ -28,7 +28,7 @@ class TagService implements TagInterface
         return $tags;
     }
 
-    public function getById($id)
+    public function find($id)
     {
         return $this->model()->find($id);
     }

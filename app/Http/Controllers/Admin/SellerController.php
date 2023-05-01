@@ -92,7 +92,7 @@ class SellerController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $seller = $this->sellerInterface->getById($id);
+            $seller = $this->sellerInterface->find($id);
 
             if ($seller && !empty($seller)) {
                 $data = [

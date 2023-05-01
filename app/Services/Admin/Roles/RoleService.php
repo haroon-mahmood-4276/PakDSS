@@ -12,7 +12,7 @@ class RoleService implements RoleInterface
         return new Role();
     }
 
-    public function getAll($ignore = null, $with_tree = false)
+    public function get($ignore = null, $with_tree = false)
     {
         $roles = $this->model();
         if (is_array($ignore)) {
@@ -27,7 +27,7 @@ class RoleService implements RoleInterface
         return $roles;
     }
 
-    public function getById($id)
+    public function find($id)
     {
         return $this->model()->find($id);
     }

@@ -16,18 +16,21 @@
                     <i class="icon material-icons md-home"></i>
                     <span class="text">Dashboard</span></a>
             </li>
+
             <li class="menu-item {{ request()->routeIs('seller.brands.index') ? 'active' : null }}">
                 <a class="menu-link" href="{{ route('seller.brands.index') }}">
                     <i class="icon material-icons md-stars"></i>
                     <span class="text">Brands</span>
                 </a>
             </li>
+
             <li class="menu-item {{ request()->routeIs('seller.categories.index') ? 'active' : null }}">
                 <a class="menu-link" href="{{ route('seller.categories.index') }}">
                     <i class="icon material-icons md-stars"></i>
                     <span class="text">Categories</span>
                 </a>
             </li>
+
             <li class="menu-item has-submenu {{ in_array(request()->route()->getName(),['seller.shops.index', 'seller.shops.create'])? 'active': null }}">
                 <a class="menu-link" href="javascript:void(0)">
                     <i class="icon material-icons md-storefront"></i>
@@ -36,6 +39,17 @@
                 <div class="submenu" style="display: {{ in_array(request()->route()->getName(),['seller.shops.index', 'seller.shops.create'])? 'block': 'none' }}">
                     <a class="{{ request()->routeIs('seller.shops.index') ? 'active' : null }}" href="{{ route('seller.shops.index') }}">View All</a>
                     <a class="{{ request()->routeIs('seller.shops.create') ? 'active' : null }}" href="{{ route('seller.shops.create') }}">Add New</a>
+                </div>
+            </li>
+
+            <li class="menu-item has-submenu {{ in_array(request()->route()->getName(),['seller.products.index', 'seller.products.create'])? 'active': null }}">
+                <a class="menu-link" href="javascript:void(0)">
+                    <i class="icon material-icons md-storefront"></i>
+                    <span class="text">Products</span>
+                </a>
+                <div class="submenu" style="display: {{ in_array(request()->route()->getName(),['seller.products.index', 'seller.products.create'])? 'block': 'none' }}">
+                    <a class="{{ request()->routeIs('seller.products.index') ? 'active' : null }}" href="{{ route('seller.products.index') }}">View All</a>
+                    <a class="{{ request()->routeIs('seller.products.create') ? 'active' : null }}" href="{{ route('seller.products.create') }}">Add New</a>
                 </div>
             </li>
         </ul>

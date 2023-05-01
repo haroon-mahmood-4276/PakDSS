@@ -14,18 +14,32 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+
+            $table->foreignUuid('seller_id')->constrained();
+            $table->foreignUuid('shop_id')->constrained();
+
             $table->string('name', 150)->nullable();
+
             $table->string('permalink', 200)->nullable()->unique();
-            $table->string('product_sku', 50)->nullable()->unique();
+            $table->string('sku', 50)->nullable()->unique();
+            $table->float('price')->default(0);
+
             $table->text('short_description')->nullable();
-            $table->text('long_description')->nullable();
-            $table->text('product_keywords')->nullable();
+            $table->longText('long_description')->nullable();
+
+            $table->json('keywords')->nullable();
+
             $table->string('meta_aurthor', 50)->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+
+            $table->string('status')->nullable();
+            $table->string('reason')->nullable();
+
+            $table->integer('created_at')->nullable();
+            $table->integer('updated_at')->nullable();
+            $table->integer('deleted_at')->nullable();
         });
     }
 

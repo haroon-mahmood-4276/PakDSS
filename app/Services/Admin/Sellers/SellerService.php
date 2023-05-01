@@ -13,7 +13,7 @@ class SellerService implements SellerInterface
         return new Seller();
     }
 
-    public function getAll($ignore = null, $with_tree = false)
+    public function get($ignore = null, $with_tree = false)
     {
         $sellers = $this->model();
         if (is_array($ignore)) {
@@ -28,7 +28,7 @@ class SellerService implements SellerInterface
         return $sellers;
     }
 
-    public function getById($id)
+    public function find($id)
     {
         return $this->model()->find($id);
     }

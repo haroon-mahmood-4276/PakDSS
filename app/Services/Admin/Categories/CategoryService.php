@@ -13,7 +13,7 @@ class CategoryService implements CategoryInterface
         return new Category();
     }
 
-    public function getAll($ignore = null, $with_tree = false)
+    public function get($ignore = null, $with_tree = false)
     {
         $categories = $this->model();
         if (is_array($ignore)) {
@@ -28,7 +28,7 @@ class CategoryService implements CategoryInterface
         return $categories;
     }
 
-    public function getById($id, $relationships = [])
+    public function find($id, $relationships = [])
     {
         $brand = $this->model();
 

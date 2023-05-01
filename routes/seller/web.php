@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Seller\{AuthController, BrandController, CategoryController, DashboardController, ShopController};
+use App\Http\Controllers\Seller\{AuthController, BrandController, CategoryController, DashboardController, ProductController, ShopController};
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -60,6 +60,23 @@ Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
                 });
 
                 Route::get('delete', [ShopController::class, 'destroy'])->name('destroy');
+            });
+
+            //Products Routes
+            Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+                Route::get('/', [ProductController::class, 'index'])->name('index');
+
+                Route::group([], function () {
+                    Route::get('create', [ProductController::class, 'create'])->name('create');
+                    Route::post('store', [ProductController::class, 'store'])->name('store');
+                });
+
+                Route::group(['prefix' => '/{id}'], function () {
+                    Route::get('edit', [ProductController::class, 'edit'])->whereUuid('id')->name('edit');
+                    Route::put('update', [ProductController::class, 'update'])->whereUuid('id')->name('update');
+                });
+
+                Route::get('delete', [ProductController::class, 'destroy'])->name('destroy');
             });
         });
     });

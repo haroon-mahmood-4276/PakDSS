@@ -44,7 +44,7 @@ class RoleController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'roles' => $this->roleInterface->getAll(with_tree: true),
+            'roles' => $this->roleInterface->get(with_tree: true),
         ];
         return view('admin.roles.create', $data);
     }
@@ -97,7 +97,7 @@ class RoleController extends Controller
             if ($role && !empty($role)) {
                 $data = [
                     'role' => $role,
-                    'roles' => $this->roleInterface->getAll(with_tree: true),
+                    'roles' => $this->roleInterface->get(with_tree: true),
                 ];
 
                 return view('admin.roles.edit', $data);

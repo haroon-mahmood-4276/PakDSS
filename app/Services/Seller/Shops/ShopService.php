@@ -3,6 +3,7 @@
 namespace App\Services\Seller\Shops;
 
 use App\Models\Shop;
+use App\Utils\Enums\Status;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Throwable;
@@ -14,26 +15,27 @@ class ShopService implements ShopInterface
         return new Shop();
     }
 
-    public function getAll($ignore = null, $with_tree = false)
+    public function get($seller_id, $ignore = null, $relationships = [])
     {
-        $shop = $this->model();
+        $shop = $this->model()->where('seller_id', $seller_id);
         if (is_array($ignore)) {
             $shop = $shop->whereNotIn('id', $ignore);
         } else if (is_string($ignore)) {
             $shop = $shop->where('id', '!=', $ignore);
         }
-        $shop = $shop->get();
-        if ($with_tree) {
-            return getTreeData(collect($shop), $this->model());
+        if (count($relationships) > 0) {
+            $shop = $shop->with($relationships);
         }
+        $shop = $shop->get();
+
         return $shop;
     }
 
-    public function getById($id, $relationships = [])
+    public function find($seller_id, $id, $relationships = [])
     {
         $shop = $this->model();
 
-        if(count($relationships) > 0) {
+        if (count($relationships) > 0) {
             $shop = $shop->with($relationships);
         }
 
@@ -48,11 +50,11 @@ class ShopService implements ShopInterface
         return DB::transaction(function () use ($inputs) {
             $data = [
                 'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']) ,
+                'slug' => Str::slug($inputs['name']),
                 'address' => $inputs['name'],
                 'lat' => $inputs['latitude'],
                 'long' => $inputs['longitude'],
-                'status' => $inputs['status'],
+                'status' => Status::PENDING_APPROVAL,
                 'reason' => $inputs['reason'],
             ];
 
@@ -73,11 +75,11 @@ class ShopService implements ShopInterface
 
             $data = [
                 'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']) ,
+                'slug' => Str::slug($inputs['name']),
                 'address' => $inputs['name'],
                 'lat' => $inputs['latitude'],
                 'longitude' => $inputs['longitude'],
-                'status' => $inputs['status'],
+                'status' => Status::PENDING_APPROVAL,
                 'reason' => $inputs['reason'],
             ];
 

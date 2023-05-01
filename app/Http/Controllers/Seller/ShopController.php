@@ -96,7 +96,7 @@ class ShopController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $shop = $this->shopInterface->getById($id);
+            $shop = $this->shopInterface->find($id);
 
             if ($shop && !empty($shop)) {
                 $data = [
