@@ -14,9 +14,9 @@ class ProductService implements ProductInterface
         return new Product();
     }
 
-    public function get($shop_id, $relationships = [], $ignore = null, $with_tree = false)
+    public function get($seller_id, $relationships = [], $ignore = null, $with_tree = false)
     {
-        $product = $this->model()->where('shop_id', $shop_id);
+        $product = $this->model()->where('seller_id', $seller_id);
         if (is_array($ignore)) {
             $product = $product->whereNotIn('id', $ignore);
         } else if (is_string($ignore)) {
@@ -32,9 +32,9 @@ class ProductService implements ProductInterface
         return $product;
     }
 
-    public function find($shop_id, $id, $relationships = [])
+    public function find($seller_id, $id, $relationships = [])
     {
-        $product = $this->model()->where('shop_id', $shop_id);
+        $product = $this->model()->where('seller_id', $seller_id);
 
         if (count($relationships) > 0) {
             $product = $product->with($relationships);
@@ -43,12 +43,12 @@ class ProductService implements ProductInterface
         return $product->find($id);
     }
 
-    public function store($inputs)
+    public function store($seller_id, $inputs)
     {
-        return DB::transaction(function () use ($inputs) {
-
+        return DB::transaction(function () use ($seller_id, $inputs) {
             $data = [
                 'brand_id' => $inputs['brand'],
+                'seller_id' => $seller_id,
                 'shop_id' => $inputs['shop'],
 
                 'name' => $inputs['name'],
@@ -67,6 +67,8 @@ class ProductService implements ProductInterface
                 'status' => Status::PENDING_APPROVAL,
                 'reason' => null,
             ];
+
+            dd($data);
 
             $product = $this->model()->create($data);
             $product->categories()->sync($inputs['categories']);

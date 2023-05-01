@@ -22,6 +22,7 @@ class Product extends Model implements HasMedia
 
     protected $fillable = [
         'brand_id',
+        'seller_id',
         'shop_id',
 
         'name',
@@ -68,6 +69,11 @@ class Product extends Model implements HasMedia
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->useLogName(self::class)->logFillable();
+    }
+
+    public function seller(): BelongsTo
+    {
+        return $this->belongsTo(Seller::class);
     }
 
     public function categories(): BelongsToMany

@@ -2,11 +2,10 @@
 
 namespace App\Services\Shared\Categories;
 
-interface CategoryInterface
-{
-    public function get($ignore = null, $with_tree = false);
+use App\Utils\Traits\InterfaceShared;
 
-    public function find($id, $relationships = []);
+interface CategoryInterface extends InterfaceShared
+{
 
     public function store($inputs);
 

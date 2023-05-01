@@ -39,7 +39,7 @@ Breadcrumbs::for('seller.products.index', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('seller.products.create', function (BreadcrumbTrail $trail) {
     $trail->parent('seller.products.index');
-    $trail->push('Create Product', route('seller.products.create'));
+    $trail->push('Create Product');
 });
 
 Breadcrumbs::for('seller.products.edit', function (BreadcrumbTrail $trail) {

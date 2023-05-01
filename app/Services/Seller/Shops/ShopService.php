@@ -33,7 +33,7 @@ class ShopService implements ShopInterface
 
     public function find($seller_id, $id, $relationships = [])
     {
-        $shop = $this->model();
+        $shop = $this->model()->where('seller_id', $seller_id);
 
         if (count($relationships) > 0) {
             $shop = $shop->with($relationships);

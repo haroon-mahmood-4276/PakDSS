@@ -63,16 +63,16 @@ class ProductController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        // try {
+        try {
             $inputs = $request->validated();
             $inputs['meta_aurthor'] = auth('seller')->user()->first_name;
-            $record = $this->productInterface->store($inputs);
+            $record = $this->productInterface->store(auth('seller')->user()->id, $inputs);
             return redirect()->route('seller.products.index')->withSuccess('Data saved!');
-        // } catch (GeneralException $ex) {
-        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        // } catch (Exception $ex) {
-        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
-        // }
+        } catch (GeneralException $ex) {
+            return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        } catch (Exception $ex) {
+            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+        }
     }
 
     public function show($id)

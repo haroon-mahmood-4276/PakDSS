@@ -31,6 +31,7 @@ class ProductsSeeder extends Seeder
         $data = [
             [
                 'brand_id' => Brand::first()->id,
+                'seller_id' => Seller::first()->id,
                 'shop_id' => Shop::first()->id,
 
                 'name' => 'Mouse',

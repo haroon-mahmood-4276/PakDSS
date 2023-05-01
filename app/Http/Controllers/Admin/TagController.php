@@ -7,7 +7,7 @@ use App\Exceptions\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Tags\{storeRequest, updateRequest};
-use App\Services\Admin\Tags\TagInterface;
+use App\Services\Shared\Tags\TagInterface;
 use Exception;
 
 class TagController extends Controller

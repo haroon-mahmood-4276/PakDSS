@@ -2,11 +2,10 @@
 
 namespace App\Services\Shared\Tags;
 
-interface TagInterface
-{
-    public function get($ignore = null, $with_tree = false);
+use App\Utils\Traits\InterfaceShared;
 
-    public function find($id);
+interface TagInterface extends InterfaceShared
+{
 
     public function store($inputs);
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->foreignUuid('brand_id')->constrained();
+            $table->foreignUuid('seller_id')->constrained();
             $table->foreignUuid('shop_id')->constrained();
 
             $table->string('name', 150)->nullable();
