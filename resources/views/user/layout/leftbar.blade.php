@@ -1,25 +1,44 @@
 <div class="sidebar-left"><a class="btn btn-open" href="#"></a>
     <ul class="menu-icons hidden">
-        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/monitor.svg" alt="Ecom"></a></li>
-        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/airpod.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/airpods.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/music-play.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/bluetooth.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/electricity.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/cpu.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/devices.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/driver.svg" alt="Ecom"></a></li>
-        <li><a href="#"><img src="{{ asset('user-assets') }}/imgs/template/lamp.svg" alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/monitor.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></a>
+        </li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/game.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/clock.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/airpod.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/airpods.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/mouse.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/music-play.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/bluetooth.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/clound.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/electricity.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/cpu.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/devices.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/driver.svg"
+                    alt="Ecom"></a></li>
+        <li><a href="javascript:void(0)"><img src="{{ asset('user-assets') }}/imgs/template/lamp.svg"
+                    alt="Ecom"></a></li>
     </ul>
     <ul class="menu-texts menu-close">
-        <li class="has-children"><a href="shop-grid-2.html"><span class="img-link"><img
-                        src="{{ asset('user-assets') }}/imgs/template/monitor.svg" alt="Ecom"></span><span
-                    class="text-link">Computers &amp; Accessories</span></a>
+        <li class="has-children">
+            <a href="shop-grid-2.html">
+                <span class="img-link">
+                    <img src="{{ asset('user-assets') }}/imgs/template/monitor.svg" alt="Ecom">
+                </span>
+                <span class="text-link">Computers &amp; Accessories</span>
+            </a>
             <ul class="sub-menu">
                 <li><a href="shop-grid.html">Computer Accessories</a></li>
                 <li><a href="shop-grid.html">Computer Cases</a></li>
@@ -30,7 +49,8 @@
             </ul>
         </li>
         <li class="has-children"><a href="#"><span class="img-link"><img
-                        src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></span><span class="text-link">Cell
+                        src="{{ asset('user-assets') }}/imgs/template/mobile.svg" alt="Ecom"></span><span
+                    class="text-link">Cell
                     Phones</span></a>
             <ul class="sub-menu">
                 <li><a href="shop-grid.html">Phone Accessories</a></li>
@@ -50,7 +70,8 @@
             </ul>
         </li>
         <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                        src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></span><span class="text-link">Gaming
+                        src="{{ asset('user-assets') }}/imgs/template/game.svg" alt="Ecom"></span><span
+                    class="text-link">Gaming
                     Gatgets</span></a>
             <ul class="sub-menu">
                 <li><a href="shop-grid.html">Wireless Routers</a></li>
@@ -62,7 +83,8 @@
             </ul>
         </li>
         <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                        src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></span><span class="text-link">Smart
+                        src="{{ asset('user-assets') }}/imgs/template/clock.svg" alt="Ecom"></span><span
+                    class="text-link">Smart
                     watches</span></a>
             <ul class="sub-menu">
                 <li><a href="shop-grid.html">Smart Watches</a></li>
@@ -85,7 +107,8 @@
             </ul>
         </li>
         <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                        src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></span><span class="text-link">Mouse
+                        src="{{ asset('user-assets') }}/imgs/template/mouse.svg" alt="Ecom"></span><span
+                    class="text-link">Mouse
                     &amp; Keyboard</span></a>
             <ul class="sub-menu">
                 <li><a href="shop-grid.html">Logitech</a></li>
@@ -118,7 +141,8 @@
             </ul>
         </li>
         <li class="has-children"><a href="shop-grid.html"><span class="img-link"><img
-                        src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></span><span class="text-link">Cloud
+                        src="{{ asset('user-assets') }}/imgs/template/clound.svg" alt="Ecom"></span><span
+                    class="text-link">Cloud
                     Software</span></a>
             <ul class="sub-menu">
                 <li><a href="shop-grid.html">Android</a></li>

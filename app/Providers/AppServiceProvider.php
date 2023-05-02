@@ -15,6 +15,8 @@ use App\Services\Admin\Sellers\{SellerInterface as AdminSellerInterface, SellerS
 use App\Services\Seller\Shops\{ShopInterface as SellerShopInterface, ShopService as SellerShopService};
 use App\Services\Seller\Products\{ProductInterface as SellerProductInterface, ProductService as SellerProductService};
 
+use App\Services\User\Products\{ProductInterface as UserProductInterface, ProductService as UserProductService};
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -35,6 +37,9 @@ class AppServiceProvider extends ServiceProvider
         // Seller
         $this->app->bind(SellerShopInterface::class, SellerShopService::class);
         $this->app->bind(SellerProductInterface::class, SellerProductService::class);
+
+        // User
+        $this->app->bind(UserProductInterface::class, UserProductService::class);
     }
 
     /**

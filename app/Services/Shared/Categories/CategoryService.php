@@ -16,12 +16,17 @@ class CategoryService implements CategoryInterface
         return new Category();
     }
 
+    public function getAll()
+    {
+
+    }
+
     public function store($inputs)
     {
         $returnData = DB::transaction(function () use ($inputs) {
             $data = [
                 'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']) ,
+                'slug' => Str::slug($inputs['name']),
                 'parent_id' => $inputs['parent_category'],
             ];
 
@@ -42,7 +47,7 @@ class CategoryService implements CategoryInterface
 
             $data = [
                 'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']) ,
+                'slug' => Str::slug($inputs['name']),
                 'parent_id' => $inputs['parent_category'],
             ];
 
