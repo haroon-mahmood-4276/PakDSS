@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{AuthController, BrandController, CategoryController, DashboardController, PermissionController, RoleController, SellerController, TagController};
+use App\Http\Controllers\Admin\{AuthController, BrandController, CategoryController, DashboardController, PermissionController, RoleController, SellerController, TagController, UserController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -121,6 +121,23 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::get('delete', [SellerController::class, 'destroy'])->middleware('permission:admin.sellers.destroy')->name('destroy');
+        });
+
+        //User Routes
+        Route::prefix('users')->name('users.')->controller(UserController::class)->group(function () {
+            Route::get('/', 'index')->middleware('permission:admin.users.index')->name('index');
+
+            Route::group(['middleware' => 'permission:admin.users.create'], function () {
+                Route::get('create', 'create')->name('create');
+                Route::post('store', 'store')->name('store');
+            });
+
+            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.users.edit'], function () {
+                Route::get('edit', 'edit')->whereUuid('id')->name('edit');
+                Route::put('update', 'update')->whereUuid('id')->name('update');
+            });
+
+            Route::get('delete', 'destroy')->middleware('permission:admin.users.destroy')->name('destroy');
         });
     });
 });

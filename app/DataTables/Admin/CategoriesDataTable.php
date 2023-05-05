@@ -91,7 +91,7 @@ class CategoriesDataTable extends DataTable
         if (auth()->user()->can('admin.categories.destroy')) {
             $buttons[] = Button::raw('delete-selected')
                 ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
-                ->text('<i class="icon material-icons md-delete"></i><span id="delete_selected_count" style="display:none">0</span> Delete Selected')
+                ->text('<i class="fa-solid fa-minus"></i>&nbsp;&nbsp;<span id="delete_selected_count" style="display:none">0</span> Delete Selected')
                 ->attr([
                     'onclick' => 'deleteSelected()',
                 ]);
@@ -148,7 +148,7 @@ class CategoriesDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center');
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center');
 
         if (auth()->user()->can('admin.categories.destroy')) {
             $checkColumn->addClass('disabled');
@@ -156,12 +156,12 @@ class CategoriesDataTable extends DataTable
 
         return [
             $checkColumn,
-            Column::make('name')->title('Name')->addClass('text-nowrap text-center'),
+            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('slug')->title('Slug'),
-            Column::make('parent_id')->title('Parent')->addClass('text-nowrap text-center'),
-            Column::computed('linked_brands_count')->title('Associated <br>Brands')->addClass('text-nowrap text-center'),
-            Column::make('created_at')->addClass('text-nowrap text-center'),
-            Column::make('updated_at')->addClass('text-nowrap text-center'),
+            Column::make('parent_id')->title('Parent')->addClass('text-nowrap align-middle text-center'),
+            Column::computed('linked_brands_count')->title('Associated <br>Brands')->addClass('text-nowrap align-middle text-center'),
+            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center text-nowrap'),
         ];
     }

@@ -10,6 +10,7 @@ use App\Services\Shared\Tags\{TagInterface, TagService};
 
 use App\Services\Admin\Permissions\{PermissionInterface as AdminPermissionInterface, PermissionService as AdminPermissionService};
 use App\Services\Admin\Roles\{RoleInterface as AdminRoleInterface, RoleService as AdminRoleService};
+use App\Services\Admin\Users\{UserInterface as AdminUserInterface, UserService as AdminUserService};
 use App\Services\Admin\Sellers\{SellerInterface as AdminSellerInterface, SellerService as AdminSellerService};
 
 use App\Services\Seller\Shops\{ShopInterface as SellerShopInterface, ShopService as SellerShopService};
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Admin
         $this->app->bind(AdminRoleInterface::class, AdminRoleService::class);
+        $this->app->bind(AdminUserInterface::class, AdminUserService::class);
         $this->app->bind(AdminPermissionInterface::class, AdminPermissionService::class);
         $this->app->bind(AdminSellerInterface::class, AdminSellerService::class);
 
