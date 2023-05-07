@@ -5,6 +5,7 @@ namespace App\Services\Admin\Users;
 use App\Models\Admin;
 use App\Utils\Traits\ServiceShared;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserService implements UserInterface
 {
@@ -17,47 +18,53 @@ class UserService implements UserInterface
 
     public function store($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
+        return DB::transaction(function () use ($inputs) {
             $data = [
                 'name' => $inputs['name'],
-                'guard_name' => $inputs['guard_name'],
-                'parent_id' => $inputs['parent_id'],
+                'email' => $inputs['email'],
+                'password' => Hash::make($inputs['password']),
+                'email_verified_at' => now()->timestamp,
             ];
 
-            $role = $this->model()->create($data);
-            return $role;
-        });
+            $user = $this->model()->create($data);
 
-        return $returnData;
+            $user->roles()->sync($inputs['roles'] ?? []);
+
+            return $user;
+        });
     }
 
     public function update($id, $inputs)
     {
-        $returnData = DB::transaction(function () use ($id, $inputs) {
+        return DB::transaction(function () use ($id, $inputs) {
+            $user = $this->model()->find($id);
+
             $data = [
                 'name' => $inputs['name'],
-                'guard_name' => $inputs['guard_name'],
-                'parent_id' => $inputs['parent_id'],
+                'email' => $inputs['email'],
+                'email_verified_at' => now()->timestamp,
             ];
 
-            $role = $this->model()->find($id)->update($data);
-            return $role;
-        });
+            if ($inputs['password']) {
+                $data['password'] = Hash::make($inputs['password']);
+            }
 
-        return $returnData;
+            $user->update($data);
+            $user->roles()->sync($inputs['roles'] ?? []);
+
+            return $user;
+        });
     }
 
     public function destroy($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
+        return DB::transaction(function () use ($inputs) {
 
-            $roles = $this->model()->whereIn('id', $inputs)->get()->each(function ($role) {
-                $role->delete();
+            $users = $this->model()->whereIn('id', $inputs)->get()->each(function ($user) {
+                $user->delete();
             });
 
-            return $roles;
+            return $users;
         });
-
-        return $returnData;
     }
 }

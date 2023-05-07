@@ -8,16 +8,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Users\{storeRequest, updateRequest};
 use App\Models\Role;
-use App\Services\Admin\Users\UserInterface;
+use App\Services\Admin\{
+    Roles\RoleInterface,
+    Users\UserInterface,
+};
 use Exception;
 
 class UserController extends Controller
 {
-    private $userInterface;
+    private $userInterface, $roleInterface;
 
-    public function __construct(UserInterface $userInterface)
+    public function __construct(UserInterface $userInterface, RoleInterface $roleInterface)
     {
         $this->userInterface = $userInterface;
+        $this->roleInterface = $roleInterface;
     }
     /**
      * Display a listing of the resource.
@@ -43,7 +47,8 @@ class UserController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'users' => $this->userInterface->get(with_tree: true),
+            'users' => $this->userInterface->get(),
+            'roles' => $this->roleInterface->get(),
         ];
         return view('admin.users.create', $data);
     }
