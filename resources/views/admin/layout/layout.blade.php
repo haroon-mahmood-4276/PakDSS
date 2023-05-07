@@ -166,7 +166,7 @@
         });
 
         function c(e) {
-            return e.id ? "<i class='" + $(e.element).data("icon") + " me-2'></i>" + e.text : e.text
+            return e.id ? "<i class='" + $(e.element).data("icon") + "'></i>" + e.text : e.text
         }
 
         moment.tz.setDefault("{{ Config::get('app.timezone') }}");

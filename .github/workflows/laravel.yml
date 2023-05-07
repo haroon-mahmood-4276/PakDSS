@@ -17,9 +17,11 @@ jobs:
           key: ${{ secrets.IYESERVERSSH }}
           script: |
             cd /var/www/pakdss.com
+            php artisan down
             git branch
             git reset --hard
             git checkout main
             git pull origin main
             php artisan optimize:clear
-            php artisan cache:clear
+            php artisan optimize
+            php artisan up

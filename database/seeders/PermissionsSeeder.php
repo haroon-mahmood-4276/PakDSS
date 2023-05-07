@@ -162,9 +162,37 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Sellers - Can Export',
             ],
+
+            // Users Permissions
+            [
+                'name' => 'admin.users.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Users - Can View',
+            ],
+            [
+                'name' => 'admin.users.create',
+                'guard_name' => 'admin',
+                'show_name' => 'Users - Can Create',
+            ],
+            [
+                'name' => 'admin.users.edit',
+                'guard_name' => 'admin',
+                'show_name' => 'Users - Can Edit',
+            ],
+            [
+                'name' => 'admin.users.destroy',
+                'guard_name' => 'admin',
+                'show_name' => 'Users - Can Delete',
+            ],
+            [
+                'name' => 'admin.users.export',
+                'guard_name' => 'admin',
+                'show_name' => 'Users - Can Export',
+            ],
         ];
 
         $role = (new Role())->first();
+        $role->syncPermissions([]);
 
         foreach ($data as $permission) {
             $permission = (new Permission())->create($permission)->assignRole($role);

@@ -86,7 +86,7 @@ class SellersDataTable extends DataTable
         if (auth()->user()->can('admin.sellers.destroy')) {
             $buttons[] = Button::raw('delete-selected')
                 ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
-                ->text('<i class="icon material-icons md-delete"></i><span id="delete_selected_count" style="display:none">0</span> Delete Selected')
+                ->text('<i class="fa-solid fa-minus"></i>&nbsp;&nbsp;<span id="delete_selected_count" style="display:none">0</span> Delete Selected')
                 ->attr([
                     'onclick' => 'deleteSelected()',
                 ]);
@@ -143,7 +143,7 @@ class SellersDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center');
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center');
 
         if (auth()->user()->can('admin.sellers.destroy')) {
             $checkColumn->addClass('disabled');
@@ -151,15 +151,15 @@ class SellersDataTable extends DataTable
 
         $columns = [
             $checkColumn,
-            Column::make('name')->title('Name')->addClass('text-nowrap text-center'),
-            Column::make('email')->title('email')->addClass('text-nowrap text-center'),
-            Column::make('cnic')->title('cnic')->addClass('text-nowrap text-center'),
-            Column::make('ntn_number')->title('ntn')->addClass('text-nowrap text-center'),
-            Column::make('phone_primary')->title('phone 1')->addClass('text-nowrap text-center'),
-            Column::make('status')->title('Status')->addClass('text-nowrap text-center'),
-            Column::make('created_at')->addClass('text-nowrap text-center'),
-            Column::make('updated_at')->addClass('text-nowrap text-center'),
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap text-center'),
+            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
+            Column::make('email')->title('email')->addClass('text-nowrap align-middle text-center'),
+            Column::make('cnic')->title('cnic')->addClass('text-nowrap align-middle text-center'),
+            Column::make('ntn_number')->title('ntn')->addClass('text-nowrap align-middle text-center'),
+            Column::make('phone_primary')->title('phone 1')->addClass('text-nowrap align-middle text-center'),
+            Column::make('status')->title('Status')->addClass('text-nowrap align-middle text-center'),
+            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
         return $columns;
     }
