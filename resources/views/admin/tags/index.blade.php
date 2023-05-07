@@ -28,7 +28,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.tags.destroy') }}" id="cabin-types-table-form" method="get">
+                    <form action="{{ route('admin.tags.destroy') }}" id="tags-table-form" method="get">
                         {{ $dataTable->table() }}
                     </form>
                 </div>
@@ -66,7 +66,7 @@
                     },
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $('#cabin-types-table-form').submit();
+                        $('#tags-table-form').submit();
                     }
                 });
             } else {

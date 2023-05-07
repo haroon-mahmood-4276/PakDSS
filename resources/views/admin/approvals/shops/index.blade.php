@@ -1,10 +1,10 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.brands.index') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.approvals.shops.index') }}
 @endsection
 
-@section('page-title', 'Brands')
+@section('page-title', 'Categories')
 
 @section('page-vendor')
     {{ view('admin.layout.datatables.css') }}
@@ -18,8 +18,8 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Brands</h2>
-        {{ Breadcrumbs::render('admin.brands.index') }}
+        <h2 class="content-header-title float-start mb-0 mx-3">Categories</h2>
+        {{ Breadcrumbs::render('admin.approvals.shops.index') }}
     </div>
 @endsection
 
@@ -28,7 +28,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.brands.destroy') }}" id="brands-table-form" method="get">
+                    <form action="javascript:void(0)" id="approval-shops-table-form" method="get">
                         {{ $dataTable->table() }}
                     </form>
                 </div>
@@ -54,10 +54,10 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Are you sure you want to delete the selected brands?',
+                    text: 'Are you sure you want to delete the selected categories?',
                     showCancelButton: true,
                     cancelButtonText: 'No',
-                    confirmButtonText: 'Yes (' + selectedCheckboxes + ' brands)',
+                    confirmButtonText: 'Yes (' + selectedCheckboxes + ' categories)',
                     confirmButtonClass: 'btn-danger',
                     buttonsStyling: false,
                     customClass: {
@@ -66,14 +66,14 @@
                     },
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $('#brands-table-form').submit();
+                        $('#approval-shops-table-form').submit();
                     }
                 });
             } else {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Please select at least one brand!',
+                    text: 'Please select at least one category!',
                     buttonsStyling: false,
                     customClass: {
                         confirmButton: 'btn btn-warning me-1',
@@ -83,7 +83,7 @@
         }
 
         function addNew() {
-            location.href = "{{ route('admin.brands.create') }}";
+            location.href = "{{ route('admin.categories.create') }}";
         }
     </script>
 @endsection
