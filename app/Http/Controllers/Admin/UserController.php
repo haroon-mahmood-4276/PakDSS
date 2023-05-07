@@ -47,7 +47,6 @@ class UserController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'users' => $this->userInterface->get(),
             'roles' => $this->roleInterface->get(),
         ];
         return view('admin.users.create', $data);
@@ -96,12 +95,12 @@ class UserController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $role = (new Role())->find(decryptParams($id));
+            $user = $this->userInterface->find(decryptParams($id));
 
-            if ($role && !empty($role)) {
+            if ($user && !empty($user)) {
                 $data = [
-                    'role' => $role,
-                    'users' => $this->userInterface->get(with_tree: true),
+                    'user' => $user,
+                    'roles' => $this->roleInterface->get(),
                 ];
 
                 return view('admin.users.edit', $data);
@@ -128,11 +127,8 @@ class UserController extends Controller
         try {
 
             $id = decryptParams($id);
-
             $inputs = $request->validated();
-
             $record = $this->userInterface->update($id, $inputs);
-
             return redirect()->route('admin.users.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
             return redirect()->route('admin.users.index')->withDanger('Something went wrong! ' . $ex->getMessage());

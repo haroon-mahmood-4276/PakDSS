@@ -6,7 +6,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="email">Email</label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                            name="email" placeholder="Email" value="{{ isset($user) ? $user->email : null }}" />
+                            name="email" placeholder="Email" {{ isset($user) ? 'readonly' : null }} value="{{ isset($user) ? $user->email : null }}" />
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -20,7 +20,7 @@
                         <label class="form-label" style="font-size: 15px" for="password">Password</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                             id="password" name="password" placeholder="Password"
-                            value="{{ isset($user) ? $user->password : null }}" />
+                            value="" />
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -50,7 +50,7 @@
                         <label class="form-label" style="font-size: 15px" for="roles">Roles</label>
                         <select class="select2-size-lg form-select" multiple id="roles" name="roles[]">
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                <option value="{{ $role->id }}" {{ (isset($user) ? in_array($role->id, $user->roles->pluck('id')->toArray()) ? 'selected' : ''  : null) }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                         @error('roles')

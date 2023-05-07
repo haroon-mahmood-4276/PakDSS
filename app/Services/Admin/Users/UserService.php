@@ -41,8 +41,6 @@ class UserService implements UserInterface
 
             $data = [
                 'name' => $inputs['name'],
-                'email' => $inputs['email'],
-                'email_verified_at' => now()->timestamp,
             ];
 
             if ($inputs['password']) {

@@ -24,19 +24,15 @@ class UsersDataTable extends DataTable
     {
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
-            // ->editColumn('parent_id', function ($user) {
-            //     return Str::of(getParentByParentId($user->parent_id, Admin::class))->ucfirst();
-            // })
             ->editColumn('created_at', function ($user) {
                 return editDateColumn($user->created_at);
             })
             ->editColumn('updated_at', function ($user) {
                 return editDateColumn($user->updated_at);
             })
-            // ->editColumn('actions', function ($user) {
-            //     if ($user->name != 'Admin')
-            //         return view('admin.users.actions', ['id' => $user->id]);
-            // })
+            ->editColumn('actions', function ($user) {
+                return view('admin.users.actions', ['id' => $user->id]);
+            })
             ->editColumn('check', function ($user) {
                 return $user;
             })
@@ -161,7 +157,7 @@ class UsersDataTable extends DataTable
             Column::make('name')->addClass('text-nowrap align-middle text-center'),
             Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
-            // Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
         return $columns;
     }
