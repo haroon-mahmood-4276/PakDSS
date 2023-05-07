@@ -222,11 +222,11 @@
             }
         }
 
-        function changeTableRowColor(element) {
+        function changeTableRowColor(element, color) {
             if ($(element).is(':checked')) {
-                $(element).closest('tr').addClass('table-danger');
+                $(element).closest('tr').addClass('table-' + color);
             } else {
-                $(element).closest('tr').removeClass('table-danger');
+                $(element).closest('tr').removeClass('table-' + color);
             }
 
             let count = $('.dt-checkboxes:checked').length;

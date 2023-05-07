@@ -189,6 +189,13 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Users - Can Export',
             ],
+
+            // Admin Approval Permissions
+            [
+                'name' => 'admin.approvals.shops.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Approvals - Shops - Can View',
+            ],
         ];
 
         $role = (new Role())->first();

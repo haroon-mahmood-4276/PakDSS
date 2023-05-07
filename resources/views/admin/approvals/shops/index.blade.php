@@ -4,7 +4,7 @@
     {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.approvals.shops.index') }}
 @endsection
 
-@section('page-title', 'Categories')
+@section('page-title', 'Shops Approvals')
 
 @section('page-vendor')
     {{ view('admin.layout.datatables.css') }}
@@ -18,7 +18,7 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Categories</h2>
+        <h2 class="content-header-title float-start mb-0 mx-3">Shops Approvals</h2>
         {{ Breadcrumbs::render('admin.approvals.shops.index') }}
     </div>
 @endsection
@@ -46,7 +46,7 @@
 
 @section('custom-js')
     {{ $dataTable->scripts() }}
-    <script>
+    {{-- <script>
         function deleteSelected() {
             var selectedCheckboxes = $('.dt-checkboxes:checked').length;
             if (selectedCheckboxes > 0) {
@@ -80,10 +80,6 @@
                     },
                 });
             }
-        }
-
-        function addNew() {
-            location.href = "{{ route('admin.categories.create') }}";
-        }
+        } --}}
     </script>
 @endsection

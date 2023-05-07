@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{AuthController, BrandController, CategoryController, DashboardController, PermissionController, RoleController, SellerController, TagController, UserController};
+use App\Http\Controllers\Admin\{ApprovalController, AuthController, BrandController, CategoryController, DashboardController, PermissionController, RoleController, SellerController, TagController, UserController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -138,6 +138,14 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
 
             Route::get('delete', 'destroy')->middleware('permission:admin.users.destroy')->name('destroy');
+        });
+
+        //Admin Approval Routes
+        Route::prefix('approvals')->name('approvals.')->controller(ApprovalController::class)->group(function () {
+            Route::group(['prefix' => 'shops', 'as' => 'shops.'], function () {
+                Route::get('/', 'ShopIndex')->middleware('permission:admin.approvals.shops.index')->name('index');
+                Route::get('store', 'ShopStore')->middleware('permission:admin.approvals.shops.index')->name('store');
+            });
         });
     });
 });

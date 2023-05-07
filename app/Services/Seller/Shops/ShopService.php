@@ -111,4 +111,13 @@ class ShopService implements ShopInterface
 
         return $returnData;
     }
+
+    public function status($id, $status)
+    {
+        return DB::transaction(function () use ($id, $status) {
+            return $this->model()->find($id)->update([
+                'status' => $status,
+            ]);
+        });
+    }
 }

@@ -211,5 +211,24 @@
                 </ul>
             </li>
         @endcanany
+
+        @canany(['admin.approvals.shops.index'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index'])? 'open active': null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-user menu-icon"></i>
+                    <div>Approvals</div>
+                </a>
+                <ul class="menu-sub">
+                    @can('admin.approvals.shops.index')
+                        <li class="menu-item {{ request()->routeIs('admin.approvals.shops.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.approvals.shops.index') }}" class="menu-link">
+                                <div>Shops</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcanany
     </ul>
 </aside>
