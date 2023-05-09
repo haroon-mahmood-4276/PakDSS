@@ -3,6 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Seller;
+use App\Utils\Traits\DatatablesTrait;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,6 +14,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class SellersDataTable extends DataTable
 {
+    use DatatablesTrait;
     /**
      * Build DataTable class.
      *
@@ -172,16 +174,5 @@ class SellersDataTable extends DataTable
     protected function filename(): string
     {
         return 'seller_' . date('YmdHis');
-    }
-
-    /**
-     * Export PDF using DOMPDF
-     * @return mixed
-     */
-    public function pdf()
-    {
-        $data = $this->getDataForPrint();
-        $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);
-        return $pdf->download($this->filename() . '.pdf');
     }
 }

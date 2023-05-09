@@ -3,6 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\{Role, Permission};
+use App\Utils\Traits\DatatablesTrait;
 use Yajra\DataTables\Html\{Button, Column};
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
@@ -12,6 +13,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class PermissionsDataTable extends DataTable
 {
+    use DatatablesTrait;
     /**
      * Build DataTable class.
      *
@@ -162,7 +164,6 @@ class PermissionsDataTable extends DataTable
         return $colArray;
     }
 
-
     /**
      * Get filename for export.
      *
@@ -171,16 +172,5 @@ class PermissionsDataTable extends DataTable
     protected function filename(): string
     {
         return 'Permissions_' . date('YmdHis');
-    }
-
-    /**
-     * Export PDF using DOMPDF
-     * @return mixed
-     */
-    public function pdf()
-    {
-        $data = $this->getDataForPrint();
-        $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);
-        return $pdf->download($this->filename() . '.pdf');
     }
 }

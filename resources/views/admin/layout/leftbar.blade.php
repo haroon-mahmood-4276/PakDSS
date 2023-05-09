@@ -227,6 +227,13 @@
                             </a>
                         </li>
                     @endcan
+                    @can('admin.approvals.products.index')
+                        <li class="menu-item {{ request()->routeIs('admin.approvals.products.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.approvals.products.index') }}" class="menu-link">
+                                <div>Products</div>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
         @endcanany

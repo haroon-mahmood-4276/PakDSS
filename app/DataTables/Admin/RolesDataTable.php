@@ -3,6 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Role;
+use App\Utils\Traits\DatatablesTrait;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -14,6 +15,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class RolesDataTable extends DataTable
 {
+    use DatatablesTrait;
     /**
      * Build DataTable class.
      *
@@ -176,16 +178,5 @@ class RolesDataTable extends DataTable
     protected function filename(): string
     {
         return 'Roles_' . date('YmdHis');
-    }
-
-    /**
-     * Export PDF using DOMPDF
-     * @return mixed
-     */
-    public function pdf()
-    {
-        $data = $this->getDataForPrint();
-        $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);
-        return $pdf->download($this->filename() . '.pdf');
     }
 }

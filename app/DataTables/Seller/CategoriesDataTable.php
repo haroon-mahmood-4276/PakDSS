@@ -3,6 +3,7 @@
 namespace App\DataTables\Seller;
 
 use App\Models\Category;
+use App\Utils\Traits\DatatablesTrait;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
@@ -15,6 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class CategoriesDataTable extends DataTable
 {
+    use DatatablesTrait;
     /**
      * Build DataTable class.
      *
@@ -115,17 +117,6 @@ class CategoriesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'brands_' . date('YmdHis');
-    }
-
-    /**
-     * Export PDF using DOMPDF
-     * @return Response
-     */
-    public function pdf(): Response
-    {
-        $data = $this->getDataForPrint();
-        $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);
-        return $pdf->download($this->filename() . '.pdf');
+        return 'Categories_' . date('YmdHis');
     }
 }
