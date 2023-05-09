@@ -1,10 +1,10 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.approvals.shops.index') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.approvals.' . $model . '.index') }}
 @endsection
 
-@section('page-title', 'Shops Approvals')
+@section('page-title', Str::of($model)->ucfirst() . ' Approvals')
 
 @section('page-vendor')
     {{ view('admin.layout.datatables.css') }}
@@ -18,8 +18,8 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Shops Approvals</h2>
-        {{ Breadcrumbs::render('admin.approvals.shops.index') }}
+        <h2 class="content-header-title float-start mb-0 mx-3">{{ Str::of($model)->ucfirst() }} Approvals</h2>
+        {{ Breadcrumbs::render('admin.approvals.' . $model . '.index') }}
     </div>
 @endsection
 
@@ -28,7 +28,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="javascript:void(0)" id="approval-shops-table-form" method="get">
+                    <form action="{{ route('admin.approvals.' . $model . '.store') }}"
+                        id="approval-{{ $model }}-table-form" method="get">
                         {{ $dataTable->table() }}
                     </form>
                 </div>
@@ -46,8 +47,8 @@
 
 @section('custom-js')
     {{ $dataTable->scripts() }}
-    {{-- <script>
-        function deleteSelected() {
+    <script>
+        function approval() {
             var selectedCheckboxes = $('.dt-checkboxes:checked').length;
             if (selectedCheckboxes > 0) {
 
@@ -66,7 +67,7 @@
                     },
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $('#approval-shops-table-form').submit();
+                        $('#approval-{{ $model }}-table-form').submit();
                     }
                 });
             } else {
@@ -80,6 +81,6 @@
                     },
                 });
             }
-        } --}}
+        }
     </script>
 @endsection

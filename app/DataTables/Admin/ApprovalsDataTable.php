@@ -4,16 +4,17 @@ namespace App\DataTables\Admin;
 
 use App\Models\{Shop};
 use App\Utils\Enums\Status;
+use App\Utils\Traits\DatatablesTrait;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\{Button, Column};
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class ApprovalsDataTable extends DataTable
 {
+    use DatatablesTrait;
     /**
      * Build DataTable class.
      *
@@ -35,7 +36,7 @@ class ApprovalsDataTable extends DataTable
                 return editDateColumn($model->updated_at);
             })
             ->editColumn('actions', function ($model) {
-                return view('admin.approvals.' . $this->model . '.actions', ['id' => $model->id]);
+                return view('admin.approvals.actions', ['id' => $model->id]);
             })
             ->rawColumns(array_merge($columns, ['action', 'check']));
     }
@@ -168,17 +169,6 @@ class ApprovalsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
-    }
-
-    /**
-     * Export PDF using DOMPDF
-     * @return mixed
-     */
-    public function pdf()
-    {
-        $data = $this->getDataForPrint();
-        $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);
-        return $pdf->download($this->filename() . '.pdf');
+        return Str::of($this->model)->ucfirst() . 'Approvals_' . date('YmdHis');
     }
 }

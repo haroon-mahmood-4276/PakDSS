@@ -36,7 +36,7 @@ class ApprovalController extends Controller
             return $dataTable->with($data)->ajax();
         }
 
-        return $dataTable->with($data)->render('admin.approvals.shops.index', $data);
+        return $dataTable->with($data)->render('admin.approvals.index', $data);
     }
 
     public function ShopStore(Request $request)

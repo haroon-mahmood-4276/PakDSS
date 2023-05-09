@@ -146,6 +146,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::get('/', 'ShopIndex')->middleware('permission:admin.approvals.shops.index')->name('index');
                 Route::get('store', 'ShopStore')->middleware('permission:admin.approvals.shops.index')->name('store');
             });
+            Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+                Route::get('/', 'ShopIndex')->middleware('permission:admin.approvals.products.index')->name('index');
+                Route::get('store', 'ShopStore')->middleware('permission:admin.approvals.products.index')->name('store');
+            });
         });
     });
 });
