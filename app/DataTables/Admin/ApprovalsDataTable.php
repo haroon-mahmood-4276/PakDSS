@@ -60,17 +60,17 @@ class ApprovalsDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $buttons = [
-            Button::raw('delete-selected')
+            Button::raw('button-active')
                 ->addClass('btn btn-success waves-effect waves-float waves-light m-1')
                 ->text('<i class="fa-solid fa-circle-check"></i>')
                 ->attr([
-                    'onclick' => 'addNew()',
+                    'onclick' => 'rowStatusChange("approve")',
                 ]),
-            Button::raw('delete-selected')
+            Button::raw('button-object')
                 ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
                 ->text('<i class="fa-solid fa-circle-xmark"></i>')
                 ->attr([
-                    'onclick' => 'addNew()',
+                    'onclick' => 'rowStatusChange("object")',
                 ]),
             Button::make('export')
                 ->addClass('btn btn-primary waves-effect waves-float waves-light dropdown-toggle m-1')

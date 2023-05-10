@@ -14,5 +14,5 @@ interface ShopInterface
 
     public function destroy($inputs);
 
-    public function status($id, $status);
+    public function status($ids, $status);
 }

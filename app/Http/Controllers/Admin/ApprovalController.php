@@ -11,6 +11,7 @@ use App\Services\Admin\{
     Users\UserInterface,
 };
 use App\Services\Seller\{
+    Products\ProductInterface,
     Shops\ShopInterface,
 };
 use App\Utils\Enums\Status;
@@ -18,14 +19,15 @@ use Exception;
 
 class ApprovalController extends Controller
 {
-    private $shopInterface;
+    private $productInterface, $shopInterface;
 
-    public function __construct(ShopInterface $shopInterface)
+    public function __construct(ProductInterface $productInterface, ShopInterface $shopInterface)
     {
+        $this->productInterface = $productInterface;
         $this->shopInterface = $shopInterface;
     }
 
-    public function ShopIndex(ApprovalsDataTable $dataTable)
+    public function shopIndex(ApprovalsDataTable $dataTable)
     {
 
         $data = [
@@ -39,18 +41,31 @@ class ApprovalController extends Controller
         return $dataTable->with($data)->render('admin.approvals.index', $data);
     }
 
-    public function ShopStore(Request $request)
+    public function store(Request $request)
     {
         try {
+
+            $inteface = null;
+
+            switch ($request->for) {
+                case 'shops':
+                    $inteface = $this->shopInterface;
+                    break;
+
+                case 'products':
+                    $inteface = $this->productInterface;
+                    break;
+            }
+
             switch ($request->status) {
                 case 'approve':
-                    $this->shopInterface->status($request->id, Status::ACTIVE);
-                    return redirect()->back()->with('success', 'Shop approved successfully');
+                    $inteface->status(ids: $request->checkForDelete ?? $request->id, status: Status::ACTIVE);
+                    return redirect()->back()->with('success', $request->for . ' approved successfully');
                     break;
 
                 case 'object':
-                    $this->shopInterface->status($request->id, Status::OBJECTED);
-                    return redirect()->back()->with('success', 'Shop objected successfully');
+                    $inteface->status(ids: $request->checkForDelete ?? $request->id, status: Status::OBJECTED);
+                    return redirect()->back()->with('success', $request->for . ' objected successfully');
                     break;
             }
         } catch (Exception $e) {

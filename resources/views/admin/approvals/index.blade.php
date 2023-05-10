@@ -30,6 +30,8 @@
                 <div class="card-body">
                     <form action="{{ route('admin.approvals.' . $model . '.store') }}"
                         id="approval-{{ $model }}-table-form" method="get">
+                        <input type="hidden" name="for" id="for" value="{{ $model }}">
+                        <input type="hidden" name="status" id="status" value="">
                         {{ $dataTable->table() }}
                     </form>
                 </div>
@@ -48,25 +50,26 @@
 @section('custom-js')
     {{ $dataTable->scripts() }}
     <script>
-        function approval() {
+        function rowStatusChange(status) {
             var selectedCheckboxes = $('.dt-checkboxes:checked').length;
             if (selectedCheckboxes > 0) {
 
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Are you sure you want to delete the selected categories?',
+                    text: 'Are you sure you want to ' + status +
+                        ' the selected {{ Str::of($model)->singular() }}(s)?',
                     showCancelButton: true,
                     cancelButtonText: 'No',
-                    confirmButtonText: 'Yes (' + selectedCheckboxes + ' categories)',
-                    confirmButtonClass: 'btn-danger',
+                    confirmButtonText: 'Yes - ' + selectedCheckboxes + ' {{ Str::of($model)->singular() }}(s)',
                     buttonsStyling: false,
                     customClass: {
-                        confirmButton: 'btn btn-danger me-1',
-                        cancelButton: 'btn btn-success me-1'
+                        confirmButton: 'btn me-1 ' + (status === 'approve' ? 'btn-success' : 'btn-danger'),
+                        cancelButton: 'btn me-1 ' + (status === 'approve' ? 'btn-danger' : 'btn-success')
                     },
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        $('#status').val(status);
                         $('#approval-{{ $model }}-table-form').submit();
                     }
                 });
@@ -74,7 +77,7 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Please select at least one category!',
+                    text: 'Please select at least one {{ Str::of($model)->singular() }}!',
                     buttonsStyling: false,
                     customClass: {
                         confirmButton: 'btn btn-warning me-1',
