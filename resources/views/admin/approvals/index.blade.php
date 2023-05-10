@@ -1,10 +1,10 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.brands.index') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.approvals.' . $model . '.index') }}
 @endsection
 
-@section('page-title', 'Brands')
+@section('page-title', Str::of($model)->ucfirst() . ' Approvals')
 
 @section('page-vendor')
     {{ view('admin.layout.datatables.css') }}
@@ -18,8 +18,8 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Brands</h2>
-        {{ Breadcrumbs::render('admin.brands.index') }}
+        <h2 class="content-header-title float-start mb-0 mx-3">{{ Str::of($model)->ucfirst() }} Approvals</h2>
+        {{ Breadcrumbs::render('admin.approvals.' . $model . '.index') }}
     </div>
 @endsection
 
@@ -28,7 +28,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.brands.destroy') }}" id="brands-table-form" method="get">
+                    <form action="{{ route('admin.approvals.store') }}"
+                        id="approval-{{ $model }}-table-form" method="get">
+                        <input type="hidden" name="for" id="for" value="{{ $model }}">
+                        <input type="hidden" name="status" id="status" value="">
                         {{ $dataTable->table() }}
                     </form>
                 </div>
@@ -47,43 +50,40 @@
 @section('custom-js')
     {{ $dataTable->scripts() }}
     <script>
-        function deleteSelected() {
+        function rowStatusChange(status) {
             var selectedCheckboxes = $('.dt-checkboxes:checked').length;
             if (selectedCheckboxes > 0) {
 
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Are you sure you want to delete the selected brands?',
+                    text: 'Are you sure you want to ' + status +
+                        ' the selected {{ Str::of($model)->singular() }}(s)?',
                     showCancelButton: true,
                     cancelButtonText: 'No',
-                    confirmButtonText: 'Yes (' + selectedCheckboxes + ' brands)',
-                    confirmButtonClass: 'btn-danger',
+                    confirmButtonText: 'Yes - ' + selectedCheckboxes + ' {{ Str::of($model)->singular() }}(s)',
                     buttonsStyling: false,
                     customClass: {
-                        confirmButton: 'btn btn-danger me-1',
-                        cancelButton: 'btn btn-success me-1'
+                        confirmButton: 'btn me-1 ' + (status === 'approve' ? 'btn-success' : 'btn-danger'),
+                        cancelButton: 'btn me-1 ' + (status === 'approve' ? 'btn-danger' : 'btn-success')
                     },
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $('#brands-table-form').submit();
+                        $('#status').val(status);
+                        $('#approval-{{ $model }}-table-form').submit();
                     }
                 });
             } else {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Please select at least one brand!',
+                    text: 'Please select at least one {{ Str::of($model)->singular() }}!',
                     buttonsStyling: false,
                     customClass: {
                         confirmButton: 'btn btn-warning me-1',
                     },
                 });
             }
-        }
-
-        function addNew() {
-            location.href = "{{ route('admin.brands.create') }}";
         }
     </script>
 @endsection

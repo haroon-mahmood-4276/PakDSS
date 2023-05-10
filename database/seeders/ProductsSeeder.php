@@ -47,7 +47,49 @@ class ProductsSeeder extends Seeder
                 'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',
                 'meta_description' => '',
 
-                'status' => 'active',
+                'status' => 'pending_approval',
+                'reason' => null,
+            ],
+            [
+                'brand_id' => Brand::first()->id,
+                'seller_id' => Seller::first()->id,
+                'shop_id' => Shop::first()->id,
+
+                'name' => 'Mouse1',
+
+                'permalink' => Str::of('Mouse1')->slug(),
+                'sku' => 'SHX-2',
+                'price' => 123,
+
+                'short_description' => Str::markdown('# Mouse'),
+                'long_description' => Str::markdown('# Mouse'),
+
+                'meta_aurthor' => '',
+                'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',
+                'meta_description' => '',
+
+                'status' => 'pending_approval',
+                'reason' => null,
+            ],
+            [
+                'brand_id' => Brand::first()->id,
+                'seller_id' => Seller::first()->id,
+                'shop_id' => Shop::first()->id,
+
+                'name' => 'Mouse2',
+
+                'permalink' => Str::of('Mouse2')->slug(),
+                'sku' => 'SHX-3',
+                'price' => 123,
+
+                'short_description' => Str::markdown('# Mouse'),
+                'long_description' => Str::markdown('# Mouse'),
+
+                'meta_aurthor' => '',
+                'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',
+                'meta_description' => '',
+
+                'status' => 'pending_approval',
                 'reason' => null,
             ],
         ];

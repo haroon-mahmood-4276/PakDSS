@@ -119,3 +119,16 @@ Breadcrumbs::for('admin.users.edit', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.users.index');
     $trail->push('Edit User');
 });
+
+// Approvals Breadcrumbs
+Breadcrumbs::for('admin.approvals.shops.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Approvals', route('admin.approvals.shops.index'));
+    $trail->push('Shops', route('admin.approvals.shops.index'));
+});
+
+Breadcrumbs::for('admin.approvals.products.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Approvals', route('admin.approvals.products.index'));
+    $trail->push('Products', route('admin.approvals.products.index'));
+});

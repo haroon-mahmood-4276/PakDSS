@@ -2,17 +2,17 @@
 
 namespace App\DataTables\Admin;
 
-use App\Models\Seller;
+use App\Models\{Product, Shop};
+use App\Utils\Enums\Status;
 use App\Utils\Traits\DatatablesTrait;
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Html\{Button, Column};
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Barryvdh\DomPDF\Facade\Pdf;
 
-class SellersDataTable extends DataTable
+class ApprovalsDataTable extends DataTable
 {
     use DatatablesTrait;
     /**
@@ -25,51 +25,59 @@ class SellersDataTable extends DataTable
     {
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($seller) {
-                return $seller;
-            })
-            ->editColumn('created_at', function ($seller) {
-                return editDateColumn($seller->created_at);
-            })
-            ->editColumn('updated_at', function ($seller) {
-                return editDateColumn($seller->updated_at);
-            })
-            ->editColumn('status', function ($seller) {
-                return editStatusColumn($seller->status);
-            })
-            ->editColumn('actions', function ($seller) {
-                return view('admin.sellers.actions', ['id' => $seller->id]);
-            })
             ->setRowId('id')
+            ->editColumn('check', function ($model) {
+                return $model;
+            })
+            ->editColumn('status', function ($model) {
+                return editStatusColumn($model->status);
+            })
+            ->editColumn('created_at', function ($model) {
+                return editDateColumn($model->created_at);
+            })
+            ->editColumn('updated_at', function ($model) {
+                return editDateColumn($model->updated_at);
+            })
+            ->editColumn('actions', function ($model) {
+                return view('admin.approvals.actions', ['id' => $model->id, 'for' => $this->model]);
+            })
             ->rawColumns($columns);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Seller $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Seller $model): QueryBuilder
+    public function query(): QueryBuilder
     {
-        return $model->newQuery();
+        switch ($this->model) {
+            case 'shops':
+                $model = (new Shop());
+                break;
+            case 'products':
+                $model = (new Product());
+                break;
+        }
+        return $model->newQuery()->whereIn('status', [Status::PENDING_APPROVAL, Status::OBJECTED]);
     }
 
     public function html(): HtmlBuilder
     {
-        $buttons = [];
-
-        if (auth()->user()->can('admin.sellers.create')) {
-            $buttons[] = Button::raw('add-new')
-                ->addClass('btn btn-primary waves-effect waves-float waves-light m-1')
-                ->text('<i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add New')
+        $buttons = [
+            Button::raw('button-active')
+                ->addClass('btn btn-success waves-effect waves-float waves-light m-1')
+                ->text('<i class="fa-solid fa-circle-check"></i>')
                 ->attr([
-                    'onclick' => 'addNew()',
-                ]);
-        }
-
-        if (auth()->user()->can('admin.sellers.export')) {
-            $buttons[] = Button::make('export')
+                    'onclick' => 'rowStatusChange("approve")',
+                ]),
+            Button::raw('button-object')
+                ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
+                ->text('<i class="fa-solid fa-circle-xmark"></i>')
+                ->attr([
+                    'onclick' => 'rowStatusChange("object")',
+                ]),
+            Button::make('export')
                 ->addClass('btn btn-primary waves-effect waves-float waves-light dropdown-toggle m-1')
                 ->buttons([
                     Button::make('print')->addClass('dropdown-item')->text('<i class="fa-solid fa-print"></i>&nbsp;&nbsp;Print'),
@@ -77,41 +85,29 @@ class SellersDataTable extends DataTable
                     Button::make('csv')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-csv"></i>&nbsp;&nbsp;CSV'),
                     Button::make('excel')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-excel"></i>&nbsp;&nbsp;Excel'),
                     Button::make('pdf')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-pdf"></i>&nbsp;&nbsp;PDF'),
-                ]);
-        }
-
-        $buttons = array_merge($buttons, [
+                ]),
             Button::make('reset')->addClass('btn btn-danger waves-effect waves-float waves-light m-1'),
             Button::make('reload')->addClass('btn btn-primary waves-effect waves-float waves-light m-1'),
-        ]);
 
-        if (auth()->user()->can('admin.sellers.destroy')) {
-            $buttons[] = Button::raw('delete-selected')
-                ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
-                ->text('<i class="fa-solid fa-minus"></i>&nbsp;&nbsp;<span id="delete_selected_count" style="display:none">0</span> Delete Selected')
-                ->attr([
-                    'onclick' => 'deleteSelected()',
-                ]);
-        }
+        ];
 
         return $this->builder()
-            ->setTableId('tags-table')
-            ->addTableClass('table-borderless table-striped table-hover class-datatable-for-event')
+            ->setTableId('roles-table')
             ->columns($this->getColumns())
+            ->addTableClass('table-borderless table-striped table-hover class-datatable-for-event')
             ->minifiedAjax()
             ->serverSide()
             ->processing()
             ->deferRender()
             ->dom('BlfrtipC')
-            ->scrollX()
-            ->pagingType('full_numbers')
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
                 [30, 50, 70, 100, 120, 150, "All"],
             ])
             ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
             ->buttons($buttons)
-            // ->rowGroupDataSrc('parent_id')
+            ->scrollX()
+            ->pagingType('full_numbers')
             ->columnDefs([
                 [
                     'targets' => 0,
@@ -122,19 +118,22 @@ class SellersDataTable extends DataTable
                     'responsivePriority' => 3,
                     'render' => "function (data, type, full, setting) {
                         var role = JSON.parse(data);
-                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
+                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'primary\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkAdmin_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ]
                 ],
+            ])
+            ->select([
+                'style' => 'multi',
             ])
             ->fixedColumns([
                 'left' => 1,
                 'right' => 1,
             ])
             ->orders([
-                [8, 'desc'],
+                [1, 'asc'],
             ]);
     }
 
@@ -145,24 +144,33 @@ class SellersDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center');
+        $columns = [
+            Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->addClass('text-nowrap align-middle text-center'),
+        ];
 
-        if (auth()->user()->can('admin.sellers.destroy')) {
-            $checkColumn->addClass('disabled');
+        switch ($this->model) {
+            case 'shops':
+                $columns = array_merge($columns, [
+                    Column::make('address')->addClass('text-nowrap align-middle text-center'),
+                    Column::make('slug')->addClass('text-nowrap align-middle text-center'),
+                ]);
+                break;
+            case 'products':
+                $columns = array_merge($columns, [
+                    Column::make('sku')->addClass('text-nowrap align-middle text-center'),
+                    Column::make('permalink')->addClass('text-nowrap align-middle text-center'),
+                ]);
+                break;
         }
 
-        $columns = [
-            $checkColumn,
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('email')->title('email')->addClass('text-nowrap align-middle text-center'),
-            Column::make('cnic')->title('cnic')->addClass('text-nowrap align-middle text-center'),
-            Column::make('ntn_number')->title('ntn')->addClass('text-nowrap align-middle text-center'),
-            Column::make('phone_primary')->title('phone 1')->addClass('text-nowrap align-middle text-center'),
-            Column::make('status')->title('Status')->addClass('text-nowrap align-middle text-center'),
+        $columns = array_merge($columns, [
+            Column::make('status')->addClass('text-nowrap align-middle text-center'),
             Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
-        ];
+        ]);
+
         return $columns;
     }
 
@@ -173,6 +181,6 @@ class SellersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'seller_' . date('YmdHis');
+        return Str::of($this->model)->ucfirst() . 'Approvals_' . date('YmdHis');
     }
 }

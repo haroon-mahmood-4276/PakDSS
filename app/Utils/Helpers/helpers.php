@@ -390,7 +390,11 @@ if (!function_exists('editStatusColumn')) {
                 break;
 
             case 'objected':
-                $badge = "<span class='badge bg-warning bg-glow me-1'>" . __('lang.commons.objected') . "</span>";
+                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.objected') . "</span>";
+                break;
+
+            case 'pending_approval':
+                $badge = "<span class='badge bg-warning bg-glow me-1'>" . __('lang.commons.pending_approval') . "</span>";
                 break;
 
             default:

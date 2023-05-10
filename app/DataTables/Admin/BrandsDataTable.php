@@ -3,6 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Brand;
+use App\Utils\Traits\DatatablesTrait;
 use Illuminate\Http\Response;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -14,6 +15,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class BrandsDataTable extends DataTable
 {
+    use DatatablesTrait;
     /**
      * Build DataTable class.
      *
@@ -43,7 +45,7 @@ class BrandsDataTable extends DataTable
                 return view('admin.brands.actions', ['id' => $brand->id]);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**
@@ -123,7 +125,7 @@ class BrandsDataTable extends DataTable
                     'responsivePriority' => 3,
                     'render' => "function (data, type, full, setting) {
                         var role = JSON.parse(data);
-                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this)\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
+                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
                         'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
@@ -171,17 +173,6 @@ class BrandsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'brands_' . date('YmdHis');
-    }
-
-    /**
-     * Export PDF using DOMPDF
-     * @return Response
-     */
-    public function pdf(): Response
-    {
-        $data = $this->getDataForPrint();
-        $pdf = Pdf::loadView($this->printPreview, ['data' => $data])->setOption(['defaultFont' => 'sans-serif']);
-        return $pdf->download($this->filename() . '.pdf');
+        return 'Brands_' . date('YmdHis');
     }
 }
