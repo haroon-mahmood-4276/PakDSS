@@ -127,3 +127,8 @@ Breadcrumbs::for('admin.approvals.shops.index', function (BreadcrumbTrail $trail
     $trail->push('Shops', route('admin.approvals.shops.index'));
 });
 
+Breadcrumbs::for('admin.approvals.products.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Approvals', route('admin.approvals.products.index'));
+    $trail->push('Products', route('admin.approvals.products.index'));
+});

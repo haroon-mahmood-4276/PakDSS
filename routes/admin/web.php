@@ -142,13 +142,12 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         //Admin Approval Routes
         Route::prefix('approvals')->name('approvals.')->controller(ApprovalController::class)->group(function () {
+            Route::get('store', 'store')->name('store');
             Route::group(['prefix' => 'shops', 'as' => 'shops.'], function () {
                 Route::get('/', 'shopIndex')->middleware('permission:admin.approvals.shops.index')->name('index');
-                Route::get('store', 'store')->middleware('permission:admin.approvals.shops.index')->name('store');
             });
             Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
                 Route::get('/', 'productIndex')->middleware('permission:admin.approvals.products.index')->name('index');
-                Route::get('store', 'store')->middleware('permission:admin.approvals.products.index')->name('store');
             });
         });
     });

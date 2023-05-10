@@ -41,7 +41,7 @@ class TagsDataTable extends DataTable
                 return view('admin.tags.actions', ['id' => $tag->id]);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

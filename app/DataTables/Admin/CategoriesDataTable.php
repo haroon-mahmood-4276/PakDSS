@@ -46,7 +46,7 @@ class CategoriesDataTable extends DataTable
                 return view('admin.categories.actions', ['id' => $category->id]);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

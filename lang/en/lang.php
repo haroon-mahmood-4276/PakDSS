@@ -7,5 +7,6 @@ return [
         'active' => 'Active',
         'inactive' => 'Inactive',
         'objected' => 'Objected',
+        'pending_approval' => 'Pending Approval',
     ],
 ];

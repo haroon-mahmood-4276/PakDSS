@@ -39,7 +39,7 @@ class ProductsDataTable extends DataTable
                 return view('seller.products.actions', ['id' => $product->id]);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

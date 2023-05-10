@@ -41,7 +41,7 @@ class SellersDataTable extends DataTable
                 return view('admin.sellers.actions', ['id' => $seller->id]);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

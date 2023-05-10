@@ -2,7 +2,7 @@
 
 namespace App\DataTables\Admin;
 
-use App\Models\{Shop};
+use App\Models\{Product, Shop};
 use App\Utils\Enums\Status;
 use App\Utils\Traits\DatatablesTrait;
 use Illuminate\Support\Str;
@@ -29,6 +29,9 @@ class ApprovalsDataTable extends DataTable
             ->editColumn('check', function ($model) {
                 return $model;
             })
+            ->editColumn('status', function ($model) {
+                return editStatusColumn($model->status);
+            })
             ->editColumn('created_at', function ($model) {
                 return editDateColumn($model->created_at);
             })
@@ -36,15 +39,14 @@ class ApprovalsDataTable extends DataTable
                 return editDateColumn($model->updated_at);
             })
             ->editColumn('actions', function ($model) {
-                return view('admin.approvals.actions', ['id' => $model->id]);
+                return view('admin.approvals.actions', ['id' => $model->id, 'for' => $this->model]);
             })
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Admin $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(): QueryBuilder
@@ -53,8 +55,11 @@ class ApprovalsDataTable extends DataTable
             case 'shops':
                 $model = (new Shop());
                 break;
+            case 'products':
+                $model = (new Product());
+                break;
         }
-        return $model->newQuery()->where('status', Status::PENDING_APPROVAL);
+        return $model->newQuery()->whereIn('status', [Status::PENDING_APPROVAL, Status::OBJECTED]);
     }
 
     public function html(): HtmlBuilder
@@ -151,9 +156,16 @@ class ApprovalsDataTable extends DataTable
                     Column::make('slug')->addClass('text-nowrap align-middle text-center'),
                 ]);
                 break;
+            case 'products':
+                $columns = array_merge($columns, [
+                    Column::make('sku')->addClass('text-nowrap align-middle text-center'),
+                    Column::make('permalink')->addClass('text-nowrap align-middle text-center'),
+                ]);
+                break;
         }
 
         $columns = array_merge($columns, [
+            Column::make('status')->addClass('text-nowrap align-middle text-center'),
             Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),

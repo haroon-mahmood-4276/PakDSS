@@ -45,7 +45,7 @@ class BrandsDataTable extends DataTable
                 return view('admin.brands.actions', ['id' => $brand->id]);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

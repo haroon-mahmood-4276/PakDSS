@@ -39,7 +39,7 @@ class ShopsDataTable extends DataTable
                 return view('seller.shops.actions', ['id' => $shop->id]);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

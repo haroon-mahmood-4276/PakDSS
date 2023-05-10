@@ -39,7 +39,7 @@ class UsersDataTable extends DataTable
                 return $user;
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

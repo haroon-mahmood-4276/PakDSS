@@ -16,6 +16,7 @@ use App\Services\Seller\{
 };
 use App\Utils\Enums\Status;
 use Exception;
+use Illuminate\Support\Str;
 
 class ApprovalController extends Controller
 {
@@ -32,6 +33,20 @@ class ApprovalController extends Controller
 
         $data = [
             'model' => 'shops',
+        ];
+
+        if (request()->ajax()) {
+            return $dataTable->with($data)->ajax();
+        }
+
+        return $dataTable->with($data)->render('admin.approvals.index', $data);
+    }
+
+    public function productIndex(ApprovalsDataTable $dataTable)
+    {
+
+        $data = [
+            'model' => 'products',
         ];
 
         if (request()->ajax()) {
@@ -60,12 +75,12 @@ class ApprovalController extends Controller
             switch ($request->status) {
                 case 'approve':
                     $inteface->status(ids: $request->checkForDelete ?? $request->id, status: Status::ACTIVE);
-                    return redirect()->back()->with('success', $request->for . ' approved successfully');
+                    return redirect()->back()->with('success', Str::of($request->for)->ucfirst() . ' approved successfully');
                     break;
 
                 case 'object':
                     $inteface->status(ids: $request->checkForDelete ?? $request->id, status: Status::OBJECTED);
-                    return redirect()->back()->with('success', $request->for . ' objected successfully');
+                    return redirect()->back()->with('success', Str::of($request->for)->ucfirst() . ' objected successfully');
                     break;
             }
         } catch (Exception $e) {

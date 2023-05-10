@@ -40,7 +40,7 @@ class CategoriesDataTable extends DataTable
                 return editDateColumn($category->updated_at);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

@@ -28,7 +28,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.approvals.' . $model . '.store') }}"
+                    <form action="{{ route('admin.approvals.store') }}"
                         id="approval-{{ $model }}-table-form" method="get">
                         <input type="hidden" name="for" id="for" value="{{ $model }}">
                         <input type="hidden" name="status" id="status" value="">

@@ -212,9 +212,9 @@
             </li>
         @endcanany
 
-        @canany(['admin.approvals.shops.index'])
+        @canany(['admin.approvals.shops.index', 'admin.approvals.products.index'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index', 'admin.approvals.products.index'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-user menu-icon"></i>
                     <div>Approvals</div>

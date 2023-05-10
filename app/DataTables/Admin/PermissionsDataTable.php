@@ -38,7 +38,7 @@ class PermissionsDataTable extends DataTable
                 return editDateColumn($permission->updated_at);
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**

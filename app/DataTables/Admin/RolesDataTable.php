@@ -43,7 +43,7 @@ class RolesDataTable extends DataTable
                 return $role;
             })
             ->setRowId('id')
-            ->rawColumns(array_merge($columns, ['action', 'check']));
+            ->rawColumns($columns);
     }
 
     /**
