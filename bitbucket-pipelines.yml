@@ -1,16 +1,13 @@
-image: atlassian/ssh-run:0.4.2
+image: php:7.4
 
 pipelines:
   default:
     - step:
-        name: 'Deployment to Production'
-        deployment: production
+        name: Deploy to Ubuntu Server
+        deployment: staging
         script:
-          - pipe: atlassian/ssh-run:0.4.2
-            variables:
-              SSH_USER: '${SSH_USERNAME}'
-              SERVER: '${SERVER_IP_ADDRESS}'
-              COMMAND: |
-                cd /var/www/pakdss.com
-                php artisan down
-              SSH_KEY: '${SSH_KEY}' # Optional
+          - apt-get update && apt-get install -y openssh-client
+          - echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+          - chmod 600 ~/.ssh/id_rsa
+          - ssh-keyscan -H $SERVER_IP_ADDRESS >> ~/.ssh/known_hosts
+          - ssh $SSH_USER@$SERVER_IP_ADDRESS "whoami"
