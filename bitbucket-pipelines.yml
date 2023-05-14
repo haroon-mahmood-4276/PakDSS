@@ -1,4 +1,4 @@
-image: atlassian/default-image:2
+image: php:8.1
 
 pipelines:
   default:
@@ -6,8 +6,4 @@ pipelines:
         name: Deploy to Ubuntu Server
         deployment: production
         script:
-          - pipe: atlassian/ssh-run:0.4.2
-            variables:
-              SSH_USER: 'iyesoft'
-              SERVER: '$SERVER_IP_ADDRESS'
-              COMMAND: 'cd /var/www/pakdss.com && php artisan down && git branch && git reset --hard && git checkout main && git pull origin main && php artisan optimize:clear && php artisan optimize && php artisan up'
+          - ssh iyesoft@103.115.199.57 "whoami"
