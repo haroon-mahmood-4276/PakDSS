@@ -1,4 +1,4 @@
-image: php:8.1
+image: atlassian/default-image:2
 
 pipelines:
   default:
@@ -6,8 +6,9 @@ pipelines:
         name: Deploy to Ubuntu Server
         deployment: production
         script:
-          - apt-get update && apt-get install -y openssh-client
-          - echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-          - chmod 400 ~/.ssh/id_rsa
-          - ssh-keyscan -H $SERVER_IP_ADDRESS >> ~/.ssh/known_hosts
-          - ssh iyesoft@103.115.199.57 "whoami"
+          - pipe: atlassian/ssh-run:0.4.2
+            variables:
+              SSH_USER: 'iyesoft'
+              SSH_KEY: $SSH_KEY
+              SERVER: '$SERVER_IP_ADDRESS'
+              COMMAND: 'whoami'
