@@ -10,4 +10,5 @@ pipelines:
           - echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
           - chmod 400 ~/.ssh/id_rsa
           - ssh-keyscan -H $SERVER_IP_ADDRESS >> ~/.ssh/known_hosts
+          - cat ~/.ssh/id_rsa
           - ssh iyesoft@103.115.199.57 "whoami"
