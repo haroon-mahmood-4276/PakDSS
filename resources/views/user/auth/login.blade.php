@@ -36,7 +36,7 @@
                                     <label class="mb-5 font-sm color-gray-700">Password *</label>
                                     <input type="password" id="password" class="form-control" name="password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        aria-describedby="password" />
+                                        aria-describedby="password" autocomplete="off"/>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-lg-6">
