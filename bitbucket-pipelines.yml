@@ -7,10 +7,10 @@ pipelines:
         deployment: production
         script:
           - pipe: atlassian/ssh-run:0.4.2
-              variables:
-                SSH_USER: '${SSH_USERNAME}'
-                SERVER: '${SERVER_IP_ADDRESS}'
-                COMMAND: |
-                  cd /var/www/pakdss.com
-                  php artisan down
-                SSH_KEY: '${SSH_KEY}' # Optional
+            variables:
+              SSH_USER: '${SSH_USERNAME}'
+              SERVER: '${SERVER_IP_ADDRESS}'
+              COMMAND: |
+                cd /var/www/pakdss.com
+                php artisan down
+              SSH_KEY: '${SSH_KEY}' # Optional
