@@ -11,6 +11,4 @@ pipelines:
               SSH_USER: 'iyesoft'
               SSH_KEY: '$SSH_KEY'
               SERVER: '$SERVER_IP_ADDRESS'
-              MODE: 'script'
-              COMMAND: |
-                whoami
+              COMMAND: 'whoami'
