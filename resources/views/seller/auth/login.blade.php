@@ -20,7 +20,7 @@
                             <div class="mb-3">
                                 <input type="password" id="password" class="form-control" name="password"
                                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                    aria-describedby="password" />
+                                    aria-describedby="password" autocomplete="off"/>
                             </div>
                             <div class="mb-3">
                                 <a class="float-end font-sm text-muted" href="#">Forgot password?</a>
