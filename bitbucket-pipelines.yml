@@ -1,4 +1,4 @@
-image: php:8.1
+image: atlassian/default-image:2
 
 pipelines:
   default:
@@ -6,4 +6,9 @@ pipelines:
         name: Deploy to Ubuntu Server
         deployment: production
         script:
-          - ssh iyesoft@103.115.199.57 "whoami"
+          - pipe: atlassian/ssh-run:0.4.2
+            variables:
+              SSH_USER: 'iyesoft'
+              SERVER: '$SERVER_IP_ADDRESS'
+              MODE: 'script'
+              COMMAND: 'deploy.sh'
