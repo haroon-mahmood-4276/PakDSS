@@ -10,4 +10,4 @@ pipelines:
             variables:
               SSH_USER: 'iyesoft'
               SERVER: '$SERVER_IP_ADDRESS'
-              COMMAND: 'whoami'
+              COMMAND: 'cd /var/www/pakdss.com && php artisan down && git branch && git reset --hard && git checkout main && git pull origin main && php artisan optimize:clear && php artisan optimize && php artisan up'
