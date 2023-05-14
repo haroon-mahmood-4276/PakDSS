@@ -20,7 +20,7 @@ class BrandController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'brands' => $this->brandInterface->get(relationships: ['categories'], withCount: true, withCountOnly: true, withPagination: true),
+            'brands' => $this->brandInterface->get(relationships: ['categories'], withCount: true, withPagination: true, perPage: 12),
         ];
 
         return view('seller.brands.index', $data);
