@@ -11,4 +11,4 @@ pipelines:
               SSH_USER: 'iyesoft'
               SERVER: '$SERVER_IP_ADDRESS'
               MODE: 'script'
-              COMMAND: 'deploy.sh'
+              COMMAND: '~/deploy.sh'
