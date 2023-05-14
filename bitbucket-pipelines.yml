@@ -12,5 +12,5 @@ pipelines:
               SSH_KEY: '$SSH_KEY'
               SERVER: '$SERVER_IP_ADDRESS'
               MODE: 'script'
-              COMMANDS: |
+              COMMAND: |
                 whoami
