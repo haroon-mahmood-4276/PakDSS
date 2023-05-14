@@ -9,6 +9,6 @@ pipelines:
           - pipe: atlassian/ssh-run:0.4.2
             variables:
               SSH_USER: 'iyesoft'
-              SSH_KEY: '$SSH_KEY'
-              SERVER: '$SERVER_IP_ADDRESS'
+              SSH_KEY: $SSH_KEY
+              SERVER: $SERVER_IP_ADDRESS
               COMMAND: 'whoami'
