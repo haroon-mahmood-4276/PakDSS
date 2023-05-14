@@ -201,7 +201,7 @@
                                 multiple>
                                 @foreach ($categories as $key => $category)
                                     <option value="{{ $category->id }}"
-                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('tags')) ? 'selected' : '' }}>
+                                        {{ in_array($category->id, (isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? [])) ? 'selected' : '' }}>
                                         {{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
@@ -222,7 +222,7 @@
                                 multiple>
                                 @foreach ($tags as $key => $tag)
                                     <option value="{{ $tag->id }}"
-                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags')) ? 'selected' : '' }}>
+                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>
                                         {{ Str::of($tag->name)->replace('_', ' ') }}
                                     </option>
                                 @endforeach
