@@ -15,11 +15,26 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->foreignUuid('seller_id')->constrained();
+
             $table->string('name')->nullable();
             $table->string('slug')->unique()->nullable();
-            $table->string('address')->nullable();
+
+            $table->string('email')->unique()->nullable();
+
+            $table->string('phone_1')->unique()->nullable();
+            $table->string('phone_2')->unique()->nullable();
+
+            $table->text('address')->nullable();
+            $table->text('pickup_address')->nullable();
+            $table->text('description')->nullable();
+
+            $table->string('manager_name')->nullable();
+            $table->string('manager_mobile')->unique()->nullable();
+            $table->string('manager_email')->unique()->nullable();
+
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
+
             $table->string('status')->nullable();
             $table->string('reason')->nullable();
 
