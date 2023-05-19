@@ -23,11 +23,20 @@ class Shop extends Model implements HasMedia
         'seller_id',
         'name',
         'slug',
+        'email',
+        'phone_1',
+        'phone_2',
         'address',
-        'lat',
-        'long',
+        'pickup_address',
+        'description',
+        'latitude',
+        'longitude',
+        'manager_name',
+        'manager_mobile',
+        'manager_email',
+        'shop_logo',
         'status',
-        'reason',
+        'reason'
     ];
 
     public array $rules = [];
@@ -39,12 +48,19 @@ class Shop extends Model implements HasMedia
         $this->rules = [
             "name" => 'required|string|between:3,254',
             "slug" => 'required|string|between:3,254|unique:shops,slug',
+            "email" => 'required|string|between:3,254|unique:shops,email',
+            "phone_1" => 'required|numeric|digits:12',
+            "phone_2" => 'required|numeric|digits:12',
             "address" => 'required|string|between:3,254',
+            "pickup_address" => 'required|string|between:3,254',
+            "description" => 'required|string|between:3,254',
             "latitude" => 'required|numeric',
             "longitude" => 'required|numeric',
+            "manager_name" => 'required|string|between:3,254',
+            "manager_mobile" => 'required|numeric|digits:12',
+            "manager_email" => 'required|string|between:3,254|unique:shops,manager_email',
             "shop_logo" => 'nullable|image|mimes:jpeg,png,jpg|max:536',
-            "status" => "required|in:" . implode(',', Status::values()),
-            "reason" => "required_if:status,objected,inactive",
+            "status" => 'required|in:' . implode(',', Status::values()),
         ];
     }
 

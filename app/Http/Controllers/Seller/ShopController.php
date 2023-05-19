@@ -22,12 +22,6 @@ class ShopController extends Controller
         $this->shopInterface = $shopInterface;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @param ShopsDataTable $dataTable
-     * @return JsonResponse|View
-     */
     public function index(ShopsDataTable $dataTable): JsonResponse|View
     {
         if (request()->ajax()) {
@@ -37,11 +31,6 @@ class ShopController extends Controller
         return $dataTable->render('seller.shops.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         abort_if(request()->ajax(), 403);
@@ -53,13 +42,7 @@ class ShopController extends Controller
         return view('seller.shops.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param storeRequest $request
-     * @return Response
-     */
-    public function store(storeRequest $request): Response
+    public function store(storeRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
@@ -74,12 +57,6 @@ class ShopController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         abort(403);

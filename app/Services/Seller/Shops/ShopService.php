@@ -51,11 +51,25 @@ class ShopService implements ShopInterface
             $data = [
                 'name' => $inputs['name'],
                 'slug' => Str::slug($inputs['name']),
-                'address' => $inputs['name'],
-                'lat' => $inputs['latitude'],
-                'long' => $inputs['longitude'],
+
+                'email' => $inputs['email'],
+
+                "phone_1" => $inputs['phone_1'],
+                "phone_2" => $inputs['phone_2'],
+
+                "address" => $inputs['address'],
+                "pickup_address" => $inputs['pickup_address'],
+                "description" => $inputs['description'],
+
+                "lat" => $inputs['latitude'],
+                "long" => $inputs['longitude'],
+
+                "manager_name" => $inputs['manager_name'],
+                "manager_mobile" => $inputs['manager_mobile'],
+                "manager_email" => $inputs['manager_email'],
+
                 'status' => Status::PENDING_APPROVAL,
-                'reason' => $inputs['reason'],
+                'reason' => null,
             ];
 
             $shop = auth('seller')->user()->shops()->create($data);
@@ -76,11 +90,22 @@ class ShopService implements ShopInterface
             $data = [
                 'name' => $inputs['name'],
                 'slug' => Str::slug($inputs['name']),
-                'address' => $inputs['name'],
-                'lat' => $inputs['latitude'],
-                'longitude' => $inputs['longitude'],
+
+                "phone_1" => $inputs['phone_1'],
+                "phone_2" => $inputs['phone_2'],
+
+                "address" => $inputs['address'],
+                "pickup_address" => $inputs['pickup_address'],
+                "description" => $inputs['description'],
+
+                "lat" => $inputs['latitude'],
+                "long" => $inputs['longitude'],
+
+                "manager_name" => $inputs['manager_name'],
+                "manager_mobile" => $inputs['manager_mobile'],
+                "manager_email" => $inputs['manager_email'],
+
                 'status' => Status::PENDING_APPROVAL,
-                'reason' => $inputs['reason'],
             ];
 
             $shop->update($data);

@@ -24,27 +24,69 @@ class ShopsSeeder extends Seeder
             [
                 'name' => 'Shopx',
                 'slug' => Str::of('Shopx')->slug(),
+
+                'email' => 'admin@shopx.com',
+
+                'phone_1' => '923031111111',
+                'phone_2' => '923031111111',
+
                 'address' => 'Lahore, Pakistan',
+                'pickup_address' => 'Lahore, Pakistan',
+                'description' => 'Ecommerce Store',
+
+                'manager_name' => 'Mubeen',
+                'manager_mobile' => '923031111111',
+                'manager_email' => 'admin@shopx.com',
+
                 'lat' => '31.5864912',
                 'long' => '74.3901942',
+
                 'status' => 'pending_approval',
                 'reason' => null,
             ],
             [
                 'name' => 'Shopx1',
                 'slug' => Str::of('Shopx1')->slug(),
+
+                'email' => 'admin@shopx1.com',
+
+                'phone_1' => '923031111112',
+                'phone_2' => '923031111112',
+
                 'address' => 'Lahore, Pakistan',
+                'pickup_address' => 'Lahore, Pakistan',
+                'description' => 'Ecommerce Store',
+
+                'manager_name' => 'Mubeen',
+                'manager_mobile' => '923031111112',
+                'manager_email' => 'admin@shopx2.com',
+
                 'lat' => '31.5864912',
                 'long' => '74.3901942',
+
                 'status' => 'pending_approval',
                 'reason' => null,
             ],
             [
-                'name' => 'Shopx2',
-                'slug' => Str::of('Shopx2')->slug(),
+                'name' => 'Shopx3',
+                'slug' => Str::of('Shopx3')->slug(),
+
+                'email' => 'admin@shopx3.com',
+
+                'phone_1' => '923031111113',
+                'phone_2' => '923031111113',
+
                 'address' => 'Lahore, Pakistan',
+                'pickup_address' => 'Lahore, Pakistan',
+                'description' => 'Ecommerce Store',
+
+                'manager_name' => 'Mubeen',
+                'manager_mobile' => '923031111113',
+                'manager_email' => 'admin@shopx3.com',
+
                 'lat' => '31.5864912',
                 'long' => '74.3901942',
+
                 'status' => 'pending_approval',
                 'reason' => null,
             ],

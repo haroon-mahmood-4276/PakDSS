@@ -34,7 +34,17 @@ class updateRequest extends FormRequest
     {
         $rules = (new Shop())->rules;
         $id = decryptParams($this->id);
+
         $rules['slug'] .= ',' . $id;
+        $rules['email'] .= ',' . $id;
+
+        $rules['phone_1'] .= ',' . $id;
+        $rules['phone_2'] .= ',' . $id;
+
+        $rules['manager_mobile'] .= ',' . $id;
+        $rules['manager_email'] .= ',' . $id;
+
+        unset($rules['status']);
         return $rules;
     }
 }
