@@ -29,8 +29,8 @@ class ShopsDataTable extends DataTable
             ->editColumn('check', function ($shop) {
                 return $shop;
             })
-            ->editColumn('created_at', function ($shop) {
-                return editDateColumn($shop->created_at);
+            ->editColumn('status', function ($shop) {
+                return editStatusColumn($shop->status);
             })
             ->editColumn('updated_at', function ($shop) {
                 return editDateColumn($shop->updated_at);
@@ -64,7 +64,7 @@ class ShopsDataTable extends DataTable
                 ]),
             Button::make('export')
                 ->addClass('btn btn-primary dropdown-toggle')
-                ->text('<i class="icon material-icons md-cloud_download text-white "></i>Export')
+                ->text('<i class="icon material-icons md-cloud_download text-white "></i>Export&nbsp;')
                 ->buttons([
                     Button::make('print')->addClass('dropdown-item')->text('<i class="icon material-icons md-local_printshop"></i>Print'),
                     Button::make('copy')->addClass('dropdown-item')->text('<i class="icon material-icons md-content_copy"></i>Copy'),
@@ -109,7 +109,7 @@ class ShopsDataTable extends DataTable
                     'responsivePriority' => 3,
                     'render' => "function (data, type, full, setting) {
                         var role = JSON.parse(data);
-                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
+                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'danger\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
                         'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
@@ -136,7 +136,8 @@ class ShopsDataTable extends DataTable
             Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
             Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
-            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('address')->addClass('text-nowrap align-middle text-center'),
+            Column::make('status')->width(100)->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
