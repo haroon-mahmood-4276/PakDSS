@@ -29,8 +29,11 @@ class ProductsDataTable extends DataTable
             ->editColumn('check', function ($product) {
                 return $product;
             })
-            ->editColumn('created_at', function ($product) {
-                return editDateColumn($product->created_at);
+            ->editColumn('price', function ($product) {
+                return "Rs. " . $product->price;
+            })
+            ->editColumn('status', function ($product) {
+                return editStatusColumn($product->status);
             })
             ->editColumn('updated_at', function ($product) {
                 return editDateColumn($product->updated_at);
@@ -64,7 +67,7 @@ class ProductsDataTable extends DataTable
                 ]),
             Button::make('export')
                 ->addClass('btn btn-primary dropdown-toggle')
-                ->text('<i class="icon material-icons md-cloud_download text-white "></i>Export')
+                ->text('<i class="icon material-icons md-cloud_download text-white "></i>Export&nbsp;')
                 ->buttons([
                     Button::make('print')->addClass('dropdown-item')->text('<i class="icon material-icons md-local_printshop"></i>Print'),
                     Button::make('copy')->addClass('dropdown-item')->text('<i class="icon material-icons md-content_copy"></i>Copy'),
@@ -109,7 +112,7 @@ class ProductsDataTable extends DataTable
                     'responsivePriority' => 3,
                     'render' => "function (data, type, full, setting) {
                         var role = JSON.parse(data);
-                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
+                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'danger\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
                         'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
@@ -134,9 +137,10 @@ class ProductsDataTable extends DataTable
     {
         return [
             Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('permalink')->title('Permalink')->addClass('text-nowrap align-middle text-center'),
-            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->addClass('text-nowrap align-middle text-center'),
+            Column::make('sku')->title('SKU')->addClass('text-nowrap align-middle text-center'),
+            Column::make('price')->addClass('text-nowrap align-middle text-center'),
+            Column::make('status')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
