@@ -48,6 +48,7 @@ class Product extends Model implements HasMedia
 
         'categories' => 'required|array|min:1',
         'categories.*' => 'uuid|exists:categories,id',
+
         'tags' => 'required|array|min:1',
         'tags.*' => 'uuid|exists:tags,id',
 
@@ -55,6 +56,7 @@ class Product extends Model implements HasMedia
         'permalink' => 'required|string|between:3,254|unique:products,permalink',
         'sku' => 'required|string|between:3,10|unique:products,sku',
         'price' => 'required|decimal:0,2|gte:0',
+        'discounted_price' => 'nullable|decimal:0,2|gte:0',
 
         'short_description' => 'required',
         'long_description' => 'nullable',

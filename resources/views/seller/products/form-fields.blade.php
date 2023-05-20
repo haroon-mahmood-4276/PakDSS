@@ -39,7 +39,9 @@
                             </p>
                         @enderror
                     </div>
+                </div>
 
+                <div class="row mb-3">
                     <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="price">Price <span
                                 class="text-danger">*</span></label>
@@ -51,6 +53,21 @@
                         @else
                             <p class="m-0">
                                 <small class="text-muted">Enter product price.</small>
+                            </p>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="discounted_price">Discounted Price <span
+                                class="text-danger">*</span></label>
+                        <input type="number" class="form-control @error('discounted_price') is-invalid @enderror"
+                            id="discounted_price" name="discounted_price" placeholder="Discounted Price"
+                            value="{{ isset($product) ? $product->discounted_price : old('discounted_price') }}" />
+                        @error('discounted_price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter product discounted price.</small>
                             </p>
                         @enderror
                     </div>
@@ -201,7 +218,7 @@
                                 multiple>
                                 @foreach ($categories as $key => $category)
                                     <option value="{{ $category->id }}"
-                                        {{ in_array($category->id, (isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? [])) ? 'selected' : '' }}>
+                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>
                                         {{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
@@ -241,6 +258,46 @@
 
             <div class="card mb-4">
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-block mb-1">
+                                <label class="form-label" style="font-size: 15px" for="file_pdf">PDF</label>
+                                <input id="file_pdf" type="file"
+                                    class="filepond m-0 @error('file_pdf') is-invalid @enderror" name="file_pdf[]"
+                                    accept="image/png, image/jpeg, image/gif" multiple />
+                                @error('file_pdf')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @else
+                                    <p class="m-0">
+                                        <small class="text-muted">Upload product PDF. (if any)</small>
+                                    </p>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="d-block mb-1">
+                                <label class="form-label" style="font-size: 15px" for="file_video">Product Video
+                                    <span class="text-danger">*</span></label>
+                                <input id="file_video" type="file"
+                                    class="filepond m-0 @error('file_video') is-invalid @enderror" name="file_video"
+                                    accept="image/png, image/jpeg, image/gif" />
+                                @error('file_video')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @else
+                                    <p class="m-0">
+                                        <small class="text-muted">Upload product video.</small>
+                                    </p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
                     <div class="row g-3">
                         <div class="col-md-12">
                             <div class="d-block mb-1">
@@ -252,7 +309,8 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
                                     <p class="m-0">
-                                        <small class="text-muted">Upload product images.</small>
+                                        <small class="text-muted">Upload product images. (3 images only, Max Size:
+                                            536KB)</small>
                                     </p>
                                 @enderror
                             </div>
