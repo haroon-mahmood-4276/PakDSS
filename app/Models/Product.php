@@ -55,6 +55,7 @@ class Product extends Model implements HasMedia
         'name' => 'required|string|between:3,254',
         'permalink' => 'required|string|between:3,254|unique:products,permalink',
         'sku' => 'required|string|between:3,10|unique:products,sku',
+
         'price' => 'required|decimal:0,2|gte:0',
         'discounted_price' => 'nullable|decimal:0,2|gte:0',
 
@@ -66,6 +67,10 @@ class Product extends Model implements HasMedia
 
         'product_images' => 'nullable|array',
         'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
+
+        'product_pdf' => 'nullable|file|mimes:pdf',
+
+        'product_video' => 'nullable|file|mimes:mp4,webm,mov,avi,wmv,mkv',
     ];
 
     public function getActivitylogOptions(): LogOptions

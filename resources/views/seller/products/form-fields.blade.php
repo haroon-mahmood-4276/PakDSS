@@ -172,10 +172,7 @@
                                     class="text-danger">*</span></label>
                             <select class="select2-size-lg form-select" id="shop" name="shop">
                                 @foreach ($shops as $key => $shop)
-                                    <option data-icon="material-icons md-keyboard_arrow_right"
-                                        value="{{ $shop->id }}"
-                                        {{ (isset($product) ? $product->shop_id : old('shop')) == $shop->id ? 'selected' : '' }}>
-                                        {{ Str::of($shop->name)->replace('_', ' ') }}</option>
+                                    <option data-icon="material-icons md-keyboard_arrow_right" value="{{ $shop->id }}" {{ (isset($product) ? $product->shop_id : old('shop')) == $shop->id ? 'selected' : '' }}>{{ Str::of($shop->name)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('shop')
@@ -194,10 +191,7 @@
                                     class="text-danger">*</span></label>
                             <select class="select2-size-lg form-select" id="brand" name="brand">
                                 @foreach ($brands as $key => $brand)
-                                    <option data-icon="material-icons md-keyboard_arrow_right"
-                                        value="{{ $brand->id }}"
-                                        {{ (isset($product) ? $product->brand_id : old('brand')) == $brand->id ? 'selected' : '' }}>
-                                        {{ Str::of($brand->name)->replace('_', ' ') }}</option>
+                                    <option data-icon="material-icons md-keyboard_arrow_right" value="{{ $brand->id }}" {{ (isset($product) ? $product->brand_id : old('brand')) == $brand->id ? 'selected' : '' }}>{{ Str::of($brand->name)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('brand')
@@ -217,9 +211,7 @@
                             <select class="select2-size-lg-multiple form-select" id="categories" name="categories[]"
                                 multiple>
                                 @foreach ($categories as $key => $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>
-                                        {{ Str::of($category->tree)->replace('_', ' ') }}</option>
+                                    <option value="{{ $category->id }}" {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}> {{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('categories')
@@ -239,8 +231,7 @@
                                 multiple>
                                 @foreach ($tags as $key => $tag)
                                     <option value="{{ $tag->id }}"
-                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>
-                                        {{ Str::of($tag->name)->replace('_', ' ') }}
+                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}> {{ Str::of($tag->name)->replace('_', ' ') }}
                                     </option>
                                 @endforeach
                             </select>
@@ -261,10 +252,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="d-block mb-1">
-                                <label class="form-label" style="font-size: 15px" for="file_pdf">PDF</label>
-                                <input id="file_pdf" type="file"
-                                    class="filepond m-0 @error('file_pdf') is-invalid @enderror" name="file_pdf" />
-                                @error('file_pdf')
+                                <label class="form-label" style="font-size: 15px" for="product_pdf">PDF</label>
+                                <input id="product_pdf" type="file"
+                                    class="filepond m-0 @error('product_pdf') is-invalid @enderror" name="product_pdf" />
+                                @error('product_pdf')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
                                     <p class="m-0">
@@ -277,11 +268,11 @@
 
                         <div class="col-md-12">
                             <div class="d-block mb-1">
-                                <label class="form-label" style="font-size: 15px" for="file_video">Product Video
+                                <label class="form-label" style="font-size: 15px" for="product_video">Product Video
                                     <span class="text-danger">*</span></label>
-                                <input id="file_video" type="file"
-                                    class="filepond m-0 @error('file_video') is-invalid @enderror" name="file_video" />
-                                @error('file_video')
+                                <input id="product_video" type="file"
+                                    class="filepond m-0 @error('product_video') is-invalid @enderror" name="product_video" />
+                                @error('product_video')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
                                     <p class="m-0">
