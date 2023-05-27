@@ -14,7 +14,7 @@ class ProductService implements ProductInterface
         return new Product();
     }
 
-    public function get($seller_id, $relationships = [], $ignore = null, $with_tree = false)
+    public function get($seller_id, $relationships = [], $ignore = null)
     {
         $product = $this->model()->where('seller_id', $seller_id);
         if (is_array($ignore)) {
@@ -26,9 +26,7 @@ class ProductService implements ProductInterface
             $product = $product->with($relationships);
         }
         $product = $product->get();
-        if ($with_tree) {
-            return getTreeData(collect($product), $this->model());
-        }
+
         return $product;
     }
 
@@ -78,6 +76,14 @@ class ProductService implements ProductInterface
                 }
             }
 
+            if (isset($inputs['product_pdf'])) {
+                $product->addMedia($inputs['product_pdf'])->toMediaCollection('products');
+            }
+
+            if (isset($inputs['product_video'])) {
+                $product->addMedia($inputs['product_video'])->toMediaCollection('products');
+            }
+
             return $product;
         });
     }
@@ -115,6 +121,14 @@ class ProductService implements ProductInterface
                 foreach ($inputs['product_images'] as $key => $image) {
                     $product->addMedia($image)->toMediaCollection('products');
                 }
+            }
+
+            if (isset($inputs['product_pdf'])) {
+                $product->addMedia($inputs['product_pdf'])->toMediaCollection('products');
+            }
+
+            if (isset($inputs['product_video'])) {
+                $product->addMedia($inputs['product_video'])->toMediaCollection('products');
             }
 
             return $product;

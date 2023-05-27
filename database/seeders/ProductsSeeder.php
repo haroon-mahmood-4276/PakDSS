@@ -39,6 +39,7 @@ class ProductsSeeder extends Seeder
                 'permalink' => Str::of('Mouse')->slug(),
                 'sku' => 'SHX-1',
                 'price' => 123,
+                'discounted_price' => 123,
 
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
@@ -60,6 +61,7 @@ class ProductsSeeder extends Seeder
                 'permalink' => Str::of('Mouse1')->slug(),
                 'sku' => 'SHX-2',
                 'price' => 123,
+                'discounted_price' => 123,
 
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
@@ -81,6 +83,7 @@ class ProductsSeeder extends Seeder
                 'permalink' => Str::of('Mouse2')->slug(),
                 'sku' => 'SHX-3',
                 'price' => 123,
+                'discounted_price' => 0,
 
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),

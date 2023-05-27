@@ -21,6 +21,26 @@ use Illuminate\Support\Arr;
 //     }
 // }
 
+if (!function_exists('getLastCategoryBreadcrumb')) {
+    function getLastCategoryBreadcrumb($categories, $parentId = null)
+    {
+        $breadcrumb = [];
+
+        foreach ($categories as $category) {
+            if ($category['parent_id'] == $parentId) {
+                $childBreadcrumb = getLastCategoryBreadcrumb($categories, $category['id']);
+                if (!empty($childBreadcrumb)) {
+                    $breadcrumb = array_merge([$category], $childBreadcrumb);
+                } else {
+                    $breadcrumb = [$category];
+                }
+            }
+        }
+
+        return $breadcrumb;
+    }
+}
+
 if (!function_exists('filter_strip_tags')) {
 
     function filter_strip_tags($text, $with_script_content = false): string
@@ -180,26 +200,35 @@ if (!function_exists('getTrashedDataCount')) {
     }
 }
 
-if (!function_exists('getTreeData')) {
-    function getTreeData(collection $collectionData, $model, $getFromDB = false): array
+if (!function_exists('prepareLinkedTree')) {
+    function prepareLinkedTree(collection $collectionData, $model, $queryFromDB = false)
     {
+
         $typesTmp = [];
 
         // $model = "\\App\\Models\\" . $model;
-        $dbTypes = ($getFromDB ? $model::all() : $collectionData);
+        $dbTypes = ($queryFromDB ? $model::all() : $collectionData);
 
         foreach ($collectionData as $key => $row) {
-            $typesTmp[] = $row;
-            $typesTmp[$key]["tree"] = ($getFromDB ? getTypeParentTreeElequent($model, $row, $row->name, $collectionData, $dbTypes) : getTypeParentTreeCollection($row, $row->name, $collectionData));
+            $tmpLinkedTree =  ($queryFromDB ? prepareTreeFromElequent($model, $row, $row->name, $collectionData, $dbTypes) : prepareTreeFromCollection($row, $row->name, $collectionData));
+            if (is_null($tmpLinkedTree)) {
+                continue;
+            }
+            $typesTmp[$key] = $row;
+            $typesTmp[$key]["tree"] = $tmpLinkedTree;
         }
 
         return $typesTmp;
     }
 }
 
-if (!function_exists('getTypeParentTreeElequent')) {
-    function getTypeParentTreeElequent($model, $row, $name, collection $parent, $dbTypes)
+if (!function_exists('prepareTreeFromElequent')) {
+    function prepareTreeFromElequent($model, $row, $name, collection $parent, $dbTypes, $index = 1)
     {
+        if ($index == 1 && !is_null($parent->firstWhere('parent_id', $row->id))) {
+            return null;
+        }
+
         if ($row->parent_id == 0) {
             return $name;
         }
@@ -207,24 +236,29 @@ if (!function_exists('getTypeParentTreeElequent')) {
         $nextRow = $model::find($row->parent_id);
         $name = $nextRow->name . ' > ' . $name;
 
-        return getTypeParentTreeElequent($model, $nextRow, $name, $parent, $dbTypes);
+        return prepareTreeFromElequent($model, $nextRow, $name, $parent, $dbTypes, ++$index);
     }
 }
 
-if (!function_exists('getTypeParentTreeCollection')) {
-    function getTypeParentTreeCollection($row, $name, collection $parent): string
+if (!function_exists('prepareTreeFromCollection')) {
+    function prepareTreeFromCollection($row, $name, collection $parent, $index = 1)
     {
-        if ($row->parent_id == 0) {
+        if ($index == 1 && !is_null($parent->firstWhere('parent_id', $row->id))) {
+            return null;
+        }
+
+        if (is_null($row->parent_id)) {
             return $name;
         }
 
         $nextRow = $parent->firstWhere('id', $row->parent_id);
+
         $name = (is_null($nextRow) ?? empty($nextRow) ? '' : $nextRow->name) . ' > ' . $name;
         if (is_null($nextRow) ?? empty($nextRow)) {
             return $name;
         }
 
-        return getTypeParentTreeCollection($nextRow, $name, $parent, $parent);
+        return prepareTreeFromCollection($nextRow, $name, $parent, ++$index);
     }
 }
 

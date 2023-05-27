@@ -52,34 +52,62 @@
                 $('#permalink-text').html('{{ env('APP_URL') }}:8000/products/' + permalink);
             });
 
-            $('.descriptions').each(function(elem) {
-                $(this).tinymce({
-                    height: 500,
-                    schema: 'html5-strict',
-                    invalid_elements: 'script,style',
-                    menubar: true,
-                    branding: false,
-                    plugins: [
-                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                        'anchor', 'searchreplace', 'visualblocks', 'fullscreen',
-                        'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                    ],
-                    toolbar: 'undo redo | blocks | bold italic backcolor | ' +
-                        'alignleft aligncenter alignright alignjustify | ' +
-                        'bullist numlist outdent indent | removeformat | help',
-                    maxlength: 2,
-                    setup: function(editor) {
-                        editor.on('keydown', function(e) {
-                            var words = editor.plugins.wordcount.getCount();
-                            if (words >= 2 && e.keyCode !== 8 && !e.ctrlKey && !e
-                                .metaKey) {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                return false;
-                            }
-                        });
-                    }
-                });
+
+            $('#short_description').tinymce({
+                document_base_url : "http://www.site.com/path1/",
+                height: 300,
+                schema: 'html5-strict',
+                invalid_elements: 'script,style',
+                menubar: true,
+                branding: false,
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | bold italic backcolor | ' +
+                    'alignleft aligncenter alignright alignjustify | ' +
+                    'bullist numlist outdent indent | removeformat | help',
+                maxlength: 2,
+                setup: function(editor) {
+                    editor.on('keydown', function(e) {
+                        var words = editor.plugins.wordcount.getCount();
+                        if (words >= 2 && e.keyCode !== 8 && !e.ctrlKey && !e
+                            .metaKey) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+                    });
+                }
+            });
+
+            $('#long_description').tinymce({
+                height: 500,
+                schema: 'html5-strict',
+                invalid_elements: 'script,style',
+                menubar: true,
+                branding: false,
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | bold italic backcolor | ' +
+                    'alignleft aligncenter alignright alignjustify | ' +
+                    'bullist numlist outdent indent | removeformat | help',
+                maxlength: 2,
+                setup: function(editor) {
+                    editor.on('keydown', function(e) {
+                        var words = editor.plugins.wordcount.getCount();
+                        if (words >= 2 && e.keyCode !== 8 && !e.ctrlKey && !e
+                            .metaKey) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+                    });
+                }
             });
         });
 
@@ -88,11 +116,12 @@
                 styleButtonRemoveItemPosition: 'right',
                 imageCropAspectRatio: '1:1',
                 acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+                labelFileTypeNotAllowed: 'Unsupported file type',
                 maxFileSize: '536KB',
                 ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
                 storeAsFile: true,
                 allowMultiple: true,
-                maxFiles: 6,
+                maxFiles: 3,
                 checkValidity: true,
                 credits: {
                     label: '',
@@ -100,9 +129,39 @@
                 }
             });
 
-            var tagify = new Tagify(document.getElementById('meta_keywords'), {
-
+            FilePond.create(document.getElementById('product_video'), {
+                styleButtonRemoveItemPosition: 'right',
+                imageCropAspectRatio: '1:1',
+                acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv', 'video/mkv'],
+                labelFileTypeNotAllowed: 'Unsupported file type',
+                maxFileSize: '536KB',
+                ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
+                storeAsFile: true,
+                maxFiles: 1,
+                checkValidity: true,
+                credits: {
+                    label: '',
+                    url: ''
+                }
             });
+
+            FilePond.create(document.getElementById('product_pdf'), {
+                styleButtonRemoveItemPosition: 'right',
+                imageCropAspectRatio: '1:1',
+                acceptedFileTypes: ['application/pdf'],
+                labelFileTypeNotAllowed: 'Unsupported file type',
+                maxFileSize: '536KB',
+                ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
+                storeAsFile: true,
+                maxFiles: 1,
+                checkValidity: true,
+                credits: {
+                    label: '',
+                    url: ''
+                }
+            });
+
+            var tagify = new Tagify(document.getElementById('meta_keywords'), {});
         });
     </script>
 @endsection

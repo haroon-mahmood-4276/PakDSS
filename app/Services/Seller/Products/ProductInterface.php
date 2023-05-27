@@ -4,7 +4,7 @@ namespace App\Services\Seller\Products;
 
 interface ProductInterface
 {
-    public function get($seller_id, $relationships = [], $ignore = null, $with_tree = false);
+    public function get($seller_id, $relationships = [], $ignore = null);
 
     public function find($id, $relationships = []);
 

@@ -17852,7 +17852,7 @@
             }));
         T(g.tinymce)
     }(),
-    tinymce.baseURL = "https://cdn.tiny.cloud/1/no-origin/tinymce/6.4.1-16",
+    tinymce.baseURL = "http://localhost:8000/seller-assets/vendors/tinymce",
     function () {
         "use strict";
 

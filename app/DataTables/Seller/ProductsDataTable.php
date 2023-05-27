@@ -30,7 +30,10 @@ class ProductsDataTable extends DataTable
                 return $product;
             })
             ->editColumn('price', function ($product) {
-                return "Rs. " . $product->price;
+                return "Rs. " . ($product->price > 0 ? $product->price : '-');
+            })
+            ->editColumn('discounted_price', function ($product) {
+                return "Rs. " . ($product->discounted_price > 0 ? $product->discounted_price : '-');
             })
             ->editColumn('status', function ($product) {
                 return editStatusColumn($product->status);
@@ -140,6 +143,7 @@ class ProductsDataTable extends DataTable
             Column::make('name')->addClass('text-nowrap align-middle text-center'),
             Column::make('sku')->title('SKU')->addClass('text-nowrap align-middle text-center'),
             Column::make('price')->addClass('text-nowrap align-middle text-center'),
+            Column::make('discounted_price')->addClass('text-nowrap align-middle text-center'),
             Column::make('status')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),

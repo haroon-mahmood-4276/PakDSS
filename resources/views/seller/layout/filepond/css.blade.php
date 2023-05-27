@@ -14,9 +14,9 @@
         background-color: #ced4e0;
     }
 
-    @if (isset($isHalf) && $isHalf)
+    /* @if (isset($isHalf) && $isHalf)
         .filepond--item {
             width: calc(50% - 0.5em);
         }
-    @endif
+    @endif */
 </style>

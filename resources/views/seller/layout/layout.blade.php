@@ -26,7 +26,7 @@
 
 </head>
 
-<body>
+<body style="overflow-y: scroll">
     <div class="screen-overlay"></div>
 
     {{ view('seller.layout.leftbar') }}
