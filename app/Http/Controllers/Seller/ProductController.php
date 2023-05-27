@@ -65,7 +65,6 @@ class ProductController extends Controller
 
         try {
             $inputs = $request->validated();
-            dd($inputs);
             $inputs['meta_aurthor'] = auth('seller')->user()->first_name;
             $record = $this->productInterface->store(auth('seller')->user()->id, $inputs);
             return redirect()->route('seller.products.index')->withSuccess('Data saved!');

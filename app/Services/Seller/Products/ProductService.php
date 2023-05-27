@@ -76,6 +76,14 @@ class ProductService implements ProductInterface
                 }
             }
 
+            if (isset($inputs['product_pdf'])) {
+                $product->addMedia($inputs['product_pdf'])->toMediaCollection('products');
+            }
+
+            if (isset($inputs['product_video'])) {
+                $product->addMedia($inputs['product_video'])->toMediaCollection('products');
+            }
+
             return $product;
         });
     }
@@ -113,6 +121,14 @@ class ProductService implements ProductInterface
                 foreach ($inputs['product_images'] as $key => $image) {
                     $product->addMedia($image)->toMediaCollection('products');
                 }
+            }
+
+            if (isset($inputs['product_pdf'])) {
+                $product->addMedia($inputs['product_pdf'])->toMediaCollection('products');
+            }
+
+            if (isset($inputs['product_video'])) {
+                $product->addMedia($inputs['product_video'])->toMediaCollection('products');
             }
 
             return $product;
