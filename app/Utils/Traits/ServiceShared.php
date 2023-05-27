@@ -23,7 +23,7 @@ trait ServiceShared
         }
 
         if ($with_tree) {
-            return getTreeData(collect($model), $this->model());
+            return prepareLinkedTree(collect($model), $this->model());
         }
         return $model;
     }

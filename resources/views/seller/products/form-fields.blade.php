@@ -18,7 +18,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
                             <p class="m-0" id="permalink-text">
-                                {{ env('APP_URL') }}:8000/products/{{ isset($product) ? $product->permalink : old('permalink') }}
+                                {{ env('APP_URL') }}/products/{{ isset($product) ? $product->permalink : old('permalink') }}
                             </p>
                         @enderror
                     </div>
@@ -263,8 +263,7 @@
                             <div class="d-block mb-1">
                                 <label class="form-label" style="font-size: 15px" for="file_pdf">PDF</label>
                                 <input id="file_pdf" type="file"
-                                    class="filepond m-0 @error('file_pdf') is-invalid @enderror" name="file_pdf[]"
-                                    accept="image/png, image/jpeg, image/gif" multiple />
+                                    class="filepond m-0 @error('file_pdf') is-invalid @enderror" name="file_pdf" />
                                 @error('file_pdf')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
@@ -281,8 +280,7 @@
                                 <label class="form-label" style="font-size: 15px" for="file_video">Product Video
                                     <span class="text-danger">*</span></label>
                                 <input id="file_video" type="file"
-                                    class="filepond m-0 @error('file_video') is-invalid @enderror" name="file_video"
-                                    accept="image/png, image/jpeg, image/gif" />
+                                    class="filepond m-0 @error('file_video') is-invalid @enderror" name="file_video" />
                                 @error('file_video')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else

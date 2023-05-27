@@ -131,7 +131,7 @@
             FilePond.create(document.getElementById('file_video'), {
                 styleButtonRemoveItemPosition: 'right',
                 imageCropAspectRatio: '1:1',
-                acceptedFileTypes: ['video/mp4', 'image/jpeg', 'image/jpg'],
+                acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv', 'video/mkv],
                 labelFileTypeNotAllowed: 'Unsupported file type',
                 maxFileSize: '536KB',
                 ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
