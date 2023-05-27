@@ -54,6 +54,7 @@
 
 
             $('#short_description').tinymce({
+                document_base_url : "http://www.site.com/path1/",
                 height: 300,
                 schema: 'html5-strict',
                 invalid_elements: 'script,style',
