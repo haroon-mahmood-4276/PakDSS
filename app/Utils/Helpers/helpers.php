@@ -214,7 +214,7 @@ if (!function_exists('prepareLinkedTree')) {
             if (is_null($tmpLinkedTree)) {
                 continue;
             }
-            $typesTmp[$key] = $row->toArray();
+            $typesTmp[$key] = $row;
             $typesTmp[$key]["tree"] = $tmpLinkedTree;
         }
 
