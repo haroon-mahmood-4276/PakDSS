@@ -41,7 +41,7 @@ return [
         | Configure e.g. delimiter, enclosure and line ending for CSV exports.
         |
         */
-        'csv'                    => [
+        'csv' => [
             'delimiter' => ',',
             'enclosure' => '"',
             'line_ending' => PHP_EOL,
@@ -60,7 +60,7 @@ return [
         | Configure e.g. default title, creator, subject,...
         |
         */
-        'properties'             => [
+        'properties' => [
             'creator' => '',
             'lastModifiedBy' => '',
             'title' => '',
@@ -73,7 +73,7 @@ return [
         ],
     ],
 
-    'imports'            => [
+    'imports' => [
 
         /*
         |--------------------------------------------------------------------------
@@ -122,7 +122,7 @@ return [
         | Configure e.g. delimiter, enclosure and line ending for CSV imports.
         |
         */
-        'csv'         => [
+        'csv' => [
             'delimiter' => null,
             'enclosure' => '"',
             'escape_character' => '\\',
@@ -138,7 +138,7 @@ return [
         | Configure e.g. default title, creator, subject,...
         |
         */
-        'properties'  => [
+        'properties' => [
             'creator' => '',
             'lastModifiedBy' => '',
             'title' => '',
@@ -278,7 +278,7 @@ return [
     */
     'transactions' => [
         'handler' => 'db',
-        'db'      => [
+        'db' => [
             'connection' => null,
         ],
     ],

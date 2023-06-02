@@ -26,7 +26,7 @@ class Admin extends Authenticatable
         'email',
         'password',
         'remember_token',
-        'email_verified_at'
+        'email_verified_at',
     ];
 
     protected $hidden = [
@@ -45,11 +45,11 @@ class Admin extends Authenticatable
         parent::__construct($attributes);
 
         $this->rules = [
-            "name" => "required|string|max:255|",
-            "email" => "required|email|unique:admins,email",
-            "password" => ["required", (new Password)],
-            "roles" => "required|array",
-            "roles.*" => "required|exists:roles,id",
+            'name' => 'required|string|max:255|',
+            'email' => 'required|email|unique:admins,email',
+            'password' => ['required', (new Password)],
+            'roles' => 'required|array',
+            'roles.*' => 'required|exists:roles,id',
         ];
     }
 

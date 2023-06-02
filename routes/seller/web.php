@@ -1,8 +1,12 @@
 <?php
 
-use App\Http\Controllers\Seller\{AuthController, BrandController, CategoryController, DashboardController, ProductController, ShopController};
+use App\Http\Controllers\Seller\AuthController;
+use App\Http\Controllers\Seller\BrandController;
+use App\Http\Controllers\Seller\CategoryController;
+use App\Http\Controllers\Seller\DashboardController;
+use App\Http\Controllers\Seller\ProductController;
+use App\Http\Controllers\Seller\ShopController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------

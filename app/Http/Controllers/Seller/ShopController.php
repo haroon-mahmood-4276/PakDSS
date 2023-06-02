@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\ShopsDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\{Factory, View};
-use Illuminate\Http\{JsonResponse, Request, Response};
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Seller\Shops\{storeRequest, updateRequest};
+use App\Http\Requests\Seller\Shops\storeRequest;
+use App\Http\Requests\Seller\Shops\updateRequest;
 use App\Services\Seller\Shops\ShopInterface;
 use App\Utils\Enums\Status;
 use Exception;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
@@ -49,9 +50,10 @@ class ShopController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->shopInterface->store($inputs);
+
             return redirect()->route('seller.shops.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
         }
@@ -69,18 +71,19 @@ class ShopController extends Controller
         try {
             $shop = $this->shopInterface->find(auth('seller')->user()->id, $id);
 
-            if ($shop && !empty($shop)) {
+            if ($shop && ! empty($shop)) {
                 $data = [
                     'shop' => $shop,
                     'shop_logo' => $shop->getMedia('shops'),
                     'statuses' => Status::array(),
                 ];
+
                 return view('seller.shops.edit', $data);
             }
 
             return redirect()->route('seller.shops.index')->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
         }
@@ -89,8 +92,8 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(updateRequest $request, $id)
@@ -100,9 +103,10 @@ class ShopController extends Controller
             $id = decryptParams($id);
             $inputs = $request->validated();
             $record = $this->shopInterface->update($id, $inputs);
+
             return redirect()->route('seller.shops.index')->withSuccess('Data updated!');
         } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
         }
@@ -117,13 +121,14 @@ class ShopController extends Controller
 
                 $record = $this->shopInterface->destroy($request->checkForDelete);
 
-                if (!$record) {
+                if (! $record) {
                     return redirect()->route('seller.shops.index')->withDanger('Data not found!');
                 }
             }
+
             return redirect()->route('seller.shops.index')->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
         }

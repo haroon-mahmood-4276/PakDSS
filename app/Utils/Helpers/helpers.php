@@ -2,10 +2,10 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\{Collection};
-use Illuminate\Support\Facades\{Crypt, File};
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\{Collection};
 
 // if (!function_exists('permission_list')) {
 //     function permission_list(...$keys)
@@ -21,7 +21,7 @@ use Illuminate\Support\Arr;
 //     }
 // }
 
-if (!function_exists('getLastCategoryBreadcrumb')) {
+if (! function_exists('getLastCategoryBreadcrumb')) {
     function getLastCategoryBreadcrumb($categories, $parentId = null)
     {
         $breadcrumb = [];
@@ -29,7 +29,7 @@ if (!function_exists('getLastCategoryBreadcrumb')) {
         foreach ($categories as $category) {
             if ($category['parent_id'] == $parentId) {
                 $childBreadcrumb = getLastCategoryBreadcrumb($categories, $category['id']);
-                if (!empty($childBreadcrumb)) {
+                if (! empty($childBreadcrumb)) {
                     $breadcrumb = array_merge([$category], $childBreadcrumb);
                 } else {
                     $breadcrumb = [$category];
@@ -41,14 +41,14 @@ if (!function_exists('getLastCategoryBreadcrumb')) {
     }
 }
 
-if (!function_exists('filter_strip_tags')) {
+if (! function_exists('filter_strip_tags')) {
 
     function filter_strip_tags($text, $with_script_content = false): string
     {
         $pattern = [
             '@<[\/\!]*?[^<>]*?>@si',           // Strip out HTML tags
             '@<style[^>]*?>.*?</style>@siU',  // Strip style tags properly
-            '@<![\s\S]*?--[ \t\n\r]*>@'       // Strip multi-line comments
+            '@<![\s\S]*?--[ \t\n\r]*>@',       // Strip multi-line comments
         ];
 
         if ($with_script_content) {
@@ -59,7 +59,7 @@ if (!function_exists('filter_strip_tags')) {
     }
 }
 
-if (!function_exists('filter_script_tags')) {
+if (! function_exists('filter_script_tags')) {
 
     function filter_script_tags($text): string
     {
@@ -71,7 +71,7 @@ if (!function_exists('filter_script_tags')) {
     }
 }
 
-if (!function_exists('encode_html_entities')) {
+if (! function_exists('encode_html_entities')) {
 
     function encode_html_entities($field): string
     {
@@ -79,7 +79,7 @@ if (!function_exists('encode_html_entities')) {
     }
 }
 
-if (!function_exists('decode_html_entities')) {
+if (! function_exists('decode_html_entities')) {
 
     function decode_html_entities($field): string
     {
@@ -87,15 +87,15 @@ if (!function_exists('decode_html_entities')) {
     }
 }
 
-if (!function_exists('numberToWords')) {
+if (! function_exists('numberToWords')) {
 
     function numberToWords($number): string
     {
-        return (new NumberFormatter("en", NumberFormatter::SPELLOUT))->format($number);
+        return (new NumberFormatter('en', NumberFormatter::SPELLOUT))->format($number);
     }
 }
 
-if (!function_exists('englishCounting')) {
+if (! function_exists('englishCounting')) {
 
     function englishCounting($number): string
     {
@@ -114,14 +114,15 @@ if (!function_exists('englishCounting')) {
                 break;
 
             default:
-                $notation = $number . 'th';
+                $notation = $number.'th';
                 break;
         }
+
         return $notation;
     }
 }
 
-if (!function_exists('encryptParams')) {
+if (! function_exists('encryptParams')) {
     function encryptParams($params): array|string
     {
         if (is_array($params)) {
@@ -133,16 +134,18 @@ if (!function_exists('encryptParams')) {
                     $data[$key] = Crypt::encryptString($params);
                 }
             }
+
             return $data;
         }
         if (Str::isUuid($params)) {
             return $params;
         }
+
         return Crypt::encryptString($params);
     }
 }
 
-if (!function_exists('decryptParams')) {
+if (! function_exists('decryptParams')) {
     function decryptParams($params): array|string
     {
         if (is_array($params)) {
@@ -154,53 +157,59 @@ if (!function_exists('decryptParams')) {
                     $data[$key] = Crypt::decryptString($params);
                 }
             }
+
             return $data;
         }
         if (Str::isUuid($params)) {
             return $params;
         }
+
         return Crypt::decryptString($params);
     }
 }
 
-if (!function_exists('getAllModels')) {
+if (! function_exists('getAllModels')) {
     function getAllModels($path = null): array
     {
-        $Modelpath = ($path ?? app_path()) . "/Models";
+        $Modelpath = ($path ?? app_path()).'/Models';
 
         $out = [];
         $results = scandir($Modelpath);
         foreach ($results as $result) {
             //			dd($results);
-            if ($result === '.' or $result === '..') continue;
-            $filename = $Modelpath . '/' . $result;
+            if ($result === '.' or $result === '..') {
+                continue;
+            }
+            $filename = $Modelpath.'/'.$result;
             if (is_dir($filename)) {
                 $out = array_merge($out, getAllModels($filename));
             } else {
                 $out[] = substr($result, 0, -4);
             }
         }
+
         return $out;
     }
 }
 
-if (!function_exists('getTrashedDataCount')) {
+if (! function_exists('getTrashedDataCount')) {
     function getTrashedDataCount(): float|int
     {
         $trashed = [];
         foreach (getAllModels() as $model) {
-            $models = app("App\Models\\" . $model);
+            $models = app("App\Models\\".$model);
             if (in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($models))) {
                 $trashed[] = $models->onlyTrashed()->count();
             } else {
                 $trashed[] = 0;
             }
         }
+
         return array_sum($trashed);
     }
 }
 
-if (!function_exists('prepareLinkedTree')) {
+if (! function_exists('prepareLinkedTree')) {
     function prepareLinkedTree(collection $collectionData, $model, $queryFromDB = false)
     {
 
@@ -210,22 +219,22 @@ if (!function_exists('prepareLinkedTree')) {
         $dbTypes = ($queryFromDB ? $model::all() : $collectionData);
 
         foreach ($collectionData as $key => $row) {
-            $tmpLinkedTree =  ($queryFromDB ? prepareTreeFromElequent($model, $row, $row->name, $collectionData, $dbTypes) : prepareTreeFromCollection($row, $row->name, $collectionData));
+            $tmpLinkedTree = ($queryFromDB ? prepareTreeFromElequent($model, $row, $row->name, $collectionData, $dbTypes) : prepareTreeFromCollection($row, $row->name, $collectionData));
             if (is_null($tmpLinkedTree)) {
                 continue;
             }
             $typesTmp[$key] = $row;
-            $typesTmp[$key]["tree"] = $tmpLinkedTree;
+            $typesTmp[$key]['tree'] = $tmpLinkedTree;
         }
 
         return $typesTmp;
     }
 }
 
-if (!function_exists('prepareTreeFromElequent')) {
+if (! function_exists('prepareTreeFromElequent')) {
     function prepareTreeFromElequent($model, $row, $name, collection $parent, $dbTypes, $index = 1)
     {
-        if ($index == 1 && !is_null($parent->firstWhere('parent_id', $row->id))) {
+        if ($index == 1 && ! is_null($parent->firstWhere('parent_id', $row->id))) {
             return null;
         }
 
@@ -234,16 +243,16 @@ if (!function_exists('prepareTreeFromElequent')) {
         }
 
         $nextRow = $model::find($row->parent_id);
-        $name = $nextRow->name . ' > ' . $name;
+        $name = $nextRow->name.' > '.$name;
 
         return prepareTreeFromElequent($model, $nextRow, $name, $parent, $dbTypes, ++$index);
     }
 }
 
-if (!function_exists('prepareTreeFromCollection')) {
+if (! function_exists('prepareTreeFromCollection')) {
     function prepareTreeFromCollection($row, $name, collection $parent, $index = 1)
     {
-        if ($index == 1 && !is_null($parent->firstWhere('parent_id', $row->id))) {
+        if ($index == 1 && ! is_null($parent->firstWhere('parent_id', $row->id))) {
             return null;
         }
 
@@ -253,7 +262,7 @@ if (!function_exists('prepareTreeFromCollection')) {
 
         $nextRow = $parent->firstWhere('id', $row->parent_id);
 
-        $name = (is_null($nextRow) ?? empty($nextRow) ? '' : $nextRow->name) . ' > ' . $name;
+        $name = (is_null($nextRow) ?? empty($nextRow) ? '' : $nextRow->name).' > '.$name;
         if (is_null($nextRow) ?? empty($nextRow)) {
             return $name;
         }
@@ -262,32 +271,34 @@ if (!function_exists('prepareTreeFromCollection')) {
     }
 }
 
-if (!function_exists('getLinkedTreeData')) {
+if (! function_exists('getLinkedTreeData')) {
     function getLinkedTreeData(Model $model, $id = [])
     {
         $id = $model::whereIn('parent_id', $id)->get()->toArray();
         if (count($id) > 0) {
             return array_merge($id, getLinkedTreeData($model, array_column($id, 'id')));
         }
+
         return $id;
     }
 }
 
-if (!function_exists('base64ToImage')) {
+if (! function_exists('base64ToImage')) {
     function base64ToImage($image): string
     {
         ini_set('memory_limit', '256M');
         $filename = 'TelK7BnW63IAN6zuTTwJkqZeuM0YI5aNc7aFqOyz.jpg';
-        if (!empty($image)) {
-            $dir = $_SERVER['DOCUMENT_ROOT'] . config('app.asset_url') . DIRECTORY_SEPARATOR . 'public_assets/admin/sites_images';
-            $image_parts = explode(";base64,", $image);
-            $image_type_aux = explode("image/", $image_parts[0]);
+        if (! empty($image)) {
+            $dir = $_SERVER['DOCUMENT_ROOT'].config('app.asset_url').DIRECTORY_SEPARATOR.'public_assets/admin/sites_images';
+            $image_parts = explode(';base64,', $image);
+            $image_type_aux = explode('image/', $image_parts[0]);
             $image_type = $image_type_aux[1];
             $image_base64 = base64_decode($image_parts[1]);
-            $filename = uniqid() . '.' . $image_type;
-            $file = $dir . DIRECTORY_SEPARATOR . $filename;
+            $filename = uniqid().'.'.$image_type;
+            $file = $dir.DIRECTORY_SEPARATOR.$filename;
             file_put_contents($file, $image_base64);
         }
+
         return $filename;
     }
 }
@@ -341,130 +352,133 @@ if (!function_exists('base64ToImage')) {
 //     }
 // }
 
-if (!function_exists('deleteImageThumbs')) {
-    function deleteImageThumbs($imgName,  $imageDirectory = 'admin'): string
+if (! function_exists('deleteImageThumbs')) {
+    function deleteImageThumbs($imgName, $imageDirectory = 'admin'): string
     {
-        $publicServerPath = public_path('public_assets/' . $imageDirectory . '/sites_images') . DIRECTORY_SEPARATOR;
-        if (File::exists($publicServerPath . $imgName)) {
-            $imageExplodedName = explode(".", $imgName);
+        $publicServerPath = public_path('public_assets/'.$imageDirectory.'/sites_images').DIRECTORY_SEPARATOR;
+        if (File::exists($publicServerPath.$imgName)) {
+            $imageExplodedName = explode('.', $imgName);
             // dd($imageExplodedName);
             File::delete([
-                $publicServerPath . $imageExplodedName[0] . "." . $imageExplodedName[1],
-                $publicServerPath . $imageExplodedName[0] . "-thumbs1000." . $imageExplodedName[1],
-                $publicServerPath . $imageExplodedName[0] . "-thumbs350." . $imageExplodedName[1],
-                $publicServerPath . $imageExplodedName[0] . "-thumbs200." . $imageExplodedName[1],
+                $publicServerPath.$imageExplodedName[0].'.'.$imageExplodedName[1],
+                $publicServerPath.$imageExplodedName[0].'-thumbs1000.'.$imageExplodedName[1],
+                $publicServerPath.$imageExplodedName[0].'-thumbs350.'.$imageExplodedName[1],
+                $publicServerPath.$imageExplodedName[0].'-thumbs200.'.$imageExplodedName[1],
             ]);
 
             return true;
         }
+
         return false;
     }
 }
 
-if (!function_exists('getImageByName')) {
+if (! function_exists('getImageByName')) {
     function getImageByName($imgName, $imageDirectory = 'admin'): array
     {
-        $img = "";
-        $imgThumb = "";
-        $publicServerPath = public_path('public_assets/' . $imageDirectory . '/sites_images') . DIRECTORY_SEPARATOR;
-        $publicLinkPath = asset('public_assets/' . $imageDirectory . '/sites_images') . DIRECTORY_SEPARATOR;
+        $img = '';
+        $imgThumb = '';
+        $publicServerPath = public_path('public_assets/'.$imageDirectory.'/sites_images').DIRECTORY_SEPARATOR;
+        $publicLinkPath = asset('public_assets/'.$imageDirectory.'/sites_images').DIRECTORY_SEPARATOR;
 
-        $imageExplodedName = explode('.', (!is_null($imgName) && !empty($imgName) ? $imgName : 'TelK7BnW63IAN6zuTTwJkqZeuM0YI5aNc7aFqOyz.jpg'));
+        $imageExplodedName = explode('.', (! is_null($imgName) && ! empty($imgName) ? $imgName : 'TelK7BnW63IAN6zuTTwJkqZeuM0YI5aNc7aFqOyz.jpg'));
 
-        if (File::exists($publicServerPath . ($imageExplodedName[0] . "-thumbs200." . $imageExplodedName[1]))) {
-            $img = $publicLinkPath . $imageExplodedName[0] . "-thumbs1000." . $imageExplodedName[1];
-            $imgThumb = $publicLinkPath . $imageExplodedName[0] . "-thumbs200." . $imageExplodedName[1];
-        } else if (File::exists($publicServerPath . ($imageExplodedName[0] . "." . $imageExplodedName[1]))) {
-            $img = $publicLinkPath . $imageExplodedName[0] . "." . $imageExplodedName[1];
-            $imgThumb = $publicLinkPath . $imageExplodedName[0] . "." . $imageExplodedName[1];
+        if (File::exists($publicServerPath.($imageExplodedName[0].'-thumbs200.'.$imageExplodedName[1]))) {
+            $img = $publicLinkPath.$imageExplodedName[0].'-thumbs1000.'.$imageExplodedName[1];
+            $imgThumb = $publicLinkPath.$imageExplodedName[0].'-thumbs200.'.$imageExplodedName[1];
+        } elseif (File::exists($publicServerPath.($imageExplodedName[0].'.'.$imageExplodedName[1]))) {
+            $img = $publicLinkPath.$imageExplodedName[0].'.'.$imageExplodedName[1];
+            $imgThumb = $publicLinkPath.$imageExplodedName[0].'.'.$imageExplodedName[1];
         } else {
-            $img = $publicLinkPath . "do_not_delete/do_not_delete.png";
-            $imgThumb = $publicLinkPath . "do_not_delete/do_not_delete.png";
+            $img = $publicLinkPath.'do_not_delete/do_not_delete.png';
+            $imgThumb = $publicLinkPath.'do_not_delete/do_not_delete.png';
         }
 
         return [$img, $imgThumb];
     }
 }
 
-if (!function_exists('editDateColumn')) {
+if (! function_exists('editDateColumn')) {
     function editDateColumn($date)
     {
         $date = new Carbon($date);
 
-        return "<span>" . $date->format('H:i:s') . "</span> <br> <span class='text-primary fw-bold'>" . $date->format('Y-m-d') . "</span>";
+        return '<span>'.$date->format('H:i:s')."</span> <br> <span class='text-primary fw-bold'>".$date->format('Y-m-d').'</span>';
     }
 }
 
-if (!function_exists('editImageColumn')) {
+if (! function_exists('editImageColumn')) {
     function editImageColumn($image, $name = '', $width = 100)
     {
-        return "<img style='border: 1px dashed #eee;border-radius: 10px' src='" . $image . "' alt='" . $name . "' width='" . $width . "'>";
+        return "<img style='border: 1px dashed #eee;border-radius: 10px' src='".$image."' alt='".$name."' width='".$width."'>";
     }
 }
 
-if (!function_exists('editStatusColumn')) {
+if (! function_exists('editStatusColumn')) {
     function editStatusColumn($status)
     {
         $badge = '';
         switch ($status) {
             case 'yes':
-                $badge = "<span class='badge bg-success bg-glow me-1'>" . __('lang.commons.yes') . "</span>";
+                $badge = "<span class='badge bg-success bg-glow me-1'>".__('lang.commons.yes').'</span>';
                 break;
 
             case 'no':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.no') . "</span>";
+                $badge = "<span class='badge bg-danger bg-glow me-1'>".__('lang.commons.no').'</span>';
                 break;
 
             case 'active':
-                $badge = "<span class='badge bg-success bg-glow me-1'>" . __('lang.commons.active') . "</span>";
+                $badge = "<span class='badge bg-success bg-glow me-1'>".__('lang.commons.active').'</span>';
                 break;
 
             case 'inactive':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.inactive') . "</span>";
+                $badge = "<span class='badge bg-danger bg-glow me-1'>".__('lang.commons.inactive').'</span>';
                 break;
 
             case 'objected':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.objected') . "</span>";
+                $badge = "<span class='badge bg-danger bg-glow me-1'>".__('lang.commons.objected').'</span>';
                 break;
 
             case 'pending_approval':
-                $badge = "<span class='badge bg-warning bg-glow me-1'>" . __('lang.commons.pending_approval') . "</span>";
+                $badge = "<span class='badge bg-warning bg-glow me-1'>".__('lang.commons.pending_approval').'</span>';
                 break;
 
             default:
-                $badge = "<span class='badge bg-primary bg-glow me-1'>" . $status . "</span>";
+                $badge = "<span class='badge bg-primary bg-glow me-1'>".$status.'</span>';
                 break;
         }
+
         return $badge;
     }
 }
 
-if (!function_exists('editBadgeColumn')) {
+if (! function_exists('editBadgeColumn')) {
     function editBadgeColumn($value)
     {
-        return "<span class='badge bg-primary bg-glow me-1'>" . $value . "</span>";
+        return "<span class='badge bg-primary bg-glow me-1'>".$value.'</span>';
     }
 }
 
-if (!function_exists('getParentByParentId')) {
+if (! function_exists('getParentByParentId')) {
     function getParentByParentId($parent_id, $model)
     {
-        $role =  $model::where('id', $parent_id)->first();
+        $role = $model::where('id', $parent_id)->first();
         if ($role) {
             return $role->name;
         }
+
         return 'parent';
     }
 }
 
-if (!function_exists('getNHeightestNumber')) {
+if (! function_exists('getNHeightestNumber')) {
     function getNHeightestNumber($numberOfDigits = 1)
     {
-        return (int)str_repeat('9', $numberOfDigits);
+        return (int) str_repeat('9', $numberOfDigits);
     }
 }
 
-if (!function_exists('apiErrorResponse')) {
+if (! function_exists('apiErrorResponse')) {
     function apiErrorResponse($message = 'data not found', $key = 'error')
     {
         return response()->json(
@@ -474,14 +488,14 @@ if (!function_exists('apiErrorResponse')) {
                     $key => $message,
                 ],
                 'data' => null,
-                'stauts_code' => '200'
+                'stauts_code' => '200',
             ],
             200
         );
     }
 }
 
-if (!function_exists('apiSuccessResponse')) {
+if (! function_exists('apiSuccessResponse')) {
     function apiSuccessResponse($data = null, $message = 'data found', $key = 'success')
     {
         return response()->json(
@@ -491,14 +505,14 @@ if (!function_exists('apiSuccessResponse')) {
                     $key => $message,
                 ],
                 'data' => $data,
-                'stauts_code' => '200'
+                'stauts_code' => '200',
             ],
             200
         );
     }
 }
 
-if (!function_exists('sqlErrorMessagesByCode')) {
+if (! function_exists('sqlErrorMessagesByCode')) {
     function sqlErrorMessagesByCode($errCode)
     {
         $messages = [
@@ -523,11 +537,12 @@ if (!function_exists('sqlErrorMessagesByCode')) {
             '1033' => 'Out of memory; restart server and try again (needed 98304 bytes)',
             '23505' => 'Data already exists',
         ];
+
         return $messages[$errCode] ?? 'Unknown error';
     }
 }
 
-if (!function_exists('actionLog')) {
+if (! function_exists('actionLog')) {
     function actionLog($logName, $causedByModel, $performedOnModel, $log, $properties = [], $event = '')
     {
         return activity()
@@ -540,12 +555,13 @@ if (!function_exists('actionLog')) {
     }
 }
 
-if (!function_exists('getIconDirection')) {
+if (! function_exists('getIconDirection')) {
     function getIconDirection($direction)
     {
-        if ($direction == 'ltr')
+        if ($direction == 'ltr') {
             return 'right';
-        else
+        } else {
             return 'left';
+        }
     }
 }

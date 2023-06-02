@@ -3,7 +3,6 @@
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
-
 Breadcrumbs::for('admin.dashboard', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('admin.dashboard.index'));
 });
@@ -37,7 +36,7 @@ Breadcrumbs::for('admin.permissions.create', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('admin.permissions.edit', function (BreadcrumbTrail $trail, $permission_id) {
     $trail->parent('admin.permissions.index');
-    $trail->push('Edit Permission',  route('admin.permissions.edit', ['id' => $permission_id]));
+    $trail->push('Edit Permission', route('admin.permissions.edit', ['id' => $permission_id]));
 });
 
 // Categories Breadcrumbs

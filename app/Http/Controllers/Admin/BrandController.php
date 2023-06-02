@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\BrandsDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Brands\{storeRequest, updateRequest};
-use App\Services\Shared\{
-    Brands\BrandInterface,
-    Categories\CategoryInterface
-};
+use App\Http\Requests\Admin\Brands\storeRequest;
+use App\Http\Requests\Admin\Brands\updateRequest;
+use App\Services\Shared\Brands\BrandInterface;
+use App\Services\Shared\Categories\CategoryInterface;
 use Exception;
+use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
     private CategoryInterface $categoryInterface;
+
     private BrandInterface $brandInterface;
 
     public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface)
@@ -67,6 +67,7 @@ class BrandController extends Controller
         // try {
         $inputs = $request->validated();
         $record = $this->brandInterface->store($inputs);
+
         return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
         // } catch (GeneralException $ex) {
         //     return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
@@ -99,7 +100,7 @@ class BrandController extends Controller
         try {
             $brand = $this->brandInterface->find($id, ['categories:id']);
 
-            if ($brand && !empty($brand)) {
+            if ($brand && ! empty($brand)) {
                 $data = [
                     'brand' => $brand,
                     'brand_logo' => $brand->getMedia('brands'),
@@ -111,7 +112,7 @@ class BrandController extends Controller
 
             return redirect()->route('admin.brands.index')->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
@@ -135,7 +136,7 @@ class BrandController extends Controller
 
             return redirect()->route('admin.brands.index')->withSuccess('Data updated!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
@@ -150,13 +151,14 @@ class BrandController extends Controller
 
                 $record = $this->brandInterface->destroy($request->checkForDelete);
 
-                if (!$record) {
+                if (! $record) {
                     return redirect()->route('admin.brands.index')->withDanger('Data not found!');
                 }
             }
+
             return redirect()->route('admin.brands.index')->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }

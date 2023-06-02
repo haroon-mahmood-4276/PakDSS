@@ -4,28 +4,27 @@ namespace App\DataTables\Admin;
 
 use App\Models\Category;
 use App\Utils\Traits\DatatablesTrait;
-use Illuminate\Http\Response;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Str;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class CategoriesDataTable extends DataTable
 {
     use DatatablesTrait;
+
     /**
      * Build DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
-     * @return EloquentDataTable
+     * @param  QueryBuilder  $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $columns = array_column($this->getColumns(), 'data');
+
         return (new EloquentDataTable($query))
             ->editColumn('check', function ($category) {
                 return $category;
@@ -34,7 +33,7 @@ class CategoriesDataTable extends DataTable
                 return Str::of(getParentByParentId($category->parent_id, Category::class))->ucfirst();
             })
             ->editColumn('linked_brands_count', function ($brand) {
-                return $brand->brands_count > 0 ? $brand->brands_count: '-';
+                return $brand->brands_count > 0 ? $brand->brands_count : '-';
             })
             ->editColumn('created_at', function ($category) {
                 return editDateColumn($category->created_at);
@@ -51,9 +50,6 @@ class CategoriesDataTable extends DataTable
 
     /**
      * Get query source of dataTable.
-     *
-     * @param Category $model
-     * @return QueryBuilder
      */
     public function query(Category $model): QueryBuilder
     {
@@ -112,7 +108,7 @@ class CategoriesDataTable extends DataTable
             ->pagingType('full_numbers')
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
-                [30, 50, 70, 100, 120, 150, "All"],
+                [30, 50, 70, 100, 120, 150, 'All'],
             ])
             ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
             ->buttons($buttons)
@@ -130,8 +126,8 @@ class CategoriesDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
-                    ]
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                    ],
                 ],
             ])
             ->fixedColumns([
@@ -145,8 +141,6 @@ class CategoriesDataTable extends DataTable
 
     /**
      * Get columns.
-     *
-     * @return array
      */
     protected function getColumns(): array
     {
@@ -170,11 +164,9 @@ class CategoriesDataTable extends DataTable
 
     /**
      * Get filename for export.
-     *
-     * @return string
      */
     protected function filename(): string
     {
-        return 'Categories_' . date('YmdHis');
+        return 'Categories_'.date('YmdHis');
     }
 }

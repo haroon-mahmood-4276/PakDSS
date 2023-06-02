@@ -16,6 +16,7 @@ class storeRequest extends FormRequest
     {
         $rules = (new Shop())->rules;
         unset($rules['status']);
+
         return $rules;
     }
 }

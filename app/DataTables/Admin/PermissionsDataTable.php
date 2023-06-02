@@ -2,33 +2,36 @@
 
 namespace App\DataTables\Admin;
 
-use App\Models\{Role, Permission};
+use App\Models\Permission;
+use App\Models\Role;
 use App\Utils\Traits\DatatablesTrait;
-use Yajra\DataTables\Html\{Button, Column};
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Services\DataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Yajra\DataTables\Html\Button;
+use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Services\DataTable;
 
 class PermissionsDataTable extends DataTable
 {
     use DatatablesTrait;
+
     /**
      * Build DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query Results from query() method.
      * @return \Yajra\DataTables\EloquentDataTable
      */
     public function dataTable(QueryBuilder $query)
     {
         $columns = array_column($this->getColumns(), 'data');
+
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->editColumn('roles', function ($permission) {
                 return [
                     'permission_id' => $permission->id,
-                    'roles' => $permission->roles->pluck('id')->toArray()
+                    'roles' => $permission->roles->pluck('id')->toArray(),
                 ];
             })
             ->editColumn('created_at', function ($permission) {
@@ -44,8 +47,7 @@ class PermissionsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \Spatie\Permission\Models\Permission $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param  \Spatie\Permission\Models\Permission  $model
      */
     public function query(Permission $model): QueryBuilder
     {
@@ -109,7 +111,7 @@ class PermissionsDataTable extends DataTable
             ->pagingType('full_numbers')
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
-                [30, 50, 70, 100, 120, 150, "All"],
+                [30, 50, 70, 100, 120, 150, 'All'],
             ])
             ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
             ->buttons($buttons)
@@ -122,8 +124,6 @@ class PermissionsDataTable extends DataTable
 
     /**
      * Get columns.
-     *
-     * @return array
      */
     protected function getColumns(): array
     {
@@ -147,15 +147,15 @@ class PermissionsDataTable extends DataTable
                 ->addClass('text-center')
                 ->render('function () {
                     var roles = data.roles;
-                    var isPermissionAssigned = roles.includes("' . $role['id'] . '");
+                    var isPermissionAssigned = roles.includes("'.$role['id'].'");
                     var checkbox = "<div class=\'form-check d-flex justify-content-center\'>";
 
                     if(isPermissionAssigned) {
-                        checkbox += "<input class=\'form-check-input\' type=\'checkbox\' onchange=\'changeRolePermission(\"' . $role['id'] . '\", \"" + data.permission_id + "\")\'  id=\'chkRolePermission_' . $role['id']  . '__' . '" + data.permission_id + "\' checked />";
+                        checkbox += "<input class=\'form-check-input\' type=\'checkbox\' onchange=\'changeRolePermission(\"'.$role['id'].'\", \"" + data.permission_id + "\")\'  id=\'chkRolePermission_'.$role['id'].'__'.'" + data.permission_id + "\' checked />";
                     } else {
-                        checkbox += "<input class=\'form-check-input\' type=\'checkbox\' onchange=\'changeRolePermission(\"' . $role['id'] . '\", \"" + data.permission_id + "\")\'  id=\'chkRolePermission_' . $role['id']  . '__' . '" + data.permission_id + "\' />";
+                        checkbox += "<input class=\'form-check-input\' type=\'checkbox\' onchange=\'changeRolePermission(\"'.$role['id'].'\", \"" + data.permission_id + "\")\'  id=\'chkRolePermission_'.$role['id'].'__'.'" + data.permission_id + "\' />";
                     }
-                    checkbox += "<label class=\'form-check-label\' for=\'chkRolePermission_' . $role['id']  . '__' . '" + data.permission_id + "\'></label></div>";
+                    checkbox += "<label class=\'form-check-label\' for=\'chkRolePermission_'.$role['id'].'__'.'" + data.permission_id + "\'></label></div>";
                     return checkbox;
                 }');
         }
@@ -166,11 +166,9 @@ class PermissionsDataTable extends DataTable
 
     /**
      * Get filename for export.
-     *
-     * @return string
      */
     protected function filename(): string
     {
-        return 'Permissions_' . date('YmdHis');
+        return 'Permissions_'.date('YmdHis');
     }
 }

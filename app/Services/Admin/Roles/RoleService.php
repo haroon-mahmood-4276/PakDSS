@@ -25,6 +25,7 @@ class RoleService implements RoleInterface
             ];
 
             $role = $this->model()->create($data);
+
             return $role;
         });
 
@@ -41,6 +42,7 @@ class RoleService implements RoleInterface
             ];
 
             $role = $this->model()->find($id)->update($data);
+
             return $role;
         });
 

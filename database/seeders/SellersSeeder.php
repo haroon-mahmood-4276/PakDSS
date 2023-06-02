@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Seller;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class SellersSeeder extends Seeder
 {

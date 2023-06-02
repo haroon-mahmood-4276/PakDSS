@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\SellersDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Sellers\{storeRequest, updateRequest};
+use App\Http\Requests\Admin\Sellers\storeRequest;
+use App\Http\Requests\Admin\Sellers\updateRequest;
 use App\Services\Admin\Sellers\SellerInterface;
 use App\Utils\Enums\Status;
 use Exception;
+use Illuminate\Http\Request;
 
 class SellerController extends Controller
 {
@@ -19,6 +20,7 @@ class SellerController extends Controller
     {
         $this->sellerInterface = $sellerInterface;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -62,9 +64,10 @@ class SellerController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->sellerInterface->store($inputs);
+
             return redirect()->route('admin.sellers.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
         }
@@ -94,7 +97,7 @@ class SellerController extends Controller
         try {
             $seller = $this->sellerInterface->find($id);
 
-            if ($seller && !empty($seller)) {
+            if ($seller && ! empty($seller)) {
                 $data = [
                     'seller' => $seller,
                     'statuses' => Status::array(),
@@ -105,7 +108,7 @@ class SellerController extends Controller
 
             return redirect()->route('admin.sellers.index')->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
         }
@@ -129,7 +132,7 @@ class SellerController extends Controller
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data updated!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
         }
@@ -144,13 +147,14 @@ class SellerController extends Controller
 
                 $record = $this->sellerInterface->destroy($request->checkForDelete);
 
-                if (!$record) {
+                if (! $record) {
                     return redirect()->route('admin.sellers.index')->withDanger('Data not found!');
                 }
             }
+
             return redirect()->route('admin.sellers.index')->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
         }

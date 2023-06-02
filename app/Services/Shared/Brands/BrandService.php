@@ -60,6 +60,7 @@ class BrandService implements BrandInterface
                 $attachment = $inputs['brand_image'];
                 $brand->addMedia($attachment)->toMediaCollection('brands');
             }
+
             return $brand;
         });
 

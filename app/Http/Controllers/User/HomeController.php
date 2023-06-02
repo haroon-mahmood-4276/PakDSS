@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Services\Shared\{
-    Brands\BrandInterface,
-    Categories\CategoryInterface,
-    Tags\TagInterface,
-};
+use App\Services\Shared\Brands\BrandInterface;
+use App\Services\Shared\Categories\CategoryInterface;
+use App\Services\Shared\Tags\TagInterface;
 use App\Services\User\Products\ProductInterface;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     private BrandInterface $brandInterface;
+
     private CategoryInterface $categoryInterface;
+
     private ProductInterface $productInterface;
+
     private TagInterface $tagInterface;
 
     public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface, ProductInterface $productInterface, TagInterface $tagInterface)

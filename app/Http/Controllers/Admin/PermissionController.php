@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\PermissionsDataTable;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Permissions\storeRequest;
+use App\Http\Requests\Admin\Permissions\updateRequest;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Services\Admin\Permissions\PermissionInterface;
-use App\Http\Requests\Admin\Permissions\{storeRequest, updateRequest};
-use App\Models\{Permission, Role};
 use Exception;
+use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
@@ -52,9 +54,10 @@ class PermissionController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->permissionInterface->store($inputs);
+
             return redirect()->route('admin.permissions.index')->withSuccess(__('lang.commons.data_saved'));
         } catch (Exception $ex) {
-            return redirect()->route('admin.permissions.index')->withDanger(__('lang.commons.something_went_wrong') . ' ' . $ex->getMessage());
+            return redirect()->route('admin.permissions.index')->withDanger(__('lang.commons.something_went_wrong').' '.$ex->getMessage());
         }
     }
 
@@ -80,13 +83,13 @@ class PermissionController extends Controller
         try {
             $permission = (new Permission())->find(decryptParams($id));
 
-            if ($permission && !empty($permission)) {
+            if ($permission && ! empty($permission)) {
                 return view('permissions.edit', ['permission' => $permission]);
             }
 
             return redirect()->route('admin.permissions.index')->withWarning(__('lang.commons.data_not_found'));
         } catch (Exception $ex) {
-            return redirect()->route('admin.permissions.index')->withDanger(__('lang.commons.something_went_wrong') . ' ' . $ex->getMessage());
+            return redirect()->route('admin.permissions.index')->withDanger(__('lang.commons.something_went_wrong').' '.$ex->getMessage());
         }
     }
 
@@ -104,9 +107,10 @@ class PermissionController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->permissionInterface->update($inputs, $id);
+
             return redirect()->route('admin.permissions.index')->withSuccess(__('lang.commons.data_updated'));
         } catch (Exception $ex) {
-            return redirect()->route('admin.permissions.index')->withDanger(__('lang.commons.something_went_wrong') . ' ' . $ex->getMessage());
+            return redirect()->route('admin.permissions.index')->withDanger(__('lang.commons.something_went_wrong').' '.$ex->getMessage());
         }
     }
 
@@ -122,7 +126,7 @@ class PermissionController extends Controller
                 return redirect()->route('admin.permissions.index')->withWarning(__('lang.commons.please_select_at_least_one_item'));
             }
         } catch (Exception $ex) {
-            return redirect()->route('admin.permissions.index')->withDanger(__('lang.commons.something_went_wrong') . ' ' . $ex->getMessage());
+            return redirect()->route('admin.permissions.index')->withDanger(__('lang.commons.something_went_wrong').' '.$ex->getMessage());
         }
     }
 
@@ -133,10 +137,10 @@ class PermissionController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => "Permission Assigned Sucessfully",
+                'message' => 'Permission Assigned Sucessfully',
             ], 200);
         } catch (Exception $ex) {
-            return response()->json(__('lang.commons.something_went_wrong') . ' ' . $ex->getMessage());
+            return response()->json(__('lang.commons.something_went_wrong').' '.$ex->getMessage());
         }
     }
 
@@ -147,10 +151,10 @@ class PermissionController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => "Permission Revoked Sucessfully",
+                'message' => 'Permission Revoked Sucessfully',
             ], 200);
         } catch (Exception $ex) {
-            return response()->json(__('lang.commons.something_went_wrong') . ' ' . $ex->getMessage());
+            return response()->json(__('lang.commons.something_went_wrong').' '.$ex->getMessage());
         }
     }
 

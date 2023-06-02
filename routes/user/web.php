@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\User\{AuthController, HomeController};
+use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,6 @@ Route::group(['as' => 'user.'], function () {
         Route::get('login', [AuthController::class, 'loginView'])->name('login.view');
         Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
     });
-
 
     Route::group(['middleware' => 'auth:web'], function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');

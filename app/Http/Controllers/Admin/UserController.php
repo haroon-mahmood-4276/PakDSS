@@ -4,25 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\UsersDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Users\{storeRequest, updateRequest};
-use App\Models\Role;
-use App\Services\Admin\{
-    Roles\RoleInterface,
-    Users\UserInterface,
-};
+use App\Http\Requests\Admin\Users\storeRequest;
+use App\Http\Requests\Admin\Users\updateRequest;
+use App\Services\Admin\Roles\RoleInterface;
+use App\Services\Admin\Users\UserInterface;
 use Exception;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    private $userInterface, $roleInterface;
+    private $userInterface;
+
+    private $roleInterface;
 
     public function __construct(UserInterface $userInterface, RoleInterface $roleInterface)
     {
         $this->userInterface = $userInterface;
         $this->roleInterface = $roleInterface;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -49,6 +50,7 @@ class UserController extends Controller
         $data = [
             'roles' => $this->roleInterface->get(),
         ];
+
         return view('admin.users.create', $data);
     }
 
@@ -65,9 +67,10 @@ class UserController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->userInterface->store($inputs);
+
             return redirect()->route('admin.users.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.users.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.users.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.users.index')->withDanger('Something went wrong!');
         }
@@ -97,7 +100,7 @@ class UserController extends Controller
         try {
             $user = $this->userInterface->find(decryptParams($id));
 
-            if ($user && !empty($user)) {
+            if ($user && ! empty($user)) {
                 $data = [
                     'user' => $user,
                     'roles' => $this->roleInterface->get(),
@@ -108,7 +111,7 @@ class UserController extends Controller
 
             return redirect()->route('admin.users.index')->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.users.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.users.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.users.index')->withDanger('Something went wrong!');
         }
@@ -129,9 +132,10 @@ class UserController extends Controller
             $id = decryptParams($id);
             $inputs = $request->validated();
             $record = $this->userInterface->update($id, $inputs);
+
             return redirect()->route('admin.users.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.users.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.users.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.users.index')->withDanger('Something went wrong!');
         }
@@ -146,13 +150,14 @@ class UserController extends Controller
 
                 $record = $this->userInterface->destroy($request->checkForDelete);
 
-                if (!$record) {
+                if (! $record) {
                     return redirect()->route('admin.users.index')->withDanger('Data not found!');
                 }
             }
+
             return redirect()->route('admin.users.index')->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.users.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.users.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.users.index')->withDanger('Something went wrong!');
         }
