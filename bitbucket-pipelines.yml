@@ -1,19 +1,19 @@
-image: atlassian/default-image:2
+# image: atlassian/default-image:2
 
-pipelines:
-  branches:
-    main:
-      - step:
-          name: Build and Test
-          script:
-            - echo "Running build and test commands"
-      - step:
-          name: Deploy to Ubuntu Server
-          deployment: production
-          trigger: manual
-          script:
-            - pipe: atlassian/ssh-run:0.4.2
-              variables:
-                SSH_USER: 'iyesoft'
-                SERVER: '$SERVER_IP_ADDRESS'
-                COMMAND: 'bash ~/deploy.sh'
+# pipelines:
+#   branches:
+#     main:
+#       - step:
+#           name: Build and Test
+#           script:
+#             - echo "Running build and test commands"
+#       - step:
+#           name: Deploy to Ubuntu Server
+#           deployment: production
+#           trigger: manual
+#           script:
+#             - pipe: atlassian/ssh-run:0.4.2
+#               variables:
+#                 SSH_USER: 'iyesoft'
+#                 SERVER: '$SERVER_IP_ADDRESS'
+#                 COMMAND: 'bash ~/deploy.sh'
