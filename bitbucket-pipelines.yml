@@ -6,6 +6,7 @@ pipelines:
       - step:
           name: Deploy to Ubuntu Server
           deployment: production
+          trigger: manual
           script:
             - pipe: atlassian/ssh-run:0.4.2
               variables:
