@@ -4,6 +4,10 @@ pipelines:
   branches:
     main:
       - step:
+          name: Build and Test
+          script:
+            - echo "Running build and test commands"
+      - step:
           name: Deploy to Ubuntu Server
           deployment: production
           trigger: manual
