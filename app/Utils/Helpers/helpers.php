@@ -163,6 +163,13 @@ if (!function_exists('decryptParams')) {
     }
 }
 
+if (!function_exists('getModel')) {
+    function getModel($model = null): Model
+    {
+        return app("App\Models\\" . Str::of($model)->lower()->singular()->ucfirst());
+    }
+}
+
 if (!function_exists('getAllModels')) {
     function getAllModels($path = null): array
     {
