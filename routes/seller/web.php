@@ -80,11 +80,14 @@ Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
             });
 
             //Requests Routes
-            Route::group(['prefix' => 'requests', 'as' => 'requests.'], function () {
-                Route::group(['prefix' => '/{request}'], function () {
-                    Route::get('/', [RequestController::class, 'index'])->name('index');
-                    Route::put('store', [RequestController::class, 'store'])->name('store');
+            Route::group(['prefix' => 'requests/{request}', 'as' => 'requests.'], function () {
+                Route::get('/', [RequestController::class, 'index'])->name('index');
+
+                Route::group([], function () {
+                    Route::get('create', [RequestController::class, 'create'])->name('create');
+                    Route::post('store', [RequestController::class, 'store'])->name('store');
                 });
+
             });
         });
     });

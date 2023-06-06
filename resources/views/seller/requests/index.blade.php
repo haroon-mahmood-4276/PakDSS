@@ -1,10 +1,10 @@
 @extends('seller.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'seller.requests.index', $request_for) }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'seller.requests.index', $requestFor) }}
 @endsection
 
-@section('page-title', Str::of($request_for)->ucfirst())
+@section('page-title', Str::of($requestFor)->ucfirst())
 
 @section('page-css')
     {{ view('seller.layout.datatables.css') }}
@@ -15,8 +15,8 @@
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">{{ Str::of($request_for)->ucfirst() }}</h2>
-        {{ Breadcrumbs::render('seller.requests.index', $request_for) }}
+        <h2 class="content-header-title float-start mb-0 mx-3">{{ Str::of($requestFor)->ucfirst() }}</h2>
+        {{ Breadcrumbs::render('seller.requests.index', $requestFor) }}
     </div>
 @endsection
 
@@ -40,4 +40,9 @@
 
 @section('custom-js')
     {{ $dataTable->scripts() }}
+    <script>
+        function addNew() {
+            location.href = "{{ route('seller.requests.create', ['request' => $requestFor]) }}";
+        }
+    </script>
 @endsection

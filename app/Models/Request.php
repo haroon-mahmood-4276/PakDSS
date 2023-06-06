@@ -24,11 +24,10 @@ class Request extends Model
 
     protected $casts = [
         'properties' => 'array',
-        'status' => 'boolean',
     ];
 
     public $rules = [
-        'name' => 'required|string|between:1,254|unique:tags',
+        'name' => 'required|string|between:1,254',
     ];
 
     public function getActivitylogOptions(): LogOptions

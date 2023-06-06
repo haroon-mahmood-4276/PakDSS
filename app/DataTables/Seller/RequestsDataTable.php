@@ -26,17 +26,20 @@ class RequestsDataTable extends DataTable
     {
         $columns = array_column($this->getColumns(), 'data');
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($shop) {
-                return $shop;
+            ->editColumn('check', function ($requestForRow) {
+                return $requestForRow;
             })
-            ->editColumn('status', function ($shop) {
-                return editStatusColumn($shop->status);
+            ->editColumn('status', function ($requestForRow) {
+                return editStatusColumn($requestForRow->status);
             })
-            ->editColumn('updated_at', function ($shop) {
-                return editDateColumn($shop->updated_at);
+            ->editColumn('created_at', function ($requestForRow) {
+                return editDateColumn($requestForRow->created_at);
             })
-            // ->editColumn('actions', function ($shop) {
-            //     return view('seller.shops.actions', ['id' => $shop->id]);
+            ->editColumn('updated_at', function ($requestForRow) {
+                return editDateColumn($requestForRow->updated_at);
+            })
+            // ->editColumn('actions', function ($requestForRow) {
+            //     return view('seller.shops.actions', ['id' => $requestForRow->id]);
             // })
             ->setRowId('id')
             ->rawColumns($columns);
@@ -50,7 +53,7 @@ class RequestsDataTable extends DataTable
      */
     public function query(RequestForModel $model): QueryBuilder
     {
-        return $model->newQuery()->where('modelable', $this->model);
+        return $model->newQuery()->where('modelable', $this->modelable);
     }
 
     public function html(): HtmlBuilder
@@ -58,7 +61,7 @@ class RequestsDataTable extends DataTable
         $buttons = [
             Button::raw('add-new')
                 ->addClass('btn btn-primary')
-                ->text('<i class="icon material-icons md-add text-white "></i>Add New')
+                ->text('<i class="icon material-icons md-add text-white "></i> Add New')
                 ->attr([
                     'onclick' => 'addNew()',
                 ]),
@@ -136,6 +139,7 @@ class RequestsDataTable extends DataTable
             Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
             Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('status')->width(100)->addClass('text-nowrap align-middle text-center'),
+            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             // Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];

@@ -48,15 +48,15 @@ Breadcrumbs::for('seller.products.edit', function (BreadcrumbTrail $trail) {
     $trail->push('Edit Product');
 });
 
-Breadcrumbs::for('seller.requests.index', function (BreadcrumbTrail $trail, $request) {
+Breadcrumbs::for('seller.requests.index', function (BreadcrumbTrail $trail, $requestFor) {
     $trail->parent('seller.dashboard');
-    $trail->push('Requests', route('seller.requests.index', ['request' => $request]));
-    $trail->push(Str::of($request)->ucfirst(), route('seller.requests.index', ['request' => $request]));
+    $trail->push('Requests', route('seller.requests.index', ['request' => $requestFor]));
+    $trail->push(Str::of($requestFor)->ucfirst(), route('seller.requests.index', ['request' => $requestFor]));
 });
 
-Breadcrumbs::for('seller.requests.create', function (BreadcrumbTrail $trail) {
-    $trail->parent('seller.requests.index');
-    $trail->push('Create Request');
+Breadcrumbs::for('seller.requests.create', function (BreadcrumbTrail $trail, $requestFor) {
+    $trail->parent('seller.requests.index', $requestFor);
+    $trail->push('Create');
 });
 
 Breadcrumbs::for('seller.requests.edit', function (BreadcrumbTrail $trail) {

@@ -16,8 +16,9 @@ return new class extends Migration
 
             $table->string('modelable')->nullable();
             $table->string('name', 150)->nullable();
+            $table->string('slug', 150)->nullable();
             $table->json('properties')->nullable();
-            $table->boolean('status')->default(false);
+            $table->string('status')->nullable();
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();
