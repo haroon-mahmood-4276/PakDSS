@@ -61,17 +61,19 @@
                         href="{{ route('seller.products.create') }}">Add New</a>
                 </div>
             </li>
-        </ul>
-        {{-- <hr>
-        <ul class="menu-aside">
-            <li class="menu-item has-submenu"><a class="menu-link" href="#"><i
-                        class="icon material-icons md-settings"></i><span class="text">Settings</span></a>
-                <div class="submenu"><a href="page-settings-1.html">Setting sample 1</a><a
-                        href="page-settings-2.html">Setting sample 2</a></div>
+
+            <li
+                class="menu-item has-submenu {{ in_array(request()->route()->getName(),['seller.requests.index'])? 'active': null }}">
+                <a class="menu-link" href="javascript:void(0)">
+                    <i class="icon material-icons md-storefront"></i>
+                    <span class="text">Request For</span>
+                </a>
+                <div class="submenu"
+                    style="display: {{ in_array(request()->route()->getName(),['seller.requests.index'])? 'block': 'none' }}">
+                    <a class="{{ request()->routeIs('seller.requests.index') ? 'active' : null }}"
+                        href="{{ route('seller.requests.index', ['request' => 'brands']) }}">Brand</a>
+                </div>
             </li>
-            <li class="menu-item"><a class="menu-link" href="page-blank.html"><i
-                        class="icon material-icons md-local_offer"></i><span class="text"> Starter
-                        page</span></a></li>
-        </ul> --}}
+        </ul>
     </nav>
 </aside>
