@@ -11,7 +11,7 @@
                                 class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                             name="name" placeholder="Name" maxlength="50"
-                            value="{{ isset($requestFor) ? $requestFor->name : old('name') }}" minlength="1" />
+                            value="{{ isset($requestForData) ? $requestForData->name : old('name') }}" minlength="1" />
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -23,7 +23,7 @@
                         <label class="form-label" style="font-size: 15px" for="slug">Slug</label>
                         <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
                             placeholder="Slug" name="slug" maxlength="50"
-                            value="{{ isset($category) ? $category->slug : old('slug') }}" minlength="3" readonly />
+                            value="{{ isset($requestForData) ? $requestForData->slug : old('slug') }}" minlength="3" readonly />
 
                         @error('slug')
                             <div class="invalid-feedback">{{ $message }}</div>

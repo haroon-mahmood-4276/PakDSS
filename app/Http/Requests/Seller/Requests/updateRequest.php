@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Seller\Requests;
 
+use App\Models\Request;
 use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
@@ -32,19 +33,11 @@ class updateRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = (new Shop())->rules;
+        $rules = (new Request())->rules;
         $id = decryptParams($this->id);
 
         $rules['slug'] .= ',' . $id;
-        $rules['email'] .= ',' . $id;
 
-        $rules['phone_1'] .= ',' . $id;
-        $rules['phone_2'] .= ',' . $id;
-
-        $rules['manager_mobile'] .= ',' . $id;
-        $rules['manager_email'] .= ',' . $id;
-
-        unset($rules['status']);
         return $rules;
     }
 }

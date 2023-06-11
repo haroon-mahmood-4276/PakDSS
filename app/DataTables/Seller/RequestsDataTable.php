@@ -4,14 +4,12 @@ namespace App\DataTables\Seller;
 
 use App\Models\Request as RequestForModel;
 use App\Utils\Traits\DatatablesTrait;
-use Illuminate\Http\Response;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class RequestsDataTable extends DataTable
 {
@@ -30,9 +28,8 @@ class RequestsDataTable extends DataTable
                 return $requestForRow;
             })
             ->editColumn('image', function ($requestForRow) {
-                $image = $requestForRow->getFirstMediaUrl('requests-' . $this->requestFor) ?? asset('admin-assets/img/no-image.png');
-
-                return editImageColumn(image: $image, name: $requestForRow->name, width: 50);
+                $imagePath = $requestForRow->getFirstMediaUrl('requests-' . $this->requestFor);
+                return editImageColumn(image: strlen($imagePath) > 0 ? $imagePath : asset('admin-assets/img/no-image.png'), name: $requestForRow->name, width: 50);
             })
             ->editColumn('status', function ($requestForRow) {
                 return editStatusColumn($requestForRow->status);
@@ -40,9 +37,9 @@ class RequestsDataTable extends DataTable
             ->editColumn('updated_at', function ($requestForRow) {
                 return editDateColumn($requestForRow->updated_at);
             })
-            // ->editColumn('actions', function ($requestForRow) {
-            //     return view('seller.shops.actions', ['id' => $requestForRow->id]);
-            // })
+            ->editColumn('actions', function ($requestForRow) {
+                return view('seller.requests.actions', ['id' => $requestForRow->id, 'requestFor' => $this->requestFor]);
+            })
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -78,7 +75,7 @@ class RequestsDataTable extends DataTable
                     Button::make('pdf')->addClass('dropdown-item')->text('<i class="icon material-icons md-picture_as_pdf"></i>PDF'),
                 ]),
             Button::make('reset')->addClass('btn btn-danger'),
-            Button::make('reload')->addClass('btn btn-primary'),
+            Button::make('reload')->attr(['id' => 'table-reload-button'])->addClass('btn btn-primary'),
             Button::raw('delete-selected')
                 ->addClass('btn btn-danger')
                 ->text('<i class="icon material-icons md-delete"></i><span id="delete_selected_count" style="display:none">0</span> Delete Selected')
@@ -126,7 +123,7 @@ class RequestsDataTable extends DataTable
                 'right' => 1,
             ])
             ->orders([
-                [2, 'asc'],
+                [4, 'desc'],
             ]);
     }
 
@@ -143,6 +140,7 @@ class RequestsDataTable extends DataTable
             Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('status')->width(100)->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
     }
 

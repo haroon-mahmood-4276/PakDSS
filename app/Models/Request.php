@@ -19,6 +19,7 @@ class Request extends Model implements HasMedia
     protected $fillable = [
         'modelable',
         'name',
+        'slug',
         'properties',
         'status',
     ];
@@ -29,7 +30,7 @@ class Request extends Model implements HasMedia
 
     public $rules = [
         'name' => 'required|string|between:1,254',
-        'slug' => 'required|string|between:1,254|unique:requests,slug|unique:categories,slug|unique:brands,slug',
+        'slug' => 'required|string|between:1,254|unique:categories,slug|unique:brands,slug|unique:requests,slug',
         'image' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
     ];
 

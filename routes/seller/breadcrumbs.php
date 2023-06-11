@@ -59,7 +59,7 @@ Breadcrumbs::for('seller.requests.create', function (BreadcrumbTrail $trail, $re
     $trail->push('Create');
 });
 
-Breadcrumbs::for('seller.requests.edit', function (BreadcrumbTrail $trail) {
-    $trail->parent('seller.requests.index');
-    $trail->push('Edit Request');
+Breadcrumbs::for('seller.requests.edit', function (BreadcrumbTrail $trail, $requestFor) {
+    $trail->parent('seller.requests.index', $requestFor);
+    $trail->push('Edit');
 });

@@ -10,9 +10,20 @@ use Throwable;
 
 class RequestService implements RequestInterface
 {
-    private function model(): Request
+    private function model()
     {
         return new Request();
+    }
+
+    public function find($requestFor, $id, $relationships = [])
+    {
+        $model = $this->model()->where('modelable', getModel($requestFor)::class);
+
+        if (count($relationships) > 0) {
+            $model = $model->with($relationships);
+        }
+
+        return $model->find($id);
     }
 
     /**
@@ -32,46 +43,44 @@ class RequestService implements RequestInterface
             $requestForModel = $this->model()->create($data);
 
             if (isset($inputs['image'])) {
-                $requestForModel->addMedia( $inputs['image'])->toMediaCollection('requests-' . $requestFor);
+                $requestForModel->addMedia($inputs['image'])->toMediaCollection('requests-' . $requestFor);
             }
 
             return $requestForModel;
         });
     }
 
-    public function update($id, $inputs)
+    public function update($requestFor, $id, $inputs)
     {
-        $returnData = DB::transaction(function () use ($id, $inputs) {
+        $returnData = DB::transaction(function () use ($requestFor, $id, $inputs) {
 
             $requestForModel = $this->model()->find($id);
 
             $data = [
                 'name' => $inputs['name'],
                 'slug' => Str::slug($inputs['name']),
+                'status' => Status::PENDING_APPROVAL
             ];
 
             $requestForModel->update($data);
 
-            $requestForModel->categories()->sync($inputs['categories'] ?? []);
-
-            $requestForModel->clearMediaCollection('brands');
-
-            if (isset($inputs['brand_image'])) {
-                $attachment = $inputs['brand_image'];
-                $requestForModel->addMedia($attachment)->toMediaCollection('brands');
+            $requestForModel->clearMediaCollection('requests-' . $requestFor);
+            if (isset($inputs['image'])) {
+                $requestForModel->addMedia($inputs['image'])->toMediaCollection('requests-' . $requestFor);
             }
+
             return $requestForModel;
         });
 
         return $returnData;
     }
 
-    public function destroy($inputs)
+    public function destroy($requestFor, $inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
+        $returnData = DB::transaction(function () use ($requestFor, $inputs) {
 
-            $requestForModel = $this->model()->whereIn('id', $inputs)->get()->each(function ($requestForModel) {
-                $requestForModel->clearMediaCollection('brands');
+            $requestForModel = $this->model()->whereIn('id', $inputs)->get()->each(function ($requestForModel) use ($requestFor) {
+                $requestForModel->clearMediaCollection('requests-' . $requestFor);
                 $requestForModel->delete();
             });
 
