@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\TagsDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Tags\{storeRequest, updateRequest};
+use App\Http\Requests\Admin\Tags\storeRequest;
+use App\Http\Requests\Admin\Tags\updateRequest;
 use App\Services\Shared\Tags\TagInterface;
 use Exception;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -18,6 +19,7 @@ class TagController extends Controller
     {
         $this->tagInterface = $tagInterface;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -57,9 +59,10 @@ class TagController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->tagInterface->store($inputs);
+
             return redirect()->route('admin.tags.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
         }
@@ -89,7 +92,7 @@ class TagController extends Controller
         try {
             $tag = $this->tagInterface->find($id);
 
-            if ($tag && !empty($tag)) {
+            if ($tag && ! empty($tag)) {
                 $data = [
                     'tag' => $tag,
                 ];
@@ -99,7 +102,7 @@ class TagController extends Controller
 
             return redirect()->route('admin.tags.index')->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
         }
@@ -125,7 +128,7 @@ class TagController extends Controller
 
             return redirect()->route('admin.tags.index')->withSuccess('Data updated!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
         }
@@ -140,13 +143,14 @@ class TagController extends Controller
 
                 $record = $this->tagInterface->destroy($request->checkForDelete);
 
-                if (!$record) {
+                if (! $record) {
                     return redirect()->route('admin.tags.index')->withDanger('Data not found!');
                 }
             }
+
             return redirect()->route('admin.tags.index')->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
         }

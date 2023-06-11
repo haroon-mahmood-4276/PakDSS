@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\RolesDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Roles\{storeRequest, updateRequest};
+use App\Http\Requests\Admin\Roles\storeRequest;
+use App\Http\Requests\Admin\Roles\updateRequest;
 use App\Models\Role;
 use App\Services\Admin\Roles\RoleInterface;
 use Exception;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
@@ -19,6 +20,7 @@ class RoleController extends Controller
     {
         $this->roleInterface = $roleInterface;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +33,7 @@ class RoleController extends Controller
         }
 
         $roles = (new Role())->inRandomOrder()->limit(5)->get();
+
         return $dataTable->render('admin.roles.index', ['roles' => $roles]);
     }
 
@@ -46,6 +49,7 @@ class RoleController extends Controller
         $data = [
             'roles' => $this->roleInterface->get(with_tree: true),
         ];
+
         return view('admin.roles.create', $data);
     }
 
@@ -62,9 +66,10 @@ class RoleController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->roleInterface->store($inputs);
+
             return redirect()->route('admin.roles.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
@@ -94,7 +99,7 @@ class RoleController extends Controller
         try {
             $role = (new Role())->find(decryptParams($id));
 
-            if ($role && !empty($role)) {
+            if ($role && ! empty($role)) {
                 $data = [
                     'role' => $role,
                     'roles' => $this->roleInterface->get(with_tree: true),
@@ -105,7 +110,7 @@ class RoleController extends Controller
 
             return redirect()->route('admin.roles.index')->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
@@ -131,7 +136,7 @@ class RoleController extends Controller
 
             return redirect()->route('admin.roles.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
@@ -146,13 +151,14 @@ class RoleController extends Controller
 
                 $record = $this->roleInterface->destroy($request->checkForDelete);
 
-                if (!$record) {
+                if (! $record) {
                     return redirect()->route('admin.roles.index')->withDanger('Data not found!');
                 }
             }
+
             return redirect()->route('admin.roles.index')->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }

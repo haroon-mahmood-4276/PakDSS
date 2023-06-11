@@ -25,8 +25,9 @@ class updateRequest extends FormRequest
     public function rules()
     {
         $rules = (new Admin())->rules;
-        $rules['email'] .= ',' . $this->id;
+        $rules['email'] .= ','.$this->id;
         $rules['password'][0] = 'nullable';
+
         return $rules;
     }
 }

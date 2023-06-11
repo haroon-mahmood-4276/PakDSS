@@ -20,10 +20,11 @@ class TagService implements TagInterface
     {
         $returnData = DB::transaction(function () use ($inputs) {
             $data = [
-                'name' => Str::slug($inputs['name']) ,
+                'name' => Str::slug($inputs['name']),
             ];
 
             $tag = $this->model()->create($data);
+
             return $tag;
         });
 
@@ -38,6 +39,7 @@ class TagService implements TagInterface
             ];
 
             $tag = $this->model()->find($id)->update($data);
+
             return $tag;
         });
 

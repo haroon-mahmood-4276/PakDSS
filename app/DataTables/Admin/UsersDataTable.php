@@ -4,27 +4,27 @@ namespace App\DataTables\Admin;
 
 use App\Models\Admin;
 use App\Utils\Traits\DatatablesTrait;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class UsersDataTable extends DataTable
 {
     use DatatablesTrait;
+
     /**
      * Build DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query Results from query() method.
      * @return \Yajra\DataTables\EloquentDataTable
      */
     public function dataTable(QueryBuilder $query)
     {
         $columns = array_column($this->getColumns(), 'data');
+
         return (new EloquentDataTable($query))
             ->editColumn('created_at', function ($user) {
                 return editDateColumn($user->created_at);
@@ -44,9 +44,6 @@ class UsersDataTable extends DataTable
 
     /**
      * Get query source of dataTable.
-     *
-     * @param \App\Models\Admin $model
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Admin $model): QueryBuilder
     {
@@ -103,7 +100,7 @@ class UsersDataTable extends DataTable
             ->dom('BlfrtipC')
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
-                [30, 50, 70, 100, 120, 150, "All"],
+                [30, 50, 70, 100, 120, 150, 'All'],
             ])
             ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
             ->buttons($buttons)
@@ -125,8 +122,8 @@ class UsersDataTable extends DataTable
                         return null;
                     }",
                     'checkboxes' => [
-                        'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
-                    ]
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                    ],
                 ],
             ])
             ->select([
@@ -143,8 +140,6 @@ class UsersDataTable extends DataTable
 
     /**
      * Get columns.
-     *
-     * @return array
      */
     protected function getColumns(): array
     {
@@ -161,16 +156,15 @@ class UsersDataTable extends DataTable
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
+
         return $columns;
     }
 
     /**
      * Get filename for export.
-     *
-     * @return string
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'Users_'.date('YmdHis');
     }
 }

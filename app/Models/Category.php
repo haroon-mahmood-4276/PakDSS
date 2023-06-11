@@ -35,7 +35,6 @@ class Category extends Model
         return LogOptions::defaults()->useLogName(self::class)->logFillable();
     }
 
-
     public function brands(): BelongsToMany
     {
         return $this->belongsToMany(Brand::class);

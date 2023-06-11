@@ -19,7 +19,7 @@ class ProductService implements ProductInterface
         $product = $this->model()->where('seller_id', $seller_id);
         if (is_array($ignore)) {
             $product = $product->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
+        } elseif (is_string($ignore)) {
             $product = $product->where('id', '!=', $ignore);
         }
         if (count($relationships) > 0) {

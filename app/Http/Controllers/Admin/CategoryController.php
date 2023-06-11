@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\CategoriesDataTable;
 use App\Exceptions\GeneralException;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Categories\{storeRequest, updateRequest};
-use App\Services\Shared\{Brands\BrandInterface, Categories\CategoryInterface};
+use App\Http\Requests\Admin\Categories\storeRequest;
+use App\Http\Requests\Admin\Categories\updateRequest;
+use App\Services\Shared\Brands\BrandInterface;
+use App\Services\Shared\Categories\CategoryInterface;
 use Exception;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    private $brandInterface, $categoryInterface;
+    private $brandInterface;
+
+    private $categoryInterface;
 
     public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface)
     {
@@ -64,9 +68,10 @@ class CategoryController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->categoryInterface->store($inputs);
+
             return redirect()->route('admin.categories.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }
@@ -96,7 +101,7 @@ class CategoryController extends Controller
         try {
             $category = $this->categoryInterface->find($id, ['brands:id']);
 
-            if ($category && !empty($category)) {
+            if ($category && ! empty($category)) {
                 $data = [
                     'brands' => $this->brandInterface->get(),
                     'category' => $category,
@@ -108,7 +113,7 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.categories.index')->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }
@@ -134,7 +139,7 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.categories.index')->withSuccess('Data updated!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }
@@ -149,13 +154,14 @@ class CategoryController extends Controller
 
                 $record = $this->categoryInterface->destroy($request->checkForDelete);
 
-                if (!$record) {
+                if (! $record) {
                     return redirect()->route('admin.categories.index')->withDanger('Data not found!');
                 }
             }
+
             return redirect()->route('admin.categories.index')->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }

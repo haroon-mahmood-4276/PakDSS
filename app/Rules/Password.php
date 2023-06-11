@@ -53,8 +53,6 @@ class Password implements ValidationRule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
      * @return bool
      */
 
@@ -71,11 +69,11 @@ class Password implements ValidationRule
             $fail($this->message());
         }
 
-        if ($this->requireNumeric && !preg_match('/[0-9]/', $value)) {
+        if ($this->requireNumeric && ! preg_match('/[0-9]/', $value)) {
             $fail($this->message());
         }
 
-        if ($this->requireSpecialCharacter && !preg_match('/[\W_]/', $value)) {
+        if ($this->requireSpecialCharacter && ! preg_match('/[\W_]/', $value)) {
             $fail($this->message());
         }
 
@@ -101,56 +99,56 @@ class Password implements ValidationRule
 
         switch (true) {
             case $this->requireUppercase
-                && !$this->requireNumeric
-                && !$this->requireSpecialCharacter:
+            && ! $this->requireNumeric
+            && ! $this->requireSpecialCharacter:
                 return __('The :attribute must be between :minlength and :maxlength characters and contain at least one uppercase character.', [
                     'minlength' => $this->minlength,
                     'maxlength' => $this->maxlength,
                 ]);
 
             case $this->requireNumeric
-                && !$this->requireUppercase
-                && !$this->requireSpecialCharacter:
+            && ! $this->requireUppercase
+            && ! $this->requireSpecialCharacter:
                 return __('The :attribute must be between :minlength and :maxlength characters and contain at least one number.', [
                     'minlength' => $this->minlength,
                     'maxlength' => $this->maxlength,
                 ]);
 
             case $this->requireSpecialCharacter
-                && !$this->requireUppercase
-                && !$this->requireNumeric:
+            && ! $this->requireUppercase
+            && ! $this->requireNumeric:
                 return __('The :attribute must be between :minlength and :maxlength characters and contain at least one special character.', [
                     'minlength' => $this->minlength,
                     'maxlength' => $this->maxlength,
                 ]);
 
             case $this->requireUppercase
-                && $this->requireNumeric
-                && !$this->requireSpecialCharacter:
+            && $this->requireNumeric
+            && ! $this->requireSpecialCharacter:
                 return __('The :attribute must be between :minlength and :maxlength characters and contain at least one uppercase character and one number.', [
                     'minlength' => $this->minlength,
                     'maxlength' => $this->maxlength,
                 ]);
 
             case $this->requireUppercase
-                && $this->requireSpecialCharacter
-                && !$this->requireNumeric:
+            && $this->requireSpecialCharacter
+            && ! $this->requireNumeric:
                 return __('The :attribute must be between :minlength and :maxlength characters and contain at least one uppercase character and one special character.', [
                     'minlength' => $this->minlength,
                     'maxlength' => $this->maxlength,
                 ]);
 
             case $this->requireUppercase
-                && $this->requireNumeric
-                && $this->requireSpecialCharacter:
+            && $this->requireNumeric
+            && $this->requireSpecialCharacter:
                 return __('The :attribute must be between :minlength and :maxlength characters and contain at least one uppercase character, one number, and one special character.', [
                     'minlength' => $this->minlength,
                     'maxlength' => $this->maxlength,
                 ]);
 
             case $this->requireNumeric
-                && $this->requireSpecialCharacter
-                && !$this->requireUppercase:
+            && $this->requireSpecialCharacter
+            && ! $this->requireUppercase:
                 return __('The :attribute must be between :minlength and :maxlength characters and contain at least one special character and one number.', [
                     'minlength' => $this->minlength,
                     'maxlength' => $this->maxlength,
@@ -167,7 +165,6 @@ class Password implements ValidationRule
     /**
      * Set the minimum length of the password.
      *
-     * @param  int  $minlength
      * @return $this
      */
     public function minlength(int $minlength)
@@ -180,7 +177,6 @@ class Password implements ValidationRule
     /**
      * Set the maximum length of the password.
      *
-     * @param  int  $maxlength
      * @return $this
      */
     public function maxlength(int $maxlength)
@@ -229,7 +225,6 @@ class Password implements ValidationRule
     /**
      * Set the message that should be used when the rule fails.
      *
-     * @param  string  $message
      * @return $this
      */
     public function withMessage(string $message)

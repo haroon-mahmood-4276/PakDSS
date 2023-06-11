@@ -20,7 +20,7 @@ class ShopService implements ShopInterface
         $shop = $this->model()->where('seller_id', $seller_id)->where('status', Status::ACTIVE);
         if (is_array($ignore)) {
             $shop = $shop->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
+        } elseif (is_string($ignore)) {
             $shop = $shop->where('id', '!=', $ignore);
         }
         if (count($relationships) > 0) {
@@ -54,19 +54,19 @@ class ShopService implements ShopInterface
 
                 'email' => $inputs['email'],
 
-                "phone_1" => $inputs['phone_1'],
-                "phone_2" => $inputs['phone_2'],
+                'phone_1' => $inputs['phone_1'],
+                'phone_2' => $inputs['phone_2'],
 
-                "address" => $inputs['address'],
-                "pickup_address" => $inputs['pickup_address'],
-                "description" => $inputs['description'],
+                'address' => $inputs['address'],
+                'pickup_address' => $inputs['pickup_address'],
+                'description' => $inputs['description'],
 
-                "lat" => $inputs['latitude'],
-                "long" => $inputs['longitude'],
+                'lat' => $inputs['latitude'],
+                'long' => $inputs['longitude'],
 
-                "manager_name" => $inputs['manager_name'],
-                "manager_mobile" => $inputs['manager_mobile'],
-                "manager_email" => $inputs['manager_email'],
+                'manager_name' => $inputs['manager_name'],
+                'manager_mobile' => $inputs['manager_mobile'],
+                'manager_email' => $inputs['manager_email'],
 
                 'status' => Status::PENDING_APPROVAL,
                 'reason' => null,
@@ -91,19 +91,19 @@ class ShopService implements ShopInterface
                 'name' => $inputs['name'],
                 'slug' => Str::slug($inputs['name']),
 
-                "phone_1" => $inputs['phone_1'],
-                "phone_2" => $inputs['phone_2'],
+                'phone_1' => $inputs['phone_1'],
+                'phone_2' => $inputs['phone_2'],
 
-                "address" => $inputs['address'],
-                "pickup_address" => $inputs['pickup_address'],
-                "description" => $inputs['description'],
+                'address' => $inputs['address'],
+                'pickup_address' => $inputs['pickup_address'],
+                'description' => $inputs['description'],
 
-                "lat" => $inputs['latitude'],
-                "long" => $inputs['longitude'],
+                'lat' => $inputs['latitude'],
+                'long' => $inputs['longitude'],
 
-                "manager_name" => $inputs['manager_name'],
-                "manager_mobile" => $inputs['manager_mobile'],
-                "manager_email" => $inputs['manager_email'],
+                'manager_name' => $inputs['manager_name'],
+                'manager_mobile' => $inputs['manager_mobile'],
+                'manager_email' => $inputs['manager_email'],
 
                 'status' => Status::PENDING_APPROVAL,
             ];

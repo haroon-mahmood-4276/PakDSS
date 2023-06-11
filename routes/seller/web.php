@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Seller\{AuthController, BrandController, CategoryController, DashboardController, ProductController, RequestController, ShopController};
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------

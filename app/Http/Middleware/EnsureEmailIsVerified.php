@@ -11,7 +11,7 @@ class EnsureEmailIsVerified
 {
     public function handle($request, Closure $next, $redirectToRoute = null)
     {
-        if (!$request->user() || ($request->user() instanceof MustVerifyEmail && !$request->user()->hasVerifiedEmail())) {
+        if (! $request->user() || ($request->user() instanceof MustVerifyEmail && ! $request->user()->hasVerifiedEmail())) {
             $route = '';
             switch ($request->segment(1)) {
                 case 'seller':

@@ -15,6 +15,7 @@ class storeRequest extends FormRequest
     public function rules()
     {
         $rules = (new Seller())->rules;
+
         return $rules;
     }
 }

@@ -26,7 +26,7 @@ class updateRequest extends FormRequest
     {
         $rules = (new Brand())->rules;
         $id = decryptParams($this->id);
-        $rules['slug'] .= ',' . $id;
+        $rules['slug'] .= ','.$id;
 
         return $rules;
     }

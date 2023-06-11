@@ -9,7 +9,7 @@ trait ServiceShared
         $model = $this->model();
         if (is_array($ignore)) {
             $model = $model->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
+        } elseif (is_string($ignore)) {
             $model = $model->where('id', '!=', $ignore);
         }
         if ($withCount) {
@@ -25,6 +25,7 @@ trait ServiceShared
         if ($with_tree) {
             return prepareLinkedTree(collect($model), $this->model());
         }
+
         return $model;
     }
 
