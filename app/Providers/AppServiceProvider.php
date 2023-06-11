@@ -15,6 +15,8 @@ use App\Services\Seller\Products\ProductInterface as SellerProductInterface;
 use App\Services\Seller\Products\ProductService as SellerProductService;
 use App\Services\Seller\Shops\ShopInterface as SellerShopInterface;
 use App\Services\Seller\Shops\ShopService as SellerShopService;
+use App\Services\Seller\Requests\RequestInterface as SellerRequestInterface;
+use App\Services\Seller\Requests\RequestService as SellerRequestService;
 
 use App\Services\Shared\Brands\BrandInterface;
 use App\Services\Shared\Brands\BrandService;
