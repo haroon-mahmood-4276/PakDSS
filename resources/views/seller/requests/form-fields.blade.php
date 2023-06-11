@@ -10,7 +10,7 @@
                         <label class="form-label" style="font-size: 15px" for="name">Name <span
                                 class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                            name="name" placeholder="Name" maxlength="50" name="name"
+                            name="name" placeholder="Name" maxlength="50"
                             value="{{ isset($requestFor) ? $requestFor->name : old('name') }}" minlength="1" />
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -46,19 +46,18 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    {{-- <div class="row g-3">
+                    <div class="row g-3">
                         <div class="col-md-12">
                             <div class="d-block mb-1">
-                                <label class="form-label" style="font-size: 15px" for="product_images">Images</label>
-                                <input id="product_images" type="file"
-                                    class="filepond m-0 @error('product_images') is-invalid @enderror"
-                                    name="product_images[]" accept="image/png, image/jpeg, image/gif" multiple />
-                                @error('product_images')
+                                <label class="form-label" style="font-size: 15px" for="image">Images</label>
+                                <input id="image" type="file"
+                                    class="filepond m-0 @error('image') is-invalid @enderror" name="image"
+                                    accept="image/png, image/jpeg, image/gif" />
+                                @error('image')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
                                     <p class="m-0">
-                                        <small class="text-muted">Upload product images. (3 images only, Max Size:
-                                            536KB)</small>
+                                        <small class="text-muted">Upload product image. (Max Size: 536KB)</small>
                                     </p>
                                 @enderror
                             </div>
@@ -66,7 +65,7 @@
                         </div>
                     </div>
 
-                    <hr> --}}
+                    <hr>
 
                     <div class="row g-3">
                         <div class="col-lg-6 col-md-6 col-sm-12">

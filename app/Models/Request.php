@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\{HasMedia, InteractsWithMedia};
 
-class Request extends Model
+class Request extends Model implements HasMedia
 {
-    use HasUuids, HasFactory, LogsActivity, SoftDeletes;
+    use HasUuids, HasFactory, LogsActivity, SoftDeletes, InteractsWithMedia;
 
     protected $dateFormat = 'U';
 
@@ -28,6 +29,8 @@ class Request extends Model
 
     public $rules = [
         'name' => 'required|string|between:1,254',
+        'slug' => 'required|string|between:1,254|unique:requests,slug|unique:categories,slug|unique:brands,slug',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
     ];
 
     public function getActivitylogOptions(): LogOptions

@@ -44,7 +44,7 @@
         });
 
         window.addEventListener('load', function() {
-            FilePond.create(document.getElementById('product_images'), {
+            FilePond.create(document.getElementById('image'), {
                 styleButtonRemoveItemPosition: 'right',
                 imageCropAspectRatio: '1:1',
                 acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
@@ -52,8 +52,8 @@
                 maxFileSize: '536KB',
                 ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
                 storeAsFile: true,
-                allowMultiple: true,
-                maxFiles: 3,
+                // allowMultiple: true,
+                // maxFiles: 3,
                 checkValidity: true,
                 credits: {
                     label: '',

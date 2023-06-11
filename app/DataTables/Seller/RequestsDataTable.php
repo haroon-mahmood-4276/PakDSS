@@ -29,11 +29,13 @@ class RequestsDataTable extends DataTable
             ->editColumn('check', function ($requestForRow) {
                 return $requestForRow;
             })
+            ->editColumn('image', function ($requestForRow) {
+                $image = $requestForRow->getFirstMediaUrl('requests-' . $this->requestFor) ?? asset('admin-assets/img/no-image.png');
+
+                return editImageColumn(image: $image, name: $requestForRow->name, width: 50);
+            })
             ->editColumn('status', function ($requestForRow) {
                 return editStatusColumn($requestForRow->status);
-            })
-            ->editColumn('created_at', function ($requestForRow) {
-                return editDateColumn($requestForRow->created_at);
             })
             ->editColumn('updated_at', function ($requestForRow) {
                 return editDateColumn($requestForRow->updated_at);
@@ -124,7 +126,7 @@ class RequestsDataTable extends DataTable
                 'right' => 1,
             ])
             ->orders([
-                [1, 'asc'],
+                [2, 'asc'],
             ]);
     }
 
@@ -137,11 +139,10 @@ class RequestsDataTable extends DataTable
     {
         return [
             Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('image')->width(100)->title('')->addClass('text-nowrap align-middle text-center'),
             Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('status')->width(100)->addClass('text-nowrap align-middle text-center'),
-            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
-            // Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
     }
 

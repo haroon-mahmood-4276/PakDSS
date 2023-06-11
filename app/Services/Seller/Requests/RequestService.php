@@ -6,6 +6,7 @@ use App\Models\Request;
 use App\Utils\Enums\Status;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Throwable;
 
 class RequestService implements RequestInterface
 {
@@ -14,44 +15,12 @@ class RequestService implements RequestInterface
         return new Request();
     }
 
-    public function get($relationships = [], $ignore = null, $with_tree = false, $withCount = false, $withPagination = false, $perPage = 10)
+    /**
+     * @throws Throwable
+     */
+    public function store($requestFor, $inputs)
     {
-        $model = $this->model();
-        if (is_array($ignore)) {
-            $model = $model->whereNotIn('id', $ignore);
-        } else if (is_string($ignore)) {
-            $model = $model->where('id', '!=', $ignore);
-        }
-        if ($withCount) {
-            $model = $model->withCount($relationships);
-        }
-
-        if ($withPagination) {
-            $model = $model->paginate($perPage);
-        } else {
-            $model = $model->get();
-        }
-
-        if ($with_tree) {
-            return prepareLinkedTree(collect($model), $this->model());
-        }
-        return $model;
-    }
-
-    public function find($id, $relationships = [])
-    {
-        $model = $this->model();
-
-        if (count($relationships) > 0) {
-            $model = $model->with($relationships);
-        }
-
-        return $model->find($id);
-    }
-
-    public function store($inputs)
-    {
-        $returnData = DB::transaction(function () use ($inputs) {
+        return DB::transaction(function () use ($requestFor, $inputs) {
 
             $data = [
                 'name' => $inputs['name'],
@@ -62,15 +31,12 @@ class RequestService implements RequestInterface
 
             $requestForModel = $this->model()->create($data);
 
-            // if (isset($inputs['brand_image'])) {
-            //     $attachment = $inputs['brand_image'];
-            //     $requestForModel->addMedia($attachment)->toMediaCollection('brands');
-            // }
+            if (isset($inputs['image'])) {
+                $requestForModel->addMedia( $inputs['image'])->toMediaCollection('requests-' . $requestFor);
+            }
 
             return $requestForModel;
         });
-
-        return $returnData;
     }
 
     public function update($id, $inputs)

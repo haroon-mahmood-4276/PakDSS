@@ -7,9 +7,8 @@ use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Requests\storeRequest;
 use App\Services\Seller\Requests\RequestInterface;
-use App\Utils\Enums\Status;
-use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Http\Request;
 
 class RequestController extends Controller
 {
@@ -52,8 +51,8 @@ class RequestController extends Controller
         try {
             $inputs = $request->validated();
             $inputs['modelable'] = getModel($requestFor)::class;
-            $record = $this->requestInterface->store($inputs);
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withSuccess('Data saved!');
+            $this->requestInterface->store($requestFor, $inputs);
+            return redirect()->route('seller.requests.index', ['request' => $requestFor])->with('success' . 'Data saved!');
         } catch (GeneralException $ex) {
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
@@ -61,7 +60,7 @@ class RequestController extends Controller
         }
     }
 
-    public function show($id)
+    public function show(): void
     {
         abort(403);
     }
