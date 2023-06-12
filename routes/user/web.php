@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\TestEvent;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,11 @@ Route::group(['as' => 'user.'], function () {
 
     Route::group(['middleware' => 'auth:web'], function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    });
+
+    Route::group(['prefix' => 'tests'], function () {
+        Route::get('pusher', function() {
+            event(new TestEvent('hello world'));
+        });
     });
 });
