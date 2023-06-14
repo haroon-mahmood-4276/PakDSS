@@ -22,7 +22,6 @@ return new class extends Migration
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();
-            $table->integer('deleted_at')->nullable();
         });
     }
 

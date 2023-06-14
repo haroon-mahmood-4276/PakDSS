@@ -76,7 +76,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.categories.index', 'admin.categories.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-brands fa-hive menu-icon"></i>
                     <div>Categories</div>
                 </a>
                 <ul class="menu-sub">
@@ -104,7 +104,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.tags.index', 'admin.tags.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-solid fa-tags menu-icon"></i>
                     <div>Tags</div>
                 </a>
                 <ul class="menu-sub">
@@ -132,7 +132,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.brands.index', 'admin.brands.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-solid fa-store menu-icon"></i>
                     <div>Brands</div>
                 </a>
                 <ul class="menu-sub">
@@ -160,7 +160,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.sellers.index', 'admin.sellers.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-solid fa-person-shelter menu-icon"></i>
                     <div>Sellers</div>
                 </a>
                 <ul class="menu-sub">
@@ -188,7 +188,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.users.index', 'admin.users.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-solid fa-users menu-icon"></i>
                     <div>Users</div>
                 </a>
                 <ul class="menu-sub">
@@ -216,7 +216,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index', 'admin.approvals.products.index'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-solid fa-check menu-icon"></i>
                     <div>Approvals</div>
                 </a>
                 <ul class="menu-sub">
@@ -231,6 +231,25 @@
                         <li class="menu-item {{ request()->routeIs('admin.approvals.products.index') ? 'active' : null }}">
                             <a href="{{ route('admin.approvals.products.index') }}" class="menu-link">
                                 <div>Products</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcanany
+
+        @canany(['admin.settings.sites.index'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.settings.sites.index'])? 'open active': null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-gears menu-icon"></i>
+                    <div>Settings</div>
+                </a>
+                <ul class="menu-sub">
+                    @can('admin.settings.sites.index')
+                        <li class="menu-item {{ request()->routeIs('admin.settings.sites.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.settings.sites.index') }}" class="menu-link">
+                                <div>Site</div>
                             </a>
                         </li>
                     @endcan
