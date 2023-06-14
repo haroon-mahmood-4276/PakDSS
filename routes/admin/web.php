@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\Admin\ApprovalController;
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\SellerController;
-use App\Http\Controllers\Admin\TagController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\{
+    ApprovalController,
+    AuthController,
+    BrandController,
+    CategoryController,
+    DashboardController,
+    PermissionController,
+    RoleController,
+    SellerController,
+    TagController,
+    UserController,
+    SettingSite,
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -157,6 +160,13 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
             Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
                 Route::get('/', 'productIndex')->middleware('permission:admin.approvals.products.index')->name('index');
+            });
+        });
+
+        //Settings Routes
+        Route::prefix('settings')->name('settings.')->group(function () {
+            Route::prefix('site')->name('sites.')->controller(SettingSite::class)->group(function () {
+                Route::get('/', 'index')->middleware('permission:admin.settings.sites.index')->name('index');
             });
         });
     });

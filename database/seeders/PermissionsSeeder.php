@@ -4,10 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PermissionsSeeder extends Seeder
 {
+    use WithoutModelEvents;
     /**
      * Run the database seeds.
      */
@@ -200,6 +202,13 @@ class PermissionsSeeder extends Seeder
                 'name' => 'admin.approvals.products.index',
                 'guard_name' => 'admin',
                 'show_name' => 'Approvals - Products - Can View',
+            ],
+
+            // Site Permissions
+            [
+                'name' => 'admin.settings.sites.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Settings - Site - Can View',
             ],
         ];
 
