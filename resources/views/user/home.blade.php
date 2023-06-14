@@ -3538,21 +3538,9 @@
 @endsection
 
 @section('page-js')
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    @vite(['resources/js/app.js'])
 @endsection
 
 @section('custom-js')
-    <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
 
-        var pusher = new Pusher('b4f3bb757f1f018c35da', {
-            cluster: 'ap2'
-        });
-
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            console.log(JSON.stringify(data));
-        });
-    </script>
 @endsection
