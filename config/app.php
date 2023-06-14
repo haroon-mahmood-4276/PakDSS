@@ -185,7 +185,6 @@ return [
         /*
          * Package Service Providers...
          */
-        HaroonMahmood4276\LaravelServicePattern\PatternServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
