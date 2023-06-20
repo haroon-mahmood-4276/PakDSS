@@ -10,8 +10,8 @@ use App\Services\Admin\Sellers\SellerInterface as AdminSellerInterface;
 use App\Services\Admin\Sellers\SellerService as AdminSellerService;
 use App\Services\Admin\Users\UserInterface as AdminUserInterface;
 use App\Services\Admin\Users\UserService as AdminUserService;
-use App\Services\Admin\SettingsSite\SettingsSiteInterface as AdminSettingsSiteInterface;
-use App\Services\Admin\SettingsSite\SettingsSiteService as AdminSettingsSiteService;
+use App\Services\Admin\Settings\SettingInterface as AdminSettingInterface;
+use App\Services\Admin\Settings\SettingService as AdminSettingService;
 
 use App\Services\Seller\Products\ProductInterface as SellerProductInterface;
 use App\Services\Seller\Products\ProductService as SellerProductService;
@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AdminUserInterface::class, AdminUserService::class);
         $this->app->bind(AdminPermissionInterface::class, AdminPermissionService::class);
         $this->app->bind(AdminSellerInterface::class, AdminSellerService::class);
-        $this->app->bind(AdminSettingsSiteInterface::class, AdminSettingsSiteService::class);
+        $this->app->bind(AdminSettingInterface::class, AdminSettingService::class);
 
         // Seller
         $this->app->bind(SellerShopInterface::class, SellerShopService::class);

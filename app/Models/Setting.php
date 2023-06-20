@@ -9,7 +9,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class SettingsSite extends Model implements HasMedia
+class Setting extends Model implements HasMedia
 {
     use HasUuids, LogsActivity, InteractsWithMedia;
 

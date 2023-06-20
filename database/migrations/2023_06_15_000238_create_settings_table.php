@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings_sites', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
             $table->string('tab_id')->default('default');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings_sites');
+        Schema::dropIfExists('settings');
     }
 };

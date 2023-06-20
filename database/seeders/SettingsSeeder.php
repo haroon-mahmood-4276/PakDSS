@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\SettingsSite;
+use App\Models\Setting;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class SettingsSiteSeeder extends Seeder
+class SettingsSeeder extends Seeder
 {
     use WithoutModelEvents;
 
@@ -16,24 +16,24 @@ class SettingsSiteSeeder extends Seeder
      */
     public function run(): void
     {
-        SettingsSite::truncate();
+        Setting::truncate();
         $data = [
             [
-                'tab_id' => 'general',
+                'tab_id' => 'site_tab',
                 'text' => 'Site Name',
                 'key' => Str::of('Site Name')->slug(),
                 'value' => 'PakDSS',
                 'rules' => 'required|string|between:3,10',
             ],
             [
-                'tab_id' => 'general',
+                'tab_id' => 'site_tab',
                 'text' => 'One Dollor Rate',
                 'key' => Str::of('One Dollor Rate')->slug(),
                 'value' => 283.71,
                 'rules' => 'required|numeric|gte:0',
             ],
             [
-                'tab_id' => 'general',
+                'tab_id' => 'site_tab',
                 'text' => 'One Pound Rate',
                 'key' => Str::of('One Pound Rate')->slug(),
                 'value' => 283.71,
@@ -42,7 +42,7 @@ class SettingsSiteSeeder extends Seeder
         ];
 
         foreach ($data as $value) {
-            (new SettingsSite())->create($value);
+            (new Setting())->create($value);
         }
     }
 }
