@@ -166,6 +166,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
         //Settings Routes
         Route::prefix('settings')->name('settings.')->controller(SettingController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
+                Route::post('/', 'store')->name('store');
         });
     });
 });

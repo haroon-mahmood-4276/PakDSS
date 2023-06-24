@@ -26,4 +26,11 @@ class SettingController extends Controller
 
         return view('admin.settings.index', $data);
     }
+
+    public function store(Request $request)
+    {
+        abort_if(request()->ajax() || auth('admin')->user()->cannot('admin.settings.tab_' . $request->get('tab') . '.index'), 403);
+        dd($request->all());
+
+    }
 }

@@ -49,7 +49,7 @@
                         </a> --}}
                     </li>
                 </ul>
-                {{ view('admin.settings.' . $tab . '-fileds') }}
+                {{ view('admin.settings.' . $tab . '-fileds', ['tab' => $tab]) }}
             </div>
         </div>
     </div>

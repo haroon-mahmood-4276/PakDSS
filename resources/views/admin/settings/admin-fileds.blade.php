@@ -1,4 +1,5 @@
-<form class="form form-vertical" action="{{ route('admin.sellers.store') }}" method="POST" enctype="multipart/form-data">
+<form class="form form-vertical" action="{{ route('admin.settings.store', ['tab' => $tab]) }}" method="POST"
+    enctype="multipart/form-data">
 
     <div class="row g-3">
         <div class="col-lg-9 col-md-9 col-sm-12 position-relative">
@@ -9,10 +10,13 @@
                     <div class="card">
                         <div class="card-body">
 
+                            <input type="hidden" name="tab" value="{{ $tab }}">
+
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 position-relative">
                                     <label class="form-label" style="font-size: 15px" for="one_dollor_rate">One Dollor
-                                        Rate (<i class="fa-solid fa-dollar-sign"></i>) <span class="text-danger"></span></label>
+                                        Rate (<i class="fa-solid fa-dollar-sign"></i>) <span
+                                            class="text-danger"></span></label>
                                     <input type="number"
                                         class="form-control @error('one_dollor_rate') is-invalid @enderror"
                                         id="one_dollor_rate" name="one_dollor_rate" placeholder="0"
@@ -27,7 +31,8 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 position-relative">
                                     <label class="form-label" style="font-size: 15px" for="one_pound_rate">One Pound
-                                        Rate (<i class="fa-solid fa-sterling-sign"></i>) <span class="text-danger"></span></label>
+                                        Rate (<i class="fa-solid fa-sterling-sign"></i>) <span
+                                            class="text-danger"></span></label>
                                     <input type="number"
                                         class="form-control @error('one_pound_rate') is-invalid @enderror"
                                         id="one_pound_rate" name="one_pound_rate" placeholder="0"
@@ -41,14 +46,10 @@
                                     @enderror
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
 
         <div class="col-lg-3 col-md-3 col-sm-12 position-relative">
