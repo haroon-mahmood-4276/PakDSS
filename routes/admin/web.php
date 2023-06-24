@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\{
     SellerController,
     TagController,
     UserController,
-    SettingSiteController,
+    SettingController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -164,10 +164,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
         });
 
         //Settings Routes
-        Route::prefix('settings')->name('settings.')->group(function () {
-            Route::prefix('site')->name('sites.')->controller(SettingSiteController::class)->group(function () {
-                Route::get('/', 'index')->middleware('permission:admin.settings.sites.index')->name('index');
-            });
+        Route::prefix('settings')->name('settings.')->controller(SettingController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
         });
     });
 });

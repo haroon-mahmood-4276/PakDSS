@@ -131,3 +131,14 @@ Breadcrumbs::for('admin.approvals.products.index', function (BreadcrumbTrail $tr
     $trail->push('Approvals', route('admin.approvals.products.index'));
     $trail->push('Products', route('admin.approvals.products.index'));
 });
+
+// Settings Breadcrumbs
+Breadcrumbs::for('admin.settings.index', function (BreadcrumbTrail $trail, $tab) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Settings', route('admin.settings.index', ['tab' => $tab]));
+});
+
+Breadcrumbs::for('admin.settings.tab_sites.index', function (BreadcrumbTrail $trail,  $tab) {
+    $trail->parent('admin.settings.index', $tab);
+    $trail->push('Site', route('admin.settings.index', ['tab' => $tab]));
+});

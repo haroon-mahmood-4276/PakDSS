@@ -42,22 +42,12 @@
             </li>
         @endcanany
 
-        @canany(['admin.settings.sites.index'])
-            <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.settings.sites.index'])? 'open active': null }}">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
+        @canany(['admin.settings.tab_sites.index'])
+            <li class="menu-item {{ request()->routeIs('admin.settings.index') ? 'active' : null }}">
+                <a href="{{ route('admin.settings.index', ['tab' => 'site']) }}" class="menu-link">
                     <i class="fa-solid fa-gears menu-icon"></i>
                     <div>Settings</div>
                 </a>
-                <ul class="menu-sub">
-                    @can('admin.settings.sites.index')
-                        <li class="menu-item {{ request()->routeIs('admin.settings.sites.index') ? 'active' : null }}">
-                            <a href="{{ route('admin.settings.sites.index') }}" class="menu-link">
-                                <div>Site</div>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
             </li>
         @endcanany
 
