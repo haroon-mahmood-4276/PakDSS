@@ -8,11 +8,13 @@ use App\Models\Product;
 use App\Models\Seller;
 use App\Models\Shop;
 use App\Models\Tag;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class ProductsSeeder extends Seeder
 {
+    use WithoutModelEvents;
     /**
      * Run the database seeds.
      *

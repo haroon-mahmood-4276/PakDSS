@@ -36,9 +36,46 @@
             </a>
         </li>
 
-        @canany(['admin.Ioles.index', 'admin.permissions.index'])
+        @canany(['admin.roles.index', 'admin.permissions.index'])
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Administration</span>
+            </li>
+        @endcanany
+
+        @canany(['admin.settings.tab_admin.index'])
+            <li class="menu-item {{ request()->routeIs('admin.settings.index') ? 'active' : null }}">
+                <a href="{{ route('admin.settings.index', ['tab' => 'admin']) }}" class="menu-link">
+                    <i class="fa-solid fa-gears menu-icon"></i>
+                    <div>Settings</div>
+                </a>
+            </li>
+        @endcanany
+
+        @canany(['admin.users.index', 'admin.users.create'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.users.index', 'admin.users.create'])? 'open active': null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-users menu-icon"></i>
+                    <div>Users</div>
+                </a>
+                <ul class="menu-sub">
+
+                    @can('admin.users.index')
+                        <li class="menu-item {{ request()->routeIs('admin.users.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.users.index') }}" class="menu-link">
+                                <div>View All</div>
+                            </a>
+                        </li>
+                    @endcan
+
+                    @can('admin.users.create')
+                        <li class="menu-item {{ request()->routeIs('admin.users.create') ? 'active' : null }}">
+                            <a href="{{ route('admin.users.create') }}" class="menu-link">
+                                <div>Add New</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
             </li>
         @endcanany
 
@@ -72,11 +109,77 @@
             </li>
         @endcanany
 
+        @canany(['admin.approvals.shops.index', 'admin.approvals.products.index'])
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Approvals</span>
+            </li>
+        @endcanany
+
+        @canany(['admin.approvals.shops.index', 'admin.approvals.products.index'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index', 'admin.approvals.products.index'])? 'open active': null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-check menu-icon"></i>
+                    <div>Approvals</div>
+                </a>
+                <ul class="menu-sub">
+                    @can('admin.approvals.shops.index')
+                        <li class="menu-item {{ request()->routeIs('admin.approvals.shops.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.approvals.shops.index') }}" class="menu-link">
+                                <div>Shops</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('admin.approvals.products.index')
+                        <li class="menu-item {{ request()->routeIs('admin.approvals.products.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.approvals.products.index') }}" class="menu-link">
+                                <div>Products</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcanany
+
+        @canany(['admin.categories.index', 'admin.permissions.index'])
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Brands & Categories</span>
+            </li>
+        @endcanany
+
+        @canany(['admin.brands.index', 'admin.brands.create'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.brands.index', 'admin.brands.create'])? 'open active': null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-store menu-icon"></i>
+                    <div>Brands</div>
+                </a>
+                <ul class="menu-sub">
+
+                    @can('admin.brands.index')
+                        <li class="menu-item {{ request()->routeIs('admin.brands.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.brands.index') }}" class="menu-link">
+                                <div>View All</div>
+                            </a>
+                        </li>
+                    @endcan
+
+                    @can('admin.brands.create')
+                        <li class="menu-item {{ request()->routeIs('admin.brands.create') ? 'active' : null }}">
+                            <a href="{{ route('admin.brands.create') }}" class="menu-link">
+                                <div>Add New</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcanany
+
         @canany(['admin.categories.index', 'admin.categories.create'])
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.categories.index', 'admin.categories.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-brands fa-hive menu-icon"></i>
                     <div>Categories</div>
                 </a>
                 <ul class="menu-sub">
@@ -104,7 +207,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.tags.index', 'admin.tags.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-solid fa-tags menu-icon"></i>
                     <div>Tags</div>
                 </a>
                 <ul class="menu-sub">
@@ -128,39 +231,11 @@
             </li>
         @endcanany
 
-        @canany(['admin.brands.index', 'admin.brands.create'])
-            <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.brands.index', 'admin.brands.create'])? 'open active': null }}">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
-                    <div>Brands</div>
-                </a>
-                <ul class="menu-sub">
-
-                    @can('admin.brands.index')
-                        <li class="menu-item {{ request()->routeIs('admin.brands.index') ? 'active' : null }}">
-                            <a href="{{ route('admin.brands.index') }}" class="menu-link">
-                                <div>View All</div>
-                            </a>
-                        </li>
-                    @endcan
-
-                    @can('admin.brands.create')
-                        <li class="menu-item {{ request()->routeIs('admin.brands.create') ? 'active' : null }}">
-                            <a href="{{ route('admin.brands.create') }}" class="menu-link">
-                                <div>Add New</div>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcanany
-
         @canany(['admin.sellers.index', 'admin.sellers.create'])
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.sellers.index', 'admin.sellers.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
+                    <i class="fa-solid fa-person-shelter menu-icon"></i>
                     <div>Sellers</div>
                 </a>
                 <ul class="menu-sub">
@@ -177,60 +252,6 @@
                         <li class="menu-item {{ request()->routeIs('admin.sellers.create') ? 'active' : null }}">
                             <a href="{{ route('admin.sellers.create') }}" class="menu-link">
                                 <div>Add New</div>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcanany
-
-        @canany(['admin.users.index', 'admin.users.create'])
-            <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.users.index', 'admin.users.create'])? 'open active': null }}">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
-                    <div>Users</div>
-                </a>
-                <ul class="menu-sub">
-
-                    @can('admin.users.index')
-                        <li class="menu-item {{ request()->routeIs('admin.users.index') ? 'active' : null }}">
-                            <a href="{{ route('admin.users.index') }}" class="menu-link">
-                                <div>View All</div>
-                            </a>
-                        </li>
-                    @endcan
-
-                    @can('admin.users.create')
-                        <li class="menu-item {{ request()->routeIs('admin.users.create') ? 'active' : null }}">
-                            <a href="{{ route('admin.users.create') }}" class="menu-link">
-                                <div>Add New</div>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcanany
-
-        @canany(['admin.approvals.shops.index', 'admin.approvals.products.index'])
-            <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index', 'admin.approvals.products.index'])? 'open active': null }}">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-user menu-icon"></i>
-                    <div>Approvals</div>
-                </a>
-                <ul class="menu-sub">
-                    @can('admin.approvals.shops.index')
-                        <li class="menu-item {{ request()->routeIs('admin.approvals.shops.index') ? 'active' : null }}">
-                            <a href="{{ route('admin.approvals.shops.index') }}" class="menu-link">
-                                <div>Shops</div>
-                            </a>
-                        </li>
-                    @endcan
-                    @can('admin.approvals.products.index')
-                        <li class="menu-item {{ request()->routeIs('admin.approvals.products.index') ? 'active' : null }}">
-                            <a href="{{ route('admin.approvals.products.index') }}" class="menu-link">
-                                <div>Products</div>
                             </a>
                         </li>
                     @endcan
