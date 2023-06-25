@@ -24,8 +24,15 @@ class updateRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = (new Setting())->whereTabId($this->tab . '_tab')->pluck('rules', 'key');
-        dd($rules);
+        switch ($this->tab) {
+            case 'admin':
+                $rules = [
+                    'one_dollor_rate' => 'required|numeric|gte:0',
+                    'one_pound_rate' => 'required|numeric|gte:0',
+                ];
+                break;
+        }
+        $rules['tab'] = 'required|in:admin,seller,site';
         return $rules;
     }
 }

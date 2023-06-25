@@ -15,12 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->string('tab_id')->default('default');
-            $table->string('text')->nullable();
-            $table->string('key')->nullable();
+            $table->string('key')->unique()->nullable();
             $table->string('value')->nullable();
-            $table->string('rules')->nullable();
-            $table->unsignedTinyInteger('order')->default(0);
-            $table->unsignedTinyInteger('columns')->default(6);
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();

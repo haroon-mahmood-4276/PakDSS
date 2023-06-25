@@ -20,7 +20,7 @@
                                     <input type="number"
                                         class="form-control @error('one_dollor_rate') is-invalid @enderror"
                                         id="one_dollor_rate" name="one_dollor_rate" placeholder="0"
-                                        value="{{ isset($setting) ? $setting->one_dollor_rate : old('one_dollor_rate') }}" />
+                                        value="{{ settings('one_dollor_rate') }}" />
                                     @error('one_dollor_rate')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @else
@@ -36,7 +36,7 @@
                                     <input type="number"
                                         class="form-control @error('one_pound_rate') is-invalid @enderror"
                                         id="one_pound_rate" name="one_pound_rate" placeholder="0"
-                                        value="{{ isset($setting) ? $setting->one_pound_rate : old('one_pound_rate') }}" />
+                                        value="{{ settings('one_pound_rate') }}" />
                                     @error('one_pound_rate')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @else

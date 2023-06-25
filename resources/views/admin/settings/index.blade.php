@@ -23,8 +23,6 @@
 @endsection
 
 @section('content')
-
-@dd($definedData)
     <div class="row">
         <div class="col-12">
             <div class="nav-align-top mb-4">
@@ -50,7 +48,7 @@
                         </a> --}}
                     </li>
                 </ul>
-                {{ view('admin.settings.' . $tab . '-fileds', ['tab' => $tab]) }}
+                @includeIf('admin.settings.' . $tab . '-fileds')
             </div>
         </div>
     </div>

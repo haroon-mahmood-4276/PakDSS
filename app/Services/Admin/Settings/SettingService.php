@@ -3,6 +3,7 @@
 namespace App\Services\Admin\Settings;
 
 use App\Models\Setting;
+use Illuminate\Support\Facades\DB;
 
 class SettingService implements SettingInterface
 {
@@ -13,6 +14,20 @@ class SettingService implements SettingInterface
 
     public function getFields($tab_id)
     {
-        return $this->model()->whereTabId($tab_id . '_tab')->orderBy('order')->get();
+        return $this->model()->whereTabId($tab_id . '_tab')->keyBy('key');
+    }
+
+    public function store($inputs)
+    {
+        unset($inputs['tab']);
+        $returnData = DB::transaction(function () use ($inputs) {
+            foreach ($inputs as $key => $input) {
+                $this->model()->firstWhere('key', $key)->update([
+                    'value' => $input
+                ]);
+            }
+        });
+
+        return $returnData;
     }
 }
