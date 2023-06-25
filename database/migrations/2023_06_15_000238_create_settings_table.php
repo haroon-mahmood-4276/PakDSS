@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('key')->nullable();
             $table->string('value')->nullable();
             $table->string('rules')->nullable();
+            $table->unsignedTinyInteger('order')->default(0);
+            $table->unsignedTinyInteger('columns')->default(6);
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();

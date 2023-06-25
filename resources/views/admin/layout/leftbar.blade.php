@@ -42,9 +42,9 @@
             </li>
         @endcanany
 
-        @canany(['admin.settings.tab_sites.index'])
+        @canany(['admin.settings.tab_admin.index'])
             <li class="menu-item {{ request()->routeIs('admin.settings.index') ? 'active' : null }}">
-                <a href="{{ route('admin.settings.index', ['tab' => 'site']) }}" class="menu-link">
+                <a href="{{ route('admin.settings.index', ['tab' => 'admin']) }}" class="menu-link">
                     <i class="fa-solid fa-gears menu-icon"></i>
                     <div>Settings</div>
                 </a>

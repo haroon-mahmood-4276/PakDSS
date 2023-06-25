@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.settings.tab_sites.index', $tab) }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.settings.tab_admin.index', $tab) }}
 @endsection
 
 @section('page-title', ucfirst($tab) . ' Setting')
@@ -18,12 +18,13 @@
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
         <h2 class="content-header-title float-start mb-0 me-3">{{ ucfirst($tab) }} Setting</h2>
-        {{ Breadcrumbs::render('admin.settings.tab_sites.index', $tab) }}
+        {{ Breadcrumbs::render('admin.settings.tab_admin.index', $tab) }}
     </div>
 @endsection
 
 @section('content')
 
+@dd($definedData)
     <div class="row">
         <div class="col-12">
             <div class="nav-align-top mb-4">

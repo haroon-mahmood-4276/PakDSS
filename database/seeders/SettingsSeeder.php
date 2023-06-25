@@ -19,25 +19,31 @@ class SettingsSeeder extends Seeder
         Setting::truncate();
         $data = [
             [
-                'tab_id' => 'site_tab',
+                'tab_id' => 'admin_tab',
                 'text' => 'Site Name',
                 'key' => Str::of('Site Name')->slug(),
                 'value' => 'PakDSS',
                 'rules' => 'required|string|between:3,10',
+                'columns' => 6,
+                'order' => 1
             ],
             [
-                'tab_id' => 'site_tab',
+                'tab_id' => 'admin_tab',
                 'text' => 'One Dollor Rate',
                 'key' => Str::of('One Dollor Rate')->slug(),
                 'value' => 283.71,
                 'rules' => 'required|numeric|gte:0',
+                'columns' => 6,
+                'order' => 2
             ],
             [
-                'tab_id' => 'site_tab',
+                'tab_id' => 'admin_tab',
                 'text' => 'One Pound Rate',
                 'key' => Str::of('One Pound Rate')->slug(),
                 'value' => 283.71,
                 'rules' => 'required|numeric|gte:0',
+                'columns' => 6,
+                'order' => 3
             ],
         ];
 

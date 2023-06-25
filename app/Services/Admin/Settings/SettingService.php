@@ -10,4 +10,9 @@ class SettingService implements SettingInterface
     {
         return new Setting();
     }
+
+    public function getFields($tab_id)
+    {
+        return $this->model()->whereTabId($tab_id . '_tab')->orderBy('order')->get();
+    }
 }
