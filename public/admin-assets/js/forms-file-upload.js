@@ -1,4 +1,13 @@
-"use strict";!function(){var a=`<div class="dz-preview dz-file-preview">
+/**
+ * File Upload
+ */
+
+'use strict';
+
+(function () {
+  // previewTemplate: Updated Dropzone default previewTemplate
+  // ! Don't change it unless you really know what you are doing
+  const previewTemplate = `<div class="dz-preview dz-file-preview">
 <div class="dz-details">
   <div class="dz-thumbnail">
     <img data-dz-thumbnail>
@@ -13,4 +22,27 @@
   <div class="dz-filename" data-dz-name></div>
   <div class="dz-size" data-dz-size></div>
 </div>
-</div>`;new Dropzone("#dropzone-basic",{previewTemplate:a,parallelUploads:1,maxFilesize:5,addRemoveLinks:!0,maxFiles:1}),new Dropzone("#dropzone-multi",{previewTemplate:a,parallelUploads:1,maxFilesize:5,addRemoveLinks:!0})}();
+</div>`;
+
+  // ? Start your code from here
+
+  // Basic Dropzone
+  // --------------------------------------------------------------------
+
+  const myDropzone = new Dropzone('#dropzone-basic', {
+    previewTemplate: previewTemplate,
+    parallelUploads: 1,
+    maxFilesize: 5,
+    addRemoveLinks: true,
+    maxFiles: 1
+  });
+
+  // Multiple Dropzone
+  // --------------------------------------------------------------------
+  const dropzoneMulti = new Dropzone('#dropzone-multi', {
+    previewTemplate: previewTemplate,
+    parallelUploads: 1,
+    maxFilesize: 5,
+    addRemoveLinks: true
+  });
+})();
