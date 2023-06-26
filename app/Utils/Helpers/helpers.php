@@ -24,8 +24,12 @@ use Illuminate\Support\Facades\Cache;
 // }
 
 if (!function_exists('settings')) {
-    function settings($key)
+    function settings($key, $overrideCache = false)
     {
+        if ($overrideCache) {
+            return (new Setting())->firstWhere('key', $key)->value;
+        }
+
         return Cache::rememberForever($key, function () use ($key) {
             return (new Setting())->firstWhere('key', $key)->value;
         });
