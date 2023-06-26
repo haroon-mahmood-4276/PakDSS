@@ -14,7 +14,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('websockets:clean')->daily();
-        $schedule->command('update:exchange-rate')->hourly();
+        $schedule->command('update:exchange-rate')->hourly()->when(function () {
+            return boolval(settings('rate_auto_update'));
+        });
     }
 
     /**
