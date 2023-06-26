@@ -33,6 +33,11 @@ class SettingsSeeder extends Seeder
                 'key' => Str::of('One Pound Rate')->slug()->replace('-', '_'),
                 'value' => 283.71,
             ],
+            [
+                'tab_id' => 'admin_tab',
+                'key' => Str::of('Rate Auto Update')->slug()->replace('-', '_'),
+                'value' => true,
+            ],
         ];
 
         foreach ($data as $value) {

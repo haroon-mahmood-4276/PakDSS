@@ -3,6 +3,7 @@
 namespace App\Services\Admin\Settings;
 
 use App\Models\Setting;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class SettingService implements SettingInterface
@@ -21,10 +22,14 @@ class SettingService implements SettingInterface
     {
         unset($inputs['tab']);
         $returnData = DB::transaction(function () use ($inputs) {
-            foreach ($inputs as $key => $input) {
+            foreach ($inputs as $key => $value) {
                 $this->model()->firstWhere('key', $key)->update([
-                    'value' => $input
+                    'value' => $value
                 ]);
+
+                if ($key === 'rate_auto_update' && $value === '1' && $value !== settings('rate_auto_update')) {
+                    Artisan::call('update:exchange-rate');
+                }
             }
         });
 
