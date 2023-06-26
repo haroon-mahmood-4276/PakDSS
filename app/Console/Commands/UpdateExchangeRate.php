@@ -19,20 +19,22 @@ class UpdateExchangeRate extends Command
      *
      * @var string
      */
-    protected $description = 'This command is used to update the exchange rates.';
+    protected $description = 'This command is used to update the exchange rates';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $response = Http::get('https://v6.exchangerate-api.com/v6/' . env('EXCHANGE_RATES_APP_ID') . '/latest/USD');
+        $response = Http::get('https://openexchangerates.org/api/latest.json', [
+            'app_id' => env('EXCHANGE_RATES_APP_ID'),
+        ]);
 
         if ($response->successful()) {
             $response = $response->json();
 
-            $USDToPKR = $response['conversion_rates']['PKR'];
-            $GBPToPKR = (1 / floatval($response['conversion_rates']['GBP'])) * floatval($response['conversion_rates']['PKR']);
+            $USDToPKR = $response['rates']['PKR'];
+            $GBPToPKR = (1 / floatval($response['rates']['GBP'])) * floatval($response['rates']['PKR']);
 
             settings_update(['one_dollor_rate', 'one_pound_rate'], [number_format($USDToPKR, 2), number_format($GBPToPKR, 2)]);
         }
