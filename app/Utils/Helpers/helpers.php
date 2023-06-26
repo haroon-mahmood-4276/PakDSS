@@ -32,6 +32,27 @@ if (!function_exists('settings')) {
     }
 }
 
+if (!function_exists('settings_update')) {
+    function settings_update(array|string $keys, array|string $values)
+    {
+        if (is_array($keys) && is_array($values)) {
+            $settings = array_combine($keys, $values);
+            foreach ($settings as $key => $value) {
+                (new Setting())->firstWhere('key', $key)->update([
+                    'value' => $value
+                ]);
+                # code...
+            }
+        } else {
+            (new Setting())->firstWhere('key', $keys)->update([
+                'value' => $values
+            ]);
+        }
+        cache()->flush();
+        return true;
+    }
+}
+
 if (!function_exists('getLastCategoryBreadcrumb')) {
     function getLastCategoryBreadcrumb($categories, $parentId = null)
     {

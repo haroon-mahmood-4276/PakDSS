@@ -34,6 +34,7 @@ class SettingController extends Controller
         try {
             $inputs = $request->validated();
             $this->settingInterface->store($inputs);
+            cache()->flush();
 
             return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
