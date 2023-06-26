@@ -26,17 +26,19 @@ class UpdateExchangeRate extends Command
      */
     public function handle()
     {
-        $response = Http::get('https://openexchangerates.org/api/latest.json', [
-            'app_id' => env('EXCHANGE_RATES_APP_ID'),
-        ]);
+        if (settings('rate_auto_update') === '1') {
+            $response = Http::get('https://openexchangerates.org/api/latest.json', [
+                'app_id' => env('EXCHANGE_RATES_APP_ID'),
+            ]);
 
-        if ($response->successful()) {
-            $response = $response->json();
+            if ($response->successful()) {
+                $response = $response->json();
 
-            $USDToPKR = $response['rates']['PKR'];
-            $GBPToPKR = (1 / floatval($response['rates']['GBP'])) * floatval($response['rates']['PKR']);
+                $USDToPKR = $response['rates']['PKR'];
+                $GBPToPKR = (1 / floatval($response['rates']['GBP'])) * floatval($response['rates']['PKR']);
 
-            settings_update(['one_dollor_rate', 'one_pound_rate'], [number_format($USDToPKR, 2), number_format($GBPToPKR, 2)]);
+                settings_update(['one_dollor_rate', 'one_pound_rate'], [number_format($USDToPKR, 2), number_format($GBPToPKR, 2)]);
+            }
         }
     }
 }

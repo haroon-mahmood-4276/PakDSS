@@ -61,4 +61,11 @@
 @endsection
 
 @section('custom-js')
+    <script>
+        $(document).ready(() => {
+            $('#rate_auto_update').on('change', function() {
+                $('#one_dollor_rate, #one_pound_rate').attr('disabled', $(this).is(':checked'));
+            }).trigger('change');
+        });
+    </script>
 @endsection

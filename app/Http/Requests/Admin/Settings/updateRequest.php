@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin\Settings;
 
-use App\Models\Setting;
 use Illuminate\Foundation\Http\FormRequest;
 
 class updateRequest extends FormRequest
@@ -27,12 +26,13 @@ class updateRequest extends FormRequest
         switch ($this->tab) {
             case 'admin':
                 $rules = [
-                    'one_dollor_rate' => 'required|numeric|gte:0',
-                    'one_pound_rate' => 'required|numeric|gte:0',
+                    'one_dollor_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
+                    'one_pound_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
                 ];
                 break;
         }
         $rules['tab'] = 'required|in:admin,seller,site';
+        $rules['rate_auto_update'] = 'required|in:0,1';
         return $rules;
     }
 }
