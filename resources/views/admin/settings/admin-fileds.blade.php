@@ -41,7 +41,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @else
                                         <p class="m-0">
-                                            <small class="text-muted">Enter current dollor rate.</small>
+                                            <small class="text-muted">Enter current pound rate.</small>
                                         </p>
                                     @enderror
                                 </div>
