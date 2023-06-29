@@ -7,7 +7,7 @@
                 <div class="row mb-3">
                     <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="name">Name <span
-                                class="text-danger">*</span></label>
+                                class="text-danger">**</span></label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                             name="name" placeholder="Name"
                             value="{{ isset($product) ? $product->name : old('name') }}" minlength="1"
@@ -27,7 +27,7 @@
                 <div class="row mb-3">
                     <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="sku">SKU <span
-                                class="text-danger">*</span></label>
+                                class="text-danger">**</span></label>
                         <input type="text" class="form-control @error('sku') is-invalid @enderror" id="sku"
                             name="sku" placeholder="SKU"
                             value="{{ isset($product) ? $product->sku : old('sku') }}" />
@@ -58,8 +58,8 @@
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
-                        <label class="form-label" style="font-size: 15px" for="discounted_price">Discounted Price <span
-                                class="text-danger">*</span></label>
+                        <label class="form-label" style="font-size: 15px" for="discounted_price">Discounted
+                            Price</label>
                         <input type="number" class="form-control @error('discounted_price') is-invalid @enderror"
                             id="discounted_price" name="discounted_price" placeholder="Discounted Price"
                             value="{{ isset($product) ? $product->discounted_price : old('discounted_price') }}" />
@@ -68,6 +68,100 @@
                         @else
                             <p class="m-0">
                                 <small class="text-muted">Enter product discounted price.</small>
+                            </p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
+                        <div class="d-flex flex-column justify-content-center h-100">
+                            <div class="form-check">
+                                <input type="hidden" value="0" name="call_for_final_rates">
+                                <input class="form-check-input" type="checkbox" value="1" id="call_for_final_rates"
+                                    name="call_for_final_rates">
+                                <label class="form-check-label" for="call_for_final_rates">
+                                    Call for final rates
+                                </label>
+                            </div>
+                            @error('discounted_price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Check if rates are not finalized. Such orders will be
+                                        confirmed over the call.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
+                        <div class="d-flex flex-column justify-content-center h-100">
+                            <div class="form-check">
+                                <input type="hidden" value="0" name="are_rates_printed_on_package">
+                                <input class="form-check-input" type="checkbox" value="1"
+                                    id="are_rates_printed_on_package" name="are_rates_printed_on_package">
+                                <label class="form-check-label" for="are_rates_printed_on_package">
+                                    Are rates printed on product/item/package
+                                </label>
+                            </div>
+                            @error('discounted_price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Check if rates are printed on the
+                                        product/item/package.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label" style="font-size: 15px" for="dimentions">Dimentions <small
+                                    class="text-muted">If product has only 1 or 2
+                                    dimentions, put "1" in other dimention.</small></label>
+                            <p id="p-dimentions" class="m-0" style="min-width: fit-content;">Total: <span
+                                    id="span-dimentions-value">0.00</span> cm</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                        <input type="number" class="form-control @error('length') is-invalid @enderror"
+                            id="length" name="length" placeholder="Length(cm)"
+                            value="{{ isset($product) ? $product->length : old('length') }}" />
+                        @error('length')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter length of product in cm.</small>
+                            </p>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                        <input type="number" class="form-control @error('width') is-invalid @enderror"
+                            id="width" name="width" placeholder="width(cm)"
+                            value="{{ isset($product) ? $product->width : old('width') }}" />
+                        @error('width')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter width of product in cm.</small>
+                            </p>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                        <input type="number" class="form-control @error('height') is-invalid @enderror"
+                            id="height" name="height" placeholder="height(cm)"
+                            value="{{ isset($product) ? $product->height : old('height') }}" />
+                        @error('height')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter height of product in cm.</small>
                             </p>
                         @enderror
                     </div>
@@ -142,7 +236,6 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="meta_description">
                             Meta Description
-                            <span class="text-danger">*</span>
                         </label>
 
                         <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
@@ -164,127 +257,6 @@
 
     <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 position-relative">
         <div class="sticky-md-top top-lg-20px top-md-20px top-sm-10px" style="z-index: auto;">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <label class="form-label" style="font-size: 15px" for="shop">Shops <span
-                                    class="text-danger">*</span></label>
-                            <select class="select2-size-lg form-select" id="shop" name="shop">
-                                @foreach ($shops as $key => $shop)
-                                    <option data-icon="material-icons md-keyboard_arrow_right" value="{{ $shop->id }}" {{ (isset($product) ? $product->shop_id : old('shop')) == $shop->id ? 'selected' : '' }}>{{ Str::of($shop->name)->replace('_', ' ') }}</option>
-                                @endforeach
-                            </select>
-                            @error('shop')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @else
-                                <p class="m-0">
-                                    <small class="text-muted">Select shop for product.</small>
-                                </p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <label class="form-label" style="font-size: 15px" for="brand">Brand <span
-                                    class="text-danger">*</span></label>
-                            <select class="select2-size-lg form-select" id="brand" name="brand">
-                                @foreach ($brands as $key => $brand)
-                                    <option data-icon="material-icons md-keyboard_arrow_right" value="{{ $brand->id }}" {{ (isset($product) ? $product->brand_id : old('brand')) == $brand->id ? 'selected' : '' }}>{{ Str::of($brand->name)->replace('_', ' ') }}</option>
-                                @endforeach
-                            </select>
-                            @error('brand')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @else
-                                <p class="m-0">
-                                    <small class="text-muted">Select brand for product.</small>
-                                </p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <label class="form-label" style="font-size: 15px" for="categories">Categories <span
-                                    class="text-danger">*</span></label>
-                            <select class="select2-size-lg-multiple form-select" id="categories" name="categories[]"
-                                multiple>
-                                @foreach ($categories as $key => $category)
-                                    <option value="{{ $category->id }}" {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}> {{ Str::of($category->tree)->replace('_', ' ') }}</option>
-                                @endforeach
-                            </select>
-                            @error('categories')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @else
-                                <p class="m-0">
-                                    <small class="text-muted">Select categories for product.</small>
-                                </p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <label class="form-label" style="font-size: 15px" for="tags">Tags</label>
-                            <select class="select2-size-lg-multiple form-select" id="tags" name="tags[]"
-                                multiple>
-                                @foreach ($tags as $key => $tag)
-                                    <option value="{{ $tag->id }}"
-                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}> {{ Str::of($tag->name)->replace('_', ' ') }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('tags')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @else
-                                <p class="m-0">
-                                    <small class="text-muted">Select tags for product.</small>
-                                </p>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="d-block mb-1">
-                                <label class="form-label" style="font-size: 15px" for="product_pdf">PDF</label>
-                                <input id="product_pdf" type="file"
-                                    class="filepond m-0 @error('product_pdf') is-invalid @enderror" name="product_pdf" />
-                                @error('product_pdf')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @else
-                                    <p class="m-0">
-                                        <small class="text-muted">Upload product PDF. (if any)</small>
-                                    </p>
-                                @enderror
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="d-block mb-1">
-                                <label class="form-label" style="font-size: 15px" for="product_video">Product Video
-                                    <span class="text-danger">*</span></label>
-                                <input id="product_video" type="file"
-                                    class="filepond m-0 @error('product_video') is-invalid @enderror" name="product_video" />
-                                @error('product_video')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @else
-                                    <p class="m-0">
-                                        <small class="text-muted">Upload product video.</small>
-                                    </p>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="row g-3">
@@ -321,6 +293,139 @@
                                 <i class="material-icons md-cancel"></i>
                                 Cancel
                             </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label" style="font-size: 15px" for="shop">Shops <span
+                                    class="text-danger">*</span></label>
+                            <select class="select2-size-lg form-select" id="shop" name="shop">
+                                @foreach ($shops as $key => $shop)
+                                    <option data-icon="material-icons md-keyboard_arrow_right"
+                                        value="{{ $shop->id }}"
+                                        {{ (isset($product) ? $product->shop_id : old('shop')) == $shop->id ? 'selected' : '' }}>
+                                        {{ Str::of($shop->name)->replace('_', ' ') }}</option>
+                                @endforeach
+                            </select>
+                            @error('shop')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Select shop for product.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label" style="font-size: 15px" for="brand">Brand</label>
+                            <select class="select2-size-lg form-select" id="brand" name="brand">
+                                @foreach ($brands as $key => $brand)
+                                    <option data-icon="material-icons md-keyboard_arrow_right"
+                                        value="{{ $brand->id }}"
+                                        {{ (isset($product) ? $product->brand_id : old('brand')) == $brand->id ? 'selected' : '' }}>
+                                        {{ Str::of($brand->name)->replace('_', ' ') }}</option>
+                                @endforeach
+                            </select>
+                            @error('brand')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Select brand for product.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label" style="font-size: 15px" for="categories">Categories <span
+                                    class="text-danger">*</span></label>
+                            <select class="select2-size-lg-multiple form-select" id="categories" name="categories[]"
+                                multiple>
+                                @foreach ($categories as $key => $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>
+                                        {{ Str::of($category->tree)->replace('_', ' ') }}</option>
+                                @endforeach
+                            </select>
+                            @error('categories')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Select categories for product.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label" style="font-size: 15px" for="tags">Tags</label>
+                            <select class="select2-size-lg-multiple form-select" id="tags" name="tags[]"
+                                multiple>
+                                @foreach ($tags as $key => $tag)
+                                    <option value="{{ $tag->id }}"
+                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>
+                                        {{ Str::of($tag->name)->replace('_', ' ') }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('tags')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @else
+                                <p class="m-0">
+                                    <small class="text-muted">Select tags for product.</small>
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-block mb-1">
+                                <label class="form-label" style="font-size: 15px" for="product_pdf">PDF</label>
+                                <input id="product_pdf" type="file"
+                                    class="filepond m-0 @error('product_pdf') is-invalid @enderror"
+                                    name="product_pdf" />
+                                @error('product_pdf')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @else
+                                    <p class="m-0">
+                                        <small class="text-muted">Upload product PDF. (Max Size:
+                                            536KB)</small>
+                                    </p>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="d-block mb-1">
+                                <label class="form-label" style="font-size: 15px" for="product_video">Product
+                                    Video</label>
+                                <input id="product_video" type="file"
+                                    class="filepond m-0 @error('product_video') is-invalid @enderror"
+                                    name="product_video" />
+                                @error('product_video')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @else
+                                    <p class="m-0">
+                                        <small class="text-muted">Upload product video. (Max Size:
+                                            1536KB)</small>
+                                    </p>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </div>

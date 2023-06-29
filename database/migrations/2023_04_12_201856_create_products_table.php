@@ -24,8 +24,16 @@ return new class extends Migration
 
             $table->string('permalink', 200)->nullable()->unique();
             $table->string('sku', 50)->nullable()->unique();
+
             $table->float('price')->default(0);
             $table->float('discounted_price')->default(0);
+
+            $table->boolean('call_for_final_rates')->default(false);
+            $table->boolean('are_rates_printed_on_package')->default(false);
+
+            $table->float('length')->default(0);
+            $table->float('width')->default(0);
+            $table->float('height')->default(0);
 
             $table->text('short_description')->nullable();
             $table->longText('long_description')->nullable();

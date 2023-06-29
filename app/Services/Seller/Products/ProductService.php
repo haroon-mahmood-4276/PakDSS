@@ -53,7 +53,16 @@ class ProductService implements ProductInterface
 
                 'permalink' => Str::of($inputs['name'])->slug(),
                 'sku' => Str::of($inputs['sku'])->slug()->lower(),
+
                 'price' => floatval($inputs['price']),
+                'discounted_price' => floatval($inputs['discounted_price']),
+
+                'call_for_final_rates' => $inputs['call_for_final_rates'],
+                'are_rates_printed_on_package' => $inputs['are_rates_printed_on_package'],
+
+                'length' => $inputs['length'],
+                'width' => $inputs['width'],
+                'height' => $inputs['height'],
 
                 'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
                 'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
@@ -67,21 +76,21 @@ class ProductService implements ProductInterface
             ];
 
             $product = $this->model()->create($data);
-            $product->categories()->sync($inputs['categories']);
-            $product->tags()->sync($inputs['tags']);
+            $product->categories()->sync($inputs['categories'] ?? []);
+            $product->tags()->sync($inputs['tags'] ?? []);
 
             if (isset($inputs['product_images'])) {
                 foreach ($inputs['product_images'] as $key => $image) {
-                    $product->addMedia($image)->toMediaCollection('products');
+                    $product->addMedia($image)->usingFileName($image->hashName())->toMediaCollection('product_images');
                 }
             }
 
             if (isset($inputs['product_pdf'])) {
-                $product->addMedia($inputs['product_pdf'])->toMediaCollection('products');
+                $product->addMedia($inputs['product_pdf'])->usingFileName($inputs['product_pdf']->hashName())->toMediaCollection('product_pdf');
             }
 
             if (isset($inputs['product_video'])) {
-                $product->addMedia($inputs['product_video'])->toMediaCollection('products');
+                $product->addMedia($inputs['product_video'])->usingFileName($inputs['product_video']->hashName())->toMediaCollection('product_video');
             }
 
             return $product;
@@ -102,6 +111,14 @@ class ProductService implements ProductInterface
                 'permalink' => Str::of($inputs['name'])->slug(),
                 'sku' => Str::of($inputs['sku'])->slug()->lower(),
                 'price' => floatval($inputs['price']),
+                'discounted_price' => floatval($inputs['discounted_price']),
+
+                'call_for_final_rates' => $inputs['call_for_final_rates'],
+                'are_rates_printed_on_package' => $inputs['are_rates_printed_on_package'],
+
+                'length' => $inputs['length'],
+                'width' => $inputs['width'],
+                'height' => $inputs['height'],
 
                 'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
                 'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
@@ -113,22 +130,24 @@ class ProductService implements ProductInterface
             ];
             $product->update($data);
 
-            $product->clearMediaCollection('products');
-            $product->categories()->sync($inputs['categories']);
-            $product->tags()->sync($inputs['tags']);
+            $product->categories()->sync($inputs['categories'] ?? []);
+            $product->tags()->sync($inputs['tags'] ?? []);
 
+            $product->clearMediaCollection('product_images');
             if (isset($inputs['product_images'])) {
                 foreach ($inputs['product_images'] as $key => $image) {
-                    $product->addMedia($image)->toMediaCollection('products');
+                    $product->addMedia($image)->usingFileName($image->hashName())->toMediaCollection('product_images');
                 }
             }
 
+            $product->clearMediaCollection('product_pdf');
             if (isset($inputs['product_pdf'])) {
-                $product->addMedia($inputs['product_pdf'])->toMediaCollection('products');
+                $product->addMedia($inputs['product_pdf'])->usingFileName($inputs['product_pdf']->hashName())->toMediaCollection('product_pdf');
             }
 
+            $product->clearMediaCollection('product_video');
             if (isset($inputs['product_video'])) {
-                $product->addMedia($inputs['product_video'])->toMediaCollection('products');
+                $product->addMedia($inputs['product_video'])->usingFileName($inputs['product_video']->hashName())->toMediaCollection('product_video');
             }
 
             return $product;
@@ -142,7 +161,9 @@ class ProductService implements ProductInterface
         $returnData = DB::transaction(function () use ($inputs) {
 
             $products = $this->model()->whereIn('id', $inputs)->get()->each(function ($product) {
-                $product->clearMediaCollection('products');
+                $product->clearMediaCollection('product_images');
+                $product->clearMediaCollection('product_video');
+                $product->clearMediaCollection('product_pdf');
                 $product->categories()->detach();
                 $product->tags()->detach();
                 $product->delete();

@@ -32,7 +32,7 @@ class ProductsDataTable extends DataTable
                 return 'Rs. '.($product->price > 0 ? $product->price : '-');
             })
             ->editColumn('discounted_price', function ($product) {
-                return 'Rs. '.($product->discounted_price > 0 ? $product->discounted_price : '-');
+                return ($product->discounted_price > 0 ? 'Rs. ' . $product->discounted_price : '-');
             })
             ->editColumn('status', function ($product) {
                 return editStatusColumn($product->status);
