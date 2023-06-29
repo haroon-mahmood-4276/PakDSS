@@ -105,6 +105,7 @@
         var tagify = new Tagify(document.getElementById('meta_keywords'), {});
 
         let filePondOptions = {
+            allowReorder: true,
             styleButtonRemoveItemPosition: 'right',
             imageCropAspectRatio: '1:1',
             labelFileTypeNotAllowed: 'Unsupported file type',
@@ -112,6 +113,7 @@
             ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
             storeAsFile: true,
             checkValidity: true,
+            maxFiles: 1,
             credits: {
                 label: '',
                 url: ''
@@ -129,12 +131,11 @@
 
 
         FilePond.create(document.getElementById('product_video'), {
-            ...filePondOptions,
             files: files['product_video'],
+            maxFileSize: '1536KB',
             acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv',
                 'video/mkv'
             ],
-            maxFiles: 1,
         });
 
 
@@ -142,7 +143,6 @@
             ...filePondOptions,
             files: files['product_pdf'],
             acceptedFileTypes: ['application/pdf'],
-            maxFiles: 1,
         });
     });
 </script>

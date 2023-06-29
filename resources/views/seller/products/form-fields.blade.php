@@ -402,7 +402,8 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
                                     <p class="m-0">
-                                        <small class="text-muted">Upload product PDF. (if any)</small>
+                                        <small class="text-muted">Upload product PDF. (Max Size:
+                                            536KB)</small>
                                     </p>
                                 @enderror
                             </div>
@@ -420,7 +421,8 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
                                     <p class="m-0">
-                                        <small class="text-muted">Upload product video.</small>
+                                        <small class="text-muted">Upload product video. (Max Size:
+                                            1536KB)</small>
                                     </p>
                                 @enderror
                             </div>

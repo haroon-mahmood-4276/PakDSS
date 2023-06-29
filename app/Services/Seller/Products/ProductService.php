@@ -81,16 +81,16 @@ class ProductService implements ProductInterface
 
             if (isset($inputs['product_images'])) {
                 foreach ($inputs['product_images'] as $key => $image) {
-                    $product->addMedia($image)->toMediaCollection('products');
+                    $product->addMedia($image)->usingFileName($image->hashName())->toMediaCollection('product_images');
                 }
             }
 
             if (isset($inputs['product_pdf'])) {
-                $product->addMedia($inputs['product_pdf'])->toMediaCollection('products');
+                $product->addMedia($inputs['product_pdf'])->usingFileName($inputs['product_pdf']->hashName())->toMediaCollection('product_pdf');
             }
 
             if (isset($inputs['product_video'])) {
-                $product->addMedia($inputs['product_video'])->toMediaCollection('products');
+                $product->addMedia($inputs['product_video'])->usingFileName($inputs['product_video']->hashName())->toMediaCollection('product_video');
             }
 
             return $product;
@@ -136,18 +136,18 @@ class ProductService implements ProductInterface
             $product->clearMediaCollection('product_images');
             if (isset($inputs['product_images'])) {
                 foreach ($inputs['product_images'] as $key => $image) {
-                    $product->addMedia($image)->toMediaCollection('product_images');
+                    $product->addMedia($image)->usingFileName($image->hashName())->toMediaCollection('product_images');
                 }
             }
 
             $product->clearMediaCollection('product_pdf');
             if (isset($inputs['product_pdf'])) {
-                $product->addMedia($inputs['product_pdf'])->toMediaCollection('product_pdf');
+                $product->addMedia($inputs['product_pdf'])->usingFileName($inputs['product_pdf']->hashName())->toMediaCollection('product_pdf');
             }
 
             $product->clearMediaCollection('product_video');
             if (isset($inputs['product_video'])) {
-                $product->addMedia($inputs['product_video'])->toMediaCollection('product_video');
+                $product->addMedia($inputs['product_video'])->usingFileName($inputs['product_video']->hashName())->toMediaCollection('product_video');
             }
 
             return $product;
