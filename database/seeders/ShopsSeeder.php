@@ -43,7 +43,7 @@ class ShopsSeeder extends Seeder
                 'lat' => '31.5864912',
                 'long' => '74.3901942',
 
-                'status' => 'pending_approval',
+                'status' => 'active',
                 'reason' => null,
             ],
             [

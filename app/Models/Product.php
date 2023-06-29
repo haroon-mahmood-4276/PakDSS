@@ -30,6 +30,13 @@ class Product extends Model implements HasMedia
         'sku',
         'price',
 
+        'call_for_final_rates',
+        'are_rates_printed_on_package',
+
+        'length',
+        'width',
+        'height',
+
         'short_description',
         'long_description',
 
@@ -42,15 +49,6 @@ class Product extends Model implements HasMedia
     ];
 
     public array $rules = [
-        'shop' => 'required|uuid|exists:shops,id',
-        'brand' => 'required|uuid|exists:brands,id',
-
-        'categories' => 'required|array|min:1',
-        'categories.*' => 'uuid|exists:categories,id',
-
-        'tags' => 'required|array|min:1',
-        'tags.*' => 'uuid|exists:tags,id',
-
         'name' => 'required|string|between:3,254',
         'permalink' => 'required|string|between:3,254|unique:products,permalink',
         'sku' => 'required|string|between:3,10|unique:products,sku',
@@ -58,11 +56,27 @@ class Product extends Model implements HasMedia
         'price' => 'required|decimal:0,2|gte:0',
         'discounted_price' => 'nullable|decimal:0,2|gte:0',
 
+        'call_for_final_rates' => 'sometimes|boolean|in:0,1',
+        'are_rates_printed_on_package' => 'sometimes|boolean|in:0,1',
+
+        'length' => 'sometimes|decimal:0,2|gte:0',
+        'width' => 'sometimes|decimal:0,2|gte:0',
+        'height' => 'sometimes|decimal:0,2|gte:0',
+
         'short_description' => 'required',
         'long_description' => 'nullable',
 
         'meta_keywords' => 'nullable|json',
         'meta_description' => 'nullable|string',
+
+        'shop' => 'required|uuid|exists:shops,id',
+        'brand' => 'sometimes|uuid|exists:brands,id',
+
+        'categories' => 'required|array|min:1',
+        'categories.*' => 'uuid|exists:categories,id',
+
+        'tags' => 'nullable|array|min:1',
+        'tags.*' => 'nullable|uuid|exists:tags,id',
 
         'product_images' => 'nullable|array',
         'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
@@ -70,6 +84,20 @@ class Product extends Model implements HasMedia
         'product_pdf' => 'nullable|file|mimes:pdf',
 
         'product_video' => 'nullable|file|mimes:mp4,webm,mov,avi,wmv,mkv',
+    ];
+
+    protected $casts = [
+        'price' => 'decimal:2',
+        'discounted_price' => 'decimal:2',
+
+        'call_for_final_rates' => 'boolean',
+        'are_rates_printed_on_package' => 'boolean',
+
+        'length' => 'decimal:2',
+        'width' => 'decimal:2',
+        'height' => 'decimal:2',
+
+        'meta_keywords' => 'array',
     ];
 
     public function getActivitylogOptions(): LogOptions

@@ -27,11 +27,15 @@ class ProductsSeeder extends Seeder
         $tags = Tag::all();
         $categories = Category::inRandomOrder()->limit(5)->get()->pluck('id')->toArray();
 
+        $brand = Brand::first()->id;
+        $seller = Seller::first()->id;
+        $shop = Shop::first()->id;
+
         $data = [
             [
-                'brand_id' => Brand::first()->id,
-                'seller_id' => Seller::first()->id,
-                'shop_id' => Shop::first()->id,
+                'brand_id' => $brand,
+                'seller_id' => $seller,
+                'shop_id' => $shop,
 
                 'name' => 'Mouse',
 
@@ -39,6 +43,12 @@ class ProductsSeeder extends Seeder
                 'sku' => 'SHX-1',
                 'price' => 123,
                 'discounted_price' => 123,
+                'call_for_final_rates' => false,
+                'are_rates_printed_on_package' => false,
+
+                'length' => 0,
+                'width' => 0,
+                'height' => 0,
 
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
@@ -51,9 +61,9 @@ class ProductsSeeder extends Seeder
                 'reason' => null,
             ],
             [
-                'brand_id' => Brand::first()->id,
-                'seller_id' => Seller::first()->id,
-                'shop_id' => Shop::first()->id,
+                'brand_id' => $brand,
+                'seller_id' => $seller,
+                'shop_id' => $shop,
 
                 'name' => 'Mouse1',
 
@@ -61,6 +71,12 @@ class ProductsSeeder extends Seeder
                 'sku' => 'SHX-2',
                 'price' => 123,
                 'discounted_price' => 123,
+                'call_for_final_rates' => false,
+                'are_rates_printed_on_package' => false,
+
+                'length' => 0,
+                'width' => 0,
+                'height' => 0,
 
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
@@ -73,9 +89,9 @@ class ProductsSeeder extends Seeder
                 'reason' => null,
             ],
             [
-                'brand_id' => Brand::first()->id,
-                'seller_id' => Seller::first()->id,
-                'shop_id' => Shop::first()->id,
+                'brand_id' => $brand,
+                'seller_id' => $seller,
+                'shop_id' => $shop,
 
                 'name' => 'Mouse2',
 
@@ -83,6 +99,12 @@ class ProductsSeeder extends Seeder
                 'sku' => 'SHX-3',
                 'price' => 123,
                 'discounted_price' => 0,
+                'call_for_final_rates' => false,
+                'are_rates_printed_on_package' => false,
+
+                'length' => 0,
+                'width' => 0,
+                'height' => 0,
 
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
