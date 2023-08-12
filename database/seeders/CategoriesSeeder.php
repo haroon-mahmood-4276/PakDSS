@@ -35,13 +35,13 @@ class CategoriesSeeder extends Seeder
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Winter Colothing',
-                                'slug' => Str::slug('Men Winter Colothing'),
+                                'name' => 'Men Winter Clothing',
+                                'slug' => Str::slug('Men Winter Clothing'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Innerwear / Sleepwear',
-                                'slug' => Str::slug('Men Innerwear / Sleepwear'),
+                                'name' => 'Men Inner-wear / Sleepwear',
+                                'slug' => Str::slug('Men Inner-wear / Sleepwear'),
                                 'parent_id' => null,
                             ],
                         ],
@@ -89,8 +89,8 @@ class CategoriesSeeder extends Seeder
                         ],
                     ],
                     [
-                        'name' => 'Men Watchs',
-                        'slug' => Str::slug('Men Watchs'),
+                        'name' => 'Men Watches',
+                        'slug' => Str::slug('Men Watches'),
                         'parent_id' => null,
                         'child' => [
                             [
@@ -136,8 +136,8 @@ class CategoriesSeeder extends Seeder
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Jewellery',
-                                'slug' => Str::slug('Men Jewellery'),
+                                'name' => 'Men Jewelry',
+                                'slug' => Str::slug('Men Jewelry'),
                                 'parent_id' => null,
                             ],
                             [
@@ -165,8 +165,8 @@ class CategoriesSeeder extends Seeder
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Abayas',
-                                'slug' => Str::slug('Women Abayas'),
+                                'name' => 'Women Abaya',
+                                'slug' => Str::slug('Women Abaya'),
                                 'parent_id' => null,
                             ],
                         ],
@@ -182,13 +182,13 @@ class CategoriesSeeder extends Seeder
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Winter Colothing',
-                                'slug' => Str::slug('Women Winter Colothing'),
+                                'name' => 'Women Winter Clothing',
+                                'slug' => Str::slug('Women Winter Clothing'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Innerwear / Sleepwear',
-                                'slug' => Str::slug('Women Innerwear / Sleepwear'),
+                                'name' => 'Women Inner-wear / Sleepwear',
+                                'slug' => Str::slug('Women Inner-wear / Sleepwear'),
                                 'parent_id' => null,
                             ],
                             [
@@ -226,8 +226,8 @@ class CategoriesSeeder extends Seeder
                         ],
                     ],
                     [
-                        'name' => 'Women Watchs',
-                        'slug' => Str::slug('Women Watchs'),
+                        'name' => 'Women Watches',
+                        'slug' => Str::slug('Women Watches'),
                         'parent_id' => null,
                         'child' => [
                             [
@@ -285,58 +285,58 @@ class CategoriesSeeder extends Seeder
                         ],
                     ],
                     [
-                        'name' => 'Women Jewellery',
-                        'slug' => Str::slug('Women Jewellery'),
+                        'name' => 'Women Jewelry',
+                        'slug' => Str::slug('Women Jewelry'),
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Women Jewellery Sets',
-                                'slug' => Str::slug('Women Jewellery Sets'),
+                                'name' => 'Women Jewelry Sets',
+                                'slug' => Str::slug('Women Jewelry Sets'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Pendants',
-                                'slug' => Str::slug('Women Jewellery Pendants'),
+                                'name' => 'Women Jewelry Pendants',
+                                'slug' => Str::slug('Women Jewelry Pendants'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Necklace',
-                                'slug' => Str::slug('Women Jewellery Necklace'),
+                                'name' => 'Women Jewelry Necklace',
+                                'slug' => Str::slug('Women Jewelry Necklace'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Ear Rings',
-                                'slug' => Str::slug('Women Jewellery Ear Rings'),
+                                'name' => 'Women Jewelry Ear Rings',
+                                'slug' => Str::slug('Women Jewelry Ear Rings'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Rings',
-                                'slug' => Str::slug('Women Jewellery Rings'),
+                                'name' => 'Women Jewelry Rings',
+                                'slug' => Str::slug('Women Jewelry Rings'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Ear Studs',
-                                'slug' => Str::slug('Women Jewellery Ear Studs'),
+                                'name' => 'Women Jewelry Ear Studs',
+                                'slug' => Str::slug('Women Jewelry Ear Studs'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Anklets',
-                                'slug' => Str::slug('Women Jewellery Anklets'),
+                                'name' => 'Women Jewelry Anklets',
+                                'slug' => Str::slug('Women Jewelry Anklets'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Bracelets',
-                                'slug' => Str::slug('Women Jewellery Bracelets'),
+                                'name' => 'Women Jewelry Bracelets',
+                                'slug' => Str::slug('Women Jewelry Bracelets'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Bangles',
-                                'slug' => Str::slug('Women Jewellery Bangles'),
+                                'name' => 'Women Jewelry Bangles',
+                                'slug' => Str::slug('Women Jewelry Bangles'),
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewellery Nose Pins',
-                                'slug' => Str::slug('Women Jewellery Nose Pins'),
+                                'name' => 'Women Jewelry Nose Pins',
+                                'slug' => Str::slug('Women Jewelry Nose Pins'),
                                 'parent_id' => null,
                             ],
                         ],
@@ -534,8 +534,8 @@ class CategoriesSeeder extends Seeder
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Gysers',
-                                'slug' => Str::slug('Gysers'),
+                                'name' => 'Geysers',
+                                'slug' => Str::slug('Geysers'),
                                 'parent_id' => null,
                             ],
                             [
@@ -615,13 +615,13 @@ class CategoriesSeeder extends Seeder
                         'parent_id' => null,
                     ],
                     [
-                        'name' => 'Travelling - Tourisum',
-                        'slug' => Str::slug('Travelling - Tourisum'),
+                        'name' => 'Traveling - Tourism',
+                        'slug' => Str::slug('Traveling - Tourism'),
                         'parent_id' => null,
                     ],
                     [
-                        'name' => 'Sports Nutrition & Suppliments',
-                        'slug' => Str::slug('Sports Nutrition & Suppliments'),
+                        'name' => 'Sports Nutrition & Supplements',
+                        'slug' => Str::slug('Sports Nutrition & Supplements'),
                         'parent_id' => null,
                     ],
                     [
@@ -726,8 +726,8 @@ class CategoriesSeeder extends Seeder
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Curiculum Books',
-                                'slug' => Str::slug('Curiculum Books'),
+                                'name' => 'Curriculum Books',
+                                'slug' => Str::slug('Curriculum Books'),
                                 'parent_id' => null,
                             ],
                         ],
@@ -808,8 +808,8 @@ class CategoriesSeeder extends Seeder
                                         'parent_id' => null,
                                     ],
                                     [
-                                        'name' => 'Geomatry Boxes',
-                                        'slug' => Str::slug('Geomatry Boxes'),
+                                        'name' => 'Geometry Boxes',
+                                        'slug' => Str::slug('Geometry Boxes'),
                                         'parent_id' => null,
                                     ],
                                     [
@@ -873,27 +873,24 @@ class CategoriesSeeder extends Seeder
 
         ];
 
-        $this->triverseAndSave($data);
+        $this->traverseAndSave($data);
     }
 
-    private function triverseAndSave($data, $parent_id = null)
+    private function traverseAndSave($data, $parent_id = null)
     {
         foreach ($data as $value) {
 
-            $value['id'] = Str::orderedUuid()->toString();
-
             $model = new Category([
-                'id' => $value['id'],
                 'name' => $value['name'],
                 'slug' => $value['slug'],
                 'parent_id' => $parent_id,
             ]);
+            $model->save();
 
             if (isset($value['child'])) {
-                $this->triverseAndSave($value['child'], $value['id']);
+                $this->traverseAndSave($value['child'], $model->id);
             }
 
-            $model->save();
         }
     }
 }
