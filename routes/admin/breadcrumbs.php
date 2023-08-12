@@ -23,7 +23,7 @@ Breadcrumbs::for('admin.roles.edit', function (BreadcrumbTrail $trail) {
     $trail->push('Edit Role');
 });
 
-// Permisisons Breadcrumbs
+// Permissions Breadcrumbs
 Breadcrumbs::for('admin.permissions.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
     $trail->push('Permissions', route('admin.permissions.index'));
@@ -130,6 +130,12 @@ Breadcrumbs::for('admin.approvals.products.index', function (BreadcrumbTrail $tr
     $trail->parent('admin.dashboard');
     $trail->push('Approvals', route('admin.approvals.products.index'));
     $trail->push('Products', route('admin.approvals.products.index'));
+});
+
+Breadcrumbs::for('admin.approvals.sellers.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Approvals', route('admin.approvals.sellers.index'));
+    $trail->push('Sellers', route('admin.approvals.sellers.index'));
 });
 
 // Settings Breadcrumbs

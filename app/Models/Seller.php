@@ -69,7 +69,7 @@ class Seller extends Authenticatable implements MustVerifyEmail
             'ntn_number' => 'required|numeric|max_digits:20',
             'phone_primary' => 'required|numeric|max_digits:20',
             'phone_secondary' => 'nullable|numeric|max_digits:20',
-            'status' => 'required|in:'.implode(',', Status::values()),
+            'status' => 'required|in:' . implode(',', Status::values()),
             'reason' => 'required_if:status,objected,inactive',
         ];
     }
@@ -83,9 +83,14 @@ class Seller extends Authenticatable implements MustVerifyEmail
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                $name = (! is_null($attributes['first_name']) ? ' '.$attributes['first_name'] : '').(! is_null($attributes['middle_name']) ? ' '.$attributes['middle_name'] : '').(! is_null($attributes['last_name']) ? ' '.$attributes['last_name'] : '');
+                $name = (!is_null($attributes['first_name']) ? ' ' . $attributes['first_name'] : '') . (!is_null($attributes['middle_name']) ? ' ' . $attributes['middle_name'] : '') . (!is_null($attributes['last_name']) ? ' ' . $attributes['last_name'] : '');
 
                 return trim($name);
+            },
+            set: function ($value, $attributes) {
+                $attributes['first_name'] = $value;
+                $attributes['middle_name'] = $value;
+                $attributes['last_name'] = $value;
             },
         );
     }

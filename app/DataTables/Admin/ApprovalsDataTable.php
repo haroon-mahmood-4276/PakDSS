@@ -3,6 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Product;
+use App\Models\Seller;
 use App\Models\Shop;
 use App\Utils\Enums\Status;
 use App\Utils\Traits\DatatablesTrait;
@@ -28,7 +29,7 @@ class ApprovalsDataTable extends DataTable
     {
         $columns = array_column($this->getColumns(), 'data');
 
-        return (new EloquentDataTable($query))
+        $eloquentDataTable = (new EloquentDataTable($query))
             ->setRowId('id')
             ->editColumn('check', function ($model) {
                 return $model;
@@ -46,6 +47,18 @@ class ApprovalsDataTable extends DataTable
                 return view('admin.approvals.actions', ['id' => $model->id, 'for' => $this->model]);
             })
             ->rawColumns($columns);
+
+        switch ($this->model) {
+            case 'sellers':
+                $eloquentDataTable->filterColumn('name', function ($query, $keyword) {
+                    $query->whereRaw("LOWER(CAST(CONCAT(first_name, ' ', middle_name, ' ', last_name) as TEXT)) like ? OR CAST(CONCAT(first_name, ' ', middle_name, ' ', last_name) as TEXT) like ?", ["%{$keyword}%", "%{$keyword}%"]);
+                })->orderColumn('name', function ($query, $order) {
+                    $query->orderBy('first_name', $order);
+                });
+                break;
+        }
+
+        return $eloquentDataTable;
     }
 
     /**
@@ -59,6 +72,9 @@ class ApprovalsDataTable extends DataTable
                 break;
             case 'products':
                 $model = (new Product());
+                break;
+            case 'sellers':
+                $model = (new Seller());
                 break;
         }
 
@@ -163,6 +179,9 @@ class ApprovalsDataTable extends DataTable
                     Column::make('permalink')->addClass('text-nowrap align-middle text-center'),
                 ]);
                 break;
+            case 'seller':
+                $columns = array_merge($columns, []);
+                break;
         }
 
         $columns = array_merge($columns, [
@@ -180,6 +199,6 @@ class ApprovalsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return Str::of($this->model)->ucfirst().'Approvals_'.date('YmdHis');
+        return Str::of($this->model)->ucfirst() . 'Approvals_' . date('YmdHis');
     }
 }
