@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\ApprovalsDataTable;
 use App\Http\Controllers\Controller;
+use App\Services\Admin\Sellers\SellerInterface;
 use App\Services\Seller\Products\ProductInterface;
 use App\Services\Seller\Shops\ShopInterface;
 use App\Utils\Enums\Status;
@@ -17,10 +18,13 @@ class ApprovalController extends Controller
 
     private $shopInterface;
 
-    public function __construct(ProductInterface $productInterface, ShopInterface $shopInterface)
+    private $sellerInterface;
+
+    public function __construct(ProductInterface $productInterface, ShopInterface $shopInterface, SellerInterface $sellerInterface)
     {
         $this->productInterface = $productInterface;
         $this->shopInterface = $shopInterface;
+        $this->sellerInterface = $sellerInterface;
     }
 
     public function shopIndex(ApprovalsDataTable $dataTable)
@@ -51,31 +55,49 @@ class ApprovalController extends Controller
         return $dataTable->with($data)->render('admin.approvals.index', $data);
     }
 
+    public function sellerIndex(ApprovalsDataTable $dataTable)
+    {
+
+        $data = [
+            'model' => 'sellers',
+        ];
+
+        if (request()->ajax()) {
+            return $dataTable->with($data)->ajax();
+        }
+
+        return $dataTable->with($data)->render('admin.approvals.index', $data);
+    }
+
     public function store(Request $request)
     {
         try {
 
-            $inteface = null;
+            $interface = null;
 
             switch ($request->for) {
                 case 'shops':
-                    $inteface = $this->shopInterface;
+                    $interface = $this->shopInterface;
                     break;
 
                 case 'products':
-                    $inteface = $this->productInterface;
+                    $interface = $this->productInterface;
+                    break;
+
+                case 'sellers':
+                    $interface = $this->sellerInterface;
                     break;
             }
 
             switch ($request->status) {
                 case 'approve':
-                    $inteface->status(ids: $request->checkForDelete ?? $request->id, status: Status::ACTIVE);
+                    $interface->status(ids: $request->checkForDelete ?? $request->id, status: Status::ACTIVE);
 
                     return redirect()->back()->with('success', Str::of($request->for)->ucfirst().' approved successfully');
                     break;
 
                 case 'object':
-                    $inteface->status(ids: $request->checkForDelete ?? $request->id, status: Status::OBJECTED);
+                    $interface->status(ids: $request->checkForDelete ?? $request->id, status: Status::OBJECTED);
 
                     return redirect()->back()->with('success', Str::of($request->for)->ucfirst().' objected successfully');
                     break;

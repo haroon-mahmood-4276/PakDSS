@@ -86,4 +86,24 @@ class SellerService implements SellerInterface
 
         return $returnData;
     }
+
+    public function status($ids, $status)
+    {
+        if (is_array($ids)) {
+            foreach ($ids as $key => $id) {
+                $this->changeStatus($id, $status);
+            }
+        } else {
+            $this->changeStatus($ids, $status);
+        }
+    }
+
+    private function changeStatus($id, $status)
+    {
+        return DB::transaction(function () use ($id, $status) {
+            return $this->model()->find($id)->update([
+                'status' => $status,
+            ]);
+        });
+    }
 }

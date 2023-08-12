@@ -203,6 +203,11 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Approvals - Products - Can View/Update',
             ],
+            [
+                'name' => 'admin.approvals.sellers.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Approvals - Sellers - Can View/Update',
+            ],
 
             // Site Permissions
             [

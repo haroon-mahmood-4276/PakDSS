@@ -115,9 +115,9 @@
             </li>
         @endcanany
 
-        @canany(['admin.approvals.shops.index', 'admin.approvals.products.index'])
+        @canany(['admin.approvals.shops.index', 'admin.approvals.products.index', 'admin.approvals.sellers.index'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index', 'admin.approvals.products.index'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index', 'admin.approvals.products.index', 'admin.approvals.sellers.index'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-check menu-icon"></i>
                     <div>Approvals</div>
@@ -134,6 +134,13 @@
                         <li class="menu-item {{ request()->routeIs('admin.approvals.products.index') ? 'active' : null }}">
                             <a href="{{ route('admin.approvals.products.index') }}" class="menu-link">
                                 <div>Products</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('admin.approvals.sellers.index')
+                        <li class="menu-item {{ request()->routeIs('admin.approvals.sellers.index') ? 'active' : null }}">
+                            <a href="{{ route('admin.approvals.sellers.index') }}" class="menu-link">
+                                <div>Seller</div>
                             </a>
                         </li>
                     @endcan
