@@ -350,9 +350,7 @@
                             <select class="select2-size-lg-multiple form-select" id="categories" name="categories[]"
                                 multiple>
                                 @foreach ($categories as $key => $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>
-                                        {{ Str::of($category->tree)->replace('_', ' ') }}</option>
+                                    <option value="{{ $category->id }}" {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>{{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('categories')

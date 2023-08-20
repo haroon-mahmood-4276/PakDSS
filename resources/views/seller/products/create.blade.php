@@ -42,5 +42,5 @@
 @endsection
 
 @section('custom-js')
-@include('seller.products.form-fields-js', ['source' => 'create'])
+    @include('seller.products.form-fields-js', ['source' => 'create'])
 @endsection

@@ -51,7 +51,7 @@ class ProductController extends Controller
 
         $data = [
             'brands' => $this->brandInterface->get(),
-            'categories' => $this->categoryInterface->get(with_tree: true),
+            'categories' => $this->categoryInterface->get(with_tree: true, includeOnlyLast: true),
             'shops' => $this->shopInterface->get(auth('seller')->user()->id),
             'tags' => $this->tagInterface->get(),
         ];
