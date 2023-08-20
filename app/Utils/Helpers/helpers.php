@@ -9,20 +9,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\{Collection};
 use Illuminate\Support\Facades\Cache;
 
-// if (!function_exists('permission_list')) {
-//     function permission_list(...$keys)
-//     {
-//         $permissionList = include app_path('Utils/PermissionList.php');
-//         $permissionList = Arr::dot($permissionList);
-
-//         if (count($keys) > 1) {
-//             return array_values(array_intersect_key($permissionList, array_flip($keys)));
-//         } else {
-//             return $permissionList[$keys[0]];
-//         }
-//     }
-// }
-
 if (!function_exists('settings')) {
     function settings($key, $overrideCache = false)
     {
@@ -253,7 +239,7 @@ if (!function_exists('getTrashedDataCount')) {
 }
 
 if (!function_exists('prepareLinkedTree')) {
-    function prepareLinkedTree(collection $collectionData, $model, $queryFromDB = false)
+    function prepareLinkedTree(collection $collectionData, $model, $queryFromDB = false, $includeOnlyLast = false)
     {
 
         $typesTmp = [];
@@ -262,7 +248,7 @@ if (!function_exists('prepareLinkedTree')) {
         $dbTypes = ($queryFromDB ? $model::all() : $collectionData);
 
         foreach ($collectionData as $key => $row) {
-            $tmpLinkedTree = ($queryFromDB ? prepareTreeFromElequent($model, $row, $row->name, $collectionData, $dbTypes) : prepareTreeFromCollection($row, $row->name, $collectionData));
+            $tmpLinkedTree = ($queryFromDB ? prepareTreeFromEloquent($model, $row, $row->name, $collectionData, $dbTypes) : prepareTreeFromCollection(row: $row, name: $row->name, parent: $collectionData, includeOnlyLast: $includeOnlyLast));
             if (is_null($tmpLinkedTree)) {
                 continue;
             }
@@ -274,8 +260,8 @@ if (!function_exists('prepareLinkedTree')) {
     }
 }
 
-if (!function_exists('prepareTreeFromElequent')) {
-    function prepareTreeFromElequent($model, $row, $name, collection $parent, $dbTypes, $index = 1)
+if (!function_exists('prepareTreeFromEloquent')) {
+    function prepareTreeFromEloquent($model, $row, $name, collection $parent, $dbTypes, $index = 1)
     {
         if ($index == 1 && !is_null($parent->firstWhere('parent_id', $row->id))) {
             return null;
@@ -288,14 +274,14 @@ if (!function_exists('prepareTreeFromElequent')) {
         $nextRow = $model::find($row->parent_id);
         $name = $nextRow->name . ' > ' . $name;
 
-        return prepareTreeFromElequent($model, $nextRow, $name, $parent, $dbTypes, ++$index);
+        return prepareTreeFromEloquent($model, $nextRow, $name, $parent, $dbTypes, ++$index);
     }
 }
 
 if (!function_exists('prepareTreeFromCollection')) {
-    function prepareTreeFromCollection($row, $name, collection $parent, $index = 1)
+    function prepareTreeFromCollection($row, $name, collection $parent, $index = 1, $includeOnlyLast = false)
     {
-        if ($index == 1 && !is_null($parent->firstWhere('parent_id', $row->id))) {
+        if ($includeOnlyLast && $index == 1 && !is_null($parent->firstWhere('parent_id', $row->id))) {
             return null;
         }
 

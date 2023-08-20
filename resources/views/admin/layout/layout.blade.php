@@ -151,7 +151,6 @@
                     width: "100%",
                     containerCssClass: "select-lg",
                     templateResult: c,
-                    templateSelection: c,
                     escapeMarkup: function(e) {
                         return e
                     }
@@ -166,7 +165,7 @@
         });
 
         function c(e) {
-            return e.id ? "<i class='" + $(e.element).data("icon") + "'></i>" + e.text : e.text
+            return e.id ? "<i class='" + $(e.element).data("icon") + "'></i> " + e.text : e.text
         }
 
         moment.tz.setDefault("{{ Config::get('app.timezone') }}");

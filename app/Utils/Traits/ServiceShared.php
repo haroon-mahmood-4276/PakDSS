@@ -4,7 +4,7 @@ namespace App\Utils\Traits;
 
 trait ServiceShared
 {
-    public function get($relationships = [], $ignore = null, $with_tree = false, $withCount = false, $withPagination = false, $perPage = 10)
+    public function get($relationships = [], $ignore = null, $with_tree = false, $withCount = false, $withPagination = false, $perPage = 10, $includeOnlyLast = false)
     {
         $model = $this->model();
         if (is_array($ignore)) {
@@ -23,7 +23,7 @@ trait ServiceShared
         }
 
         if ($with_tree) {
-            return prepareLinkedTree(collect($model), $this->model());
+            return prepareLinkedTree(collectionData: collect($model), model: $this->model(), includeOnlyLast: $includeOnlyLast);
         }
 
         return $model;
