@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Rules\AlphaNumDash;
 use App\Rules\Password;
 use App\Utils\Enums\Status;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -66,7 +67,7 @@ class Seller extends Authenticatable implements MustVerifyEmail
             'middle_name' => 'nullable|string|between:3,254',
             'last_name' => 'required|string|between:3,254',
             'cnic' => 'required|numeric|digits:13|unique:sellers,cnic',
-            'ntn_number' => 'required|numeric|max_digits:20',
+            'ntn_number' => ['nullable', (new AlphaNumDash), 'max:20'],
             'phone_primary' => 'required|numeric|max_digits:20',
             'phone_secondary' => 'nullable|numeric|max_digits:20',
             'status' => 'required|in:' . implode(',', Status::values()),

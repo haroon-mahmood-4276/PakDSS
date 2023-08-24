@@ -122,7 +122,7 @@
 
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="ntn_number">NTN <span
-                                class="text-danger">*</span></label>
+                                class="text-danger"></span></label>
                         <input type="text" class="form-control @error('ntn_number') is-invalid @enderror"
                             id="ntn_number" name="ntn_number" placeholder="NTN"
                             value="{{ isset($seller) ? $seller->ntn_number : old('ntn_number') }}" minlength="3"
