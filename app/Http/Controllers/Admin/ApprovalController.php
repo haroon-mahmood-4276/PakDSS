@@ -6,7 +6,7 @@ use App\DataTables\Admin\ApprovalsDataTable;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\Sellers\SellerInterface;
 use App\Services\Seller\Products\ProductInterface;
-use App\Services\Seller\Shops\ShopInterface;
+use App\Services\Shared\Shops\ShopInterface;
 use App\Utils\Enums\Status;
 use Exception;
 use Illuminate\Http\Request;

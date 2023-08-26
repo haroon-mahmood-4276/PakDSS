@@ -103,6 +103,22 @@ Breadcrumbs::for('admin.sellers.edit', function (BreadcrumbTrail $trail) {
     $trail->push('Edit Seller');
 });
 
+// Shops Breadcrumbs
+Breadcrumbs::for('admin.sellers.shops.index', function (BreadcrumbTrail $trail, $seller) {
+    $trail->parent('admin.sellers.index');
+    $trail->push('Shops', route('admin.sellers.shops.index', ['seller' => $seller]));
+});
+
+Breadcrumbs::for('admin.sellers.shops.create', function (BreadcrumbTrail $trail, $seller) {
+    $trail->parent('admin.sellers.shops.index', $seller);
+    $trail->push('Create Shop');
+});
+
+Breadcrumbs::for('admin.sellers.shops.edit', function (BreadcrumbTrail $trail, $seller) {
+    $trail->parent('admin.sellers.shops.index', $seller);
+    $trail->push('Edit Shop');
+});
+
 // Users Breadcrumbs
 Breadcrumbs::for('admin.users.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');

@@ -7,7 +7,7 @@ use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Shops\storeRequest;
 use App\Http\Requests\Seller\Shops\updateRequest;
-use App\Services\Seller\Shops\ShopInterface;
+use App\Services\Shared\Shops\ShopInterface;
 use App\Utils\Enums\Status;
 use Exception;
 use Illuminate\Contracts\View\View;

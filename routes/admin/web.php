@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\{
     TagController,
     UserController,
     SettingController,
+    ShopController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -119,20 +120,37 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
         });
 
         //Seller Routes
-        Route::group(['prefix' => 'sellers', 'as' => 'sellers.'], function () {
-            Route::get('/', [SellerController::class, 'index'])->middleware('permission:admin.sellers.index')->name('index');
+        Route::prefix('sellers')->name('sellers.')->controller(SellerController::class)->group(function () {
+            Route::get('/', 'index')->middleware('permission:admin.sellers.index')->name('index');
 
             Route::group(['middleware' => 'permission:admin.sellers.create'], function () {
-                Route::get('create', [SellerController::class, 'create'])->name('create');
-                Route::post('store', [SellerController::class, 'store'])->name('store');
+                Route::get('create', 'create')->name('create');
+                Route::post('store', 'store')->name('store');
             });
 
-            Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.sellers.edit'], function () {
-                Route::get('edit', [SellerController::class, 'edit'])->whereUuid('id')->name('edit');
-                Route::put('update', [SellerController::class, 'update'])->whereUuid('id')->name('update');
+            Route::group(['prefix' => '/{seller}'], function () {
+                Route::get('edit', 'edit')->whereUuid('id')->middleware('permission:admin.sellers.edit')->name('edit');
+                Route::put('update', 'update')->whereUuid('id')->middleware('permission:admin.sellers.edit')->name('update');
+
+                //Shop Routes
+                Route::prefix('shops')->name('shops.')->controller(ShopController::class)->group(function () {
+                    Route::get('/', 'index')->middleware('permission:admin.sellers.shops.index')->name('index');
+
+                    Route::group(['middleware' => 'permission:admin.sellers.shops.create'], function () {
+                        Route::get('create', 'create')->name('create');
+                        Route::post('store', 'store')->name('store');
+                    });
+
+                    Route::group(['prefix' => '/{shop}', 'middleware' => 'permission:admin.sellers.shops.edit'], function () {
+                        Route::get('edit', 'edit')->whereUuid('shop')->name('edit');
+                        Route::put('update', 'update')->whereUuid('shop')->name('update');
+                    });
+
+                    Route::get('delete', 'destroy')->middleware('permission:admin.sellers.shops.destroy')->name('destroy');
+                });
             });
 
-            Route::get('delete', [SellerController::class, 'destroy'])->middleware('permission:admin.sellers.destroy')->name('destroy');
+            Route::get('delete', 'destroy')->middleware('permission:admin.sellers.destroy')->name('destroy');
         });
 
         //User Routes
@@ -171,8 +189,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         //Settings Routes
         Route::prefix('settings')->name('settings.')->controller(SettingController::class)->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::post('/', 'store')->name('store');
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
         });
     });
 });

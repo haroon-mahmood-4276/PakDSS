@@ -61,7 +61,7 @@ class Shop extends Model implements HasMedia
             'manager_mobile' => 'required|numeric|digits:12',
             'manager_email' => 'required|string|between:3,254|unique:shops,manager_email',
             'shop_logo' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
-            'status' => 'required|in:'.implode(',', Status::values()),
+            'status' => 'required|in:' . implode(',', Status::values()),
         ];
     }
 
