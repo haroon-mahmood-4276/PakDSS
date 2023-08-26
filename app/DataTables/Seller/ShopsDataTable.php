@@ -29,6 +29,10 @@ class ShopsDataTable extends DataTable
             // ->editColumn('check', function ($shop) {
             //     return $shop;
             // })
+            ->editColumn('image', function ($model) {
+                $imagePath = $model->getFirstMediaUrl('shops');
+                return editImageColumn(image: strlen($imagePath) > 0 ? $imagePath : asset('admin-assets/img/do_not_delete/do_not_delete.png'), name: $model->name, width: 50);
+            })
             ->editColumn('status', function ($shop) {
                 return editStatusColumn($shop->status);
             })
@@ -130,6 +134,7 @@ class ShopsDataTable extends DataTable
         return [
             // Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
             Column::make('DT_RowIndex')->title('#')->addClass('text-nowrap align-middle text-center'),
+            Column::make('image')->addClass('text-nowrap align-middle text-center'),
             Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
             Column::make('address')->addClass('text-nowrap align-middle text-center'),
