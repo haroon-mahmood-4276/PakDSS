@@ -54,7 +54,7 @@ Route::group(['as' => 'seller.', 'prefix' => 'seller'], function () {
                     Route::post('store', 'store')->name('store');
                 });
 
-                Route::group(['prefix' => '/{id}'], function () {
+                Route::group(['prefix' => '/{shop}'], function () {
                     Route::get('edit', 'edit')->whereUuid('id')->name('edit');
                     Route::put('update', 'update')->whereUuid('id')->name('update');
                 });

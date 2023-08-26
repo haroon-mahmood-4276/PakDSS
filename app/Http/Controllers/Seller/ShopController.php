@@ -7,6 +7,8 @@ use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Shops\storeRequest;
 use App\Http\Requests\Seller\Shops\updateRequest;
+use App\Models\Seller;
+use App\Models\Shop;
 use App\Services\Shared\Shops\ShopInterface;
 use App\Utils\Enums\Status;
 use Exception;
@@ -64,18 +66,18 @@ class ShopController extends Controller
         abort(403);
     }
 
-    public function edit($id)
+    public function edit(Shop $shop)
     {
         abort_if(request()->ajax(), 403);
 
         try {
-            $shop = $this->shopInterface->find(auth('seller')->user()->id, $id);
+            $shop = $this->shopInterface->find($shop->id);
 
-            if ($shop && ! empty($shop)) {
+            if ($shop) {
                 $data = [
                     'shop' => $shop,
-                    'shop_logo' => $shop->getMedia('shops'),
                     'statuses' => Status::array(),
+                    'shop_logo' => $shop->getMedia('shops'),
                 ];
 
                 return view('seller.shops.edit', $data);
@@ -96,14 +98,13 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, $id)
+    public function update(updateRequest $request, Shop $shop)
     {
         abort_if(request()->ajax(), 403);
         try {
-            $id = decryptParams($id);
             $inputs = $request->validated();
-            $record = $this->shopInterface->update($id, $inputs);
-
+            $inputs['status'] = Status::PENDING_APPROVAL;
+            $record = $this->shopInterface->update([], $shop, $inputs);
             return redirect()->route('seller.shops.index')->withSuccess('Data updated!');
         } catch (GeneralException $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
