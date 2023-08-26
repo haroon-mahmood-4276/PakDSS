@@ -100,4 +100,9 @@ class Seller extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Shop::class);
     }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }

@@ -10,13 +10,14 @@
 
         $('#short_description').tinymce({
             height: 300,
+            menubar: false,
             schema: 'html5-strict',
             invalid_elements: 'script,style',
             branding: false,
             plugins: [
                 'lists', 'wordcount'
             ],
-            toolbar: 'undo redo | bold italic backcolor | bullist numlist removeformat',
+            toolbar: 'undo redo | bullist numlist removeformat',
             maxlength: 2,
             // setup: function(editor) {
             //     editor.on('keydown', function(e) {
