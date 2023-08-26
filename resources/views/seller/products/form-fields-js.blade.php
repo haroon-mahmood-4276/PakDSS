@@ -12,16 +12,11 @@
             height: 300,
             schema: 'html5-strict',
             invalid_elements: 'script,style',
-            menubar: true,
             branding: false,
             plugins: [
-                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                'anchor', 'searchreplace', 'visualblocks', 'fullscreen',
-                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                'lists', 'wordcount'
             ],
-            toolbar: 'undo redo | blocks | bold italic backcolor | ' +
-                'alignleft aligncenter alignright alignjustify | ' +
-                'bullist numlist outdent indent | removeformat | help',
+            toolbar: 'undo redo | bold italic backcolor | bullist numlist removeformat',
             maxlength: 2,
             // setup: function(editor) {
             //     editor.on('keydown', function(e) {
@@ -64,13 +59,27 @@
             // }
         });
 
-        $('#length, #width, #height').on('keyup', function() {
+        $('#length, #width, #height').on('change', function() {
             let length = parseFloat($('#length').val()) || 0;
             let width = parseFloat($('#width').val()) || 0;
             let height = parseFloat($('#height').val()) || 0;
 
             $('#span-dimentions-value').html(parseFloat(length * width * height).toFixed(2));
-        }).trigger('keyup');
+            $('#calculate_weight_from_dimentions').trigger('change');
+        }).trigger('change');
+
+        $('#calculate_weight_from_dimentions').on('change', function() {
+            if ($(this).is(':checked')) {
+                let length = parseFloat($('#length').val()) || 0;
+                let width = parseFloat($('#width').val()) || 0;
+                let height = parseFloat($('#height').val()) || 0;
+
+                let weight = parseFloat(parseFloat(length * width * height) / 5000).toFixed(2);
+                $('#weight').val(weight).attr('readonly', true);
+            } else {
+                $('#weight').attr('readonly', false);
+            }
+        });
     });
 </script>
 

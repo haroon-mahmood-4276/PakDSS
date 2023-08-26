@@ -50,6 +50,8 @@ class ProductsSeeder extends Seeder
                 'width' => 0,
                 'height' => 0,
 
+                'weight' => 0,
+
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
 

@@ -64,6 +64,8 @@ class ProductService implements ProductInterface
                 'width' => $inputs['width'],
                 'height' => $inputs['height'],
 
+                'weight' => $inputs['weight'],
+
                 'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
                 'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
 
@@ -110,6 +112,7 @@ class ProductService implements ProductInterface
 
                 'permalink' => Str::of($inputs['name'])->slug(),
                 'sku' => Str::of($inputs['sku'])->slug()->lower(),
+
                 'price' => floatval($inputs['price']),
                 'discounted_price' => floatval($inputs['discounted_price']),
 
@@ -119,6 +122,8 @@ class ProductService implements ProductInterface
                 'length' => $inputs['length'],
                 'width' => $inputs['width'],
                 'height' => $inputs['height'],
+
+                'weight' => $inputs['weight'],
 
                 'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
                 'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
