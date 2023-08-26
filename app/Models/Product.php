@@ -51,7 +51,7 @@ class Product extends Model implements HasMedia
     public array $rules = [
         'name' => 'required|string|between:3,254',
         'permalink' => 'required|string|between:3,254|unique:products,permalink',
-        'sku' => 'required|string|between:3,10|unique:products,sku',
+        'sku' => 'required|string|between:3,20|unique:products,sku',
 
         'price' => 'required|decimal:0,2|gte:0',
         'discounted_price' => 'nullable|decimal:0,2|gte:0',
