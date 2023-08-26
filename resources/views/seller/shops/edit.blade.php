@@ -7,7 +7,7 @@
 @section('page-title', 'Edit Shops')
 
 @section('page-css')
-    {{ view('seller.layout.filepond.css') }}
+    @include('seller.layout.filepond.css')
 @endsection
 
 @section('custom-css')
@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('seller.shops.update', ['id' => encryptParams($shop->id)]) }}"
+    <form class="form form-vertical" action="{{ route('seller.shops.update', ['shop' => $shop->id]) }}"
           method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">
@@ -29,7 +29,7 @@
 
                 @method('PUT')
                 @csrf
-                {{ view('seller.shops.form-fields', ['statuses' => $statuses, 'shop' => $shop]) }}
+                @include('seller.shops.form-fields')
 
             </div>
 
@@ -63,7 +63,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <button type="submit" class="btn btn-success w-100 text-white buttonToBlockUI">
                                         <i class="material-icons md-save"></i>
-                                        Save Shop
+                                        Update Shop
                                     </button>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -104,8 +104,7 @@
                                     <h4 class="alert-heading mb-2">Note!</h4>
                                     <div class="alert-body">
                                         Our inspector will visit your shop for verification. Please try to enter right
-                                        shop
-                                        address, latitude & longitude.
+                                        shop address, latitude & longitude.
                                     </div>
                                     {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                                     </button> --}}
@@ -120,7 +119,7 @@
 @endsection
 
 @section('page-js')
-    {{ view('seller.layout.filepond.js') }}
+    @include('seller.layout.filepond.js')
 @endsection
 
 @section('custom-js')

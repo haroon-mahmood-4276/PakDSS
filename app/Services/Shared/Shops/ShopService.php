@@ -17,29 +17,29 @@ class ShopService implements ShopInterface
 
     public function get($seller_id, $ignore = null, $relationships = [])
     {
-        $shop = $this->model()->where('seller_id', $seller_id)->where('status', Status::ACTIVE);
+        $model = $this->model()->where('seller_id', $seller_id)->where('status', Status::ACTIVE);
         if (is_array($ignore)) {
-            $shop = $shop->whereNotIn('id', $ignore);
+            $model = $model->whereNotIn('id', $ignore);
         } elseif (is_string($ignore)) {
-            $shop = $shop->where('id', '!=', $ignore);
+            $model = $model->where('id', '!=', $ignore);
         }
         if (count($relationships) > 0) {
-            $shop = $shop->with($relationships);
+            $model = $model->with($relationships);
         }
-        $shop = $shop->get();
+        $model = $model->get();
 
-        return $shop;
+        return $model;
     }
 
     public function find($id, $relationships = [])
     {
-        $shop = $this->model();
+        $model = $this->model();
 
         if (count($relationships) > 0) {
-            $shop = $shop->with($relationships);
+            $model = $model->with($relationships);
         }
 
-        return $shop->find($id);
+        return $model->find($id);
     }
 
     /**
@@ -76,20 +76,20 @@ class ShopService implements ShopInterface
                 'reason' => null,
             ];
 
-            $shop = $this->model()->create($data);
+            $model = $this->model()->create($data);
 
             if (isset($inputs['shop_logo'])) {
                 $attachment = $inputs['shop_logo'];
-                $shop->addMedia($attachment)->toMediaCollection('shops');
+                $model->addMedia($attachment)->toMediaCollection('shops');
             }
 
-            return $shop;
+            return $model;
         });
     }
 
-    public function update($seller, $shop, $inputs)
+    public function update($seller, $model, $inputs)
     {
-        $returnData = DB::transaction(function () use ($seller, $shop, $inputs) {
+        $returnData = DB::transaction(function () use ($seller, $model, $inputs) {
 
             $data = [
                 'name' => $inputs['name'],
@@ -112,15 +112,15 @@ class ShopService implements ShopInterface
                 'status' => $inputs['status'],
             ];
 
-            $shop->update($data);
+            $model->update($data);
 
-            $shop->clearMediaCollection('shops');
+            $model->clearMediaCollection('shops');
             if (isset($inputs['shop_logo'])) {
                 $attachment = $inputs['shop_logo'];
-                $shop->addMedia($attachment)->toMediaCollection('shops');
+                $model->addMedia($attachment)->toMediaCollection('shops');
             }
 
-            return $shop;
+            return $model;
         });
 
         return $returnData;
@@ -130,12 +130,12 @@ class ShopService implements ShopInterface
     {
         $returnData = DB::transaction(function () use ($inputs) {
 
-            $shops = $this->model()->whereIn('id', $inputs)->get()->each(function ($shop) {
-                $shop->clearMediaCollection('shops');
-                $shop->delete();
+            $models = $this->model()->whereIn('id', $inputs)->get()->each(function ($model) {
+                $model->clearMediaCollection('shops');
+                $model->delete();
             });
 
-            return $shops;
+            return $models;
         });
 
         return $returnData;

@@ -65,7 +65,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
                 <label class="form-label" style="font-size: 15px" for="phone_2">Phone 2 <span
-                        class="text-danger">*</span></label>
+                        class="text-danger"></span></label>
                 <input type="number" class="form-control @error('phone_2') is-invalid @enderror" id="phone_2"
                     name="phone_2" placeholder="Phone 2" value="{{ isset($shop) ? $shop->phone_2 : old('phone_2') }}" />
                 @error('phone_2')
@@ -215,7 +215,8 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
-                <label class="form-label" style="font-size: 15px" for="manager_mobile">Mobile</label>
+                <label class="form-label" style="font-size: 15px" for="manager_mobile">Mobile<span
+                        class="text-danger">*</span></label>
                 <input type="number" class="form-control @error('manager_mobile') is-invalid @enderror"
                     id="manager_mobile" placeholder="Mobile" name="manager_mobile"
                     value="{{ isset($shop) ? $shop->manager_mobile : old('manager_mobile') }}" minlength="1"
@@ -233,8 +234,7 @@
 
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
-                <label class="form-label" style="font-size: 15px" for="manager_email">Email <span
-                        class="text-danger">*</span></label>
+                <label class="form-label" style="font-size: 15px" for="manager_email">Email</label>
                 <input type="manager_email" class="form-control @error('manager_email') is-invalid @enderror"
                     id="manager_email" name="manager_email" placeholder="Email"
                     value="{{ isset($shop) ? $shop->manager_email : old('manager_email') }}" />

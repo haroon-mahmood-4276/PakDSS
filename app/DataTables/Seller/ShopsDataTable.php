@@ -40,7 +40,7 @@ class ShopsDataTable extends DataTable
                 return editDateColumn($shop->updated_at);
             })
             ->editColumn('actions', function ($shop) {
-                return view('seller.shops.actions', ['id' => $shop->id]);
+                return view('seller.shops.actions', ['shop' => $shop->id]);
             })
             ->setRowId('id')
             ->rawColumns($columns);
@@ -122,7 +122,7 @@ class ShopsDataTable extends DataTable
                 'right' => 1,
             ])
             ->orders([
-                [1, 'asc'],
+                [2, 'asc'],
             ]);
     }
 
@@ -133,13 +133,19 @@ class ShopsDataTable extends DataTable
     {
         return [
             // Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
-            Column::make('DT_RowIndex')->title('#')->addClass('text-nowrap align-middle text-center'),
-            Column::make('image')->addClass('text-nowrap align-middle text-center'),
+
+            Column::computed('DT_RowIndex')->title('#')->addClass('text-nowrap align-middle text-center'),
+
+            Column::computed('image')->addClass('text-nowrap align-middle text-center'),
+
             Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
             Column::make('address')->addClass('text-nowrap align-middle text-center'),
+
             Column::make('status')->width(100)->addClass('text-nowrap align-middle text-center'),
+
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
+
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
     }
