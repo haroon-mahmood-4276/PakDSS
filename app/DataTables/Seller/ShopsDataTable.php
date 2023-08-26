@@ -25,9 +25,10 @@ class ShopsDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($shop) {
-                return $shop;
-            })
+            ->addIndexColumn()
+            // ->editColumn('check', function ($shop) {
+            //     return $shop;
+            // })
             ->editColumn('status', function ($shop) {
                 return editStatusColumn($shop->status);
             })
@@ -52,12 +53,12 @@ class ShopsDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $buttons = [
-            Button::raw('add-new')
-                ->addClass('btn btn-primary')
-                ->text('<i class="icon material-icons md-add text-white "></i>Add New')
-                ->attr([
-                    'onclick' => 'addNew()',
-                ]),
+            // Button::raw('add-new')
+            //     ->addClass('btn btn-primary')
+            //     ->text('<i class="icon material-icons md-add text-white "></i>Add New')
+            //     ->attr([
+            //         'onclick' => 'addNew()',
+            //     ]),
             Button::make('export')
                 ->addClass('btn btn-primary dropdown-toggle')
                 ->text('<i class="icon material-icons md-cloud_download text-white "></i>Export&nbsp;')
@@ -70,12 +71,12 @@ class ShopsDataTable extends DataTable
                 ]),
             Button::make('reset')->addClass('btn btn-danger'),
             Button::make('reload')->addClass('btn btn-primary'),
-            Button::raw('delete-selected')
-                ->addClass('btn btn-danger')
-                ->text('<i class="icon material-icons md-delete"></i><span id="delete_selected_count" style="display:none">0</span> Delete Selected')
-                ->attr([
-                    'onclick' => 'deleteSelected()',
-                ]),
+            // Button::raw('delete-selected')
+            //     ->addClass('btn btn-danger')
+            //     ->text('<i class="icon material-icons md-delete"></i><span id="delete_selected_count" style="display:none">0</span> Delete Selected')
+            //     ->attr([
+            //         'onclick' => 'deleteSelected()',
+            //     ]),
         ];
 
         return $this->builder()
@@ -95,23 +96,23 @@ class ShopsDataTable extends DataTable
                 [30, 50, 70, 100, 120, 150, 'All'],
             ])
             ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>> <"d-flex justify-content-between align-items-center my-3 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>> t<"d-flex justify-content-between mt-3 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
-            ->columnDefs([
-                [
-                    'targets' => 0,
-                    'className' => 'text-center align-middle text-primary',
-                    'width' => '10%',
-                    'orderable' => false,
-                    'searchable' => false,
-                    'responsivePriority' => 3,
-                    'render' => "function (data, type, full, setting) {
-                        var role = JSON.parse(data);
-                        return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'danger\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
-                    }",
-                    'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
-                    ],
-                ],
-            ])
+            // ->columnDefs([
+            //     [
+            //         'targets' => 0,
+            //         'className' => 'text-center align-middle text-primary',
+            //         'width' => '10%',
+            //         'orderable' => false,
+            //         'searchable' => false,
+            //         'responsivePriority' => 3,
+            //         'render' => "function (data, type, full, setting) {
+            //             var role = JSON.parse(data);
+            //             return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'danger\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
+            //         }",
+            //         'checkboxes' => [
+            //             'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+            //         ],
+            //     ],
+            // ])
             ->fixedColumns([
                 'left' => 1,
                 'right' => 1,
@@ -127,7 +128,8 @@ class ShopsDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            // Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::make('DT_RowIndex')->title('#')->addClass('text-nowrap align-middle text-center'),
             Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
             Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
             Column::make('address')->addClass('text-nowrap align-middle text-center'),
@@ -142,6 +144,6 @@ class ShopsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'shops_'.date('YmdHis');
+        return 'shops_' . date('YmdHis');
     }
 }

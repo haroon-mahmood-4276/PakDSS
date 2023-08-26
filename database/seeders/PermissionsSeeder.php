@@ -165,6 +165,33 @@ class PermissionsSeeder extends Seeder
                 'show_name' => 'Sellers - Can Export',
             ],
 
+            // Shops Permissions
+            [
+                'name' => 'admin.sellers.shops.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Shops - Can View',
+            ],
+            [
+                'name' => 'admin.sellers.shops.create',
+                'guard_name' => 'admin',
+                'show_name' => 'Shops - Can Create',
+            ],
+            [
+                'name' => 'admin.sellers.shops.edit',
+                'guard_name' => 'admin',
+                'show_name' => 'Shops - Can Edit',
+            ],
+            [
+                'name' => 'admin.sellers.shops.destroy',
+                'guard_name' => 'admin',
+                'show_name' => 'Shops - Can Delete',
+            ],
+            [
+                'name' => 'admin.sellers.shops.export',
+                'guard_name' => 'admin',
+                'show_name' => 'Shops - Can Export',
+            ],
+
             // Users Permissions
             [
                 'name' => 'admin.users.index',

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Products\storeRequest;
 use App\Http\Requests\Seller\Products\updateRequest;
 use App\Services\Seller\Products\ProductInterface;
-use App\Services\Seller\Shops\ShopInterface;
+use App\Services\Shared\Shops\ShopInterface;
 use App\Services\Shared\Brands\BrandInterface;
 use App\Services\Shared\Categories\CategoryInterface;
 use App\Services\Shared\Tags\TagInterface;

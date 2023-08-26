@@ -2,7 +2,7 @@
 
 namespace App\DataTables\Admin;
 
-use App\Models\Seller;
+use App\Models\Shop;
 use App\Utils\Traits\DatatablesTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -11,7 +11,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class SellersDataTable extends DataTable
+class ShopsDataTable extends DataTable
 {
     use DatatablesTrait;
 
@@ -26,17 +26,17 @@ class SellersDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($seller) {
-                return $seller;
+            ->editColumn('check', function ($model) {
+                return $model;
             })
-            ->editColumn('updated_at', function ($seller) {
-                return editDateColumn($seller->updated_at);
+            ->editColumn('updated_at', function ($model) {
+                return editDateColumn($model->updated_at);
             })
-            ->editColumn('status', function ($seller) {
-                return editStatusColumn($seller->status);
+            ->editColumn('status', function ($model) {
+                return editStatusColumn($model->status);
             })
-            ->editColumn('actions', function ($seller) {
-                return view('admin.sellers.actions', ['seller' => $seller->id]);
+            ->editColumn('actions', function ($model) {
+                return view('admin.sellers.shops.actions', ['seller' => $this->seller->id, 'shop' => $model->id, ]);
             })
             ->setRowId('id')
             ->rawColumns($columns);
@@ -45,16 +45,16 @@ class SellersDataTable extends DataTable
     /**
      * Get query source of dataTable.
      */
-    public function query(Seller $model): QueryBuilder
+    public function query(Shop $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('seller_id', $this->seller->id);
     }
 
     public function html(): HtmlBuilder
     {
         $buttons = [];
 
-        if (auth()->user()->can('admin.sellers.create')) {
+        if (auth()->user()->can('admin.sellers.shops.create')) {
             $buttons[] = Button::raw('add-new')
                 ->addClass('btn btn-primary waves-effect waves-float waves-light m-1')
                 ->text('<i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add New')
@@ -63,7 +63,7 @@ class SellersDataTable extends DataTable
                 ]);
         }
 
-        if (auth()->user()->can('admin.sellers.export')) {
+        if (auth()->user()->can('   admin.sellers.shops.export')) {
             $buttons[] = Button::make('export')
                 ->addClass('btn btn-primary waves-effect waves-float waves-light dropdown-toggle m-1')
                 ->buttons([
@@ -80,7 +80,7 @@ class SellersDataTable extends DataTable
             Button::make('reload')->addClass('btn btn-primary waves-effect waves-float waves-light m-1'),
         ]);
 
-        if (auth()->user()->can('admin.sellers.destroy')) {
+        if (auth()->user()->can('admin.sellers.shops.destroy')) {
             $buttons[] = Button::raw('delete-selected')
                 ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
                 ->text('<i class="fa-solid fa-minus"></i>&nbsp;&nbsp;<span id="delete_selected_count" style="display:none">0</span> Delete Selected')
@@ -90,7 +90,7 @@ class SellersDataTable extends DataTable
         }
 
         return $this->builder()
-            ->setTableId('tags-table')
+            ->setTableId('shops-table')
             ->addTableClass('table-borderless table-striped table-hover class-datatable-for-event')
             ->columns($this->getColumns())
             ->minifiedAjax()
@@ -140,18 +140,28 @@ class SellersDataTable extends DataTable
     {
         $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center');
 
-        if (auth()->user()->can('admin.sellers.destroy')) {
+        if (auth()->user()->can('admin.sellers.shops.destroy')) {
             $checkColumn->addClass('disabled');
         }
 
         $columns = [
             $checkColumn,
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('email')->title('email')->addClass('text-nowrap align-middle text-center'),
-            Column::make('cnic')->title('cnic')->addClass('text-nowrap align-middle text-center'),
-            Column::make('ntn_number')->title('ntn')->addClass('text-nowrap align-middle text-center'),
-            Column::make('phone_primary')->title('phone 1')->addClass('text-nowrap align-middle text-center'),
-            Column::make('status')->title('Status')->addClass('text-nowrap align-middle text-center'),
+
+            // Column::make('shop_logo')->addClass('text-nowrap align-middle text-center'),
+
+            Column::make('name')->addClass('text-nowrap align-middle text-center'),
+
+            Column::make('slug')->addClass('text-nowrap align-middle text-center'),
+            Column::make('email')->addClass('text-nowrap align-middle text-center'),
+
+            Column::make('phone_1')->addClass('text-nowrap align-middle text-center'),
+            Column::make('phone_2')->addClass('text-nowrap align-middle text-center'),
+
+            Column::make('manager_name')->addClass('text-nowrap align-middle text-center'),
+            Column::make('manager_mobile')->addClass('text-nowrap align-middle text-center'),
+            Column::make('manager_email')->addClass('text-nowrap align-middle text-center'),
+
+            Column::make('status')->addClass('text-nowrap align-middle text-center'),
 
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
 

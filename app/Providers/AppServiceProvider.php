@@ -15,8 +15,6 @@ use App\Services\Admin\Settings\SettingService as AdminSettingService;
 
 use App\Services\Seller\Products\ProductInterface as SellerProductInterface;
 use App\Services\Seller\Products\ProductService as SellerProductService;
-use App\Services\Seller\Shops\ShopInterface as SellerShopInterface;
-use App\Services\Seller\Shops\ShopService as SellerShopService;
 use App\Services\Seller\Requests\RequestInterface as SellerRequestInterface;
 use App\Services\Seller\Requests\RequestService as SellerRequestService;
 
@@ -24,6 +22,8 @@ use App\Services\Shared\Brands\BrandInterface;
 use App\Services\Shared\Brands\BrandService;
 use App\Services\Shared\Categories\CategoryInterface;
 use App\Services\Shared\Categories\CategoryService;
+use App\Services\Shared\Shops\ShopInterface;
+use App\Services\Shared\Shops\ShopService;
 use App\Services\Shared\Tags\TagInterface;
 use App\Services\Shared\Tags\TagService;
 
@@ -43,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(BrandInterface::class, BrandService::class);
         $this->app->bind(CategoryInterface::class, CategoryService::class);
         $this->app->bind(TagInterface::class, TagService::class);
+        $this->app->bind(ShopInterface::class, ShopService::class);
 
         // Admin
         $this->app->bind(AdminRoleInterface::class, AdminRoleService::class);
@@ -52,7 +53,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AdminSettingInterface::class, AdminSettingService::class);
 
         // Seller
-        $this->app->bind(SellerShopInterface::class, SellerShopService::class);
         $this->app->bind(SellerProductInterface::class, SellerProductService::class);
         $this->app->bind(SellerRequestInterface::class, SellerRequestService::class);
 
