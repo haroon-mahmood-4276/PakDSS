@@ -31,9 +31,9 @@ class ShopService implements ShopInterface
         return $shop;
     }
 
-    public function find($seller_id, $id, $relationships = [])
+    public function find($id, $relationships = [])
     {
-        $shop = $this->model()->where('seller_id', $seller_id);
+        $shop = $this->model();
 
         if (count($relationships) > 0) {
             $shop = $shop->with($relationships);
@@ -71,7 +71,8 @@ class ShopService implements ShopInterface
                 'manager_mobile' => $inputs['manager_mobile'],
                 'manager_email' => $inputs['manager_email'],
 
-                'status' => Status::PENDING_APPROVAL,
+                'status' => $inputs['status'],
+
                 'reason' => null,
             ];
 
@@ -86,10 +87,9 @@ class ShopService implements ShopInterface
         });
     }
 
-    public function update($id, $inputs)
+    public function update($seller, $shop, $inputs)
     {
-        $returnData = DB::transaction(function () use ($id, $inputs) {
-            $shop = $this->model()->find($id);
+        $returnData = DB::transaction(function () use ($seller, $shop, $inputs) {
 
             $data = [
                 'name' => $inputs['name'],
@@ -109,7 +109,7 @@ class ShopService implements ShopInterface
                 'manager_mobile' => $inputs['manager_mobile'],
                 'manager_email' => $inputs['manager_email'],
 
-                'status' => Status::PENDING_APPROVAL,
+                'status' => $inputs['status'],
             ];
 
             $shop->update($data);

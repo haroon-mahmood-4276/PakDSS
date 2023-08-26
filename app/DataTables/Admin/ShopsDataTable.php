@@ -29,6 +29,10 @@ class ShopsDataTable extends DataTable
             ->editColumn('check', function ($model) {
                 return $model;
             })
+            ->editColumn('image', function ($model) {
+                $imagePath = $model->getFirstMediaUrl('shops');
+                return editImageColumn(image: strlen($imagePath) > 0 ? $imagePath : asset('admin-assets/img/do_not_delete/do_not_delete.png'), name: $model->name, width: 50);
+            })
             ->editColumn('updated_at', function ($model) {
                 return editDateColumn($model->updated_at);
             })
@@ -36,7 +40,7 @@ class ShopsDataTable extends DataTable
                 return editStatusColumn($model->status);
             })
             ->editColumn('actions', function ($model) {
-                return view('admin.sellers.shops.actions', ['seller' => $this->seller->id, 'shop' => $model->id, ]);
+                return view('admin.sellers.shops.actions', ['seller' => $this->seller->id, 'shop' => $model->id,]);
             })
             ->setRowId('id')
             ->rawColumns($columns);
@@ -147,7 +151,7 @@ class ShopsDataTable extends DataTable
         $columns = [
             $checkColumn,
 
-            // Column::make('shop_logo')->addClass('text-nowrap align-middle text-center'),
+            Column::make('image')->addClass('text-nowrap align-middle text-center'),
 
             Column::make('name')->addClass('text-nowrap align-middle text-center'),
 
@@ -176,6 +180,6 @@ class ShopsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'seller_'.date('YmdHis');
+        return 'seller_' . date('YmdHis');
     }
 }

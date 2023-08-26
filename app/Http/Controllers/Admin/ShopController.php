@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\ShopsDataTable;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Shops\storeRequest;
-use App\Http\Requests\Admin\Shops\updateRequest;
+use App\Http\Requests\Admin\Shops\{storeRequest, updateRequest};
 use App\Models\Seller;
+use App\Models\Shop;
 use App\Services\Shared\Shops\ShopInterface;
 use App\Utils\Enums\Status;
 use Exception;
@@ -22,11 +22,6 @@ class ShopController extends Controller
         $this->shopInterface = $shopInterface;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Seller $seller, ShopsDataTable $dataTable)
     {
         $with = ['seller' => $seller];
@@ -38,11 +33,6 @@ class ShopController extends Controller
         return $dataTable->with($with)->render('admin.sellers.shops.index', $with);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Seller $seller)
     {
         abort_if(request()->ajax(), 403);
@@ -52,15 +42,9 @@ class ShopController extends Controller
             'statuses' => Status::array(),
         ];
 
-        return view('admin.sellers.shops.create', $data);
+        return view('admin.sellers.shops.shops.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(storeRequest $request, Seller $seller)
     {
         abort_if(request()->ajax(), 403);
@@ -68,52 +52,42 @@ class ShopController extends Controller
         try {
             $inputs = $request->validated();
             $record = $this->shopInterface->store($seller->id, $inputs);
-            return redirect()->route('admin.sellers.index')->withSuccess('Data saved!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         abort(403);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Seller $seller, Shop $shop)
     {
         abort_if(request()->ajax(), 403);
 
         try {
-            $seller = $this->shopInterface->find($id);
+            $shop = $this->shopInterface->find($shop->id);
 
-            if ($seller && ! empty($seller)) {
+            if ($shop) {
                 $data = [
                     'seller' => $seller,
+                    'shop' => $shop,
                     'statuses' => Status::array(),
+                    'shop_logo' => $shop->getMedia('shops'),
                 ];
 
-                return view('admin.sellers.edit', $data);
+                return view('admin.sellers.shops.edit', $data);
             }
 
-            return redirect()->route('admin.sellers.index')->withWarning('Record not found!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withWarning('Record not found!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
         }
     }
 
@@ -124,24 +98,21 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, $id)
+    public function update(updateRequest $request, Seller $seller, Shop $shop)
     {
         abort_if(request()->ajax(), 403);
         try {
-
-            $id = decryptParams($id);
             $inputs = $request->validated();
-            $record = $this->shopInterface->update($id, $inputs);
-
-            return redirect()->route('admin.sellers.index')->withSuccess('Data updated!');
+            $record = $this->shopInterface->update($seller, $shop, $inputs);
+            return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data updated!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, Seller $seller)
     {
         abort_if(request()->ajax(), 403);
         try {
@@ -151,15 +122,15 @@ class ShopController extends Controller
                 $record = $this->shopInterface->destroy($request->checkForDelete);
 
                 if (! $record) {
-                    return redirect()->route('admin.sellers.index')->withDanger('Data not found!');
+                    return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Data not found!');
                 }
             }
 
-            return redirect()->route('admin.sellers.index')->withSuccess('Data deleted!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data deleted!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
         }
     }
 }

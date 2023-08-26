@@ -141,12 +141,12 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                         Route::post('store', 'store')->name('store');
                     });
 
-                    Route::group(['prefix' => '/{shop}', 'middleware' => 'permission:admin.sellers.edit'], function () {
-                        Route::get('edit', 'edit')->whereUuid('id')->name('edit');
-                        Route::put('update', 'update')->whereUuid('id')->name('update');
+                    Route::group(['prefix' => '/{shop}', 'middleware' => 'permission:admin.sellers.shops.edit'], function () {
+                        Route::get('edit', 'edit')->whereUuid('shop')->name('edit');
+                        Route::put('update', 'update')->whereUuid('shop')->name('update');
                     });
 
-                    Route::get('delete', 'destroy')->middleware('permission:admin.sellers.destroy')->name('destroy');
+                    Route::get('delete', 'destroy')->middleware('permission:admin.sellers.shops.destroy')->name('destroy');
                 });
             });
 

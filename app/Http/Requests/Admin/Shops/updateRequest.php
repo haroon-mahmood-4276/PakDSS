@@ -33,18 +33,15 @@ class updateRequest extends FormRequest
     public function rules()
     {
         $rules = (new Shop())->rules;
-        $id = decryptParams($this->id);
 
-        $rules['slug'] .= ','.$id;
-        $rules['email'] .= ','.$id;
+        $rules['slug'] .= ',' . $this->shop->id;
+        $rules['email'] .= ',' . $this->shop->id;
 
-        $rules['phone_1'] .= ','.$id;
-        $rules['phone_2'] .= ','.$id;
+        $rules['phone_1'] .= ',' . $this->shop->id;
+        $rules['phone_2'] .= ',' . $this->shop->id;
 
-        $rules['manager_mobile'] .= ','.$id;
-        $rules['manager_email'] .= ','.$id;
-
-        unset($rules['status']);
+        $rules['manager_mobile'] .= ',' . $this->shop->id;
+        $rules['manager_email'] .= ',' . $this->shop->id;
 
         return $rules;
     }
