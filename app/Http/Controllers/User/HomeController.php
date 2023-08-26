@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Services\Shared\Brands\BrandInterface;
 use App\Services\Shared\Categories\CategoryInterface;
 use App\Services\Shared\Tags\TagInterface;
-use App\Services\User\Products\ProductInterface;
+use App\Services\Products\ProductInterface;
+use App\Utils\Enums\Status;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -35,7 +36,7 @@ class HomeController extends Controller
             'brands' => $this->brandInterface->get(),
             'categories' => $this->categoryInterface->get(with_tree: true),
             'tags' => $this->tagInterface->get(),
-            'products' => $this->productInterface->get(),
+            'products' => $this->productInterface->get(status: Status::ACTIVE, relationships: ['brand', 'tags', 'seller', 'shop']),
         ];
 
         return view('user.home', $data);

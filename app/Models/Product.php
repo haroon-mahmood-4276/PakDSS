@@ -113,6 +113,16 @@ class Product extends Model implements HasMedia
         return LogOptions::defaults()->useLogName(self::class)->logFillable();
     }
 
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function shop(): BelongsTo
+    {
+        return $this->belongsTo(Shop::class);
+    }
+
     public function seller(): BelongsTo
     {
         return $this->belongsTo(Seller::class);

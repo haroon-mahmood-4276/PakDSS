@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             BrandsSeeder::class,
             TagsSeeder::class,
-            ProductsSeeder::class,
+            // ProductsSeeder::class,
         ]);
     }
 }

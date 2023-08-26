@@ -27,8 +27,8 @@ use App\Services\Shared\Shops\ShopService;
 use App\Services\Shared\Tags\TagInterface;
 use App\Services\Shared\Tags\TagService;
 
-use App\Services\User\Products\ProductInterface as UserProductInterface;
-use App\Services\User\Products\ProductService as UserProductService;
+use App\Services\Products\ProductInterface;
+use App\Services\Products\ProductService;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -58,6 +58,8 @@ class AppServiceProvider extends ServiceProvider
 
         // User
         $this->app->bind(UserProductInterface::class, UserProductService::class);
+
+        $this->app->bind(ProductInterface::class, ProductService::class);
     }
 
     /**

@@ -594,3 +594,10 @@ if (!function_exists('getIconDirection')) {
         }
     }
 }
+
+if (!function_exists('calculateDiscountPercentage')) {
+    function calculateDiscountPercentage($price, $discounted_price)
+    {
+        return round((($price - $discounted_price) / $price) * 100, 2);
+    }
+}
