@@ -23,17 +23,17 @@
                 'alignleft aligncenter alignright alignjustify | ' +
                 'bullist numlist outdent indent | removeformat | help',
             maxlength: 2,
-            setup: function(editor) {
-                editor.on('keydown', function(e) {
-                    var words = editor.plugins.wordcount.getCount();
-                    if (words >= 2 && e.keyCode !== 8 && !e.ctrlKey && !e
-                        .metaKey) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return false;
-                    }
-                });
-            }
+            // setup: function(editor) {
+            //     editor.on('keydown', function(e) {
+            //         var words = editor.plugins.wordcount.getCount();
+            //         if (words >= 2 && e.keyCode !== 8 && !e.ctrlKey && !e
+            //             .metaKey) {
+            //             e.preventDefault();
+            //             e.stopPropagation();
+            //             return false;
+            //         }
+            //     });
+            // }
         });
 
         $('#long_description').tinymce({
@@ -51,17 +51,17 @@
                 'alignleft aligncenter alignright alignjustify | ' +
                 'bullist numlist outdent indent | removeformat | help',
             maxlength: 2,
-            setup: function(editor) {
-                editor.on('keydown', function(e) {
-                    var words = editor.plugins.wordcount.getCount();
-                    if (words >= 2 && e.keyCode !== 8 && !e.ctrlKey && !e
-                        .metaKey) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return false;
-                    }
-                });
-            }
+            // setup: function(editor) {
+            //     editor.on('keydown', function(e) {
+            //         var words = editor.plugins.wordcount.getCount();
+            //         if (words >= 2 && e.keyCode !== 8 && !e.ctrlKey && !e
+            //             .metaKey) {
+            //             e.preventDefault();
+            //             e.stopPropagation();
+            //             return false;
+            //         }
+            //     });
+            // }
         });
 
         $('#length, #width, #height').on('keyup', function() {

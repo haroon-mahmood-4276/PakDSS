@@ -175,7 +175,7 @@
                         </label>
 
                         <textarea class="form-control descriptions @error('short_description') is-invalid @enderror" id="short_description"
-                            name="short_description" placeholder="Short Description" minlength="1" maxlength="254" rows="5">
+                            name="short_description" placeholder="Short Description" minlength="1" rows="5">
                             {!! isset($product) ? $product->short_description : old('short_description') !!}</textarea>
 
                         @error('short_description')
@@ -196,7 +196,7 @@
                         </label>
 
                         <textarea class="form-control descriptions @error('long_description') is-invalid @enderror" id="long_description"
-                            name="long_description" placeholder="Full Description" minlength="1" maxlength="254" rows="5">
+                            name="long_description" placeholder="Full Description" minlength="1" rows="5">
                             {!! isset($product) ? $product->long_description : old('long_description') !!}</textarea>
 
                         @error('long_description')
