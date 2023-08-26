@@ -35,6 +35,8 @@ return new class extends Migration
             $table->float('width')->default(0);
             $table->float('height')->default(0);
 
+            $table->float('weight')->default(0);
+
             $table->text('short_description')->nullable();
             $table->longText('long_description')->nullable();
 

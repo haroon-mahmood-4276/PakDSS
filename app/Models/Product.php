@@ -28,7 +28,9 @@ class Product extends Model implements HasMedia
 
         'permalink',
         'sku',
+
         'price',
+        'discounted_price',
 
         'call_for_final_rates',
         'are_rates_printed_on_package',
@@ -36,6 +38,8 @@ class Product extends Model implements HasMedia
         'length',
         'width',
         'height',
+
+        'weight',
 
         'short_description',
         'long_description',
@@ -62,6 +66,8 @@ class Product extends Model implements HasMedia
         'length' => 'sometimes|decimal:0,2|gte:0',
         'width' => 'sometimes|decimal:0,2|gte:0',
         'height' => 'sometimes|decimal:0,2|gte:0',
+
+        'weight' => 'sometimes|decimal:0,2|gte:0',
 
         'short_description' => 'required|max:500',
         'long_description' => 'nullable|max:5000',
@@ -96,6 +102,8 @@ class Product extends Model implements HasMedia
         'length' => 'decimal:2',
         'width' => 'decimal:2',
         'height' => 'decimal:2',
+
+        'weight' => 'decimal:2',
 
         'meta_keywords' => 'array',
     ];

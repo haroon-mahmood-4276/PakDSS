@@ -128,6 +128,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="weight">Length</label>
                         <input type="number" class="form-control @error('length') is-invalid @enderror"
                             id="length" name="length" placeholder="Length(cm)"
                             value="{{ isset($product) ? $product->length : old('length') }}" />
@@ -141,6 +142,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="weight">Width</label>
                         <input type="number" class="form-control @error('width') is-invalid @enderror"
                             id="width" name="width" placeholder="width(cm)"
                             value="{{ isset($product) ? $product->width : old('width') }}" />
@@ -154,6 +156,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="weight">Height</label>
                         <input type="number" class="form-control @error('height') is-invalid @enderror"
                             id="height" name="height" placeholder="height(cm)"
                             value="{{ isset($product) ? $product->height : old('height') }}" />
@@ -165,6 +168,34 @@
                             </p>
                         @enderror
                     </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                        <div class="d-flex align-items-center h-100">
+                            <div>
+                                <label class="form-check">
+                                    <input class="form-check-input" id="calculate_weight_from_dimentions" name="calculate_weight_from_dimentions" type="checkbox" value="1">
+                                    <span class="form-check-label"> Calculate approx weight (KG) from above dimentions?</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                        <label class="form-label" style="font-size: 15px" for="weight">Weight</label>
+                        <input type="number" class="form-control @error('weight') is-invalid @enderror"
+                            id="weight" name="weight" placeholder="Weight"
+                            value="{{ isset($product) ? $product->weight : old('weight') }}" />
+                        @error('weight')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @else
+                            <p class="m-0">
+                                <small class="text-muted">Enter product's weight.</small>
+                            </p>
+                        @enderror
+                    </div>
+
                 </div>
 
                 <div class="row mb-3">
@@ -221,7 +252,8 @@
                 <div class="row mb-3">
                     <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="meta_keywords">Meta Keywords </label>
-                        <input type="text" class="form-control-tagify @error('meta_keywords') is-invalid @enderror"
+                        <input type="text"
+                            class="form-control-tagify @error('meta_keywords') is-invalid @enderror"
                             id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords"
                             value="{{ isset($product) ? $product->meta_keywords : old('meta_keywords') }}" />
                         @error('meta_keywords')
@@ -350,7 +382,9 @@
                             <select class="select2-size-lg-multiple form-select" id="categories" name="categories[]"
                                 multiple>
                                 @foreach ($categories as $key => $category)
-                                    <option value="{{ $category->id }}" {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>{{ Str::of($category->tree)->replace('_', ' ') }}</option>
+                                    <option value="{{ $category->id }}"
+                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>
+                                        {{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('categories')
