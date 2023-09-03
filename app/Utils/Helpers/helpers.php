@@ -508,7 +508,7 @@ if (!function_exists('getNHeightestNumber')) {
 }
 
 if (!function_exists('apiErrorResponse')) {
-    function apiErrorResponse($message = 'data not found', $key = 'error')
+    function apiErrorResponse($data = null, $message = 'data not found', $code = 200, $key = 'error')
     {
         return response()->json(
             [
@@ -516,16 +516,16 @@ if (!function_exists('apiErrorResponse')) {
                 'message' => [
                     $key => $message,
                 ],
-                'data' => null,
-                'stauts_code' => '200',
+                'data' => $data,
+                'status_code' => $code,
             ],
-            200
+            $code
         );
     }
 }
 
 if (!function_exists('apiSuccessResponse')) {
-    function apiSuccessResponse($data = null, $message = 'data found', $key = 'success')
+    function apiSuccessResponse($data = null, $message = 'data found', $code = 200, $key = 'success')
     {
         return response()->json(
             [
@@ -534,9 +534,9 @@ if (!function_exists('apiSuccessResponse')) {
                     $key => $message,
                 ],
                 'data' => $data,
-                'stauts_code' => '200',
+                'status_code' => $code,
             ],
-            200
+            $code
         );
     }
 }
@@ -599,5 +599,30 @@ if (!function_exists('calculateDiscountPercentage')) {
     function calculateDiscountPercentage($price, $discounted_price)
     {
         return round((($price - $discounted_price) / $price) * 100, 2);
+    }
+}
+
+if (!function_exists('getDoNotDeleteImage')) {
+    function getDoNotDeleteImage()
+    {
+        return asset('admin-assets/img/do_not_delete/do_not_delete.png');
+    }
+}
+
+if (!function_exists('getImageUrlByCollection')) {
+    function getImageUrlByCollection($model, string $collection = 'default', $first = false)
+    {
+        $images = $model->getMedia($collection);
+
+        if ($images->count() > 0) {
+            if ($first) {
+                return $images->first()->getFullUrl();
+            }
+            return $images->map(function ($image) {
+                return $image->getFullUrl();
+            });
+        }
+
+        return asset('admin-assets/img/do_not_delete/do_not_delete.png');
     }
 }

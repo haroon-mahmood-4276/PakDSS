@@ -172,18 +172,32 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         //Admin Approval Routes
         Route::prefix('approvals')->name('approvals.')->controller(ApprovalController::class)->group(function () {
-            Route::get('store', 'store')->name('store');
 
-            Route::group(['prefix' => 'shops', 'as' => 'shops.'], function () {
-                Route::get('/', 'shopIndex')->middleware('permission:admin.approvals.shops.index')->name('index');
+            Route::group(['prefix' => 'shops', 'as' => 'shops.', 'middleware' => 'permission:admin.approvals.shops.index'], function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('store', 'store')->name('store');
+
+                Route::group(['prefix' => '/{id}'], function () {
+                    Route::get('/show', 'show')->name('show');
+                });
             });
 
-            Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-                Route::get('/', 'productIndex')->middleware('permission:admin.approvals.products.index')->name('index');
+            Route::group(['prefix' => 'products', 'as' => 'products.', 'middleware' => 'permission:admin.approvals.products.index'], function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('store', 'store')->name('store');
+
+                Route::group(['prefix' => '/{id}'], function () {
+                    Route::get('/show', 'show')->name('show');
+                });
             });
 
-            Route::group(['prefix' => 'sellers', 'as' => 'sellers.'], function () {
-                Route::get('/', 'sellerIndex')->middleware('permission:admin.approvals.sellers.index')->name('index');
+            Route::group(['prefix' => 'sellers', 'as' => 'sellers.', 'middleware' => 'permission:admin.approvals.sellers.index'], function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('store', 'store')->name('store');
+
+                Route::group(['prefix' => '/{id}'], function () {
+                    Route::get('/show', 'show')->name('show');
+                });
             });
         });
 
