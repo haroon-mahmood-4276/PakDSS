@@ -65,7 +65,7 @@ class ProductController extends Controller
 
         try {
             $inputs = $request->validated();
-            $inputs['meta_aurthor'] = auth('seller')->user()->first_name;
+            $inputs['meta_author'] = auth('seller')->user()->first_name;
 
             $this->productInterface->store(auth('seller')->user()->id, $inputs);
 
