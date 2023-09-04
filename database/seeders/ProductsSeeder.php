@@ -55,7 +55,7 @@ class ProductsSeeder extends Seeder
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
 
-                'meta_aurthor' => '',
+                'meta_author' => '',
                 'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',
                 'meta_description' => '',
 
@@ -83,7 +83,7 @@ class ProductsSeeder extends Seeder
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
 
-                'meta_aurthor' => '',
+                'meta_author' => '',
                 'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',
                 'meta_description' => '',
 
@@ -111,7 +111,7 @@ class ProductsSeeder extends Seeder
                 'short_description' => Str::markdown('# Mouse'),
                 'long_description' => Str::markdown('# Mouse'),
 
-                'meta_aurthor' => '',
+                'meta_author' => '',
                 'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',
                 'meta_description' => '',
 

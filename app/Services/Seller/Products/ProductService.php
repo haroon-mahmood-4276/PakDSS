@@ -69,7 +69,7 @@ class ProductService implements ProductInterface
                 'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
                 'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
 
-                'meta_aurthor' => $inputs['meta_aurthor'],
+                'meta_author' => $inputs['meta_author'],
                 'meta_keywords' => $inputs['meta_keywords'],
                 'meta_description' => $inputs['meta_description'],
 

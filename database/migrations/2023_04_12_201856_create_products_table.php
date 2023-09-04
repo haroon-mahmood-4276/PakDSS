@@ -40,7 +40,7 @@ return new class extends Migration
             $table->text('short_description')->nullable();
             $table->longText('long_description')->nullable();
 
-            $table->string('meta_aurthor', 50)->nullable();
+            $table->string('meta_author', 50)->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
 

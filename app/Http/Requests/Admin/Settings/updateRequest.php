@@ -26,7 +26,7 @@ class updateRequest extends FormRequest
         switch ($this->tab) {
             case 'admin':
                 $rules = [
-                    'one_dollor_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
+                    'one_dollar_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
                     'one_pound_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
                 ];
                 break;

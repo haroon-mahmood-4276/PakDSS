@@ -44,7 +44,7 @@ class Product extends Model implements HasMedia
         'short_description',
         'long_description',
 
-        'meta_aurthor',
+        'meta_author',
         'meta_keywords',
         'meta_description',
 
