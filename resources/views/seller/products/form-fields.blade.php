@@ -266,7 +266,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="meta_keywords">Meta Keywords </label>
                         <input type="text"
-                            class="form-control-tagify @error('meta_keywords') is-invalid @enderror"
+                            class="form-control-tagify w-100 @error('meta_keywords') is-invalid @enderror"
                             id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
                             value="{{ isset($product) ? $product->meta_keywords : old('meta_keywords') }}" />
@@ -303,7 +303,7 @@
     </div>
 
     <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 position-relative">
-        <div class="sticky-md-top top-lg-20px top-md-20px top-sm-10px" style="z-index: auto;">
+        <div class="top-lg-20px top-md-20px top-sm-10px" style="z-index: auto;">
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="row g-3">

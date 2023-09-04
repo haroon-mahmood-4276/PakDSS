@@ -111,7 +111,7 @@ class ApprovalController extends Controller
                 $modalData = array_merge($modalData, [
                     'brands' => $this->brandInterface->get(),
                     'categories' => $this->categoryInterface->get(with_tree: true),
-                    'shops' => $this->shopInterface->get(auth('seller')->user()->id),
+                    'shops' => $this->shopInterface->get($product->seller_id),
                     'tags' => $this->tagInterface->get(),
                     'product' => $product ?: null,
                     'product_images' => $product?->getMedia('product_images'),

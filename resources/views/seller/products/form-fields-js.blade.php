@@ -152,9 +152,19 @@
         @endif
         files: files['product_video'],
         maxFileSize: '1536KB',
+        styleButtonRemoveItemPosition: 'right',
+        labelFileTypeNotAllowed: 'Unsupported file type',
+        ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
+        storeAsFile: true,
+        checkValidity: true,
+        maxFiles: 1,
         acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv',
             'video/mkv'
         ],
+        credits: {
+            label: '',
+            url: ''
+        }
     });
 
 
