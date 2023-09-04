@@ -2,33 +2,21 @@
 
 namespace App\Providers;
 
-use App\Services\Admin\Permissions\PermissionInterface as AdminPermissionInterface;
-use App\Services\Admin\Permissions\PermissionService as AdminPermissionService;
-use App\Services\Admin\Roles\RoleInterface as AdminRoleInterface;
-use App\Services\Admin\Roles\RoleService as AdminRoleService;
-use App\Services\Admin\Sellers\SellerInterface as AdminSellerInterface;
-use App\Services\Admin\Sellers\SellerService as AdminSellerService;
-use App\Services\Admin\Users\UserInterface as AdminUserInterface;
-use App\Services\Admin\Users\UserService as AdminUserService;
-use App\Services\Admin\Settings\SettingInterface as AdminSettingInterface;
-use App\Services\Admin\Settings\SettingService as AdminSettingService;
+use App\Services\Admin\Permissions\{PermissionInterface as AdminPermissionInterface, PermissionService as AdminPermissionService};
+use App\Services\Admin\Roles\{RoleInterface as AdminRoleInterface, RoleService as AdminRoleService};
+use App\Services\Admin\Sellers\{SellerInterface as AdminSellerInterface, SellerService as AdminSellerService};
+use App\Services\Admin\Users\{UserInterface as AdminUserInterface, UserService as AdminUserService};
+use App\Services\Admin\Settings\{SettingInterface as AdminSettingInterface,SettingService as AdminSettingService};
 
-use App\Services\Seller\Products\ProductInterface as SellerProductInterface;
-use App\Services\Seller\Products\ProductService as SellerProductService;
-use App\Services\Seller\Requests\RequestInterface as SellerRequestInterface;
-use App\Services\Seller\Requests\RequestService as SellerRequestService;
+use App\Services\Seller\Products\{ProductInterface as SellerProductInterface, ProductService as SellerProductService};
+use App\Services\Seller\Requests\{RequestInterface as SellerRequestInterface, RequestService as SellerRequestService};
 
-use App\Services\Shared\Brands\BrandInterface;
-use App\Services\Shared\Brands\BrandService;
-use App\Services\Shared\Categories\CategoryInterface;
-use App\Services\Shared\Categories\CategoryService;
-use App\Services\Shared\Shops\ShopInterface;
-use App\Services\Shared\Shops\ShopService;
-use App\Services\Shared\Tags\TagInterface;
-use App\Services\Shared\Tags\TagService;
+use App\Services\Shared\Brands\{BrandInterface, BrandService};
+use App\Services\Shared\Categories\{CategoryInterface, CategoryService};
+use App\Services\Shared\Shops\{ShopInterface, ShopService};
+use App\Services\Shared\Tags\{TagInterface, TagService};
 
-use App\Services\Products\ProductInterface;
-use App\Services\Products\ProductService;
+use App\Services\Products\{ProductInterface, ProductService};
 
 use Illuminate\Support\ServiceProvider;
 
