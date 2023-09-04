@@ -120,6 +120,15 @@ class ApprovalController extends Controller
                 ]);
                 break;
 
+            case 'shops':
+                $shop = $this->shopInterface->find($id);
+                $modalData = array_merge($modalData, [
+                    'shop' => $shop,
+                    'statuses' => Status::array(),
+                    'shop_logo' => $shop->getMedia('shops'),
+                ]);
+                break;
+
             default:
                 # code...
                 break;

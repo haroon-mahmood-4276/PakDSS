@@ -37,9 +37,6 @@ class ApprovalsDataTable extends DataTable
             ->editColumn('status', function ($model) {
                 return editStatusColumn($model->status);
             })
-            ->editColumn('created_at', function ($model) {
-                return editDateColumn($model->created_at);
-            })
             ->editColumn('updated_at', function ($model) {
                 return editDateColumn($model->updated_at);
             })
@@ -186,7 +183,6 @@ class ApprovalsDataTable extends DataTable
 
         $columns = array_merge($columns, [
             Column::make('status')->addClass('text-nowrap align-middle text-center'),
-            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
             Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ]);

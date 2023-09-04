@@ -13,6 +13,10 @@
                         @include('seller.products.form-fields', ['source' => 'edit', 'isReadOnly' => true])
                     @break
 
+                    @case('shops')
+                        @include('seller.shops.form-fields', ['source' => 'edit', 'isReadOnly' => true])
+                    @break
+
                     @default
                 @endswitch
             </div>
@@ -25,8 +29,13 @@
         @include('seller.products.form-fields-js', ['source' => 'edit', 'isReadOnly' => true])
     @break
 
+    @case('shops')
+        @include('seller.shops.form-fields-js', ['source' => 'edit', 'isReadOnly' => true])
+    @break
+
     @default
 @endswitch
+
 <script>
     $(document).ready(function() {
         $('#basicModal-close').on('click', function() {
