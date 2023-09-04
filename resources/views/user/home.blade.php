@@ -376,12 +376,12 @@
                                                 href="#ModalQuickview" data-bs-toggle="modal"></a>
                                         </div>
                                         <div class="image-box">
-                                            @if($product->discounted_price > 0)
-                                                <span class="label bg-brand-2">-{{ calculateDiscountPercentage($product->price, $product->discounted_price) }}%</span>
+                                            @if ($product->discounted_price > 0)
+                                                <span
+                                                    class="label bg-brand-2">-{{ calculateDiscountPercentage($product->price, $product->discounted_price) }}%</span>
                                             @endif
                                             <a href="shop-single-product.html">
-                                                <img src="{{ asset('user-assets') }}/imgs/page/homepage1/imgsp3.png"
-                                                    alt="Ecom">
+                                                <img src="{{ getImageUrlByCollection($product, 'product_images', true) }}" alt="Ecom">
                                             </a>
                                         </div>
                                         <div class="info-right">

@@ -27,7 +27,7 @@
 
         @method('PUT')
         @csrf
-        @include('seller.products.form-fields', ['brands' => $brands, 'categories' => $categories, 'shops' => $shops, 'tags' => $tags, 'product' => $product])
+        @include('seller.products.form-fields')
 
     </form>
 @endsection

@@ -111,17 +111,17 @@ class ProductController extends Controller
     public function update(updateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
-        // try {
-        $id = decryptParams($id);
-        $inputs = $request->validated();
-        $record = $this->productInterface->update($id, $inputs);
+        try {
+            $id = decryptParams($id);
+            $inputs = $request->validated();
+            $record = $this->productInterface->update($id, $inputs);
 
-        return redirect()->route('seller.products.index')->withSuccess('Data updated!');
-        // } catch (GeneralException $ex) {
-        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        // } catch (Exception $ex) {
-        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
-        // }
+            return redirect()->route('seller.products.index')->withSuccess('Data updated!');
+        } catch (GeneralException $ex) {
+            return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        } catch (Exception $ex) {
+            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+        }
     }
 
     public function destroy(Request $request)

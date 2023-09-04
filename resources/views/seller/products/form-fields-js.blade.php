@@ -5,7 +5,7 @@
                 .trim().replace(/[\/\\]/g, '').replace(/\s+/g,
                     ' ').replace(/[^a-z0-9- ]/gi, '').replace(/-+/g, '-').replace(/\s/g, '-');
             $('#permalink').val(permalink);
-            $('#permalink-text').html('{{ env('APP_URL') }}:8000/products/' + permalink);
+            $('#permalink-text').html('{{ env('APP_URL') }}/products/' + permalink);
         });
 
         $('#short_description').tinymce({
@@ -14,6 +14,9 @@
             schema: 'html5-strict',
             invalid_elements: 'script,style',
             branding: false,
+            @if (isset($isReadOnly))
+                readonly: true,
+            @endif
             plugins: [
                 'lists', 'wordcount'
             ],
@@ -47,6 +50,9 @@
                 'alignleft aligncenter alignright alignjustify | ' +
                 'bullist numlist outdent indent | removeformat | help',
             maxlength: 2,
+            @if (isset($isReadOnly))
+                readonly: true,
+            @endif
             // setup: function(editor) {
             //     editor.on('keydown', function(e) {
             //         var words = editor.plugins.wordcount.getCount();
@@ -111,48 +117,75 @@
         @empty
         @endforelse
     @endif
-    window.addEventListener('load', function() {
-        var tagify = new Tagify(document.getElementById('meta_keywords'), {});
-
-        let filePondOptions = {
-            allowReorder: true,
-            styleButtonRemoveItemPosition: 'right',
-            imageCropAspectRatio: '1:1',
-            labelFileTypeNotAllowed: 'Unsupported file type',
-            maxFileSize: '536KB',
-            ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
-            storeAsFile: true,
-            checkValidity: true,
-            maxFiles: 1,
-            credits: {
-                label: '',
-                url: ''
-            }
-        };
 
 
-        FilePond.create(document.getElementById('product_images'), {
-            ...filePondOptions,
-            files: files['product_images'],
-            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
-            allowMultiple: true,
-            maxFiles: 3,
-        });
+    var tagify = new Tagify(document.getElementById('meta_keywords'), {});
+
+    FilePond.create(document.getElementById('product_images'), {
+        allowReorder: true,
+        styleButtonRemoveItemPosition: 'right',
+        imageCropAspectRatio: '1:1',
+        labelFileTypeNotAllowed: 'Unsupported file type',
+        maxFileSize: '536KB',
+        ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
+        storeAsFile: true,
+        checkValidity: true,
+        @if (isset($isReadOnly))
+            disabled: true,
+        @endif
+        maxFiles: 1,
+        credits: {
+            label: '',
+            url: ''
+        },
+
+        files: files['product_images'],
+        acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+        allowMultiple: true,
+        maxFiles: 3,
+    });
 
 
-        FilePond.create(document.getElementById('product_video'), {
-            files: files['product_video'],
-            maxFileSize: '1536KB',
-            acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv',
-                'video/mkv'
-            ],
-        });
+    FilePond.create(document.getElementById('product_video'), {
+        @if (isset($isReadOnly))
+            disabled: true,
+        @endif
+        files: files['product_video'],
+        maxFileSize: '1536KB',
+        styleButtonRemoveItemPosition: 'right',
+        labelFileTypeNotAllowed: 'Unsupported file type',
+        ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
+        storeAsFile: true,
+        checkValidity: true,
+        maxFiles: 1,
+        acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv',
+            'video/mkv'
+        ],
+        credits: {
+            label: '',
+            url: ''
+        }
+    });
 
 
-        FilePond.create(document.getElementById('product_pdf'), {
-            ...filePondOptions,
-            files: files['product_pdf'],
-            acceptedFileTypes: ['application/pdf'],
-        });
+    FilePond.create(document.getElementById('product_pdf'), {
+        allowReorder: true,
+        styleButtonRemoveItemPosition: 'right',
+        imageCropAspectRatio: '1:1',
+        labelFileTypeNotAllowed: 'Unsupported file type',
+        maxFileSize: '536KB',
+        ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
+        storeAsFile: true,
+        checkValidity: true,
+        maxFiles: 1,
+        @if (isset($isReadOnly))
+            disabled: true,
+        @endif
+        credits: {
+            label: '',
+            url: ''
+        },
+        files: files['product_pdf'],
+        acceptedFileTypes: ['application/pdf'],
     });
 </script>
