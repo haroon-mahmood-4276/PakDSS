@@ -378,7 +378,7 @@
                                         <div class="image-box">
                                             @if ($product->discounted_price > 0)
                                                 <span
-                                                    class="label bg-brand-2">-{{ calculateDiscountPercentage($product->price, $product->discounted_price) }}%</span>
+                                                    class="label bg-brand-2">{{ calculateDiscountPercentage($product->price, $product->discounted_price) }}%</span>
                                             @endif
                                             <a href="shop-single-product.html">
                                                 <img src="{{ getImageUrlByCollection($product, 'product_images', true) }}" alt="Ecom">
@@ -404,6 +404,9 @@
 
                                                 <span class="font-xs color-gray-500">(65)</span>
                                             </div>
+                                            <div class="list-features">
+                                                {!! decode_html_entities($product->short_description) !!}
+                                            </div>
                                             <div class="price-info">
                                                 @if ($product->discounted_price > 0)
                                                     <strong
@@ -419,9 +422,7 @@
                                                 <a class="btn btn-cart" href="shop-cart.html">Add
                                                     To Cart</a>
                                             </div>
-                                            <div class="list-features">
-                                                {!! decode_html_entities($product->short_description) !!}
-                                            </div>
+
                                             {{-- <ul class="list-features">
                                                 <li>27-inch (diagonal) Retina 5K display</li>
                                                 <li>3.1GHz 6-core 10th-generation Intel Core i5</li>
