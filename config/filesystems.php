@@ -60,7 +60,7 @@ return [
             'driver' => 'local',
             'root' => public_path('attachments-assets/server-uploads'),
             'url' => env('APP_URL').'/attachments-assets/server-uploads',
-            'visibility' => 'private',
+            'visibility' => 'public',
             'throw' => false,
         ],
 
