@@ -1,4 +1,4 @@
-<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="basicModal" tabindex="-1" aria-hidden="true">
     {{-- <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document"> --}}
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
@@ -8,14 +8,25 @@
                     id="basicModal-close"></button>
             </div>
             <div class="modal-body">
-                @include('seller.products.form-fields', ['source' => 'edit', 'isReadOnly' => true])
+                @switch($model)
+                    @case('products')
+                        @include('seller.products.form-fields', ['source' => 'edit', 'isReadOnly' => true])
+                    @break
+
+                    @default
+                @endswitch
             </div>
         </div>
     </div>
 </div>
 
+@switch($model)
+    @case('products')
+        @include('seller.products.form-fields-js', ['source' => 'edit', 'isReadOnly' => true])
+    @break
 
-@include('seller.products.form-fields-js', ['source' => 'edit', 'isReadOnly' => true])
+    @default
+@endswitch
 <script>
     $(document).ready(function() {
         $('#basicModal-close').on('click', function() {
@@ -39,17 +50,17 @@
         });
 
         $(".select2-size-lg-multiple").each(function() {
-                var e = $(this);
-                e.wrap('<div class="position-relative"></div>');
-                e.select2({
-                    dropdownAutoWidth: !0,
-                    width: "100%",
-                    containerCssClass: "select-lg",
-                    escapeMarkup: function(e) {
-                        return e
-                    }
-                });
+            var e = $(this);
+            e.wrap('<div class="position-relative"></div>');
+            e.select2({
+                dropdownAutoWidth: !0,
+                width: "100%",
+                containerCssClass: "select-lg",
+                escapeMarkup: function(e) {
+                    return e
+                }
             });
+        });
 
     });
 
