@@ -11,7 +11,7 @@
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                             name="name" placeholder="Name"
                             value="{{ isset($product) ? $product->name : old('name') }}" minlength="1"
-                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} maxlength="50" />
+                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} maxlength="120" />
                         <input type="hidden" id="permalink" name="permalink"
                             value="{{ isset($product) ? $product->permalink : old('permalink') }}">
                         @error('name')
@@ -455,8 +455,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
                                     <p class="m-0">
-                                        <small class="text-muted">Upload product PDF. (Max Size:
-                                            536KB)</small>
+                                        <small class="text-muted">Upload product PDF. (Max Size: 15MB)</small>
                                     </p>
                                 @enderror
                             </div>
@@ -474,8 +473,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
                                     <p class="m-0">
-                                        <small class="text-muted">Upload product video. (Max Size:
-                                            1536KB)</small>
+                                        <small class="text-muted">Upload product video. (Max Size: 15MB)</small>
                                     </p>
                                 @enderror
                             </div>

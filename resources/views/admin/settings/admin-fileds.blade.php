@@ -34,14 +34,14 @@
 
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 position-relative">
-                                    <label class="form-label" style="font-size: 15px" for="one_dollor_rate">One Dollor
+                                    <label class="form-label" style="font-size: 15px" for="one_dollar_rate">One Dollor
                                         Rate (<i class="fa-solid fa-dollar-sign"></i>)  <span
                                             class="text-danger">*</span></label>
                                     <input type="number"
-                                        class="form-control @error('one_dollor_rate') is-invalid @enderror"
-                                        id="one_dollor_rate" name="one_dollor_rate" placeholder="0"
-                                        value="{{ settings('one_dollor_rate') }}" />
-                                    @error('one_dollor_rate')
+                                        class="form-control @error('one_dollar_rate') is-invalid @enderror"
+                                        id="one_dollar_rate" name="one_dollar_rate" placeholder="0"
+                                        value="{{ settings('one_dollar_rate') }}" />
+                                    @error('one_dollar_rate')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @else
                                         <p class="m-0">

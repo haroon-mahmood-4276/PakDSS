@@ -151,7 +151,7 @@
             disabled: true,
         @endif
         files: files['product_video'],
-        maxFileSize: '1536KB',
+        maxFileSize: '15MB',
         styleButtonRemoveItemPosition: 'right',
         labelFileTypeNotAllowed: 'Unsupported file type',
         ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
@@ -173,7 +173,7 @@
         styleButtonRemoveItemPosition: 'right',
         imageCropAspectRatio: '1:1',
         labelFileTypeNotAllowed: 'Unsupported file type',
-        maxFileSize: '536KB',
+        maxFileSize: '15MB',
         ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
         storeAsFile: true,
         checkValidity: true,
