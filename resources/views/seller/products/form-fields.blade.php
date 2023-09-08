@@ -46,7 +46,7 @@
                         <label class="form-label" style="font-size: 15px" for="price">Price <span
                                 class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
-                            name="price" placeholder="Price" {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
+                            name="price" placeholder="Price" min="0" {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
                             value="{{ isset($product) ? $product->price : old('price') }}" />
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -60,7 +60,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="discounted_price">Discounted
                             Price</label>
-                        <input type="number" class="form-control @error('discounted_price') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('discounted_price') is-invalid @enderror"
                             id="discounted_price" name="discounted_price" placeholder="Discounted Price"
                             value="{{ isset($product) ? $product->discounted_price : old('discounted_price') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -134,7 +134,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Length</label>
-                        <input type="number" class="form-control @error('length') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('length') is-invalid @enderror"
                             id="length" name="length" placeholder="Length(cm)"
                             value="{{ isset($product) ? $product->length : old('length') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -149,7 +149,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Width</label>
-                        <input type="number" class="form-control @error('width') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('width') is-invalid @enderror"
                             id="width" name="width" placeholder="width(cm)"
                             value="{{ isset($product) ? $product->width : old('width') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -164,7 +164,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Height</label>
-                        <input type="number" class="form-control @error('height') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('height') is-invalid @enderror"
                             id="height" name="height" placeholder="height(cm)"
                             value="{{ isset($product) ? $product->height : old('height') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -194,7 +194,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Weight</label>
-                        <input type="number" class="form-control @error('weight') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('weight') is-invalid @enderror"
                             id="weight" name="weight" placeholder="Weight"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
                             value="{{ isset($product) ? $product->weight : old('weight') }}" />
@@ -218,9 +218,7 @@
 
                         <textarea class="form-control descriptions @error('short_description') is-invalid @enderror" id="short_description"
                             name="short_description" placeholder="Short Description" minlength="1" rows="5"
-                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}>
-                            {!! isset($product) ? $product->short_description : old('short_description') !!}</textarea>
-
+                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}>{!! isset($product) ? $product->short_description : old('short_description') !!}</textarea>
                         @error('short_description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -240,9 +238,7 @@
 
                         <textarea class="form-control descriptions @error('long_description') is-invalid @enderror" id="long_description"
                             name="long_description" placeholder="Full Description" minlength="1" rows="5"
-                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}>
-                            {!! isset($product) ? $product->long_description : old('long_description') !!}</textarea>
-
+                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}>{!! isset($product) ? $product->long_description : old('long_description') !!}</textarea>
                         @error('long_description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -398,13 +394,12 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <label class="form-label" style="font-size: 15px" for="categories">Categories
                                 <span class="text-danger">*</span></label>
-                            <select class="select2-size-lg-multiple form-select"
+                            <select class="select2-size-lg form-select"
                                 {{ isset($isReadOnly) && $isReadOnly ? 'disabled' : '' }} id="categories"
                                 name="categories[]" multiple>
                                 @foreach ($categories as $key => $category)
                                     <option value="{{ $category->id }}"
-                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>
-                                        {{ Str::of($category->tree)->replace('_', ' ') }}</option>
+                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>{{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('categories')
@@ -420,14 +415,12 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <label class="form-label" style="font-size: 15px" for="tags">Tags</label>
-                            <select class="select2-size-lg-multiple form-select"
+                            <select class="select2-size-lg form-select"
                                 {{ isset($isReadOnly) && $isReadOnly ? 'disabled' : '' }} id="tags"
                                 name="tags[]" multiple>
                                 @foreach ($tags as $key => $tag)
                                     <option value="{{ $tag->id }}"
-                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>
-                                        {{ Str::of($tag->name)->replace('_', ' ') }}
-                                    </option>
+                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>{{ Str::of($tag->name)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('tags')
