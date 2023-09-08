@@ -1,13 +1,13 @@
-<link rel="stylesheet" type="text/css" href="{{ asset('seller-assets') }}/vendors/filepond/filepond.min.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('admin-assets') }}/vendor/libs/filepond/filepond.min.css">
 <link rel="stylesheet" type="text/css"
-    href="{{ asset('seller-assets') }}/vendors/filepond/plugins/filepond.preview.min.css">
+    href="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.preview.min.css">
 <style>
     .filepond--drop-label {
-        color: #425a8b !important;
+        color: #7367f0 !important;
     }
 
     .filepond--item-panel {
-        background-color: #425a8b;
+        background-color: #7367f0;
     }
 
     .filepond--panel-root {

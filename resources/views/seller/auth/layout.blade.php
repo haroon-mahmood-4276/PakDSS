@@ -1,44 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default"
+    data-assets-path="{{ asset('admin-assets') }}/" data-template="vertical-menu-template">
 
 <head>
-    <meta name="description" content="Login Page - {{ env('APP_NAME') }}" />
+    <meta charset="utf-8" />
     <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('seller-assets') }}/imgs/theme/favicon.svg">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/normalize.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/bootstrap.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/material-icon-round.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/perfect-scrollbar.css">
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/vendors/select2.min.css">
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+        <title>@yield('page-title') - {{ env('APP_NAME') }}</title>
+    <meta name="description" content="Login Page - {{ env('APP_NAME') }}" />
+    <meta name="keywords" content="login, page, pakdss">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('admin-assets') }}/img/favicon/favicon.ico" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/css/style.min.css">
-    <title>Login Page - {{ env('APP_NAME') }}</title>
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/fonts/tabler-icons.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/fonts/flag-icons.css" />
+
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/css/rtl/core.css"
+        class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/css/rtl/theme-default.css"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/css/demo.css" />
+
+
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/typeahead-js/typeahead.css" />
+
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/bs-stepper/bs-stepper.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/bootstrap-select/bootstrap-select.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/@form-validation/umd/styles/index.min.css" />
+
+    <link rel="stylesheet"
+        href="{{ asset('admin-assets') }}/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/css/pages/page-auth.css">
+
+    <script src="{{ asset('admin-assets') }}/vendor/js/helpers.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/js/template-customizer.js"></script>
+    <script src="{{ asset('admin-assets') }}/js/config.js"></script>
+
 </head>
 
-<body class="bg-img">
+<body>
 
     @yield('content')
 
-    <script src="{{ asset('seller-assets') }}/js/vendors/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/select2.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/perfect-scrollbar.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/jquery.fullscreen.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/vendors/chart.js"></script>
-    <script src="{{ asset('seller-assets') }}/js/main.js?v=1.0.0"></script>
-    <script src="{{ asset('seller-assets') }}/js/custom-chart.js" type="text/javascript"></script>
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('admin-assets') }}/vendor/libs/jquery/jquery.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/popper/popper.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/js/bootstrap.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/hammer/hammer.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/i18n/i18n.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="{{ asset('admin-assets') }}/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/cleavejs/cleave-phone.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/bs-stepper/bs-stepper.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/select2/select2.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="{{ asset('admin-assets') }}/js/main.js"></script>
+
+
+    <!-- Page JS -->
+    <script src="{{ asset('admin-assets') }}/js/pages-auth-multisteps.js"></script>
 </body>
 
 </html>

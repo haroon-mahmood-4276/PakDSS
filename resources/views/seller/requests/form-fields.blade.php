@@ -70,13 +70,13 @@
                     <div class="row g-3">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <button type="submit" class="btn btn-success w-100 text-white buttonToBlockUI">
-                                <i class="material-icons md-save"></i>
+                                 <i class="fa-solid fa-floppy-disk icon mx-2"></i>
                                 {{ isset($requestFor) ? 'Update' : 'Save' }}
                             </button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <a href="{{ route('seller.products.index') }}" class="btn btn-danger w-100 ">
-                                <i class="material-icons md-cancel"></i>
+                                 <i class="fa-solid fa-xmark icon mx-2"></i>
                                 Cancel
                             </a>
                         </div>

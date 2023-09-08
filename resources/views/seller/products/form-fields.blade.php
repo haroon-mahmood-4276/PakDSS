@@ -46,7 +46,7 @@
                         <label class="form-label" style="font-size: 15px" for="price">Price <span
                                 class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
-                            name="price" placeholder="Price" {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
+                            name="price" placeholder="Price" min="0" {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
                             value="{{ isset($product) ? $product->price : old('price') }}" />
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -60,7 +60,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="discounted_price">Discounted
                             Price</label>
-                        <input type="number" class="form-control @error('discounted_price') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('discounted_price') is-invalid @enderror"
                             id="discounted_price" name="discounted_price" placeholder="Discounted Price"
                             value="{{ isset($product) ? $product->discounted_price : old('discounted_price') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -134,7 +134,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Length</label>
-                        <input type="number" class="form-control @error('length') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('length') is-invalid @enderror"
                             id="length" name="length" placeholder="Length(cm)"
                             value="{{ isset($product) ? $product->length : old('length') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -149,7 +149,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Width</label>
-                        <input type="number" class="form-control @error('width') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('width') is-invalid @enderror"
                             id="width" name="width" placeholder="width(cm)"
                             value="{{ isset($product) ? $product->width : old('width') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -164,7 +164,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Height</label>
-                        <input type="number" class="form-control @error('height') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('height') is-invalid @enderror"
                             id="height" name="height" placeholder="height(cm)"
                             value="{{ isset($product) ? $product->height : old('height') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -194,7 +194,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Weight</label>
-                        <input type="number" class="form-control @error('weight') is-invalid @enderror"
+                        <input type="number" min="0" class="form-control @error('weight') is-invalid @enderror"
                             id="weight" name="weight" placeholder="Weight"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
                             value="{{ isset($product) ? $product->weight : old('weight') }}" />
@@ -218,9 +218,7 @@
 
                         <textarea class="form-control descriptions @error('short_description') is-invalid @enderror" id="short_description"
                             name="short_description" placeholder="Short Description" minlength="1" rows="5"
-                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}>
-                            {!! isset($product) ? $product->short_description : old('short_description') !!}</textarea>
-
+                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}>{!! isset($product) ? $product->short_description : old('short_description') !!}</textarea>
                         @error('short_description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -240,9 +238,7 @@
 
                         <textarea class="form-control descriptions @error('long_description') is-invalid @enderror" id="long_description"
                             name="long_description" placeholder="Full Description" minlength="1" rows="5"
-                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}>
-                            {!! isset($product) ? $product->long_description : old('long_description') !!}</textarea>
-
+                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}>{!! isset($product) ? $product->long_description : old('long_description') !!}</textarea>
                         @error('long_description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -332,13 +328,13 @@
                         <div class="row g-3">
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <button type="submit" class="btn btn-success w-100 text-white buttonToBlockUI">
-                                    <i class="material-icons md-save"></i>
+                                    <i class="fa-solid fa-floppy-disk icon mx-2"></i>
                                     {{ isset($product) ? 'Update' : 'Save' }} Product
                                 </button>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <a href="{{ route('seller.products.index') }}" class="btn btn-danger w-100 ">
-                                    <i class="material-icons md-cancel"></i>
+                                    <i class="fa-solid fa-xmark icon mx-2"></i>
                                     Cancel
                                 </a>
                             </div>
@@ -398,13 +394,12 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <label class="form-label" style="font-size: 15px" for="categories">Categories
                                 <span class="text-danger">*</span></label>
-                            <select class="select2-size-lg-multiple form-select"
+                            <select class="select2-size-lg form-select"
                                 {{ isset($isReadOnly) && $isReadOnly ? 'disabled' : '' }} id="categories"
                                 name="categories[]" multiple>
                                 @foreach ($categories as $key => $category)
                                     <option value="{{ $category->id }}"
-                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>
-                                        {{ Str::of($category->tree)->replace('_', ' ') }}</option>
+                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>{{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('categories')
@@ -420,14 +415,12 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <label class="form-label" style="font-size: 15px" for="tags">Tags</label>
-                            <select class="select2-size-lg-multiple form-select"
+                            <select class="select2-size-lg form-select"
                                 {{ isset($isReadOnly) && $isReadOnly ? 'disabled' : '' }} id="tags"
                                 name="tags[]" multiple>
                                 @foreach ($tags as $key => $tag)
                                     <option value="{{ $tag->id }}"
-                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>
-                                        {{ Str::of($tag->name)->replace('_', ' ') }}
-                                    </option>
+                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>{{ Str::of($tag->name)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('tags')
@@ -485,36 +478,15 @@
             @if (!isset($isReadOnly))
                 <div class="row">
                     <div class="col-12">
-                        <div class="alert alert-primary alert-dismissible d-flex align-items-baseline show fade"
-                            role="alert">
-                            <span class="alert-icon alert-icon-lg text-info me-2">
-                                <i class="material-icons md-48 md-info"></i>
+                        <div class="alert alert-warning d-flex align-items-baseline" role="alert">
+                            <span class="alert-icon alert-icon-lg text-primary me-2">
+                                <i class="ti ti-exclamation-mark ti-sm"></i>
                             </span>
                             <div class="d-flex flex-column ps-1">
-                                <h4 class="alert-heading mb-2">Information!</h4>
-                                <div class="alert-body">
-                                    <span class="text-danger">*</span> means required field. <br>
+                                <h5 class="alert-heading mb-2">Note!</h5>
+                                <p class="mb-0"><span class="text-danger">*</span> means required field. <br>
                                     <span class="text-danger">**</span> means required field and must be unique.
-                                </div>
-                                {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        </button> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="alert alert-warning alert-dismissible d-flex align-items-baseline show fade"
-                            role="alert">
-                            <span class="alert-icon alert-icon-lg text-warning me-2">
-                                <i class="material-icons md-48 md-warning"></i>
-                            </span>
-                            <div class="d-flex flex-column ps-1">
-                                <h4 class="alert-heading mb-2">Note!</h4>
-                                <div class="alert-body">
-                                    Our inspector will visit your products for verification. Please try to enter right
-                                    product information.
-                                </div>
-                                {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        </button> --}}
+                                </p>
                             </div>
                         </div>
                     </div>

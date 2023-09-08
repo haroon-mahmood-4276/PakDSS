@@ -8,7 +8,7 @@
 
 @section('page-css')
     {{ view('seller.layout.filepond.css', ['isHalf' => true]) }}
-    <link rel="stylesheet" href="{{ asset('seller-assets') }}/vendors/tagify/tagify.min.css">
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/tagify/tagify.min.css">
 @endsection
 
 @section('custom-css')
@@ -33,11 +33,11 @@
 @section('page-js')
     {{ view('seller.layout.filepond.js') }}
 
-    <script src="{{ asset('seller-assets') }}/vendors/tagify/tagify.min.js"></script>
-    <script src="{{ asset('seller-assets') }}/vendors/tagify/tagify.polyfills.min.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/tagify/tagify.min.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/tagify/tagify.polyfills.min.js"></script>
 
-    <script src="{{ asset('seller-assets') }}/vendors/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="{{ asset('seller-assets') }}/vendors/tinymce/tinymce-jquery.min.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/tinymce/tinymce-jquery.min.js"></script>
 
 @endsection
 
