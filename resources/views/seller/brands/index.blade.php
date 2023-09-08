@@ -4,28 +4,15 @@
     {{ Breadcrumbs::view('breadcrumbs::json-ld', 'seller.brands.index') }}
 @endsection
 
-@section('page-title', 'Dashboard')
+@section('page-title', 'Brands')
 
 @section('custom-css')
-    <style>
-    </style>
 @endsection
 
 @section('breadcrumbs')
-    <div class="content-header">
-        <div>
-            <div class="d-flex justify-content-start align-items-center position-relative">
-                <h2 class="content-title card-title">Brands</h2>
-                <div class="breadcrumb-divider mx-2"></div>
-                <div class="custom-breadcrumb">{{ Breadcrumbs::render('seller.brands.index') }}</div>
-            </div>
-            <p>Brands list</p>
-        </div>
-        {{-- <div>
-            <a class="btn btn-primary" href="#">
-                <i class="text-muted material-icons md-post_add"></i>Add New Brand
-            </a>
-        </div> --}}
+    <div class="d-flex justify-content-start align-items-center mb-3">
+        <h2 class="content-header-title float-start mb-0 mx-3">Brands</h2>
+        {{ Breadcrumbs::render('seller.brands.index') }}
     </div>
 @endsection
 
@@ -36,7 +23,7 @@
                 <div class="col-lg-4 mb-lg-0 mb-15 me-auto">
                     <input class="form-control" type="text" placeholder="Search...">
                 </div>
-                <div class="col-lg-2 col-6">
+                {{-- <div class="col-lg-2 col-6">
                     <div class="custom_select">
                         <select class="form-select select-nice">
                             <option selected="">Categories</option>
@@ -51,7 +38,7 @@
                 </div>
                 <div class="col-lg-2 col-6">
                     <input class="form-control" type="date" name="">
-                </div>
+                </div> --}}
             </div>
         </header>
         <div class="card-body">
@@ -62,7 +49,7 @@
                         <figure class="card border-1">
                             <div class="card-header bg-white text-center">
                                 <img class="img-fluid" height="76"
-                                    src="{{ asset('seller-assets') }}/imgs/brands/brand-1.jpg" alt="Logo">
+                                    src="{{ asset('admin-assets') }}/img/do_not_delete/do_not_delete.png" alt="Logo">
                             </div>
                             <figcaption class="card-body text-center">
                                 <h6 class="card-title m-0">{{ $brand->name }}</h6>

@@ -50,8 +50,8 @@
     <script src="{{ asset('admin-assets') }}/vendor/libs/tagify/tagify.min.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/tagify/tagify.polyfills.min.js"></script>
 
-    <script src="{{ asset('seller-assets') }}/vendors/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="{{ asset('seller-assets') }}/vendors/tinymce/tinymce-jquery.min.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendors/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{{ asset('admin-assets') }}/vendors/tinymce/tinymce-jquery.min.js"></script>
 
 @endsection
 

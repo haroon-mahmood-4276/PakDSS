@@ -1,5 +1,7 @@
 @extends('seller.auth.layout')
 
+@section('page-title', 'Start a new journey')
+
 @section('content')
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
@@ -38,7 +40,7 @@
 
                         @csrf
 
-                        {{ view('admin.layout.alerts') }}
+                        @include('seller.layout.alerts')
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email.</label>
@@ -80,7 +82,7 @@
                         </a>
                     </p>
 
-                    <div class="divider my-4">
+                    {{-- <div class="divider my-4">
                         <div class="divider-text">or</div>
                     </div>
 
@@ -96,7 +98,7 @@
                         <a href="javascript:void(0);" class="btn btn-icon btn-label-twitter">
                             <i class="tf-icons fa-brands fa-twitter fs-5"></i>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

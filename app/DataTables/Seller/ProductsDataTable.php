@@ -29,7 +29,7 @@ class ProductsDataTable extends DataTable
                 return $product;
             })
             ->editColumn('price', function ($product) {
-                return 'Rs. '.($product->price > 0 ? $product->price : '-');
+                return 'Rs. ' . ($product->price > 0 ? $product->price : '-');
             })
             ->editColumn('discounted_price', function ($product) {
                 return ($product->discounted_price > 0 ? 'Rs. ' . $product->discounted_price : '-');
@@ -59,26 +59,25 @@ class ProductsDataTable extends DataTable
     {
         $buttons = [
             Button::raw('add-new')
-                ->addClass('btn btn-primary')
-                ->text('<i class="icon material-icons md-add text-white "></i>Add New')
+                ->addClass('btn btn-primary waves-effect waves-float waves-light m-1')
+                ->text('<i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add New')
                 ->attr([
                     'onclick' => 'addNew()',
                 ]),
             Button::make('export')
-                ->addClass('btn btn-primary dropdown-toggle')
-                ->text('<i class="icon material-icons md-cloud_download text-white "></i>Export&nbsp;')
+                ->addClass('btn btn-primary waves-effect waves-float waves-light dropdown-toggle m-1')
                 ->buttons([
-                    Button::make('print')->addClass('dropdown-item')->text('<i class="icon material-icons md-local_printshop"></i>Print'),
-                    Button::make('copy')->addClass('dropdown-item')->text('<i class="icon material-icons md-content_copy"></i>Copy'),
-                    Button::make('csv')->addClass('dropdown-item')->text('<i class="icon material-icons md-picture_as_pdf"></i>CSV'),
-                    Button::make('excel')->addClass('dropdown-item')->text('<i class="icon material-icons md-picture_as_pdf"></i>Excel'),
-                    Button::make('pdf')->addClass('dropdown-item')->text('<i class="icon material-icons md-picture_as_pdf"></i>PDF'),
+                    Button::make('print')->addClass('dropdown-item')->text('<i class="fa-solid fa-print"></i>&nbsp;&nbsp;Print'),
+                    Button::make('copy')->addClass('dropdown-item')->text('<i class="fa-solid fa-copy"></i>&nbsp;&nbsp;Copy'),
+                    Button::make('csv')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-csv"></i>&nbsp;&nbsp;CSV'),
+                    Button::make('excel')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-excel"></i>&nbsp;&nbsp;Excel'),
+                    Button::make('pdf')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-pdf"></i>&nbsp;&nbsp;PDF'),
                 ]),
             Button::make('reset')->addClass('btn btn-danger'),
             Button::make('reload')->addClass('btn btn-primary'),
             Button::raw('delete-selected')
-                ->addClass('btn btn-danger')
-                ->text('<i class="icon material-icons md-delete"></i><span id="delete_selected_count" style="display:none">0</span> Delete Selected')
+                ->addClass('btn btn-danger waves-effect waves-float waves-light m-1')
+                ->text('<i class="fa-solid fa-minus"></i>&nbsp;&nbsp;<span id="delete_selected_count" style="display:none">0</span> Delete Selected')
                 ->attr([
                     'onclick' => 'deleteSelected()',
                 ]),
@@ -149,6 +148,6 @@ class ProductsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Products_'.date('YmdHis');
+        return 'Products_' . date('YmdHis');
     }
 }

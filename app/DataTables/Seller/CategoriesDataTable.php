@@ -54,14 +54,13 @@ class CategoriesDataTable extends DataTable
     {
         $buttons = [
             Button::make('export')
-                ->addClass('btn btn-primary dropdown-toggle')
-                ->text('<i class="icon material-icons md-cloud_download text-white "></i>&nbsp;&nbsp;Export')
+                ->addClass('btn btn-primary waves-effect waves-float waves-light dropdown-toggle m-1')
                 ->buttons([
-                    Button::make('print')->addClass('dropdown-item')->text('<i class="icon material-icons md-local_printshop"></i>&nbsp;&nbsp;Print'),
-                    Button::make('copy')->addClass('dropdown-item')->text('<i class="icon material-icons md-content_copy"></i>&nbsp;&nbsp;Copy'),
-                    Button::make('csv')->addClass('dropdown-item')->text('<i class="icon material-icons md-picture_as_pdf"></i>&nbsp;&nbsp;CSV'),
-                    Button::make('excel')->addClass('dropdown-item')->text('<i class="icon material-icons md-picture_as_pdf"></i>&nbsp;&nbsp;Excel'),
-                    Button::make('pdf')->addClass('dropdown-item')->text('<i class="icon material-icons md-picture_as_pdf"></i>&nbsp;&nbsp;PDF'),
+                    Button::make('print')->addClass('dropdown-item')->text('<i class="fa-solid fa-print"></i>&nbsp;&nbsp;Print'),
+                    Button::make('copy')->addClass('dropdown-item')->text('<i class="fa-solid fa-copy"></i>&nbsp;&nbsp;Copy'),
+                    Button::make('csv')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-csv"></i>&nbsp;&nbsp;CSV'),
+                    Button::make('excel')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-excel"></i>&nbsp;&nbsp;Excel'),
+                    Button::make('pdf')->addClass('dropdown-item')->text('<i class="fa-solid fa-file-pdf"></i>&nbsp;&nbsp;PDF'),
                 ]),
             Button::make('reset')->addClass('btn btn-danger'),
             Button::make('reload')->addClass('btn btn-primary'),
@@ -86,7 +85,6 @@ class CategoriesDataTable extends DataTable
             ->orders([
                 [1, 'asc'],
             ]);
-
     }
 
     /**
@@ -109,6 +107,6 @@ class CategoriesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Categories_'.date('YmdHis');
+        return 'Categories_' . date('YmdHis');
     }
 }
