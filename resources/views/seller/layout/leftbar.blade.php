@@ -55,7 +55,14 @@
         </li>
 
         {{-- Shops --}}
-        <li
+        <li class="menu-item {{ request()->routeIs('seller.shops.index') ? 'active' : null }}">
+            <a href="{{ route('seller.shops.index') }}" class="menu-link">
+                <i class="fa-brands fa-hive menu-icon"></i>
+                <div>Shops</div>
+            </a>
+        </li>
+
+        {{-- <li
             class="menu-item {{ in_array(request()->route()->getName(),['seller.shops.index', 'seller.shops.create'])? 'open active': null }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="fa-solid fa-shop menu-icon"></i>
@@ -74,7 +81,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         {{-- Products --}}
         <li

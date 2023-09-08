@@ -271,13 +271,13 @@
                         <div class="row g-3">
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <button type="submit" class="btn btn-success w-100 text-white buttonToBlockUI">
-                                    <i class="material-icons md-save"></i>
+                                     <i class="fa-solid fa-floppy-disk icon mx-2"></i>
                                     Save Shop
                                 </button>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <a href="{{ route('seller.shops.index') }}" class="btn btn-danger w-100 ">
-                                    <i class="material-icons md-cancel"></i>
+                                     <i class="fa-solid fa-xmark icon mx-2"></i>
                                     Cancel
                                 </a>
                             </div>
@@ -289,37 +289,31 @@
             @if (!isset($isReadOnly))
                 <div class="row">
                     <div class="col-12">
-                        <div class="alert alert-primary alert-dismissible d-flex align-items-baseline show fade"
-                            role="alert">
-                            <span class="alert-icon alert-icon-lg text-info me-2">
-                                <i class="material-icons md-48 md-info"></i>
+                        <div class="alert alert-warning d-flex align-items-baseline" role="alert">
+                            <span class="alert-icon alert-icon-lg text-primary me-2">
+                                <i class="ti ti-info ti-sm"></i>
                             </span>
                             <div class="d-flex flex-column ps-1">
-                                <h4 class="alert-heading mb-2">Information!</h4>
-                                <div class="alert-body">
-                                    <span class="text-danger">*</span> means required field. <br>
+                                <h5 class="alert-heading mb-2">Note!</h5>
+                                <p class="mb-0"><span class="text-danger">*</span> means required field. <br>
                                     <span class="text-danger">**</span> means required field and must be unique.
-                                </div>
-                                {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                            </button> --}}
+                                </p>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-12">
-                        <div class="alert alert-warning alert-dismissible d-flex align-items-baseline show fade"
-                            role="alert">
-                            <span class="alert-icon alert-icon-lg text-warning me-2">
-                                <i class="material-icons md-48 md-warning"></i>
+                        <div class="alert alert-warning d-flex align-items-baseline" role="alert">
+                            <span class="alert-icon alert-icon-lg text-primary me-2">
+                                <i class="ti ti-exclamation-mark ti-sm"></i>
                             </span>
                             <div class="d-flex flex-column ps-1">
-                                <h4 class="alert-heading mb-2">Note!</h4>
-                                <div class="alert-body">
-                                    Our inspector will visit your shop for verification. Please try to enter right
-                                    shop
-                                    address, latitude & longitude.
-                                </div>
-                                {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                            </button> --}}
+                                <h5 class="alert-heading mb-2">Note!</h5>
+                                <p class="mb-0">We will review this shop and then it will be available for
+                                    customers.
+                                </p>
                             </div>
                         </div>
                     </div>
