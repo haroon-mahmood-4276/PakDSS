@@ -17852,7 +17852,7 @@
             }));
         T(g.tinymce)
     }(),
-    tinymce.baseURL = window.location.origin + "/admin-assets/vendors/tinymce",
+    tinymce.baseURL = window.location.origin + "/admin-assets/vendor/libs/tinymce",
     function () {
         "use strict";
 
