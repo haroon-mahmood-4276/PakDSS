@@ -312,6 +312,30 @@ if (!function_exists('getLinkedTreeData')) {
     }
 }
 
+if (!function_exists('getParentWithChildHierarchy')) {
+    function getParentWithChildHierarchy($model)
+    {
+        $data = collect($model::all());
+        $parents = $data->whereNull('parent_id')->map(function ($parent) use ($data) {
+            $parent['children'] = getChildFromParent($data, $parent);
+            return $parent;
+        });
+        return $parents;
+    }
+}
+
+if (!function_exists('getChildFromParent')) {
+    function getChildFromParent(collection $data, $parent)
+    {
+        $parents = $data->where('parent_id', $parent->id)->map(function ($parent) use ($data) {
+            $parent['children'] = getChildFromParent(collect($data), $parent);
+            return $parent;
+        });
+
+        return $parents;
+    }
+}
+
 if (!function_exists('base64ToImage')) {
     function base64ToImage($image): string
     {
