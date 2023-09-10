@@ -54,7 +54,7 @@
     <script src="{{ asset('admin-assets') }}/js/config.js"></script>
 </head>
 
-<body style="overflow-y: scroll">
+<body style="overflow-y: scroll; background-color: #fff">
     <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
         <div class="layout-container">
 
