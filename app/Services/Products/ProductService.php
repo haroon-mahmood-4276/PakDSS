@@ -2,6 +2,7 @@
 
 namespace App\Services\Products;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Utils\Enums\Status;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,27 @@ class ProductService implements ProductInterface
         // $product = $product->get();
 
         // return $product;
+    }
+
+    public function getAllByParentCategory($categories, $relationships = [], $chunk_size = 0)
+    {
+        $products = [];
+
+        foreach ($categories as $key => $category) {
+            $products[$category->slug] = $this->model()->whereHas('categories', function ($query) use ($category) {
+                $query->whereIn('category_id', collect(getLinkedTreeData(new Category(), $category->id))->pluck('id')->toArray());
+            })->when($relationships, function ($query, $relationships) {
+                return $query->with($relationships);
+            })
+                ->where('status', Status::ACTIVE)
+                ->get();
+
+            if ($chunk_size > 0) {
+                $products[$category->slug] = $products[$category->slug]->chunk($chunk_size);
+            }
+        }
+
+        return $products;
     }
 
     public function find($id, $relationships = [])

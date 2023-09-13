@@ -16,6 +16,11 @@ class CategoryService implements CategoryInterface
         return new Category();
     }
 
+    public function getParents()
+    {
+        return $this->model()->whereNull('parent_id')->get();
+    }
+
     public function getAll()
     {
 

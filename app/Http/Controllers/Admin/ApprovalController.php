@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\ApprovalsDataTable;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\Sellers\SellerInterface;
-use App\Services\Seller\Products\ProductInterface;
+use App\Services\Products\ProductInterface;
 use App\Services\Shared\Brands\BrandInterface;
 use App\Services\Shared\Categories\CategoryInterface;
 use App\Services\Shared\Shops\ShopInterface;

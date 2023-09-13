@@ -193,375 +193,657 @@
             </div>
         </div>
 
-        <div class="row mb-4">
+        <div class="row">
             <div class="col-lg-12">
-                <h3>Featured Categories</h3>
+                <h2>Featured Categories</h2>
                 <p class="font-base">Choose your necessary products from this feature categories.</p>
             </div>
         </div>
 
         {{-- Categories Swiper --}}
-        <div class="row">
-            <div class="col-12">
-                <div class="d-flex align-items-center border-bottom mb-3">
-                    <div class="flex-grow-1">
-                        <h1 class="m-0">Men</h1>
-                    </div>
-                    <div class="men-swiper-navigation-button d-flex gap-1">
-                        <div class="men-swiper-button-next btn btn-sm btn-primary">
-                            <i class="fa-solid fa-angle-left"></i>
-                        </div>
-                        <div class="men-swiper-button-prev btn btn-sm btn-primary">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="swiper categories-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="row row-cols-5 g-4">
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
+        @forelse ($categories_products as $catrgory_name => $product_chunks)
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="d-flex align-items-center border-bottom mb-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center">
+                                <h4 class="m-0"><i class="fa-solid fa-star"></i>&nbsp;</h4>
+                                <h1 class="m-0">{{ Str::of($catrgory_name)->title() }}</h1>
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="row row-cols-5 g-4">
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                        style="border-color: #7367f0">
-
-                                        <div class="top-border"></div>
-                                        <div class="bg-label-primary rounded text-center m-2 position-relative">
-                                            <div class="d-flex justify-content-between position-absolute w-100">
-                                                <span class="badge bg-warning">10%</span>
-                                                <span class="badge bg-danger">Hot</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <img class="card-img-top img-fluid"
-                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                    alt="Card girl image" width="140">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="#"><small>Dell</small></a>
-                                                <div id="rateYo"></div>
-                                            </div>
-                                            <h5 class="mb-1">Lenovo</h5>
-
-                                            <ul>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                                <li>asdasdasd</li>
-                                            </ul>
-                                            <a href="javascript:void(0);"
-                                                class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="{{ $catrgory_name }}-swiper-navigation-button d-flex gap-1">
+                            <div class="{{ $catrgory_name }}-swiper-button-next btn btn-sm btn-primary">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </div>
+                            <div class="{{ $catrgory_name }}-swiper-button-prev btn btn-sm btn-primary">
+                                <i class="fa-solid fa-angle-right"></i>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-12">
+                    <div class="swiper {{ $catrgory_name }}-categories-swiper">
+                        <div class="swiper-wrapper">
+                            @foreach ($product_chunks as $chunk)
+                                <div class="swiper-slide">
+                                    <div class="row row-cols-6 g-2">
+                                        <div class="col">
+                                            <div class="card border-1 overflow-hidden h-100 position-relative"
+                                                style="border-color: #7367f0">
+
+                                                <div class="top-border"></div>
+                                                <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                    <div class="d-flex justify-content-between position-absolute w-100">
+                                                        <span class="badge bg-warning">10%</span>
+                                                        <span class="badge bg-danger">Hot</span>
+                                                    </div>
+                                                    <div class="p-3">
+                                                        <img class="card-img-top img-fluid"
+                                                            src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                            alt="Card girl image" width="140">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-3">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="#"><small>Dell</small></a>
+                                                        <div id="rateYo"></div>
+                                                    </div>
+                                                    <h5 class="mb-1">Lenovo</h5>
+
+                                                    <ul>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                    </ul>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-primary w-100 waves-effect waves-light">Add to
+                                                        cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card border-1 overflow-hidden h-100 position-relative"
+                                                style="border-color: #7367f0">
+
+                                                <div class="top-border"></div>
+                                                <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                    <div class="d-flex justify-content-between position-absolute w-100">
+                                                        <span class="badge bg-warning">10%</span>
+                                                        <span class="badge bg-danger">Hot</span>
+                                                    </div>
+                                                    <div class="p-3">
+                                                        <img class="card-img-top img-fluid"
+                                                            src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                            alt="Card girl image" width="140">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-3">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="#"><small>Dell</small></a>
+                                                        <div id="rateYo"></div>
+                                                    </div>
+                                                    <h5 class="mb-1">Lenovo</h5>
+
+                                                    <ul>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                    </ul>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-primary w-100 waves-effect waves-light">Add to
+                                                        cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card border-1 overflow-hidden h-100 position-relative"
+                                                style="border-color: #7367f0">
+
+                                                <div class="top-border"></div>
+                                                <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                    <div class="d-flex justify-content-between position-absolute w-100">
+                                                        <span class="badge bg-warning">10%</span>
+                                                        <span class="badge bg-danger">Hot</span>
+                                                    </div>
+                                                    <div class="p-3">
+                                                        <img class="card-img-top img-fluid"
+                                                            src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                            alt="Card girl image" width="140">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-3">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="#"><small>Dell</small></a>
+                                                        <div id="rateYo"></div>
+                                                    </div>
+                                                    <h5 class="mb-1">Lenovo</h5>
+
+                                                    <ul>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                    </ul>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-primary w-100 waves-effect waves-light">Add to
+                                                        cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card border-1 overflow-hidden h-100 position-relative"
+                                                style="border-color: #7367f0">
+
+                                                <div class="top-border"></div>
+                                                <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                    <div class="d-flex justify-content-between position-absolute w-100">
+                                                        <span class="badge bg-warning">10%</span>
+                                                        <span class="badge bg-danger">Hot</span>
+                                                    </div>
+                                                    <div class="p-3">
+                                                        <img class="card-img-top img-fluid"
+                                                            src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                            alt="Card girl image" width="140">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-3">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="#"><small>Dell</small></a>
+                                                        <div id="rateYo"></div>
+                                                    </div>
+                                                    <h5 class="mb-1">Lenovo</h5>
+
+                                                    <ul>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                    </ul>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-primary w-100 waves-effect waves-light">Add to
+                                                        cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card border-1 overflow-hidden h-100 position-relative"
+                                                style="border-color: #7367f0">
+
+                                                <div class="top-border"></div>
+                                                <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                    <div class="d-flex justify-content-between position-absolute w-100">
+                                                        <span class="badge bg-warning">10%</span>
+                                                        <span class="badge bg-danger">Hot</span>
+                                                    </div>
+                                                    <div class="p-3">
+                                                        <img class="card-img-top img-fluid"
+                                                            src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                            alt="Card girl image" width="140">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-3">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="#"><small>Dell</small></a>
+                                                        <div id="rateYo"></div>
+                                                    </div>
+                                                    <h5 class="mb-1">Lenovo</h5>
+
+                                                    <ul>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                    </ul>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-primary w-100 waves-effect waves-light">Add to
+                                                        cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card border-1 overflow-hidden h-100 position-relative"
+                                                style="border-color: #7367f0">
+
+                                                <div class="top-border"></div>
+                                                <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                    <div class="d-flex justify-content-between position-absolute w-100">
+                                                        <span class="badge bg-warning">10%</span>
+                                                        <span class="badge bg-danger">Hot</span>
+                                                    </div>
+                                                    <div class="p-3">
+                                                        <img class="card-img-top img-fluid"
+                                                            src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                            alt="Card girl image" width="140">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-3">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="#"><small>Dell</small></a>
+                                                        <div id="rateYo"></div>
+                                                    </div>
+                                                    <h5 class="mb-1">Lenovo</h5>
+
+                                                    <ul>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                        <li>asdasdasd</li>
+                                                    </ul>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-primary w-100 waves-effect waves-light">Add to
+                                                        cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            {{-- <div class="swiper-slide">
+                                <div class="row row-cols-6 g-4">
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="row row-cols-6 g-4">
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card border-1 overflow-hidden h-100 position-relative"
+                                            style="border-color: #7367f0">
+
+                                            <div class="top-border"></div>
+                                            <div class="bg-label-primary rounded text-center m-2 position-relative">
+                                                <div class="d-flex justify-content-between position-absolute w-100">
+                                                    <span class="badge bg-warning">10%</span>
+                                                    <span class="badge bg-danger">Hot</span>
+                                                </div>
+                                                <div class="p-3">
+                                                    <img class="card-img-top img-fluid"
+                                                        src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                        alt="Card girl image" width="140">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#"><small>Dell</small></a>
+                                                    <div id="rateYo"></div>
+                                                </div>
+                                                <h5 class="mb-1">Lenovo</h5>
+
+                                                <ul>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                    <li>asdasdasd</li>
+                                                </ul>
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-primary w-100 waves-effect waves-light">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        @empty
+        @endforelse
     @endsection
 
     @section('vendor-js')
@@ -574,14 +856,15 @@
                 $("#rateYo").rateYo({
                     starWidth: "15px",
                     // normalFill: "#685dd8"
-                    ratedFill: "#7367f0"
+                    ratedFill: "#7367f0",
+                    starSvg: "<i class='fa-solid fa-star'></i>"
                 });
             });
 
             new Swiper(".banner-swiper", {
                 spaceBetween: 10,
                 autoplay: {
-                    delay: 2500,
+                    delay: 5000,
                     disableOnInteraction: false,
                 },
                 pagination: {
@@ -595,16 +878,19 @@
                 },
             });
 
-            new Swiper(".categories-swiper", {
-                spaceBetween: 25,
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
-                navigation: {
-                    prevEl: ".men-swiper-button-next",
-                    nextEl: ".men-swiper-button-prev",
-                }
-            });
+            @forelse ($categories_products as $catrgory_name => $product_chunks)
+                new Swiper(".{{ $catrgory_name }}-categories-swiper", {
+                    spaceBetween: 7,
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                    navigation: {
+                        prevEl: ".{{ $catrgory_name }}-swiper-button-next",
+                        nextEl: ".{{ $catrgory_name }}-swiper-button-prev",
+                    }
+                });
+            @empty
+            @endforelse
         </script>
     @endsection
