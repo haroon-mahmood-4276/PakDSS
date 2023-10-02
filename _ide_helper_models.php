@@ -114,6 +114,8 @@ namespace App\Models{
  * @property-read int|null $categories_count
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
  * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder|Brand newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Brand newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Brand onlyTrashed()
@@ -257,12 +259,18 @@ namespace App\Models{
  * @property string|null $name
  * @property string|null $permalink
  * @property string|null $sku
- * @property float $price
- * @property float $discounted_price
+ * @property string $price
+ * @property string $discounted_price
+ * @property bool $call_for_final_rates
+ * @property bool $are_rates_printed_on_package
+ * @property string $length
+ * @property string $width
+ * @property string $height
+ * @property string $weight
  * @property string|null $short_description
  * @property string|null $long_description
- * @property string|null $meta_aurthor
- * @property string|null $meta_keywords
+ * @property string|null $meta_author
+ * @property array|null $meta_keywords
  * @property string|null $meta_description
  * @property string|null $status
  * @property string|null $reason
@@ -271,24 +279,30 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
  * @property-read int|null $activities_count
+ * @property-read \App\Models\Brand $brand
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
  * @property-read int|null $categories_count
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \App\Models\Seller $seller
+ * @property-read \App\Models\Shop $shop
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereAreRatesPrintedOnPackage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereBrandId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCallForFinalRates($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereDiscountedPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereHeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereLength($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereLongDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereMetaAurthor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereMetaAuthor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMetaDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMetaKeywords($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
@@ -301,6 +315,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSku($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWeight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Product withoutTrashed()
  */
@@ -399,6 +415,8 @@ namespace App\Models{
  * @property-read int|null $activities_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Shop> $shops
  * @property-read int|null $shops_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
@@ -429,6 +447,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Seller withoutTrashed()
  */
 	class Seller extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Setting
+ *
+ * @property string $id
+ * @property string $tab_id
+ * @property string|null $key
+ * @property string|null $value
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
+ * @property-read int|null $activities_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTabId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
+ */
+	class Setting extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{
