@@ -22,6 +22,10 @@ class Category extends Model
         'slug',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:U',
+    ];
+
     public $rules = [
         'parent_category' => 'nullable|uuid',
         'name' => 'required|string|between:1,254',

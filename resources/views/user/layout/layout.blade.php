@@ -1,160 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+    data-assets-path="{{ asset('admin-assets') }}/" data-template="horizontal-menu-template">
 
 <head>
-    <meta name="description" content="Login Page - {{ env('APP_NAME') }}" />
+    <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    @yield('seo-breadcrumb')
+    <title>Dashboard - Analytics | Vuexy - Bootstrap Admin Template</title>
 
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta charset="utf-8">
+    <meta name="description" content="" />
 
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta property="og:title" content="">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('admin-assets') }}/img/favicon/favicon.ico" />
 
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" />
 
-    <meta property="og:image" content="">
+    <!-- Icons -->
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/fonts/tabler-icons.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/fonts/flag-icons.css" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('user-assets') }}/imgs/template/favicon.svg">
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/css/rtl/core.css"
+        class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/css/rtl/theme-default.css"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/css/demo.css" />
 
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/normalize.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/vendors/uicons-regular-rounded.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/swiper-bundle.min.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/select2.min.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/slick.css">
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/plugins/animate.min.css">
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.css" />
+    @yield('vendor-css')
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/css/pages/cards-advance.css" />
+    @yield('page-css')
 
-    <link rel="stylesheet" href="{{ asset('user-assets') }}/css/style.min.css">
+    <!-- Helpers -->
+    <script src="{{ asset('admin-assets') }}/vendor/js/helpers.js"></script>
 
-    @yield('custom-css')
-
-    <title>@yield('page-title') - {{ env('APP_NAME') }}</title>
-
+    <script src="{{ asset('admin-assets') }}/vendor/js/template-customizer.js"></script>
+    <script src="{{ asset('admin-assets') }}/js/config.js"></script>
 </head>
 
-<body>
+<body style="overflow-y: scroll; background-color: #fff">
+    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+        <div class="layout-container">
 
-    {{-- Preloader --}}
-    {{ view('user.layout.preloader') }}
+            @include('user.layout.header')
 
-    {{-- Topbar --}}
-    {{ view('user.layout.topbar') }}
+            <div class="layout-page">
 
-    {{-- Header --}}
-    {{ view('user.layout.header') }}
+                <div class="content-wrapper">
 
-    {{-- Leftbar --}}
-    {{ view('user.layout.leftbar') }}
+                    @include('user.layout.topbar')
 
-    @yield('content')
+                    @yield('content')
 
-    {{-- Footer --}}
-    {{ view('user.layout.footer') }}
+                    @include('user.layout.footer')
 
-    <script src="{{ asset('user-assets') }}/js/vendors/modernizr-3.6.0.min.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/jquery-migrate-3.3.0.min.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/waypoints.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/wow.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/magnific-popup.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/perfect-scrollbar.min.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/select2.min.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/isotope.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/scrollup.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/swiper-bundle.min.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/noUISlider.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/slider.js"></script>
-    <!-- Count down-->
-    <script src="{{ asset('user-assets') }}/js/vendors/counterup.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/jquery.countdown.min.js"></script>
-    <!-- Count down-->
-    <script src="{{ asset('user-assets') }}/js/vendors/jquery.elevatezoom.js"></script>
-    <script src="{{ asset('user-assets') }}/js/vendors/slick.js"></script>
-    <script src="{{ asset('user-assets') }}/js/main.js?v=3.0.0"></script>
-    <script src="{{ asset('user-assets') }}/js/shop.js?v=1.2.1"></script>
+                    <div class="content-backdrop fade"></div>
+                </div>
+            </div>
 
-    @yield('page-js')
+        </div>
+    </div>
+
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <div class="drag-target"></div>
+
+    <script src="{{ asset('admin-assets') }}/vendor/libs/jquery/jquery.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/popper/popper.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/js/bootstrap.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/node-waves/node-waves.js"></script>
+
+    <script src="{{ asset('admin-assets') }}/vendor/libs/hammer/hammer.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/i18n/i18n.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.js"></script>
+
+    <script src="{{ asset('admin-assets') }}/vendor/js/menu.js"></script>
+
+    <!-- Vendors JS -->
+    <script src="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.js"></script>
+    @yield('vendor-js')
+
+    <!-- Main JS -->
+    <script src="{{ asset('admin-assets') }}/js/main.js"></script>
 
     <script>
-        moment.tz.setDefault("{{ Config::get('app.timezone') }}");
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+        $(document).ready(() => {
+            $('#template-customizer').remove();
         });
-
-        // const Toast = Swal.mixin({
-        //     toast: true,
-        //     position: 'top-end',
-        //     showConfirmButton: false,
-        //     timer: 3000,
-        //     timerProgressBar: true,
-        //     didOpen: (toast) => {
-        //         toast.addEventListener('mouseenter', Swal.stopTimer)
-        //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-        //     }
-        // });
-
-        function showBlockUI(element = null) {
-            blockUIOptions = {
-                message: `
-            <div class="d-flex justify-content-center flex-column align-items-center">
-                <div class="la-fire la-3x text-primary">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <p class="mt-2 text-primary">Please wait...</p>
-            </div>`,
-                css: {
-                    backgroundColor: 'transparent',
-                    border: '0'
-                },
-                overlayCSS: {
-                    opacity: 0.8
-                }
-            };
-            if (element) {
-                $(element).block(blockUIOptions);
-            } else {
-                $.blockUI(blockUIOptions);
-            }
-        }
-
-        function hideBlockUI(element = null) {
-            if (element) {
-                $(element).unblock();
-            } else {
-                $.unblockUI();
-            }
-        }
-
-        function changeTableRowColor(element) {
-            if ($(element).is(':checked'))
-                $(element).closest('tr').addClass('table-danger');
-            else {
-                $(element).closest('tr').removeClass('table-danger');
-            }
-        }
-
-        function changeAllTableRowColor() {
-            $('.dt-checkboxes').trigger('change');
-        }
     </script>
+    <!-- Page JS -->
+    @yield('page-js')
 
-    @yield('custom-js')
 </body>
 
 </html>

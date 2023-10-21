@@ -8,7 +8,6 @@ use App\Services\Admin\Sellers\{SellerInterface as AdminSellerInterface, SellerS
 use App\Services\Admin\Users\{UserInterface as AdminUserInterface, UserService as AdminUserService};
 use App\Services\Admin\Settings\{SettingInterface as AdminSettingInterface,SettingService as AdminSettingService};
 
-use App\Services\Seller\Products\{ProductInterface as SellerProductInterface, ProductService as SellerProductService};
 use App\Services\Seller\Requests\{RequestInterface as SellerRequestInterface, RequestService as SellerRequestService};
 
 use App\Services\Shared\Brands\{BrandInterface, BrandService};
@@ -41,11 +40,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AdminSettingInterface::class, AdminSettingService::class);
 
         // Seller
-        $this->app->bind(SellerProductInterface::class, SellerProductService::class);
         $this->app->bind(SellerRequestInterface::class, SellerRequestService::class);
 
         // User
-        $this->app->bind(UserProductInterface::class, UserProductService::class);
 
         $this->app->bind(ProductInterface::class, ProductService::class);
     }

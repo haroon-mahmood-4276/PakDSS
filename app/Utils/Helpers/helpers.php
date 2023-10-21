@@ -303,12 +303,36 @@ if (!function_exists('prepareTreeFromCollection')) {
 if (!function_exists('getLinkedTreeData')) {
     function getLinkedTreeData(Model $model, $id = [])
     {
-        $id = $model::whereIn('parent_id', $id)->get()->toArray();
+        $id = $model::whereIn('parent_id', (array) $id)->get()->toArray();
         if (count($id) > 0) {
             return array_merge($id, getLinkedTreeData($model, array_column($id, 'id')));
         }
 
         return $id;
+    }
+}
+
+if (!function_exists('getParentWithChildHierarchy')) {
+    function getParentWithChildHierarchy($model)
+    {
+        $data = collect($model::all());
+        $parents = $data->whereNull('parent_id')->map(function ($parent) use ($data) {
+            $parent['children'] = getChildFromParent($data, $parent);
+            return $parent;
+        });
+        return $parents;
+    }
+}
+
+if (!function_exists('getChildFromParent')) {
+    function getChildFromParent(collection $data, $parent)
+    {
+        $parents = $data->where('parent_id', $parent->id)->map(function ($parent) use ($data) {
+            $parent['children'] = getChildFromParent(collect($data), $parent);
+            return $parent;
+        });
+
+        return $parents;
     }
 }
 
