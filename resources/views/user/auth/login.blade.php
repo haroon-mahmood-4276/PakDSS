@@ -77,9 +77,9 @@
                                 class="btn btn-google-plus waves-effect waves-light"><i
                                     class="fa-brands fa-google me-2"></i> Sign up with Google</a>
 
-                            <a href="javascript:void(0);"
+                            {{-- <a href="{{ route('user.socialiate.redirect', ['social_account' => 'facebook']) }}"
                                 class="btn btn-facebook waves-effect waves-light"><i class="fa-brands fa-facebook me-2"></i>
-                                Sign up with Facebook</a>
+                                Sign up with Facebook</a> --}}
                         </div>
                     </div>
                 </div>
