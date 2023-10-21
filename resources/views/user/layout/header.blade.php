@@ -425,83 +425,45 @@
                             <span class="text-primary fw-bold">Hello,</span> sign in
                         @endauth
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        {{-- <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar avatar-online">
-                                            <img src="{{ asset('admin-assets') }}/img/avatars/1.png" alt
-                                                class="h-auto rounded-circle" />
+                    <ul class="dropdown-menu dropdown-menu-end pb-1">
+                        @auth('web')
+                            <li>
+                                <a class="dropdown-item" href="javascript:void(0);">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar avatar-online">
+                                                <img src="{{ asset('admin-assets') }}/img/avatars/1.png" alt=""
+                                                    class="h-auto rounded-circle">
+                                            </div>
+                                        </div>
+
+                                        <div class="flex-grow-1">
+                                            <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">John Doe</span>
-                                        <small class="text-muted">Admin</small>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-profile-user.html">
-                                <i class="ti ti-user-check me-2 ti-sm"></i>
-                                <span class="align-middle">My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
-                                <i class="ti ti-settings me-2 ti-sm"></i>
-                                <span class="align-middle">Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-account-settings-billing.html">
-                                <span class="d-flex align-items-center align-middle">
-                                    <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
-                                    <span class="flex-grow-1 align-middle">Billing</span>
-                                    <span
-                                        class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-help-center-landing.html">
-                                <i class="ti ti-lifebuoy me-2 ti-sm"></i>
-                                <span class="align-middle">Help</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-faq.html">
-                                <i class="ti ti-help me-2 ti-sm"></i>
-                                <span class="align-middle">FAQ</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-pricing.html">
-                                <i class="ti ti-currency-dollar me-2 ti-sm"></i>
-                                <span class="align-middle">Pricing</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li> --}}
-
-                        <li class="d-flex">
-                            <a class="dropdown-item bg-primary text-white" href="{{ route('user.login') }}">
-                                <i class="ti ti-logout me-2 ti-sm"></i>
-                                <span class="align-middle">Log In</span>
-                            </a>
-                            <a class="dropdown-item" href="{{ route('user.login') }}">
-                                <i class="ti ti-logout me-2 ti-sm"></i>
-                                <span class="align-middle">Register</span>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
+                                <a class="dropdown-item btn-danger" href="{{ route('user.logout') }}">
+                                    <i class="ti ti-logout me-2 ti-sm"></i>
+                                    <span class="align-middle">Log Out</span>
+                                </a>
+                            </li>
+                        @else
+                            <li class="d-flex">
+                                <a class="dropdown-item bg-primary text-white" href="{{ route('user.login') }}">
+                                    <i class="ti ti-logout me-2 ti-sm"></i>
+                                    <span class="align-middle">Log In</span>
+                                </a>
+                                <a class="dropdown-item" href="{{ route('user.login') }}">
+                                    <i class="ti ti-logout me-2 ti-sm"></i>
+                                    <span class="align-middle">Register</span>
+                                </a>
+                            </li>
+                        @endauth
                     </ul>
                 </li>
 
