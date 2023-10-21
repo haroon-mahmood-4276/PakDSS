@@ -21,8 +21,8 @@ Route::group(['as' => 'user.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
     Route::group(['middleware' => 'guest:web'], function () {
-        Route::get('login', [AuthController::class, 'loginView'])->name('login.view');
-        Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
+        Route::get('login', [AuthController::class, 'loginView'])->name('login');
+        Route::post('login', [AuthController::class, 'loginPost'])->name('login');
     });
 
     Route::group(['middleware' => 'auth:web'], function () {

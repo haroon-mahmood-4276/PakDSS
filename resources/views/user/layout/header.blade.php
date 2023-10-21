@@ -493,11 +493,11 @@
                         </li> --}}
 
                         <li class="d-flex">
-                            <a class="dropdown-item bg-primary text-white" href="{{ route('user.login.view') }}">
+                            <a class="dropdown-item bg-primary text-white" href="{{ route('user.login') }}">
                                 <i class="ti ti-logout me-2 ti-sm"></i>
                                 <span class="align-middle">Log In</span>
                             </a>
-                            <a class="dropdown-item" href="{{ route('user.login.view') }}">
+                            <a class="dropdown-item" href="{{ route('user.login') }}">
                                 <i class="ti ti-logout me-2 ti-sm"></i>
                                 <span class="align-middle">Register</span>
                             </a>
