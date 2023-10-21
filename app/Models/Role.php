@@ -24,6 +24,12 @@ class Role extends SpatieRole
         'guard_name',
     ];
 
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+        'deleted_at' => 'timestamp',
+    ];
+
     public $rules = [
         'parent_id' => 'required|uuid',
         'name' => 'required|string|between:1,254',

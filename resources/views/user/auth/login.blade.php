@@ -15,10 +15,18 @@
 @section('content')
     <div style="margin-top: 55px">
         <section class="bg-white">
+            <div class="container-xxl mt-4">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="m-0 text-primary">Welcome</h3>
+                        <small>Please loggin via email and social account associated with your account.</small>
+                    </div>
+                </div>
+            </div>
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="row mb-4">
                     <div class="col-5">
-                        <form id="formAuthentication" class="mb-3" action="{{ route('admin.login.post') }}" method="POST">
+                        <form id="formAuthentication" class="mb-3" action="{{ route('user.login') }}" method="POST">
 
                             @csrf
 
@@ -65,11 +73,13 @@
                     <div class="col-5">
                         <h5 class="text-center">Use Social Network Account</h5>
                         <div class="d-flex flex-row justify-content-center gap-3">
-                            <a href="javascript:void(0);" type="button" class="btn btn-google-plus waves-effect waves-light"><i
+                            <a href="{{ route('user.socialiate.redirect', ['social_account' => 'google']) }}"
+                                class="btn btn-google-plus waves-effect waves-light"><i
                                     class="fa-brands fa-google me-2"></i> Sign up with Google</a>
 
-                            <a href="javascript:void(0);" type="button" class="btn btn-facebook waves-effect waves-light"><i
-                                    class="fa-brands fa-facebook me-2"></i> Sign up with Facebook</a>
+                            {{-- <a href="{{ route('user.socialiate.redirect', ['social_account' => 'facebook']) }}"
+                                class="btn btn-facebook waves-effect waves-light"><i class="fa-brands fa-facebook me-2"></i>
+                                Sign up with Facebook</a> --}}
                         </div>
                     </div>
                 </div>

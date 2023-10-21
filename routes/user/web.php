@@ -21,8 +21,12 @@ Route::group(['as' => 'user.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
     Route::group(['middleware' => 'guest:web'], function () {
-        Route::get('login', [AuthController::class, 'loginView'])->name('login.view');
-        Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
+        Route::get('login', [AuthController::class, 'loginView'])->name('login');
+        Route::post('login', [AuthController::class, 'loginPost'])->name('login');
+
+        Route::get('/{social_account}/auth/redirect', [AuthController::class, 'socialiateRedirect'])->name('socialiate.redirect');
+
+        Route::get('/{social_account}/auth/callback', [AuthController::class, 'socialiateCallback'])->name('socialiate.callback');
     });
 
     Route::group(['middleware' => 'auth:web'], function () {

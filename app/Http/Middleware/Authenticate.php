@@ -12,21 +12,11 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        $route = '';
-
-        switch ($request->segment(1)) {
-            case 'admin':
-                $route = route('admin.login.view');
-                break;
-
-            case 'seller':
-                $route = route('seller.login.view');
-                break;
-
-            default:
-                $route = route('user.login.view');
-                break;
-        }
+        $route = match($request->segment(1)) {
+            'admin' => route('admin.login.view'),
+            'seller' => route('seller.login.view'),
+            default => route('user.login')
+        };
 
         return $request->expectsJson() ? null : $route;
     }

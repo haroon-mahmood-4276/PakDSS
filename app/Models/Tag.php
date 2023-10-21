@@ -20,6 +20,12 @@ class Tag extends Model
         'name',
     ];
 
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+        'deleted_at' => 'timestamp',
+    ];
+
     public $rules = [
         'name' => 'required|string|between:1,254|unique:tags',
     ];
