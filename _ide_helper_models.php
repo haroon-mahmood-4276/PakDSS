@@ -367,8 +367,8 @@ namespace App\Models{
  * @property string $name
  * @property string $guard_name
  * @property string|null $parent_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $created_at
+ * @property int|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
  * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
@@ -408,9 +408,9 @@ namespace App\Models{
  * @property string $status
  * @property string|null $reason
  * @property bool $setup
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $created_at
+ * @property int|null $updated_at
+ * @property int|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
  * @property-read int|null $activities_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -497,9 +497,9 @@ namespace App\Models{
  * @property string|null $long
  * @property string|null $status
  * @property string|null $reason
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $created_at
+ * @property int|null $updated_at
+ * @property int|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
  * @property-read int|null $activities_count
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
@@ -543,9 +543,9 @@ namespace App\Models{
  *
  * @property string $id
  * @property string $name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $created_at
+ * @property int|null $updated_at
+ * @property int|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
  * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
@@ -575,9 +575,9 @@ namespace App\Models{
  * @property int|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $created_at
+ * @property int|null $updated_at
+ * @property int|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
  * @property-read int|null $activities_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -602,5 +602,36 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UserSocialAccount
+ *
+ * @property int $id
+ * @property string $user_id
+ * @property string $name
+ * @property string $token
+ * @property string $refreshToken
+ * @property int $expiresIn
+ * @property array $approved_scopes
+ * @property int|null $created_at
+ * @property int|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
+ * @property-read int|null $activities_count
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereApprovedScopes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereExpiresIn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereRefreshToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereUserId($value)
+ */
+	class UserSocialAccount extends \Eloquent {}
 }
 

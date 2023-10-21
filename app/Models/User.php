@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'email_verified_at',
+        'avatar'
     ];
 
     protected $hidden = [
@@ -33,6 +34,9 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'integer',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+        'deleted_at' => 'timestamp',
     ];
 
     public function getActivitylogOptions(): LogOptions

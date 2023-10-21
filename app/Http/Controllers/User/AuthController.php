@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Login\LoginRequest;
 use App\Models\User;
+use App\Models\UserSocialAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
@@ -52,45 +54,37 @@ class AuthController extends Controller
 
     public function socialiateCallback(Request $request, $social_account)
     {
-        $user = Socialite::driver($social_account)->user();
+        $socialAccount = Socialite::driver($social_account)->user();
 
-        // OAuth 2.0 providers...
-        $token = $user->token;
-        $refreshToken = $user->refreshToken;
-        $expiresIn = $user->expiresIn;
+        $user = User::whereEmail($socialAccount->getEmail())->first();
 
-        // OAuth 1.0 providers...
-        $token = $user->token;
-        $tokenSecret = $user->tokenSecret;
-
-        // All providers...
-        dd(
-            $user,
-            $user->getId(),
-            $user->getId(),
-            $user->getNickname(),
-            $user->getName(),
-            $user->getEmail(),
-            $user->getAvatar()
-        );
+        if (!$user) {
+            $user = User::create([
+                'name' => $socialAccount->name,
+                'email' => $socialAccount->email,
+                'password' => Hash::make('thisaccountislinked'),
+                'remember_token' => null,
+                'email_verified_at' => now()->timestamp,
+            ]);
+        }
+        $user->avatar = $socialAccount->avatar;
+        $user->save();
 
 
+        $linkedSocialAccount = UserSocialAccount::whereAccountId('' . $socialAccount->id)->first();
+        if (!$linkedSocialAccount) {
+            $linkedSocialAccount = UserSocialAccount::create([
+                'account_id' => $socialAccount->id,
+                'user_id' => $user->id,
+                'name' => $social_account,
+                'token' => $socialAccount->token,
+                'refreshToken' => $socialAccount->refreshToken,
+                'expiresIn' => $socialAccount->expiresIn,
+                'approved_scopes' => $socialAccount->approvedScopes,
+            ]);
+        }
 
-
-
-        // $socialAccount = Socialite::driver($social_account)->user();
-
-        // $user = User::updateOrCreate([
-        //     'github_id' => $socialAccount->id,
-        // ], [
-        //     'name' => $socialAccount->name,
-        //     'email' => $socialAccount->email,
-        //     'github_token' => $socialAccount->token,
-        //     'github_refresh_token' => $socialAccount->refreshToken,
-        // ]);
-
-        // Auth::login($user);
-
-        // return redirect()->route('user.home.index');
+        Auth::login($user);
+        return redirect()->route('user.home.index');
     }
 }

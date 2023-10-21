@@ -45,13 +45,99 @@
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/css/pages/cards-advance.css" />
-    @yield('page-css')
 
     <!-- Helpers -->
     <script src="{{ asset('admin-assets') }}/vendor/js/helpers.js"></script>
 
     <script src="{{ asset('admin-assets') }}/vendor/js/template-customizer.js"></script>
     <script src="{{ asset('admin-assets') }}/js/config.js"></script>
+    <style>
+        .landing-footer .footer-link {
+            transition: all .2s ease-in-out
+        }
+
+        .landing-footer .footer-link:hover {
+            opacity: .8
+        }
+
+        .landing-footer .footer-top {
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 3.5rem 0;
+            border-top-left-radius: 3.75rem;
+            border-top-right-radius: 3.75rem
+        }
+
+        @media(max-width: 767.98px) {
+            .landing-footer .footer-top {
+                padding: 3rem 0
+            }
+        }
+
+        @media(min-width: 992px) {
+            .landing-footer .footer-logo-description {
+                max-width: 322px
+            }
+        }
+
+        .landing-footer .footer-form {
+            max-width: 22.25rem
+        }
+
+        .landing-footer .footer-form input {
+            background-color: #25293c;
+            border-color: #434968;
+            color: #d3d4dc
+        }
+
+        .landing-footer .footer-form input:hover:not([disabled]):not([focus]) {
+            border-color: #434968
+        }
+
+        .landing-footer .footer-form input::placeholder {
+            color: rgba(211, 212, 220, .5)
+        }
+
+        .landing-footer .footer-form label {
+            color: rgba(211, 212, 220, .5)
+        }
+
+        .light-style .landing-footer .footer-link,
+        .light-style .landing-footer .footer-text {
+            color: #d3d4dc
+        }
+
+        .light-style .landing-footer .footer-title {
+            color: #fff
+        }
+
+        .light-style .landing-footer .footer-top {
+            background-image: url("{{ asset('admin-assets') }}/img/front-pages/backgrounds/footer-bg-light.png")
+        }
+
+        .light-style .landing-footer .footer-bottom {
+            background-color: #282c3e
+        }
+
+        .dark-style .landing-footer .footer-link,
+        .dark-style .landing-footer .footer-text {
+            color: #b6bee3
+        }
+
+        .dark-style .landing-footer .footer-title {
+            color: #cfd3ec
+        }
+
+        .dark-style .landing-footer .footer-top {
+            background-image: url("{{ asset('admin-assets') }}/img/front-pages/backgrounds/footer-bg-dark.png")
+        }
+
+        .dark-style .landing-footer .footer-bottom {
+            background-color: #171925
+        }
+    </style>
+    @yield('page-css')
 </head>
 
 <body style="overflow-y: scroll; background-color: #fff">

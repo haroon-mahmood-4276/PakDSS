@@ -40,6 +40,13 @@ class Shop extends Model implements HasMedia
         'reason',
     ];
 
+    protected $casts = [
+        'email_verified_at' => 'integer',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+        'deleted_at' => 'timestamp',
+    ];
+
     public array $rules = [];
 
     public function __construct(array $attributes = [])
