@@ -63,6 +63,14 @@ if (!function_exists('getLastCategoryBreadcrumb')) {
     }
 }
 
+if (!function_exists('gravatar')) {
+    function gravatar($email)
+    {
+        $hash = md5(strtolower(trim($email)));
+        return "http://www.gravatar.com/avatar/$hash?s=200";
+    }
+}
+
 if (!function_exists('filter_strip_tags')) {
 
     function filter_strip_tags($text, $with_script_content = false): string

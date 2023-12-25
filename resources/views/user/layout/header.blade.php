@@ -418,7 +418,7 @@
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         @auth('web')
                             <div class="avatar avatar-online">
-                                <img src="{{ asset('admin-assets') }}/img/avatars/1.png" alt
+                                <img src="{{ gravatar(auth()->user()->email) }}" alt
                                     class="h-auto rounded-circle" />
                             </div>
                         @else
@@ -430,13 +430,6 @@
                             <li>
                                 <a class="dropdown-item" href="javascript:void(0);">
                                     <div class="d-flex">
-                                        <div class="flex-shrink-0 me-3">
-                                            <div class="avatar avatar-online">
-                                                <img src="{{ asset('admin-assets') }}/img/avatars/1.png" alt=""
-                                                    class="h-auto rounded-circle">
-                                            </div>
-                                        </div>
-
                                         <div class="flex-grow-1">
                                             <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
                                         </div>
