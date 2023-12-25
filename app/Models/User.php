@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasUuids, LogsActivity, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids, SoftDeletes;
 
     protected $dateFormat = 'U';
 
@@ -38,9 +36,4 @@ class User extends Authenticatable
         'updated_at' => 'timestamp',
         'deleted_at' => 'timestamp',
     ];
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->useLogName(self::class)->logFillable();
-    }
 }

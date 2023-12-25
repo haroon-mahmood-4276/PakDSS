@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Brand extends Model implements HasMedia
 {
-    use HasUuids, HasFactory, LogsActivity, SoftDeletes, InteractsWithMedia;
+    use HasUuids, HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $dateFormat = 'U';
 
@@ -30,11 +28,6 @@ class Brand extends Model implements HasMedia
         'categories' => 'nullable|array',
         'categories.*' => 'uuid',
     ];
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->useLogName(self::class)->logFillable();
-    }
 
     public function categories(): BelongsToMany
     {

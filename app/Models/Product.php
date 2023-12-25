@@ -8,14 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use HasUuids, HasFactory, LogsActivity, SoftDeletes, InteractsWithMedia;
+    use HasUuids, HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $dateFormat = 'U';
 
@@ -107,11 +105,6 @@ class Product extends Model implements HasMedia
 
         'meta_keywords' => 'array',
     ];
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->useLogName(self::class)->logFillable();
-    }
 
     public function brand(): BelongsTo
     {

@@ -9,14 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Shop extends Model implements HasMedia
 {
-    use HasUuids, HasFactory, LogsActivity, SoftDeletes, InteractsWithMedia;
+    use HasUuids, HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $dateFormat = 'U';
 
@@ -78,11 +76,6 @@ class Shop extends Model implements HasMedia
 
             'status' => 'required|in:' . implode(',', Status::values()),
         ];
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->useLogName(self::class)->logFillable();
     }
 
     public function seller(): BelongsTo
