@@ -25,7 +25,7 @@ class SettingsSeeder extends Seeder
             ],
             [
                 'tab_id' => 'admin_tab',
-                'key' => Str::of('One Dollor Rate')->slug()->replace('-', '_'),
+                'key' => Str::of('One Dollar Rate')->slug()->replace('-', '_'),
                 'value' => 283.71,
             ],
             [
