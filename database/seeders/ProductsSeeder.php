@@ -26,13 +26,12 @@ class ProductsSeeder extends Seeder
 
         $tags = Tag::all();
 
-        $brand = Brand::first()->id;
         $seller = Seller::first()->id;
         $shop = Shop::first()->id;
 
         $data = [
             [
-                'brand_id' => $brand,
+                'brand_id' => Brand::inRandomOrder(1)->first()->id,
                 'seller_id' => $seller,
                 'shop_id' => $shop,
 
@@ -65,6 +64,7 @@ class ProductsSeeder extends Seeder
 
         for ($i = 0; $i < 100; $i++) {
             foreach ($data as $value) {
+                $value['brand_id'] = Brand::inRandomOrder(1)->first()->id;
                 $value['name'] .= '-' . $i;
                 $value['permalink']  .= '-' . $i;
                 $value['sku']  .= '-' . $i;

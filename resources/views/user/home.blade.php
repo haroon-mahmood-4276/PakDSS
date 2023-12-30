@@ -7,6 +7,8 @@
 @section('page-title', env('APP_NAME'))
 
 @section('vendor-css')
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.css" />
 @endsection
 
 @section('page-css')
@@ -86,116 +88,110 @@
 @endsection
 
 @section('content')
-    <div style="margin-top: 55px">
-
-        {{-- Banner --}}
-        <section class="bg-white">
-            <div class="container-xxl flex-grow-1 container-p-y">
-                <div class="row mb-4">
-                    <div class="col-8">
-                        <div class="swiper banner-swiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="bg-banner"
-                                        style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner.png)">
-                                        <span class="font-sm text-uppercase">Hot Right Now</span>
-                                        <h2 class="mt-10">Sale Up to 50% Off</h2>
-                                        <h1>Mobile Devices</h1>
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-7 col-sm-12">
-                                                <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
-                                                    efficitur
-                                                    quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
-                                                    Curabitur
-                                                    blandit tempus consectetur.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-30">
-                                            <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
-                                            <a class="btn" href="shop-grid.html">Learn more</a>
+    <section class="bg-white">
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="row mb-4">
+                <div class="col-8">
+                    <div class="swiper banner-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="bg-banner"
+                                    style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner.png)">
+                                    <span class="font-sm text-uppercase">Hot Right Now</span>
+                                    <h2 class="mt-10">Sale Up to 50% Off</h2>
+                                    <h1>Mobile Devices</h1>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-7 col-sm-12">
+                                            <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
+                                                efficitur
+                                                quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
+                                                Curabitur
+                                                blandit tempus consectetur.</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="bg-banner"
-                                        style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner-hero-2.png)">
-                                        <span class="font-sm text-uppercase">Hot Right Now</span>
-                                        <h2 class="mt-10">Sale Up to 50% Off</h2>
-                                        <h1>Mobile Devices</h1>
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-7 col-sm-12">
-                                                <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
-                                                    efficitur
-                                                    quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
-                                                    Curabitur
-                                                    blandit tempus consectetur.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-30">
-                                            <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
-                                            <a class="btn" href="shop-grid.html">Learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="bg-banner"
-                                        style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner-hero-3.png)">
-                                        <span class="font-sm text-uppercase">Hot Right Now</span>
-                                        <h2 class="mt-10">Sale Up to 50% Off</h2>
-                                        <h1>Mobile Devices</h1>
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-7 col-sm-12">
-                                                <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
-                                                    efficitur
-                                                    quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
-                                                    Curabitur
-                                                    blandit tempus consectetur.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-30">
-                                            <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
-                                            <a class="btn" href="shop-grid.html">Learn more</a>
-                                        </div>
+                                    <div class="mt-30">
+                                        <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
+                                        <a class="btn" href="shop-grid.html">Learn more</a>
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="swiper-button-next"></div>
+                            <div class="swiper-slide">
+                                <div class="bg-banner"
+                                    style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner-hero-2.png)">
+                                    <span class="font-sm text-uppercase">Hot Right Now</span>
+                                    <h2 class="mt-10">Sale Up to 50% Off</h2>
+                                    <h1>Mobile Devices</h1>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-7 col-sm-12">
+                                            <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
+                                                efficitur
+                                                quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
+                                                Curabitur
+                                                blandit tempus consectetur.</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-30">
+                                        <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
+                                        <a class="btn" href="shop-grid.html">Learn more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="bg-banner"
+                                    style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner-hero-3.png)">
+                                    <span class="font-sm text-uppercase">Hot Right Now</span>
+                                    <h2 class="mt-10">Sale Up to 50% Off</h2>
+                                    <h1>Mobile Devices</h1>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-7 col-sm-12">
+                                            <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
+                                                efficitur
+                                                quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
+                                                Curabitur
+                                                blandit tempus consectetur.</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-30">
+                                        <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
+                                        <a class="btn" href="shop-grid.html">Learn more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div> --}}
-                            <div class="swiper-pagination"></div>
-                        </div>
+                        <div class="swiper-pagination"></div>
                     </div>
-                    <div class="col-4">
-                        <div class="row gap-3">
-                            <div class="col-lg-12 col-md-6 col-sm-12">
-                                <div class="background-image-1 p-4">
-                                    <div class="banner-small banner-small-1 bg-13"><span
-                                            class="color-danger text-uppercase font-sm-lh32">10%<span
-                                                class="color-brand-3">Sale
-                                                Off</span></span>
-                                        <h4 class="mb-10">Apple Watch Serial 7</h4>
-                                        <p class="color-brand-3 font-desc">Don't miss the last<br class="d-none d-lg-block">
-                                            opportunity.</p>
-                                        <div class="mt-20">
-                                            <a class="btn btn-primary btn-arrow-right" href="shop-grid.html">Shop
-                                                now</a>
-                                        </div>
+                </div>
+                <div class="col-4">
+                    <div class="row gap-3">
+                        <div class="col-lg-12 col-md-6 col-sm-12">
+                            <div class="background-image-1 p-4">
+                                <div class="banner-small banner-small-1 bg-13"><span
+                                        class="color-danger text-uppercase font-sm-lh32">10%<span class="color-brand-3">Sale
+                                            Off</span></span>
+                                    <h4 class="mb-10">Apple Watch Serial 7</h4>
+                                    <p class="color-brand-3 font-desc">Don't miss the last<br class="d-none d-lg-block">
+                                        opportunity.</p>
+                                    <div class="mt-20">
+                                        <a class="btn btn-primary btn-arrow-right" href="shop-grid.html">Shop
+                                            now</a>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-lg-12 col-md-6 col-sm-12">
-                                <div class="background-image-2 p-4">
-                                    <div class="banner-small banner-small-1 bg-13"><span
-                                            class="color-danger text-uppercase font-sm-lh32">10%<span
-                                                class="color-brand-3">Sale
-                                                Off</span></span>
-                                        <h4 class="mb-10">Apple Watch Serial 7</h4>
-                                        <p class="color-brand-3 font-desc">Don't miss the last<br class="d-none d-lg-block">
-                                            opportunity.</p>
-                                        <div class="mt-20">
-                                            <a class="btn btn-primary btn-arrow-right" href="shop-grid.html">Shop
-                                                now</a>
-                                        </div>
+                        <div class="col-lg-12 col-md-6 col-sm-12">
+                            <div class="background-image-2 p-4">
+                                <div class="banner-small banner-small-1 bg-13"><span
+                                        class="color-danger text-uppercase font-sm-lh32">10%<span class="color-brand-3">Sale
+                                            Off</span></span>
+                                    <h4 class="mb-10">Apple Watch Serial 7</h4>
+                                    <p class="color-brand-3 font-desc">Don't miss the last<br class="d-none d-lg-block">
+                                        opportunity.</p>
+                                    <div class="mt-20">
+                                        <a class="btn btn-primary btn-arrow-right" href="shop-grid.html">Shop
+                                            now</a>
                                     </div>
                                 </div>
                             </div>
@@ -203,300 +199,125 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="">
-            <div class="container-xxl flex-grow-1 container-p-y">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Featured Categories</h2>
-                        <p class="font-base">Choose your necessary products from this feature categories.</p>
-                    </div>
+    <section class="">
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Featured Categories</h2>
+                    <p class="font-base">Choose your necessary products from this feature categories.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        {{-- Categories Swiper --}}
-        <section class="">
-            <div class="container-xxl flex-grow-1">
-                @forelse ($categories_products as $catrgory_name => $product_chunks)
-                    @continue($loop->index > 1)
+    {{-- Categories Swiper --}}
+    <section class="">
+        <div class="container-xxl flex-grow-1">
+            @forelse ($categories_products as $catrgory_name => $product_chunks)
+                @continue($loop->index > 3)
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="d-flex align-items-center border-bottom mb-3">
+                            <div class="flex-grow-1">
+                                <div class="d-flex align-items-center">
+                                    <h4 class="m-0"><i class="fa-solid fa-star"></i>&nbsp;</h4>
+                                    <h1 class="m-0">{{ Str::of($catrgory_name)->title() }}</h1>
+                                </div>
+                            </div>
+                            <div class="{{ $catrgory_name }}-swiper-navigation-button d-flex gap-1">
+                                <div class="{{ $catrgory_name }}-swiper-button-next btn btn-sm btn-primary">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </div>
+                                <div class="{{ $catrgory_name }}-swiper-button-prev btn btn-sm btn-primary">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="swiper {{ $catrgory_name }}-categories-swiper">
+                            <div class="swiper-wrapper">
+                                @foreach ($product_chunks as $chunk)
+                                    <div class="swiper-slide">
+                                        <div class="row row-cols-6 g-2">
+                                            @foreach ($chunk as $product)
+                                                <div class="col">
+                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
+                                                        style="border-color: #7367f0">
+                                                        <div class="top-border"></div>
+                                                        <div
+                                                            class="bg-label-primary rounded text-center m-2 position-relative">
+                                                            <div
+                                                                class="d-flex justify-content-between position-absolute w-100">
+                                                                <span class="badge bg-warning">10%</span>
+                                                                <span class="badge bg-danger">Hot</span>
+                                                            </div>
+                                                            <div class="p-3">
+                                                                <img class="card-img-top img-fluid"
+                                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
+                                                                    alt="Card girl image" width="140">
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body px-3 pt-1 pb-3 d-flex flex-column">
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <a
+                                                                    href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}"><small>{{ $product->brand->name }}</small></a>
+                                                                <div id="rateYo"></div>
+                                                            </div>
+                                                            <a href="{{ route('user.products.index', ['product' => $product->permalink]) }}"
+                                                                class="mb-1 text-dark"><strong>{{ $product->name }}</strong></a>
+                                                            {{-- <div class="flex-grow-1">
+                                                                    asdasd
+                                                                </div> --}}
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if ($loop->index == 1)
                     <div class="row mb-5">
-                        <div class="col-12">
-                            <div class="d-flex align-items-center border-bottom mb-3">
-                                <div class="flex-grow-1">
-                                    <div class="d-flex align-items-center">
-                                        <h4 class="m-0"><i class="fa-solid fa-star"></i>&nbsp;</h4>
-                                        <h1 class="m-0">{{ Str::of($catrgory_name)->title() }}</h1>
-                                    </div>
-                                </div>
-                                <div class="{{ $catrgory_name }}-swiper-navigation-button d-flex gap-1">
-                                    <div class="{{ $catrgory_name }}-swiper-button-next btn btn-sm btn-primary">
-                                        <i class="fa-solid fa-angle-left"></i>
-                                    </div>
-                                    <div class="{{ $catrgory_name }}-swiper-button-prev btn btn-sm btn-primary">
-                                        <i class="fa-solid fa-angle-right"></i>
+                        <div class="col-3">
+                            <div class="card shadow-none border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-start">
+                                        <img class="img-fluid m-2"
+                                            src="http://localhost:8000/user-assets/imgs/template/delivery.svg"
+                                            alt="Ecom">
+                                        <div class="flex-grow-1 m-2">
+                                            <h5 class="m-0">Free Delivery</h5>
+                                            <p class="m-0">From all orders over $10</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="swiper {{ $catrgory_name }}-categories-swiper">
-                                <div class="swiper-wrapper">
-                                    @foreach ($product_chunks as $chunk)
-                                        <div class="swiper-slide">
-                                            <div class="row row-cols-6 g-2">
-                                                <div class="col">
-                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                                        style="border-color: #7367f0">
-
-                                                        <div class="top-border"></div>
-                                                        <div
-                                                            class="bg-label-primary rounded text-center m-2 position-relative">
-                                                            <div
-                                                                class="d-flex justify-content-between position-absolute w-100">
-                                                                <span class="badge bg-warning">10%</span>
-                                                                <span class="badge bg-danger">Hot</span>
-                                                            </div>
-                                                            <div class="p-3">
-                                                                <img class="card-img-top img-fluid"
-                                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                                    alt="Card girl image" width="140">
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body p-3 d-flex flex-column">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <a href="#"><small>Dell</small></a>
-                                                                <div id="rateYo"></div>
-                                                            </div>
-                                                            <h5 class="mb-1">Lenovo</h5>
-                                                            <div class="flex-grow-1">
-                                                                asdasd
-                                                            </div>
-
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-primary w-100 waves-effect waves-light">Add
-                                                                to
-                                                                cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                                        style="border-color: #7367f0">
-
-                                                        <div class="top-border"></div>
-                                                        <div
-                                                            class="bg-label-primary rounded text-center m-2 position-relative">
-                                                            <div
-                                                                class="d-flex justify-content-between position-absolute w-100">
-                                                                <span class="badge bg-warning">10%</span>
-                                                                <span class="badge bg-danger">Hot</span>
-                                                            </div>
-                                                            <div class="p-3">
-                                                                <img class="card-img-top img-fluid"
-                                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                                    alt="Card girl image" width="140">
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body p-3 d-flex flex-column">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <a href="#"><small>Dell</small></a>
-                                                                <div id="rateYo"></div>
-                                                            </div>
-                                                            <h5 class="mb-1">Lenovo</h5>
-                                                            <div class="flex-grow-1">
-                                                                asdasd
-                                                            </div>
-
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-primary w-100 waves-effect waves-light">Add
-                                                                to
-                                                                cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                                        style="border-color: #7367f0">
-
-                                                        <div class="top-border"></div>
-                                                        <div
-                                                            class="bg-label-primary rounded text-center m-2 position-relative">
-                                                            <div
-                                                                class="d-flex justify-content-between position-absolute w-100">
-                                                                <span class="badge bg-warning">10%</span>
-                                                                <span class="badge bg-danger">Hot</span>
-                                                            </div>
-                                                            <div class="p-3">
-                                                                <img class="card-img-top img-fluid"
-                                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                                    alt="Card girl image" width="140">
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body p-3 d-flex flex-column">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <a href="#"><small>Dell</small></a>
-                                                                <div id="rateYo"></div>
-                                                            </div>
-                                                            <h5 class="mb-1">Lenovo</h5>
-                                                            <div class="flex-grow-1">
-                                                                asdasd
-                                                            </div>
-
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-primary w-100 waves-effect waves-light">Add
-                                                                to
-                                                                cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                                        style="border-color: #7367f0">
-
-                                                        <div class="top-border"></div>
-                                                        <div
-                                                            class="bg-label-primary rounded text-center m-2 position-relative">
-                                                            <div
-                                                                class="d-flex justify-content-between position-absolute w-100">
-                                                                <span class="badge bg-warning">10%</span>
-                                                                <span class="badge bg-danger">Hot</span>
-                                                            </div>
-                                                            <div class="p-3">
-                                                                <img class="card-img-top img-fluid"
-                                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                                    alt="Card girl image" width="140">
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body p-3 d-flex flex-column">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <a href="#"><small>Dell</small></a>
-                                                                <div id="rateYo"></div>
-                                                            </div>
-                                                            <h5 class="mb-1">Lenovo</h5>
-                                                            <div class="flex-grow-1">
-                                                                asdasd
-                                                            </div>
-
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-primary w-100 waves-effect waves-light">Add
-                                                                to
-                                                                cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                                        style="border-color: #7367f0">
-
-                                                        <div class="top-border"></div>
-                                                        <div
-                                                            class="bg-label-primary rounded text-center m-2 position-relative">
-                                                            <div
-                                                                class="d-flex justify-content-between position-absolute w-100">
-                                                                <span class="badge bg-warning">10%</span>
-                                                                <span class="badge bg-danger">Hot</span>
-                                                            </div>
-                                                            <div class="p-3">
-                                                                <img class="card-img-top img-fluid"
-                                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                                    alt="Card girl image" width="140">
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body p-3 d-flex flex-column">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <a href="#"><small>Dell</small></a>
-                                                                <div id="rateYo"></div>
-                                                            </div>
-                                                            <h5 class="mb-1">Lenovo</h5>
-                                                            <div class="flex-grow-1">
-                                                                asdasd
-                                                            </div>
-
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-primary w-100 waves-effect waves-light">Add
-                                                                to
-                                                                cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                                        style="border-color: #7367f0">
-
-                                                        <div class="top-border"></div>
-                                                        <div
-                                                            class="bg-label-primary rounded text-center m-2 position-relative">
-                                                            <div
-                                                                class="d-flex justify-content-between position-absolute w-100">
-                                                                <span class="badge bg-warning">10%</span>
-                                                                <span class="badge bg-danger">Hot</span>
-                                                            </div>
-                                                            <div class="p-3">
-                                                                <img class="card-img-top img-fluid"
-                                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                                    alt="Card girl image" width="140">
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body p-3 d-flex flex-column">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <a href="#"><small>Dell</small></a>
-                                                                <div id="rateYo"></div>
-                                                            </div>
-                                                            <h5 class="mb-1">Lenovo</h5>
-                                                            <div class="flex-grow-1">
-                                                                asdasd
-                                                            </div>
-
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-primary w-100 waves-effect waves-light">Add
-                                                                to
-                                                                cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <div class="col-3">
+                            <div class="card shadow-none border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-start">
+                                        <img class="img-fluid m-2"
+                                            src="http://localhost:8000/user-assets/imgs/template/support.svg"
+                                            alt="Ecom">
+                                        <div class="flex-grow-1 m-2">
+                                            <h5 class="m-0">Support 24/7</h5>
+                                            <p class="m-0">Shop with an expert</p>
                                         </div>
-                                    @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    @if ($loop->index == 1)
-                        <div class="row mb-5">
-                            <div class="col-3">
-                                <div class="card shadow-none border">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-start">
-                                            <img class="img-fluid m-2"
-                                                src="http://localhost:8000/user-assets/imgs/template/delivery.svg"
-                                                alt="Ecom">
-                                            <div class="flex-grow-1 m-2">
-                                                <h5 class="m-0">Free Delivery</h5>
-                                                <p class="m-0">From all orders over $10</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="card shadow-none border">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-start">
-                                            <img class="img-fluid m-2"
-                                                src="http://localhost:8000/user-assets/imgs/template/support.svg"
-                                                alt="Ecom">
-                                            <div class="flex-grow-1 m-2">
-                                                <h5 class="m-0">Support 24/7</h5>
-                                                <p class="m-0">Shop with an expert</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- <div class="col-3">
+                        {{-- <div class="col-3">
                     <div class="card shadow-none border">
                         <div class="card-body">
                             <div class="d-flex justify-content-start">
@@ -509,47 +330,47 @@
                         </div>
                     </div>
                 </div> --}}
-                            <div class="col-3">
-                                <div class="card shadow-none border">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-start">
-                                            <img class="img-fluid m-2"
-                                                src="http://localhost:8000/user-assets/imgs/template/return.svg"
-                                                alt="Ecom">
-                                            <div class="flex-grow-1 m-2">
-                                                <h5 class="m-0">Return &amp; Refund</h5>
-                                                <p class="m-0">Free return over $200</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="card shadow-none border">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-start">
-                                            <img class="img-fluid m-2"
-                                                src="http://localhost:8000/user-assets/imgs/template/secure.svg"
-                                                alt="Ecom">
-                                            <div class="flex-grow-1 m-2">
-                                                <h5 class="m-0">Secure payment</h5>
-                                                <p class="m-0">100% Protected</p>
-                                            </div>
+                        <div class="col-3">
+                            <div class="card shadow-none border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-start">
+                                        <img class="img-fluid m-2"
+                                            src="http://localhost:8000/user-assets/imgs/template/return.svg"
+                                            alt="Ecom">
+                                        <div class="flex-grow-1 m-2">
+                                            <h5 class="m-0">Return &amp; Refund</h5>
+                                            <p class="m-0">Free return over $200</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endif
-                @empty
-                @endforelse
-            </div>
-        </section>
-
-    </div>
+                        <div class="col-3">
+                            <div class="card shadow-none border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-start">
+                                        <img class="img-fluid m-2"
+                                            src="http://localhost:8000/user-assets/imgs/template/secure.svg"
+                                            alt="Ecom">
+                                        <div class="flex-grow-1 m-2">
+                                            <h5 class="m-0">Secure payment</h5>
+                                            <p class="m-0">100% Protected</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @empty
+            @endforelse
+        </div>
+    </section>
 @endsection
 
 @section('vendor-js')
+    <script src="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.js"></script>
 @endsection
 
 @section('page-js')
