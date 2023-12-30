@@ -123,7 +123,7 @@
                 <div class="col-7">
                     <div class="product-header">
                         <div class="product-heading">
-                            <h2>Samsung Galaxy S22 Ultra, 8K Camera & Video, Brightest Display Screen, S Pen Pro</h2>
+                            <h2>{{ $product->name }}</h2>
                         </div>
                         <div class="product-stats border-bottom pb-2 mb-3">
                             <div class="row">
@@ -131,12 +131,12 @@
                                 <div class="col-6">
                                     <div class="d-flex flex-column gap-2">
                                         <div class="product-brand">
-                                            <small class="ms-1">by <a href="#">Dell</a></small>
+                                            <small class="ms-1">by <a href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}">{{ $product->brand->name }}</a></small>
                                         </div>
                                         <div class="product-rating" style="z-index: 1;">
                                             <div class="d-flex gap-1">
                                                 <div id="product-rating" class="p-0"></div>
-                                                <span class="font-xs color-gray-500 font-medium"> (65 reviews)</span>
+                                                <span class="font-xs font-medium"> (65 reviews)</span>
                                             </div>
                                         </div>
                                     </div>
@@ -160,25 +160,10 @@
                             </div>
                         </div>
                         <div class="product-price mb-3">
-                            <h3>$2856.3 <small class="text-body-secondary"><s>$3225.6</s></small></h3>
+                            <h3>{{ currencyParser($product->price, symbol: 'Rs.') }} <small class="text-body-secondary"><s>{{ currencyParser($product->discounted_price, symbol: 'Rs.') }}</s></small></h3>
                         </div>
                         <div class="product-short-description mb-3">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <ul class="list-dot">
-                                        <li>8k super steady video</li>
-                                        <li>Nightography plus portait mode</li>
-                                        <li>50mp photo resolution plus bright display</li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <ul class="list-dot">
-                                        <li>Adaptive color contrast</li>
-                                        <li>premium design &amp; craftmanship</li>
-                                        <li>Long lasting battery plus fast charging</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            {{ strip_tags($product->short_description)  }}
                         </div>
                         {{-- <div class="product-color mt-20">
                             <p class="font-sm color-gray-900">Color:<span class="color-brand-2 nameColor">Pink Gold</span>
@@ -202,14 +187,14 @@
                         </div> --}}
                         <div class="product-buy mb-3">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="input-group product-quantity">
-                                        <button class="btn btn-outline-primary waves-effect" type="button">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                        <input type="text" class="form-control border-primary" placeholder="Quantity">
-                                        <button class="btn btn-outline-primary waves-effect" type="button">
+                                        <button class="btn btn-outline-primary waves-effect" id="product-quantity-decrease" type="button">
                                             <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                        <input type="number" class="form-control text-center border-primary" placeholder="Quantity" id="product-quantity-value" value="0" min="0">
+                                        <button class="btn btn-outline-primary waves-effect" id="product-quantity-increase" type="button">
+                                            <i class="fa-solid fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -241,17 +226,17 @@
                                 <div class="col-lg-5 col-md-5">
                                     <span class="font-sm font-medium color-gray-900">
                                         <strong class="text-primary">SKU:</strong> <span
-                                            class="color-gray-500">iphone12pro128</span> <br>
+                                            class="">iphone12pro128</span> <br>
                                         <strong class="text-primary">Category:</strong> <span
-                                            class="color-gray-500">Smartphones</span> <br>
-                                        <strong class="text-primary">Tags:</strong> <span class="color-gray-500">Blue,
+                                            class="">Smartphones</span> <br>
+                                        <strong class="text-primary">Tags:</strong> <span class="">Blue,
                                             Smartphone</span>
                                     </span>
                                 </div>
                                 <div class="col-lg-4 col-md-4">
-                                    <span class="font-sm font-medium color-gray-900">Free Delivery <br>
-                                        <span class="color-gray-500">Available for all locations.</span> <br>
-                                        <span class="color-gray-500">Delivery Options &amp; Info</span>
+                                    <span class="font-sm font-medium">Free Delivery <br>
+                                        <span class="">Available for all locations.</span> <br>
+                                        <span class="">Delivery Options &amp; Info</span>
                                     </span>
                                 </div>
                                 <div class="col-lg-3 col-md-3">
@@ -308,18 +293,7 @@
                         </ul>
                         <div class="tab-content shadow-none ">
                             <div class="tab-pane fade active show" id="navs-description" role="tabpanel">
-                                <p>
-                                    Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame
-                                    snaps powder. Bear
-                                    claw
-                                    candy topping.
-                                </p>
-                                <p class="mb-0">
-                                    Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly.
-                                    Bonbon jelly-o
-                                    jelly-o ice
-                                    cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow jujubes sweet.
-                                </p>
+                                {!! $product->long_description !!}
                             </div>
                             <div class="tab-pane fade" id="navs-specifications" role="tabpanel">
                                 <h5 class="mb-25">Specification</h5>
@@ -423,6 +397,24 @@
                 numStars: 5,
                 ratedFill: "#ff9f43",
                 "starSvg": '<svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.322 2.923c.126-.259.39-.423.678-.423.289 0 .552.164.678.423.974 1.998 2.65 5.44 2.65 5.44s3.811.524 6.022.829c.403.055.65.396.65.747 0 .19-.072.383-.231.536-1.61 1.538-4.382 4.191-4.382 4.191s.677 3.767 1.069 5.952c.083.462-.275.882-.742.882-.122 0-.244-.029-.355-.089-1.968-1.048-5.359-2.851-5.359-2.851s-3.391 1.803-5.359 2.851c-.111.06-.234.089-.356.089-.465 0-.825-.421-.741-.882.393-2.185 1.07-5.952 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44z" fill-rule="nonzero"/></svg> '
+            });
+
+            $('#product-quantity-increase').on('click', function () {
+                $('#product-quantity-value').val(parseInt($('#product-quantity-value').val()) + 1);
+            });
+
+            $('#product-quantity-decrease').on('click', function () {
+                $('#product-quantity-value').val((parseInt($('#product-quantity-value').val()) - 1) <= 0 ? 0 : parseInt($('#product-quantity-value').val()) - 1 );
+            });
+
+            $('#product-quantity-value').on('change', function () {
+                if($('#product-quantity-value').val().length < 1) {
+                    $('#product-quantity-value').val(0);
+                }else if(parseInt($('#product-quantity-value').val()) <= 0) {
+                    $('#product-quantity-value').val(0);
+                } else {
+                    $('#product-quantity-value').val(parseInt($('#product-quantity-value').val()));
+                }
             });
         });
         var product_top = new Swiper(".product-top", {

@@ -658,3 +658,14 @@ if (!function_exists('getImageUrlByCollection')) {
         return asset('admin-assets/img/do_not_delete/do_not_delete.png');
     }
 }
+
+if (!function_exists('currencyParser')) {
+    function currencyParser($amount, $decimals = 0, $symbol = '$')
+    {
+        $amount = floatval($amount);
+        if ($amount < 1)
+            return 0;
+
+        return $symbol . ' ' . number_format($amount, $decimals);
+    }
+}

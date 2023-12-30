@@ -21,6 +21,8 @@ class ProductController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
+        $product->load(['brand']);
+
         return view('user.products.index', ['product' => $product]);
 
     }

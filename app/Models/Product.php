@@ -91,8 +91,8 @@ class Product extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
-        'discounted_price' => 'decimal:2',
+        'price' => 'float',
+        'discounted_price' => 'float',
 
         'call_for_final_rates' => 'boolean',
         'are_rates_printed_on_package' => 'boolean',
