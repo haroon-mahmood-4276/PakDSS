@@ -11,13 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasUuids, LogsActivity, SoftDeletes, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids, SoftDeletes, HasRoles;
 
     protected $dateFormat = 'U';
 
@@ -51,10 +49,5 @@ class Admin extends Authenticatable
             'roles' => 'required|array',
             'roles.*' => 'required|exists:roles,id',
         ];
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->useLogName(self::class)->logFillable();
     }
 }

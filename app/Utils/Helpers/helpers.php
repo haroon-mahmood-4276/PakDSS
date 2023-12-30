@@ -63,6 +63,14 @@ if (!function_exists('getLastCategoryBreadcrumb')) {
     }
 }
 
+if (!function_exists('gravatar')) {
+    function gravatar($email)
+    {
+        $hash = md5(strtolower(trim($email)));
+        return "http://www.gravatar.com/avatar/$hash?s=200";
+    }
+}
+
 if (!function_exists('filter_strip_tags')) {
 
     function filter_strip_tags($text, $with_script_content = false): string
@@ -648,5 +656,16 @@ if (!function_exists('getImageUrlByCollection')) {
         }
 
         return asset('admin-assets/img/do_not_delete/do_not_delete.png');
+    }
+}
+
+if (!function_exists('currencyParser')) {
+    function currencyParser($amount, $decimals = 0, $symbol = '$')
+    {
+        $amount = floatval($amount);
+        if ($amount < 1)
+            return 0;
+
+        return $symbol . ' ' . number_format($amount, $decimals);
     }
 }

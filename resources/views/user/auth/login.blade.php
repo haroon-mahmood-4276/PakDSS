@@ -75,11 +75,11 @@
                         <div class="d-flex flex-row justify-content-center gap-3">
                             <a href="{{ route('user.socialiate.redirect', ['social_account' => 'google']) }}"
                                 class="btn btn-google-plus waves-effect waves-light"><i
-                                    class="fa-brands fa-google me-2"></i> Sign up with Google</a>
+                                    class="fa-brands fa-google me-2"></i> Continue with Google</a>
 
                             {{-- <a href="{{ route('user.socialiate.redirect', ['social_account' => 'facebook']) }}"
                                 class="btn btn-facebook waves-effect waves-light"><i class="fa-brands fa-facebook me-2"></i>
-                                Sign up with Facebook</a> --}}
+                                Continue with Facebook</a> --}}
                         </div>
                     </div>
                 </div>

@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class UserSocialAccount extends Model
 {
-    use HasFactory, HasUuids, LogsActivity;
+    use HasFactory, HasUuids;
 
     protected $dateFormat = 'U';
 
@@ -31,9 +29,4 @@ class UserSocialAccount extends Model
         'created_at' => 'timestamp',
         'updated_at' => 'timestamp',
     ];
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->useLogName(self::class)->logFillable();
-    }
 }

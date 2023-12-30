@@ -39,8 +39,6 @@
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/node-waves/node-waves.css" />
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/apex-charts/apex-charts.css" />
-    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.css" />
-    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.css" />
     @yield('vendor-css')
 
     <!-- Page CSS -->
@@ -140,7 +138,7 @@
     @yield('page-css')
 </head>
 
-<body style="overflow-y: scroll; background-color: #fff">
+<body style="overflow-y: scroll; ">
     <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
         <div class="layout-container">
 
@@ -151,8 +149,14 @@
                 <div class="content-wrapper">
 
                     @include('user.layout.topbar')
-
-                    @yield('content')
+{{--                     
+                    <div style="margin-top: 55px">
+                        @yield('breadcrumbs')
+                    </div> --}}
+                    
+                    <div style="margin-top: 58px">
+                       @yield('content')
+                    </div>
 
                     @include('user.layout.footer')
 
@@ -176,13 +180,11 @@
     <script src="{{ asset('admin-assets') }}/vendor/libs/hammer/hammer.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/i18n/i18n.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.js"></script>
-
+    @yield('vendor-js')
+    
     <script src="{{ asset('admin-assets') }}/vendor/js/menu.js"></script>
 
     <!-- Vendors JS -->
-    <script src="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.js"></script>
-    @yield('vendor-js')
 
     <!-- Main JS -->
     <script src="{{ asset('admin-assets') }}/js/main.js"></script>
