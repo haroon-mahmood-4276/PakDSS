@@ -266,7 +266,7 @@
             <div class="row mb-4">
                 <div class="col-xl-12">
                     <div class="nav-align-top mb-4">
-                        <ul class="nav nav-pills mb-3" role="tablist">
+                        <ul class="nav nav-pills nav-fill gap-3 mb-3" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
                                     data-bs-target="#navs-description" aria-controls="navs-description"

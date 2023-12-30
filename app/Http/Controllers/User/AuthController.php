@@ -85,6 +85,6 @@ class AuthController extends Controller
         }
 
         Auth::login($user);
-        return redirect()->route('user.home.index');
+        return redirect()->intended(route('user.home.index'));
     }
 }

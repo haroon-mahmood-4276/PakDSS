@@ -4,6 +4,7 @@ use App\Events\TestEvent;
 use App\Http\Controllers\User\{
     AuthController,
     BrandController,
+    CartController,
     HomeController,
     ProductController,
 };
@@ -45,6 +46,13 @@ Route::group(['as' => 'user.'], function () {
 
     Route::group(['middleware' => 'auth:web'], function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+        // Cart Route
+        Route::as('cart.')->controller(CartController::class)->prefix('cart')->group(function () {
+            Route::get('/', 'index')->name('index');
+
+            Route::post('store', 'addToCart')->name('add-to-cart');
+        });
     });
 
     Route::group(['prefix' => 'tests'], function () {
