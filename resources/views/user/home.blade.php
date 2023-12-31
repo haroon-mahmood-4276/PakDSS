@@ -267,8 +267,10 @@
                                                                     href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}"><small>{{ $product->brand->name }}</small></a>
                                                                 <div id="rateYo"></div>
                                                             </div>
-                                                            <a href="{{ route('user.products.index', ['product' => $product->permalink]) }}"
-                                                                class="mb-1 text-dark"><strong>{{ $product->name }}</strong></a>
+                                                            <p>
+                                                                <a href="{{ route('user.products.index', ['product' => $product->permalink]) }}"
+                                                                    class="mb-1 text-dark"><strong>{{ $product->name }}</strong></a>
+                                                            </p>
                                                             {{-- <div class="flex-grow-1">
                                                                     asdasd
                                                                 </div> --}}

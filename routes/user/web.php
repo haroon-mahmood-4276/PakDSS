@@ -51,7 +51,7 @@ Route::group(['as' => 'user.'], function () {
         Route::as('cart.')->controller(CartController::class)->prefix('cart')->group(function () {
             Route::get('/', 'index')->name('index');
 
-            Route::post('store', 'addToCart')->name('add-to-cart');
+            Route::post('store', 'store')->name('store');
         });
     });
 

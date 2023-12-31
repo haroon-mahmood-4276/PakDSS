@@ -25,10 +25,12 @@ class CartController extends Controller
         return view('user.cart.index', ['cart' => $cart]);
     }
 
-    public function addToCart(Request $request)
+    public function store(Request $request)
     {
         abort_if(request()->ajax(), 403);
         $data = $request->input();
         $this->cartInterface->store(auth()->id(), $data);
+
+        return redirect()->back();
     }
 }

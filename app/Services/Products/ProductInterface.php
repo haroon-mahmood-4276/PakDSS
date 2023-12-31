@@ -7,7 +7,7 @@ interface ProductInterface
     public function get($status = '', $relationships = [], $ignore = null);
     public function getAllByParentCategory($categories, $relationships = [], $chunk_size = 0);
 
-    public function find($id, $relationships = []);
+    public function find($id, $only = [], $relationships = []);
 
     public function store($seller_id, $inputs);
 
