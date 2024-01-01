@@ -50,8 +50,11 @@ Route::group(['as' => 'user.'], function () {
         // Cart Route
         Route::as('cart.')->controller(CartController::class)->prefix('cart')->group(function () {
             Route::get('/', 'index')->name('index');
-
             Route::post('store', 'store')->name('store');
+
+            Route::group(['prefix' => '/{cart}'], function () {
+                Route::get('delete', 'delete')->whereUuid('cart')->name('delete');
+            });
         });
     });
 

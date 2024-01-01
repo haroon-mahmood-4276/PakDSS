@@ -145,16 +145,18 @@
                                         </div>
                                     </div>
                                 </div>
-    
+
                                 {{-- Product Wishlist --}}
                                 <div class="col-6">
                                     <div class="d-flex align-items-end h-100 justify-content-end gap-3">
-                                        <a href="#" class="btn btn-icon btn-primary waves-effect" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-original-title="Add to wishlist">
+                                        <a href="#" class="btn btn-icon btn-primary waves-effect"
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-original-title="Add to wishlist">
                                             <span class="fa-regular fa-heart"></span>
                                         </a>
-                                        <a href="#" class="btn btn-icon btn-primary waves-effect" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-original-title="Compare with another product">
+                                        <a href="#" class="btn btn-icon btn-primary waves-effect"
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-original-title="Compare with another product">
                                             <span class="fa-solid fa-code-compare"></span>
                                         </a>
                                     </div>
@@ -162,11 +164,15 @@
                             </div>
                         </div>
                         <div class="product-price mb-3">
-                            <h3>{{ currencyParser($product->price, symbol: 'Rs.') }} <small
-                                    class="text-body-secondary"><s>{{ currencyParser($product->discounted_price, symbol: 'Rs.') }}</s></small>
+                            <h3>
+                                {{ currencyParser($product->discounted_price > 0 ? $product->discounted_price : $product->price, symbol: 'Rs.') }}
+                                @if ($product->discounted_price > 0)
+                                    <small
+                                        class="text-body-secondary"><s>{{ currencyParser($product->discounted_price, symbol: 'Rs.') }}</s></small>
+                                @endif
                             </h3>
                         </div>
-                        <div class="product-short-description mb-3">
+                        <div class="product-short-description mb-3" style="min-height: 130px">
                             {{ strip_tags($product->short_description) }}
                         </div>
                         {{-- <div class="product-color mt-20">
@@ -198,7 +204,8 @@
                                             <i class="fa-solid fa-minus"></i>
                                         </button>
                                         <input type="number" class="form-control text-center border-primary"
-                                            placeholder="Quantity" name="product_quantity" id="product-quantity-value" value="1" min="1" max="10">
+                                            placeholder="Quantity" name="product_quantity" id="product-quantity-value"
+                                            value="1" min="1" max="10">
                                         <button class="btn btn-outline-primary waves-effect" id="product-quantity-increase"
                                             type="button">
                                             <i class="fa-solid fa-plus"></i>
@@ -218,7 +225,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             {{-- <div class="box-quantity">
                                     <div class="input-quantity">
                                         <input class="font-xl color-brand-3" type="text" value="1"><span
@@ -232,7 +239,8 @@
                             <div class="row">
                                 <div class="col-lg-5 col-md-5">
                                     <span class="font-sm font-medium color-gray-900">
-                                        <strong class="text-primary">SKU:</strong> <span class="">iphone12pro128</span>
+                                        <strong class="text-primary">SKU:</strong> <span
+                                            class="">iphone12pro128</span>
                                         <br>
                                         <strong class="text-primary">Category:</strong> <span
                                             class="">Smartphones</span> <br>

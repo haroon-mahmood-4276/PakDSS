@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained();
             $table->foreignUuid('product_id')->constrained();
             $table->integer('quantity')->default(0);
-            $table->float('price')->default(0);
-            $table->float('total_price')->default(0);
+            $table->decimal('price', 8, 2)->default(0);
+            $table->decimal('total_price', 8, 2)->default(0);
             $table->json('attributes')->default('{}');
 
             $table->integer('created_at')->nullable();

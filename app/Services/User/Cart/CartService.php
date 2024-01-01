@@ -22,7 +22,9 @@ class CartService implements CartInterface
 
     public function get($user_id, $relationships = [])
     {
-        return $this->model()->get();
+        return $this->model()->when($relationships, function ($query, $relationships) {
+            $query->with($relationships);
+        })->get();
     }
 
     public function store($user_id, $inputs)

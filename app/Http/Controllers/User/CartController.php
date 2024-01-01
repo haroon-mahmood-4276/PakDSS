@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Services\User\Cart\CartInterface;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,8 @@ class CartController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        $cart = $this->cartInterface->get(auth()->id());
-
-        return view('user.cart.index', ['cart' => $cart]);
+        $cartItems = $this->cartInterface->get(auth()->id(), relationships: ['product', 'product.brand']);
+        return view('user.cart.index', ['cartItems' => $cartItems]);
     }
 
     public function store(Request $request)
@@ -32,5 +32,12 @@ class CartController extends Controller
         $this->cartInterface->store(auth()->id(), $data);
 
         return redirect()->back();
+    }
+    
+    public function delete(Cart $cart)
+    {
+        abort_if(request()->ajax(), 403);
+        $cart->delete();
+        return redirect()->route('user.cart.index');
     }
 }
