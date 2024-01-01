@@ -25,12 +25,15 @@
                 <div class="@if (count($cartItems) > 0) col-xl-8 @else col-xl-12 @endif">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="m-0">My Shopping Bag ({{ count($cartItems) }} Item(s))</h5>
-                        {{-- <button class="btn btn-primary waves-effect waves-light"
+                        <button class="btn btn-primary waves-effect waves-light" id="btn-update-cart"
                             {{ count($cartItems) < 1 ? 'disabled' : null }}><i class="fa-solid fa-arrows-rotate me-1"></i>
-                            Update Cart</button> --}}
+                            Update Cart</button>
                     </div>
-                    <form action="" method="post">
+                    <form action="{{ route('user.cart.update') }}" method="post" id="form-cart">
+                        
                         @csrf
+                        @method('PUT')
+
                         <div class="row flex-column gap-2">
                             @forelse ($cartItems as $cartItem)
                                 <div class="col-12">
@@ -64,13 +67,20 @@
                                                                 <span class="badge bg-label-success">In Stock</span>
                                                             </div>
                                                             {{-- Rating --}}
-                                                            <input type="number"
-                                                                class="form-control form-control-sm w-px-100 mt-2"
-                                                                value="1" min="1" max="10">
+                                                            <div>
+                                                                <label for="">Quantity</label>
+                                                                <input type="number"
+                                                                class="form-control form-control-sm w-px-100 my-2" name="cart[{{ $cartItem->id }}][quantity]" min="1" max="10" value="{{ $cartItem->quantity }}">
+                                                            </div>
+                                                            <h4 class="m-0">
+                                                                <span class="text-primary">
+                                                                    Total {{ currencyParser($cartItem->total_price, symbol: 'Rs.') }}
+                                                                </span>
+                                                            </h4>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="text-md-end position-relative">
-                                                                <button type="button" class="brn-delete-item btn-close"
+                                                                <button type="button" class="btn-delete-item btn-close"
                                                                     data-referance="{{ $cartItem->id }}"></button>
                                                                 <div class="my-2 my-md-4 mb-md-5">
                                                                     <h4>
@@ -83,8 +93,6 @@
                                                                             </small>
                                                                         @endif
                                                                     </h4>
-                                                                    {{-- <span class="text-primary">$299</span>
-                                                                <s class="text-muted">$359</s> --}}
                                                                 </div>
                                                                 {{-- <button type="button"
                                                                 class="btn btn-sm btn-label-primary mt-md-3 waves-effect">Move
@@ -182,9 +190,12 @@
 @section('page-js')
     <script>
         $(document).ready(function() {
-            $('.brn-delete-item').on('click', function() {
+            $('.btn-delete-item').on('click', function() {
                 window.location.replace("{{ route('user.cart.delete', ['cart' => ':cart_id']) }}".replace(
                     ':cart_id', $(this).data('referance')))
+            })
+            $('#btn-update-cart').on('click', function() {
+                $('#form-cart').submit();
             })
         });
     </script>

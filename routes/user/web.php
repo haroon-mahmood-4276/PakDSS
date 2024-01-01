@@ -51,6 +51,8 @@ Route::group(['as' => 'user.'], function () {
         Route::as('cart.')->controller(CartController::class)->prefix('cart')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('store', 'store')->name('store');
+            
+            Route::put('update', 'update')->name('update');
 
             Route::group(['prefix' => '/{cart}'], function () {
                 Route::get('delete', 'delete')->whereUuid('cart')->name('delete');

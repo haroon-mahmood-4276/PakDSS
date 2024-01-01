@@ -10,7 +10,7 @@ interface CartInterface
 
     public function store($user_id, $inputs);
 
-    // public function update($id, $inputs);
+    public function update($cart_id, $quantity);
 
     // public function destroy($inputs);
 }

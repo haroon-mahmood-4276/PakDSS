@@ -27,6 +27,15 @@ class CartService implements CartInterface
         })->get();
     }
 
+    public function find($cart_id, $only = [], $relationships = [])
+    {
+        return $this->model()->when($relationships, function ($query, $relationships) {
+            $query->with($relationships);
+        })->when($only, function ($query, $only) {
+            $query->select($only);
+        })->find($cart_id);
+    }
+
     public function store($user_id, $inputs)
     {
         return DB::transaction(function () use ($user_id, $inputs) {
@@ -44,6 +53,25 @@ class CartService implements CartInterface
             $data['total_price'] = floatval($data['price'] * $data['quantity']);
 
             return $this->model()->create($data);
+        });
+    }
+
+    public function update($cart_id, $quantity)
+    {
+        return DB::transaction(function () use ($cart_id, $quantity) {
+
+            $cart_item = $this->find($cart_id);
+            $product = $this->productInterface->find($cart_item->product_id, only: ['price', 'discounted_price']);
+
+            $data = [
+                'quantity' => $quantity,
+                'price' => (floatval($product->discounted_price) > 0 ? floatval($product->discounted_price) : floatval($product->price)),
+            ];
+
+            $data['total_price'] = floatval($data['price'] * $data['quantity']);
+
+            return $cart_item->update($data);
+            
         });
     }
 }

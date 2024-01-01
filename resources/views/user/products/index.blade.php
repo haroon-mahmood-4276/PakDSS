@@ -172,7 +172,7 @@
                                 @endif
                             </h3>
                         </div>
-                        <div class="product-short-description mb-3" style="min-height: 130px">
+                        <div class="product-short-description mb-3" style="min-height: 130px ">
                             {{ strip_tags($product->short_description) }}
                         </div>
                         {{-- <div class="product-color mt-20">

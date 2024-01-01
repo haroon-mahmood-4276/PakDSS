@@ -34,6 +34,17 @@ class CartController extends Controller
         return redirect()->back();
     }
     
+    public function update(Request $request)
+    {
+        abort_if(request()->ajax(), 403);
+        $inputs = $request->input();
+        foreach ($inputs['cart'] as $cart_id => $value) {
+            $this->cartInterface->update($cart_id, $value['quantity']);
+        }
+
+        return redirect()->route('user.cart.index')->withSuccess('Cart updated!');
+    }
+    
     public function delete(Cart $cart)
     {
         abort_if(request()->ajax(), 403);
