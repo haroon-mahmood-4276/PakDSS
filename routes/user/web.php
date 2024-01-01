@@ -4,6 +4,7 @@ use App\Events\TestEvent;
 use App\Http\Controllers\User\{
     AuthController,
     BrandController,
+    CartController,
     HomeController,
     ProductController,
 };
@@ -45,6 +46,18 @@ Route::group(['as' => 'user.'], function () {
 
     Route::group(['middleware' => 'auth:web'], function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+        // Cart Route
+        Route::as('cart.')->controller(CartController::class)->prefix('cart')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('store', 'store')->name('store');
+            
+            Route::put('update', 'update')->name('update');
+
+            Route::group(['prefix' => '/{cart}'], function () {
+                Route::get('delete', 'delete')->whereUuid('cart')->name('delete');
+            });
+        });
     });
 
     Route::group(['prefix' => 'tests'], function () {

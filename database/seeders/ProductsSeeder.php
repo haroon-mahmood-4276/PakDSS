@@ -40,7 +40,7 @@ class ProductsSeeder extends Seeder
                 'permalink' => Str::of('Mouse')->slug(),
                 'sku' => 'SHX',
                 'price' => 123,
-                'discounted_price' => 123,
+                'discounted_price' => 23,
                 'call_for_final_rates' => false,
                 'are_rates_printed_on_package' => false,
 

@@ -64,15 +64,15 @@ class ProductService implements ProductInterface
         return $products;
     }
 
-    public function find($id, $relationships = [])
+    public function find($id, $only = [], $relationships = [])
     {
-        $product = $this->model();
-
-        if (count($relationships) > 0) {
-            $product = $product->with($relationships);
-        }
-
-        return $product->find($id);
+        return $this->model()
+            ->when($only, function($query, $only) {
+                $query->select($only);
+            })
+            ->when($relationships, function($query, $relationships) {
+                $query->select($relationships);
+            })->find($id);
     }
 
     public function store($seller_id, $inputs)
