@@ -15,6 +15,8 @@ class CountryStateCitySeeder extends Seeder
      */
     public function run(): void
     {
+        City::truncate();
+        State::truncate();
         Country::truncate();
         $data = [
             [
