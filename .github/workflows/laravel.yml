@@ -5,30 +5,58 @@ on:
     branches: [ "main" ]
 
 jobs:
-  laravel-deployment:
-      name: PakDSS-Deploy
-      permissions:
-        deployments: write
-      runs-on: ubuntu-latest
-      steps:
-        - name: PakDSS Deployment
-          uses: appleboy/ssh-action@v0.1.9
-          with:
-            host: ${{ secrets.SSH_HOST }}
-            username: ${{ secrets.SSH_USERNAME }}
-            key: ${{ secrets.SSH_KEY }}
-            passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
-            script: |
-              cd /var/www/pakdss
-              php artisan down
-              git branch
-              git reset --hard
-              git checkout main
-              git pull "https://${{ secrets.GB_USERNAME }}:${{ secrets.GB_ACCESSTOKEN }}@github.com/haroon-mahmood-4276/PakDSS.git" main
-              php artisan migrate
-              php artisan optimize:clear
-              php artisan config:cache
-              php artisan event:cache
-              php artisan route:cache
-              php artisan view:cache
-              php artisan up
+  deploy:
+    name: PakDSS-Deploy
+    permissions:
+      deployments: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create GitHub deployment
+        id: deployment
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: '${{ github.token }}'
+          environment: production
+          environment-url: http://202.142.166.138/
+
+      - name: PakDSS Deployment
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          script: |
+            cd /var/www/pakdss
+            php artisan down
+            git branch
+            git reset --hard
+            git checkout main
+            git pull "https://${{ secrets.GB_USERNAME }}:${{ secrets.GB_ACCESSTOKEN }}@github.com/haroon-mahmood-4276/PakDSS.git" main
+            php artisan migrate
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan event:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan up
+
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: '${{ github.token }}'
+          environment-url: http://202.142.166.138/
+          state: 'success'
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: '${{ github.token }}'
+          environment-url: http://202.142.166.138/
+          state: 'failure'
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
