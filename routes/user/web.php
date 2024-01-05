@@ -64,7 +64,5 @@ Route::group(['as' => 'user.'], function () {
         Route::get('pusher', function () {
             event(new TestEvent('hello world'));
         });
-
-        
     });
 });
