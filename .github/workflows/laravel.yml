@@ -3,6 +3,7 @@ name: Automatic Deployment on Ubuntu Server
 on:
   push:
     branches: [ "main" ]
+    
 jobs:
   laravel-deployment:
       name: PakDSS-Deploy
