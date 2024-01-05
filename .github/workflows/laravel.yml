@@ -3,29 +3,29 @@ name: Automatic Deployment on Ubuntu Server
 on:
   push:
     branches: [ "main" ]
-
-laravel-deployment:
-    name: PakDSS-Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: PakDSS Deployment
-        uses: appleboy/ssh-action@v0.1.9
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
-          script: |
-            cd /var/www/pakdss
-            php artisan down
-            git branch
-            git reset --hard
-            git checkout main
-            git pull "https://${{ secrets.GB_USERNAME }}:${{ secrets.GB_ACCESSTOKEN }}@github.com/haroon-mahmood-4276/PakDSS.git" main
-            php artisan migrate
-            php artisan optimize:clear
-            php artisan config:cache
-            php artisan event:cache
-            php artisan route:cache
-            php artisan view:cache
-            php artisan up
+jobs:
+  laravel-deployment:
+      name: PakDSS-Deploy
+      runs-on: ubuntu-latest
+      steps:
+        - name: PakDSS Deployment
+          uses: appleboy/ssh-action@v0.1.9
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            key: ${{ secrets.SSH_KEY }}
+            passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+            script: |
+              cd /var/www/pakdss
+              php artisan down
+              git branch
+              git reset --hard
+              git checkout main
+              git pull "https://${{ secrets.GB_USERNAME }}:${{ secrets.GB_ACCESSTOKEN }}@github.com/haroon-mahmood-4276/PakDSS.git" main
+              php artisan migrate
+              php artisan optimize:clear
+              php artisan config:cache
+              php artisan event:cache
+              php artisan route:cache
+              php artisan view:cache
+              php artisan up
