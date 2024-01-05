@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  deploy:
+  pakdss-deployment:
     name: PakDSS-Deploy
     permissions:
       deployments: write
