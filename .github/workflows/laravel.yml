@@ -17,6 +17,7 @@ jobs:
         with:
           token: '${{ github.token }}'
           environment: production
+          state: 'in_progress'
           environment-url: http://202.142.166.138/
 
       - name: PakDSS Deployment
