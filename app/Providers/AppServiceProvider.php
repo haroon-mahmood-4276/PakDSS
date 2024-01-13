@@ -17,6 +17,7 @@ use App\Services\Shared\Tags\{TagInterface, TagService};
 
 use App\Services\Products\{ProductInterface, ProductService};
 use App\Services\User\Cart\{CartInterface, CartService};
+use App\Services\User\Addresses\{AddressInterface, AddressService};
 
 use Illuminate\Support\ServiceProvider;
 
@@ -46,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
         // User
         $this->app->bind(ProductInterface::class, ProductService::class);
         $this->app->bind(CartInterface::class, CartService::class);
+        $this->app->bind(AddressInterface::class, AddressService::class);
     }
 
     /**

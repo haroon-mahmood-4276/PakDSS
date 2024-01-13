@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/node-waves/node-waves.css" />
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/animate-css/animate.css" />
+    <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/load-awesome/fire.min.css">
     @yield('vendor-css')
 
     <!-- Page CSS -->
@@ -158,14 +160,17 @@
                        @yield('content')
                     </div>
 
+                    
                     @include('user.layout.footer')
-
+                    
                     <div class="content-backdrop fade"></div>
                 </div>
             </div>
-
+            
         </div>
     </div>
+    
+    <div id="modalPlace"></div>
 
     <div class="layout-overlay layout-menu-toggle"></div>
 
@@ -176,7 +181,7 @@
     <script src="{{ asset('admin-assets') }}/vendor/js/bootstrap.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/node-waves/node-waves.js"></script>
-
+    <script src="{{ asset('admin-assets') }}/vendor/libs/block-ui/block-ui.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/hammer/hammer.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/i18n/i18n.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/typeahead-js/typeahead.js"></script>
@@ -193,6 +198,40 @@
         $(document).ready(() => {
             $('#template-customizer').remove();
         });
+
+        function showBlockUI(element = null) {
+            blockUIOptions = {
+                message: `
+                <div class="d-flex justify-content-center flex-column align-items-center">
+                    <div class="la-fire la-3x text-primary">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <p class="mt-2 text-primary">Please wait...</p>
+                </div>`,
+                css: {
+                    backgroundColor: 'transparent',
+                    border: '0'
+                },
+                overlayCSS: {
+                    opacity: 0.8
+                }
+            };
+            if (element) {
+                $(element).block(blockUIOptions);
+            } else {
+                $.blockUI(blockUIOptions);
+            }
+        }
+
+        function hideBlockUI(element = null) {
+            if (element) {
+                $(element).unblock();
+            } else {
+                $.unblockUI();
+            }
+        }
     </script>
     <!-- Page JS -->
     @yield('page-js')

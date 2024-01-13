@@ -671,6 +671,15 @@
                                 <div class="dropdown-divider"></div>
                             </li>
                             <li>
+                                <a class="dropdown-item" href="{{ route('user.addresses.index') }}">
+                                    <i class="fa-solid fa-address-book me-2"></i>
+                                    <span class="align-middle">Address Book</span>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
                                 <a class="dropdown-item btn-danger" href="{{ route('user.logout') }}">
                                     <i class="ti ti-logout me-2 ti-sm"></i>
                                     <span class="align-middle">Log Out</span>

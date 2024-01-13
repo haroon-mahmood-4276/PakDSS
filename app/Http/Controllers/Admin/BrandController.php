@@ -64,16 +64,16 @@ class BrandController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        // try {
-        $inputs = $request->validated();
-        $record = $this->brandInterface->store($inputs);
+        try {
+            $inputs = $request->validated();
+            $record = $this->brandInterface->store($inputs);
 
-        return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
-        // } catch (GeneralException $ex) {
-        //     return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
-        // } catch (Exception $ex) {
-        //     return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
-        // }
+            return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
+        } catch (GeneralException $ex) {
+            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+        } catch (Exception $ex) {
+            return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
+        }
     }
 
     /**

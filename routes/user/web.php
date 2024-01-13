@@ -2,6 +2,7 @@
 
 use App\Events\TestEvent;
 use App\Http\Controllers\User\{
+    AddressController,
     AuthController,
     BrandController,
     CartController,
@@ -57,6 +58,23 @@ Route::group(['as' => 'user.'], function () {
             Route::group(['prefix' => '/{cart}'], function () {
                 Route::get('delete', 'delete')->whereUuid('cart')->name('delete');
             });
+        });
+
+        // Address Route
+        Route::prefix('addresses')->name('addresses.')->controller(AddressController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+
+            Route::group([], function () {
+                Route::get('create', 'create')->name('create');
+                Route::post('store', 'store')->name('store');
+            });
+
+            Route::group(['prefix' => '/{address}'], function () {
+                Route::get('edit', 'edit')->whereUuid('address')->name('edit');
+                Route::put('update', 'update')->whereUuid('address')->name('update');
+            });
+
+            Route::get('delete', 'destroy')->name('destroy');
         });
     });
 
