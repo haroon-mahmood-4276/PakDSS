@@ -1,4 +1,4 @@
-<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
     {{-- <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document"> --}}
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -8,16 +8,19 @@
                     id="basicModal-close"></button>
             </div>
             <div class="modal-body p-5 mb-0">
-                <form action="#" method="POST" id="address_store">
+                <form action="{{ route('user.addresses.store') }}" method="POST" id="address_store">
+                    @csrf
+
                     <div class="text-center mb-4">
                         <h3 class="address-title mb-2">Add New Address</h3>
                         <p class="text-muted address-subtitle">Add new address for express delivery</p>
                     </div>
 
+                    {{-- Address Type --}}
                     <div class="row mb-3">
                         <div class="col-md mb-md-0 mb-3">
                             <div class="form-check custom-option custom-option-icon checked">
-                                <label class="form-check-label custom-option-content" for="customRadioHome">
+                                <label class="form-check-label custom-option-content" for="radioHomeAddress">
                                     <span class="custom-option-body">
                                         <svg width="41" height="40" viewBox="0 0 41 40" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -32,14 +35,14 @@
                                         <span class="custom-option-title">Home</span>
                                         <small> Delivery time (9am – 9pm) </small>
                                     </span>
-                                    <input name="customRadioIcon" class="form-check-input" type="radio"
-                                        value="" id="customRadioHome" checked="">
+                                    <input name="address_type" class="form-check-input" type="radio" value="home"
+                                        id="radioHomeAddress" checked>
                                 </label>
                             </div>
                         </div>
                         <div class="col-md mb-md-0 mb-3">
                             <div class="form-check custom-option custom-option-icon">
-                                <label class="form-check-label custom-option-content" for="customRadioOffice">
+                                <label class="form-check-label custom-option-content" for="radioOfficeAddress">
                                     <span class="custom-option-body">
                                         <svg width="41" height="40" viewBox="0 0 41 40" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -54,8 +57,8 @@
                                         <span class="custom-option-title"> Office </span>
                                         <small> Delivery time (9am – 5pm) </small>
                                     </span>
-                                    <input name="customRadioIcon" class="form-check-input" type="radio"
-                                        value="" id="customRadioOffice">
+                                    <input name="address_type" class="form-check-input" type="radio" value="office"
+                                        id="radioOfficeAddress">
                                 </label>
                             </div>
                         </div>
@@ -63,105 +66,66 @@
 
                     <div class="row mb-3">
                         <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalAddressFirstName">First Name</label>
-                            <input type="text" id="modalAddressFirstName" name="modalAddressFirstName"
-                                class="form-control" placeholder="John">
-                            <div
-                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                            </div>
+                            <label class="form-label" style="font-size: 15px" for="first_name">First name</label>
+                            <input type="text" class="form-control @error('first_name') is-invalid @enderror"
+                                id="first_name" placeholder="Ex. John" name="first_name"
+                                value="{{ isset($address) ? $address->first_name : '' }}" maxlength="50" />
+                            <p class="m-0">
+                                <small class="text-muted">Enter first name.</small>
+                            </p>
                         </div>
                         <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalAddressLastName">Last Name</label>
-                            <input type="text" id="modalAddressLastName" name="modalAddressLastName"
-                                class="form-control" placeholder="Doe">
-                            <div
-                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                            </div>
+                            <label class="form-label" style="font-size: 15px" for="last_name">First name</label>
+                            <input type="text" class="form-control @error('last_name') is-invalid @enderror"
+                                id="last_name" placeholder="Ex. Canady" name="last_name"
+                                value="{{ isset($address) ? $address->last_name : '' }}" maxlength="50" />
+                            <p class="m-0">
+                                <small class="text-muted">Enter last name.</small>
+                            </p>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-12">
-                            <label class="form-label" for="modalAddressCountry">Country</label>
-                            <div class="position-relative"><select id="modalAddressCountry" name="modalAddressCountry"
-                                    class="select2 form-select select2-hidden-accessible" data-allow-clear="true"
-                                    data-select2-id="modalAddressCountry" tabindex="-1" aria-hidden="true">
-                                    <option value="" data-select2-id="2">Select</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Bangladesh">Bangladesh</option>
-                                    <option value="Belarus">Belarus</option>
-                                    <option value="Brazil">Brazil</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="China">China</option>
-                                    <option value="France">France</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="India">India</option>
-                                    <option value="Indonesia">Indonesia</option>
-                                    <option value="Israel">Israel</option>
-                                    <option value="Italy">Italy</option>
-                                    <option value="Japan">Japan</option>
-                                    <option value="Korea">Korea, Republic of</option>
-                                    <option value="Mexico">Mexico</option>
-                                    <option value="Philippines">Philippines</option>
-                                    <option value="Russia">Russian Federation</option>
-                                    <option value="South Africa">South Africa</option>
-                                    <option value="Thailand">Thailand</option>
-                                    <option value="Turkey">Turkey</option>
-                                    <option value="Ukraine">Ukraine</option>
-                                    <option value="United Arab Emirates">United Arab Emirates</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United States">United States</option>
-                                </select><span class="select2 select2-container select2-container--default"
-                                    dir="ltr" data-select2-id="1" style="width: auto;"><span
-                                        class="selection"><span class="select2-selection select2-selection--single"
-                                            role="combobox" aria-haspopup="true" aria-expanded="false"
-                                            tabindex="0" aria-disabled="false"
-                                            aria-labelledby="select2-modalAddressCountry-container"><span
-                                                class="select2-selection__rendered"
-                                                id="select2-modalAddressCountry-container" role="textbox"
-                                                aria-readonly="true"><span
-                                                    class="select2-selection__placeholder">Select
-                                                    value</span></span><span class="select2-selection__arrow"
-                                                role="presentation"><b
-                                                    role="presentation"></b></span></span></span><span
-                                        class="dropdown-wrapper" aria-hidden="true"></span></span></div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-12 ">
-                            <label class="form-label" for="modalAddressAddress1">Address Line 1</label>
-                            <input type="text" id="modalAddressAddress1" name="modalAddressAddress1"
-                                class="form-control" placeholder="12, Business Park">
+                            <label class="form-label" style="font-size: 15px" for="address_1">Address Line 1</label>
+                            <input type="text" class="form-control @error('address_1') is-invalid @enderror"
+                                id="address_1" placeholder="Ex. 36-Lawrence Road" name="address_1"
+                                value="{{ isset($address) ? $address->address_1 : '' }}" maxlength="250" />
+                            <p class="m-0">
+                                <small class="text-muted">Enter address.</small>
+                            </p>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-12">
-                            <label class="form-label" for="modalAddressAddress2">Address Line 2</label>
-                            <input type="text" id="modalAddressAddress2" name="modalAddressAddress2"
-                                class="form-control" placeholder="Mall Road">
+                            <label class="form-label" style="font-size: 15px" for="address_2">Address Line 2</label>
+                            <input type="text" class="form-control @error('address_2') is-invalid @enderror"
+                                id="address_2" placeholder="Ex. Dr.Ziauddin Ahmed Road" name="address_2"
+                                value="{{ isset($address) ? $address->address_2 : '' }}" maxlength="250" />
+                            <p class="m-0">
+                                <small class="text-muted">Enter address.</small>
+                            </p>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalAddressLandmark">Landmark</label>
-                            <input type="text" id="modalAddressLandmark" name="modalAddressLandmark"
-                                class="form-control" placeholder="Nr. Hard Rock Cafe">
+                        <div class="col-6">
+                            <label class="form-label" style="font-size: 15px" for="country">Country</label>
+                            <select class="select2-size-lg form-select" id="country" name="country"></select>
                         </div>
-                        <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalAddressCity">City</label>
-                            <input type="text" id="modalAddressCity" name="modalAddressCity" class="form-control"
-                                placeholder="Los Angeles">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-12 col-md-6">
+                        <div class="col-6">
                             <label class="form-label" for="modalAddressLandmark">State</label>
                             <input type="text" id="modalAddressState" name="modalAddressState"
                                 class="form-control" placeholder="California">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label class="form-label" for="modalAddressCity">City</label>
+                            <input type="text" id="modalAddressCity" name="modalAddressCity" class="form-control"
+                                placeholder="Los Angeles">
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalAddressZipCode">Zip Code</label>
@@ -195,3 +159,79 @@
         </div>
     </div>
 </div>
+
+<script>
+    country = $("#country").wrap('<div class="position-relative"></div>');
+    country.select2({
+        ajax: {
+            url: "{{ route('user.ajax.modal.addresses.search.country') }}",
+            dataType: 'json',
+            delay: 500,
+            data: function(params) {
+                return {
+                    q: params.term,
+                    type: "query",
+                    page: params.page
+                };
+            },
+            processResults: function(response, params) {
+                params.page = params.page || 1;
+                return {
+                    results: response.data,
+                    pagination: {
+                        more: (params.page * 30) < data.total_count
+                    }
+                };
+            },
+            cache: true
+        },
+        placeholder: 'Search for countries...',
+        dropdownAutoWidth: !0,
+        minimumInputLength: 2,
+        dropdownParent: country.parent(),
+        width: "100%",
+        containerCssClass: "select-lg",
+        // templateResult: function(row) {
+
+        //     if (row.loading) {
+        //         return row.text;
+        //     }
+
+        //     var $container = $(
+        //         "<div class='d-flex flex-column'>" +
+        //         "<div class='d-flex flex-row align-content-center gap-2'>" +
+        //         "<div class='fw-bold fs-5'>" + row.name + "</div>" +
+        //         "<div class='fw-bold fs-5 dot-divider mx-0'></div>" +
+        //         "<div class='fw-bold fs-5' id='read-only-ratings_" + row.id + "'>&#9733; " + row
+        //         .average_rating + "</div>" +
+        //         "</div>" +
+        //         "<div>Email: " + (row.email || "N/A") + "</div>" +
+        //         "<div>Phone: " + (row.phone || "N/A") + "</div>" +
+        //         "<div>Address: " + (row.address || "N/A") + "</div>" +
+        //         "</div>"
+        //     );
+
+        //     return $container;
+        // },
+        // templateSelection: function(row) {
+        //     if (row.id == '') {
+        //         return row.text;
+        //     }
+        //     var $container = $(
+        //         "<div class='d-flex flex-column'>" +
+        //         "<div class='d-flex flex-row align-content-center gap-2'>" +
+        //         "<div class='fw-bold'>" + (row.name || "") + "</div>" +
+        //         "<div class='dot-divider mx-0'>-</div>" +
+        //         "<div class='fw-bold' id='read-only-ratings_" + row.id + "'>&#9733; " + (row
+        //             .average_rating || "") + "</div>" +
+        //         "</div>" +
+        //         "</div>"
+        //     );
+
+        //     return $container;
+        // },
+    }).on('select2:select', function(e) {
+        // var data = e.params.data;
+        // $("#tenants").attr('disabled', false);
+    });
+</script>

@@ -14,7 +14,16 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            
+            $table->foreignUuid('country_id')->constrained();
+            $table->foreignUuid('state_id')->constrained();
+            $table->foreignUuid('city_id')->constrained();
+            $table->string('first_name', 50);
+            $table->string('last_name', 50);
+            $table->string('address_1');
+            $table->string('address_2')->nullable();
+            $table->string('nearest_landmark');
+            $table->boolean('default_delivery_address')->default(false);
+            $table->boolean('default_billing_address')->default(false);
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();

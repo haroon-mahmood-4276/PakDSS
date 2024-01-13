@@ -15,4 +15,6 @@ interface AddressInterface extends InterfaceShared
     public function update($id, $inputs);
 
     public function destroy($inputs);
+
+    public function countrySearch($search, $page = 0, $ignore_id = 0);
 }
