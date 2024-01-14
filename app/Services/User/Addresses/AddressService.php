@@ -82,15 +82,4 @@ class AddressService implements AddressInterface
 
         return $returnData;
     }
-
-    public function countrySearch($search, $page = 0, $ignore_id = 0)
-    {
-        $model = $this->model()->search($search);
-
-        if ($ignore_id > 0) {
-            $model = $model->query(fn (QueryBuilder $query) => $query->whereNot('id', $ignore_id));
-        }
-
-        return $model->get();
-    }
 }

@@ -85,31 +85,33 @@
         $(document).ready(function() {
             $('#btn-add-address').on('click', function() {
                 $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $(' meta[name="csrf-token"]').attr('content'),
-                },
-                url: "{{ route('user.ajax.modal.addresses.create') }}",
-                type: 'GET',
-                cache: false,
-                success: function(response) {
-                    if (response.status) {
-                        $('#' + response.data.modalPlace).html(response.data.modal);
-                        $('#' + response.data.currentModal).modal('show');
+                    headers: {
+                        'X-CSRF-TOKEN': $(' meta[name="csrf-token"]').attr('content'),
+                    },
+                    url: "{{ route('user.ajax.modal.addresses.create') }}",
+                    type: 'GET',
+                    cache: false,
+                    success: function(response) {
+                        if (response.status) {
+                            $('#' + response.data.modalPlace).html(response.data.modal);
+                            $('#' + response.data.currentModal).modal('show');
+                            hideBlockUI();
+                        }
+                    },
+                    error: function(jqXhr, json, errorThrown) {
                         hideBlockUI();
+
+                        var errors = jqXhr.responseJSON;
+                        var errorsHtml = '';
+
+                        $.each(errors['errors'], function(index, value) {
+                            errorsHtml +=
+                                "<span class='badge rounded-pill bg-danger p-3 m-3'>" +
+                                index +
+                                " -> " + value + "</span>";
+                        });
                     }
-                },
-                error: function(jqXhr, json, errorThrown) {
-                    hideBlockUI();
-
-                    var errors = jqXhr.responseJSON;
-                    var errorsHtml = '';
-
-                    $.each(errors['errors'], function(index, value) {
-                        errorsHtml += "<span class='badge rounded-pill bg-danger p-3 m-3'>" + index +
-                            " -> " + value + "</span>";
-                    });
-                }
-            });
+                });
             });
         });
     </script>

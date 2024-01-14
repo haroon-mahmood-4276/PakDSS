@@ -11,6 +11,8 @@ Route::group(['prefix' => 'user/ajax', 'as' => 'user.ajax.'], function () {
 
             Route::prefix('search')->name('search.')->group(function () {
                 Route::get('country', 'searchCountry')->name('country');
+                Route::get('state', 'searchState')->name('state');
+                Route::get('city', 'searchCity')->name('city');
             });
         });
     });

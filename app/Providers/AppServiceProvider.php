@@ -18,6 +18,9 @@ use App\Services\Shared\Tags\{TagInterface, TagService};
 use App\Services\Products\{ProductInterface, ProductService};
 use App\Services\User\Cart\{CartInterface, CartService};
 use App\Services\User\Addresses\{AddressInterface, AddressService};
+use App\Services\User\Countries\{CountryInterface, CountryService};
+use App\Services\User\States\{StateInterface, StateService};
+use App\Services\User\Cities\{CityInterface, CityService};
 
 use Illuminate\Support\ServiceProvider;
 
@@ -48,6 +51,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProductInterface::class, ProductService::class);
         $this->app->bind(CartInterface::class, CartService::class);
         $this->app->bind(AddressInterface::class, AddressService::class);
+        $this->app->bind(CountryInterface::class, CountryService::class);
+        $this->app->bind(StateInterface::class, StateService::class);
+        $this->app->bind(CityInterface::class, CityService::class);
     }
 
     /**
