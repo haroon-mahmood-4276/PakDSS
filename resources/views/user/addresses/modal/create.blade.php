@@ -8,7 +8,7 @@
                     id="basicModal-close"></button>
             </div>
             <div class="modal-body p-5 mb-0">
-                <form action="{{ route('user.addresses.store') }}" method="POST" id="address_store">
+                <form action="{{ route('user.addresses.store') }}" method="POST" id="form-address-store">
                     @csrf
 
                     <div class="text-center mb-4">
@@ -66,7 +66,8 @@
 
                     <div class="row mb-3">
                         <div class="col-12 col-md-6">
-                            <label class="form-label" style="font-size: 15px" for="first_name">First name</label>
+                            <label class="form-label" style="font-size: 15px" for="first_name">First name <span
+                                class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('first_name') is-invalid @enderror"
                                 id="first_name" placeholder="Ex. John" name="first_name"
                                 value="{{ isset($address) ? $address->first_name : '' }}" maxlength="50" />
@@ -75,7 +76,8 @@
                             </p>
                         </div>
                         <div class="col-12 col-md-6">
-                            <label class="form-label" style="font-size: 15px" for="last_name">First name</label>
+                            <label class="form-label" style="font-size: 15px" for="last_name">Last name <span
+                                class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('last_name') is-invalid @enderror"
                                 id="last_name" placeholder="Ex. Canady" name="last_name"
                                 value="{{ isset($address) ? $address->last_name : '' }}" maxlength="50" />
@@ -87,7 +89,8 @@
 
                     <div class="row mb-3">
                         <div class="col-12">
-                            <label class="form-label" style="font-size: 15px" for="address_1">Address Line 1</label>
+                            <label class="form-label" style="font-size: 15px" for="address_1">Address Line 1 <span
+                                class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('address_1') is-invalid @enderror"
                                 id="address_1" placeholder="Ex. 36-Lawrence Road" name="address_1"
                                 value="{{ isset($address) ? $address->address_1 : '' }}" maxlength="250" />
@@ -98,7 +101,7 @@
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-12">
+                        <div class="col-8">
                             <label class="form-label" style="font-size: 15px" for="address_2">Address Line 2</label>
                             <input type="text" class="form-control @error('address_2') is-invalid @enderror"
                                 id="address_2" placeholder="Ex. Dr.Ziauddin Ahmed Road" name="address_2"
@@ -107,40 +110,78 @@
                                 <small class="text-muted">Enter address.</small>
                             </p>
                         </div>
+                        <div class="col-4">
+                            <label class="form-label" style="font-size: 15px" for="nearest_landmark">Nearest Landmark <span
+                                class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('nearest_landmark') is-invalid @enderror"
+                                id="nearest_landmark" placeholder="Ex. Shalamar bagh" name="nearest_landmark"
+                                value="{{ isset($address) ? $address->nearest_landmark : '' }}" maxlength="250" />
+                            <p class="m-0">
+                                <small class="text-muted">Enter nearest landmark.</small>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label class="form-label" style="font-size: 15px" for="mobile_no">Phone No <span
+                                class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('mobile_no') is-invalid @enderror"
+                                id="mobile_no" placeholder="Ex. Dr.Ziauddin Ahmed Road" name="mobile_no"
+                                value="{{ isset($address) ? $address->mobile_no : '' }}" maxlength="250" />
+                            <p class="m-0">
+                                <small class="text-muted">Enter phone number.</small>
+                            </p>
+                        </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-6">
-                            <label class="form-label" style="font-size: 15px" for="country">Country</label>
+                            <label class="form-label" style="font-size: 15px" for="country">Country <span
+                                class="text-danger">*</span></label>
                             <select class="select2-size-lg form-select" id="country" name="country"></select>
                         </div>
                         <div class="col-6">
-                            <label class="form-label" style="font-size: 15px" for="state">State</label>
+                            <label class="form-label" style="font-size: 15px" for="state">State <span
+                                class="text-danger">*</span></label>
                             <select class="select2-size-lg form-select" id="state" name="state"></select>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-6">
-                            <label class="form-label" style="font-size: 15px" for="city">City</label>
+                            <label class="form-label" style="font-size: 15px" for="city">City <span
+                                class="text-danger">*</span></label>
                             <select class="select2-size-lg form-select" id="city" name="city"></select>
                         </div>
                         <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalAddressZipCode">Zip Code</label>
-                            <input type="text" id="modalAddressZipCode" name="modalAddressZipCode"
+                            <label class="form-label" for="zip_code">Zip Code</label>
+                            <input type="text" id="zip_code" name="zip_code"
                                 class="form-control" placeholder="99950">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-12">
+                        <div class="col-6">
                             <label class="switch">
-                                <input type="checkbox" class="switch-input">
+                                <input type="hidden" name="default_delivery_address" value="0">
+                                <input type="checkbox" name="default_delivery_address" class="switch-input" value="1">
                                 <span class="switch-toggle-slider">
                                     <span class="switch-on"></span>
                                     <span class="switch-off"></span>
                                 </span>
-                                <span class="switch-label">Use as a billing address?</span>
+                                <span class="switch-label">Default delivery address?</span>
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label class="switch">
+                                <input type="hidden" name="default_billing_address" value="0">
+                                <input type="checkbox" name="default_billing_address" class="switch-input" value="1">
+                                <span class="switch-toggle-slider">
+                                    <span class="switch-on"></span>
+                                    <span class="switch-off"></span>
+                                </span>
+                                <span class="switch-label">Default billing address?</span>
                             </label>
                         </div>
                     </div>
@@ -150,7 +191,7 @@
                 <button type="reset" class="btn btn-danger me-1">
                     <span>Reset</span>
                 </button>
-                <button type="button" class="btn btn-primary" onclick="formSubmit();">
+                <button type="button" class="btn btn-primary" id="btn-submit-address">
                     <span>Save</span>
                 </button>
             </div>
@@ -298,7 +339,9 @@
             return row.name;
         },
     }).on('select2:select', function(e) {
-        // var data = e.params.data;
-        // $("#tenants").attr('disabled', false);
     });
+
+    $('#btn-submit-address').on('click', function () {
+        $('#form-address-store').submit();
+    })
 </script>

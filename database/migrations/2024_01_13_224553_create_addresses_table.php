@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
+            $table->foreignUuid('user_id')->constrained();
+            $table->enum('address_type', ['home', 'office']);
             $table->foreignUuid('country_id')->constrained();
             $table->foreignUuid('state_id')->constrained();
             $table->foreignUuid('city_id')->constrained();
@@ -21,7 +23,9 @@ return new class extends Migration
             $table->string('last_name', 50);
             $table->string('address_1');
             $table->string('address_2')->nullable();
-            $table->string('nearest_landmark');
+            $table->string('mobile_no')->nullable();
+            $table->string('nearest_landmark')->nullable();
+            $table->integer('zip_code')->default(0);
             $table->boolean('default_delivery_address')->default(false);
             $table->boolean('default_billing_address')->default(false);
 

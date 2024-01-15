@@ -10,7 +10,7 @@ interface AddressInterface extends InterfaceShared
 
     public function find($id, $relationships = []);
 
-    public function store($inputs);
+    public function store($user_id, $inputs);
 
     public function update($id, $inputs);
 

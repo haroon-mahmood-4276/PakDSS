@@ -17,27 +17,26 @@ class AddressService implements AddressInterface
         return new Address();
     }
 
-    public function store($inputs)
+    public function store($user_id, $inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
-            $data = [
-                'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']),
-            ];
-
-            $brand = $this->model()->create($data);
-
-            $brand->categories()->sync($inputs['categories'] ?? []);
-
-            if (isset($inputs['brand_image'])) {
-                $attachment = $inputs['brand_image'];
-                $brand->addMedia($attachment)->toMediaCollection('brands');
-            }
-
-            return $brand;
+        return DB::transaction(function () use ($user_id, $inputs) {
+            return $this->model()->create([
+                'user_id' => $user_id,
+                'address_type' => $inputs['address_type'],
+                'country_id' => $inputs['country'],
+                'state_id' => $inputs['state'],
+                'city_id' => $inputs['city'],
+                'first_name' => $inputs['first_name'],
+                'last_name' => $inputs['last_name'],
+                'address_1' => $inputs['address_1'],
+                'address_2' => $inputs['address_2'],
+                'mobile_no' => $inputs['mobile_no'],
+                'nearest_landmark' => $inputs['nearest_landmark'],
+                'zip_code' => $inputs['zip_code'],
+                'default_delivery_address' => $inputs['default_delivery_address'],
+                'default_billing_address' => $inputs['default_billing_address'],
+            ]);
         });
-
-        return $returnData;
     }
 
     public function update($id, $inputs)

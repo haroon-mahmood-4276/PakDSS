@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Services\User\Addresses\AddressInterface;
+use Exception;
+use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
@@ -17,22 +20,25 @@ class AddressController extends Controller
 
     public function index()
     {
-        return view('user.addresses.index');
+        $data = [
+            'addresses' => $this->addressInterface->get()
+        ];
+        return view('user.addresses.index', $data);
     }
 
-    public function store(storeRequest $request)
+    public function store(Request $request)
     {
         abort_if(request()->ajax(), 403);
 
         try {
-            $inputs = $request->validated();
-            $record = $this->brandInterface->store($inputs);
+            $inputs = $request->input();
+            $this->addressInterface->store(auth('web')->id(), $inputs);
 
-            return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
+            return redirect()->route('user.addresses.index')->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('user.addresses.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
+            return redirect()->route('user.addresses.index')->withDanger('Something went wrong!');
         }
     }
 
@@ -40,7 +46,7 @@ class AddressController extends Controller
     {
         abort(403);
     }
-    
+
     public function edit($id)
     {
         abort_if(request()->ajax(), 403);
@@ -65,7 +71,7 @@ class AddressController extends Controller
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
     }
-    
+
     public function update(updateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
