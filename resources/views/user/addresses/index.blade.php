@@ -46,10 +46,10 @@
                                         <br>
                                         <small>Mobile: {{ $address->mobile_no }}</small>
                                         <span class="my-2 border-bottom d-block"></span>
-                                        <span class="d-flex">
+                                        {{-- <span class="d-flex">
                                             <a class="me-2" href="javascript:void(0)">Edit</a>
                                             <a class="me-2" href="javascript:void(0)">Remove</a>
-                                        </span>
+                                        </span> --}}
                                     </span>
                                 </div>
                             </div>
