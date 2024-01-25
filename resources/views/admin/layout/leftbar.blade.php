@@ -31,7 +31,7 @@
         <!-- Dashboards -->
         <li class="menu-item {{ request()->routeIs('admin.dashboard.index') ? 'active' : null }}">
             <a href="{{ route('admin.dashboard.index') }}" class="menu-link">
-                <i class="fa-solid fa-home menu-icon"></i>
+                <i class="fa-solid fa-home menu-icon" style="font-size: 1.1rem"></i>
                 <div>Dashboard</div>
             </a>
         </li>
@@ -44,8 +44,8 @@
 
         @canany(['admin.settings.tab_admin.index'])
             <li class="menu-item {{ request()->routeIs('admin.settings.index') ? 'active' : null }}">
-                <a href="{{ route('admin.settings.index', ['tab' => 'admin']) }}" class="menu-link">
-                    <i class="fa-solid fa-gears menu-icon"></i>
+                <a href="{{ route('admin.settings.index') }}" class="menu-link">
+                    <i class="fa-solid fa-gears menu-icon" style="font-size: 1.1rem"></i>
                     <div>Settings</div>
                 </a>
             </li>
@@ -55,7 +55,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.users.index', 'admin.users.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-users menu-icon"></i>
+                    <i class="fa-solid fa-users menu-icon" style="font-size: 1.1rem"></i>
                     <div>Users</div>
                 </a>
                 <ul class="menu-sub">
@@ -84,7 +84,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.roles.index', 'admin.permissions.index'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-lock menu-icon"></i>
+                    <i class="fa-solid fa-lock menu-icon" style="font-size: 1.1rem"></i>
                     <div>Roles & Permissions</div>
                     {{-- <div class="badge bg-label-primary rounded-pill ms-auto">3</div> --}}
                 </a>
@@ -119,7 +119,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index', 'admin.approvals.products.index', 'admin.approvals.sellers.index'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-check menu-icon"></i>
+                    <i class="fa-solid fa-check menu-icon" style="font-size: 1.1rem"></i>
                     <div>Approvals</div>
                 </a>
                 <ul class="menu-sub">
@@ -158,7 +158,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.brands.index', 'admin.brands.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-store menu-icon"></i>
+                    <i class="fa-solid fa-store menu-icon" style="font-size: 1.1rem"></i>
                     <div>Brands</div>
                 </a>
                 <ul class="menu-sub">
@@ -186,7 +186,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.categories.index', 'admin.categories.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-brands fa-hive menu-icon"></i>
+                    <i class="fa-brands fa-hive menu-icon" style="font-size: 1.1rem"></i>
                     <div>Categories</div>
                 </a>
                 <ul class="menu-sub">
@@ -214,7 +214,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.tags.index', 'admin.tags.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-tags menu-icon"></i>
+                    <i class="fa-solid fa-tags menu-icon" style="font-size: 1.1rem"></i>
                     <div>Tags</div>
                 </a>
                 <ul class="menu-sub">
@@ -242,7 +242,7 @@
             <li
                 class="menu-item {{ in_array(request()->route()->getName(),['admin.sellers.index', 'admin.sellers.create'])? 'open active': null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="fa-solid fa-person-shelter menu-icon"></i>
+                    <i class="fa-solid fa-person-shelter menu-icon" style="font-size: 1.1rem"></i>
                     <div>Sellers</div>
                 </a>
                 <ul class="menu-sub">

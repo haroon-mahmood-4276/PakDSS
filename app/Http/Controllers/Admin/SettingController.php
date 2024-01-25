@@ -20,11 +20,15 @@ class SettingController extends Controller
 
     public function index(Request $request)
     {
-        abort_if(request()->ajax() || auth('admin')->user()->cannot('admin.settings.tab_' . $request->get('tab') . '.index'), 403);
-
-        return view('admin.settings.index', [
-            'tab' => $request->get('tab'),
-        ]);
+        $tab = $request->has('tab') ? $request->get('tab') : 'admin';
+        abort_if(request()->ajax() || auth('admin')->user()->cannot('admin.settings.tab_' . $tab . '.index'), 403);
+        
+        $section = $request->has('section') ? $request->get('section') : match($tab) {
+            'shipping' => 'shipping_zone',
+            default => ''
+        };
+        
+        return view('admin.settings.index', ['tab' => $tab, 'section' => $section]);
     }
 
     public function store(updateRequest $request)

@@ -6,6 +6,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class PermissionsSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class PermissionsSeeder extends Seeder
      */
     public function run(): void
     {
+        Artisan::call('cache:clear');
         Permission::truncate();
         $data = [
 
@@ -241,6 +243,11 @@ class PermissionsSeeder extends Seeder
                 'name' => 'admin.settings.tab_admin.index',
                 'guard_name' => 'admin',
                 'show_name' => 'Settings - Admin - Can View/Update',
+            ],
+            [
+                'name' => 'admin.settings.tab_shipping.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Settings - shipping - Can View/Update',
             ],
         ];
 
