@@ -160,7 +160,7 @@ Breadcrumbs::for('admin.settings.index', function (BreadcrumbTrail $trail, $tab)
     $trail->push('Settings', route('admin.settings.index', ['tab' => $tab]));
 });
 
-Breadcrumbs::for('admin.settings.tab_admin.index', function (BreadcrumbTrail $trail,  $tab) {
+Breadcrumbs::for('admin.settings.tab_general.index', function (BreadcrumbTrail $trail,  $tab) {
     $trail->parent('admin.settings.index', $tab);
-    $trail->push('Admin', route('admin.settings.index', ['tab' => $tab]));
+    $trail->push('General', route('admin.settings.index', ['tab' => $tab]));
 });

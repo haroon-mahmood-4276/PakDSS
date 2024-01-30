@@ -1,69 +1,81 @@
-<form class="form form-vertical" action="{{ route('admin.settings.store', ['tab' => $tab]) }}" method="POST"
-    enctype="multipart/form-data">
+<form class="form form-vertical" method="POST" enctype="multipart/form-data">
 
     <div class="row g-3">
         <div class="col-lg-9 col-md-9 col-sm-12 position-relative">
 
             @csrf
+            
             <div class="row mb-3">
                 <div class="col-12">
                     <div class="card">
-                        <div class="d-flex card-header justify-content-between">
-                            <h3 class="m-0">Exchange Rates</h3>
-                            <div>
-                                <label class="switch switch-square m-0">
-                                    <input type="hidden" name="rate_auto_update" value="0">
-                                    <input type="checkbox" class="switch-input" id="rate_auto_update" name="rate_auto_update" {{ settings('rate_auto_update') ? 'checked' : null }} value="1">
-                                    <span class="switch-toggle-slider">
-                                        <span class="switch-on"><i class="ti ti-check"></i></span>
-                                        <span class="switch-off"><i class="ti ti-x"></i></span>
-                                    </span>
-                                    <span class="switch-label">Auto update hourly</span>
-                                </label>
-                            </div>
+                        <div class="card-header">
+                            <h3 class="m-0">General</h3>
                         </div>
+
                         <div class="card-body">
 
-                            <input type="hidden" name="tab" value="{{ $tab }}">
-
-                            <div class="row mb-3 flex-row-reverse">
-                                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 position-relative">
-
+                            <div class="row mb-3">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 position-relative">
+                                    <label class="switch switch-square m-0">
+                                        <input type="hidden" name="shipping_enable" value="0">
+                                        <input type="checkbox" class="switch-input" id="shipping_enable"
+                                            name="shipping_enable" value="1">
+                                        <span class="switch-toggle-slider">
+                                            <span class="switch-on"><i class="ti ti-check"></i></span>
+                                            <span class="switch-off"><i class="ti ti-x"></i></span>
+                                        </span>
+                                        <span class="switch-label">Enable</span>
+                                    </label>
+                                    <p class="m-0">
+                                        <small class="text-muted">When enabled, local pickup will appear as an option on
+                                            the block based checkout.</small>
+                                    </p>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 position-relative">
-                                    <label class="form-label" style="font-size: 15px" for="one_dollar_rate">One Dollor
-                                        Rate (<i class="fa-solid fa-dollar-sign"></i>)  <span
+                            <div class="row mb-3">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 position-relative">
+                                    <label class="form-label" style="font-size: 15px" for="shipping_title">Title<span
                                             class="text-danger">*</span></label>
-                                    <input type="number"
-                                        class="form-control @error('one_dollar_rate') is-invalid @enderror"
-                                        id="one_dollar_rate" name="one_dollar_rate" placeholder="0"
-                                        value="{{ settings('one_dollar_rate') }}" />
-                                    @error('one_dollar_rate')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @else
-                                        <p class="m-0">
-                                            <small class="text-muted">Enter current dollor rate.</small>
-                                        </p>
-                                    @enderror
+                                    <input type="text" class="form-control" id="shipping_title" name="shipping_title"
+                                        placeholder="Ex. Self Pickup" value="{{ settings('shipping_title') }}" />
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 position-relative">
-                                    <label class="form-label" style="font-size: 15px" for="one_pound_rate">One Pound
-                                        Rate (<i class="fa-solid fa-sterling-sign"></i>) <span
-                                            class="text-danger">*</span></label>
-                                    <input type="number"
-                                        class="form-control @error('one_pound_rate') is-invalid @enderror"
-                                        id="one_pound_rate" name="one_pound_rate" placeholder="0"
-                                        value="{{ settings('one_pound_rate') }}" />
-                                    @error('one_pound_rate')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @else
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 position-relative">
+                                    <div class="form-check">
+                                        <input type="hidden" value="0" name="enable_self_pickup_price">
+                                        <input class="form-check-input" type="checkbox" value="1"
+                                            id="enable_self_pickup_price" name="enable_self_pickup_price">
+                                        <label class="form-check-label" for="enable_self_pickup_price">
+                                            Add a price for customers who choose local pickup.
+                                        </label>
                                         <p class="m-0">
-                                            <small class="text-muted">Enter current pound rate.</small>
+                                            <small class="text-muted">By default, the local pickup shipping method is
+                                                free.</small>
                                         </p>
-                                    @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="div_self_pickup_price" style="display: none;">
+
+                                <div class="row mb-3">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 position-relative">
+                                        <label class="form-label" style="font-size: 15px" for="self_pickup_price">Cost
+                                            <span class="text-danger">*</span></label>
+                                        <input type="number"
+                                            class="form-control @error('self_pickup_price') is-invalid @enderror"
+                                            id="self_pickup_price" name="self_pickup_price" placeholder="0" />
+                                        @error('self_pickup_price')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @else
+                                            <p class="m-0">
+                                                <small class="text-muted">Optional cost to charge for local pickup.</small>
+                                            </p>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,3 +123,19 @@
         </div>
     </div>
 </form>
+
+{{-- @include('admin.settings.shipping.self_pickup.locations.index') --}}
+
+@section('custom-js')
+    <script>
+        $(function() {
+            $('#enable_self_pickup_price').on('click', function() {
+                if ($(this).is(':checked')) {
+                    $('#div_self_pickup_price').show();
+                } else {
+                    $('#div_self_pickup_price').hide();
+                }
+            });
+        });
+    </script>
+@endsection

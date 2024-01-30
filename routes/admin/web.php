@@ -203,8 +203,13 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         //Settings Routes
         Route::prefix('settings')->name('settings.')->controller(SettingController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::post('/', 'store')->name('store');
+            Route::get('/{tab?}/{section?}', 'index')->name('index');
+            Route::post('/{tab?}/{section?}', 'store')->name('store');
+            // Route::prefix('ajax')->name('ajax.')->group(function () {
+            //     Route::prefix('datatable')->name('datatable.')->group(function () {
+            //         Route::get('/shipping/self_pickup', 'datatableSelfPickup')->name('index');
+            //     });
+            // });
         });
     });
 });

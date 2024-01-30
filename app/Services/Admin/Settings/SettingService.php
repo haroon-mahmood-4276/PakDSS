@@ -20,16 +20,15 @@ class SettingService implements SettingInterface
 
     public function store($inputs)
     {
-        unset($inputs['tab']);
         $returnData = DB::transaction(function () use ($inputs) {
             foreach ($inputs as $key => $value) {
                 $this->model()->firstWhere('key', $key)->update([
                     'value' => $value
                 ]);
 
-                if ($key === 'rate_auto_update' && $value === '1' && $value !== settings('rate_auto_update')) {
-                    Artisan::call('update:exchange-rate');
-                }
+                // if ($key === 'rate_auto_update' && $value === '1' && $value !== settings('rate_auto_update')) {
+                //     Artisan::call('update:exchange-rate');
+                // }
             }
         });
 

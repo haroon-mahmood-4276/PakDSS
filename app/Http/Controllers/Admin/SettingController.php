@@ -6,45 +6,63 @@ use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Settings\updateRequest;
 use App\Services\Admin\Settings\SettingInterface;
-use Exception;
 use Illuminate\Http\Request;
+use Exception;
 
 class SettingController extends Controller
 {
     private $settingInterface;
+
+    private $tabs = [
+        'general' => [
+            'title' => 'General',
+            'icon' => 'fa-solid fa-user-shield',
+            'sections' => [],
+        ],
+        'shipping' => [
+            'title' => 'Shipping',
+            'icon' => 'fa-solid fa-truck',
+            'sections' => [
+                'shipping_zones' => 'Shipping Zones',
+                'shipping_classes' => 'Classes',
+                'self_pickup' => 'Self Pickup',
+            ]
+        ]
+    ];
 
     public function __construct(SettingInterface $settingInterface)
     {
         $this->settingInterface = $settingInterface;
     }
 
-    public function index(Request $request)
+    public function index(?string $tab = null, ?string $section = null)
     {
-        $tab = $request->has('tab') ? $request->get('tab') : 'admin';
-        abort_if(request()->ajax() || auth('admin')->user()->cannot('admin.settings.tab_' . $tab . '.index'), 403);
-        
-        $section = $request->has('section') ? $request->get('section') : match($tab) {
-            'shipping' => 'shipping_zone',
+        $tab = $tab ?: 'general';
+
+        $section = $section ?: match ($tab) {
+            'shipping' => 'shipping_zones',
             default => ''
         };
-        
-        return view('admin.settings.index', ['tab' => $tab, 'section' => $section]);
+
+        abort_if(request()->ajax() || auth('admin')->user()->cannot('admin.settings.tab_' . $tab . '.index'), 403);
+
+        return view('admin.settings.index', ['tab' => $tab, 'section' => $section, 'tabs' => $this->tabs]);
     }
 
     public function store(updateRequest $request)
     {
-        abort_if(request()->ajax() || auth('admin')->user()->cannot('admin.settings.tab_' . $request->get('tab') . '.index'), 403);
+        abort_if(request()->ajax() || auth('admin')->user()->cannot('admin.settings.tab_' . $request->tab . '.index'), 403);
 
         try {
             $inputs = $request->validated();
             $this->settingInterface->store($inputs);
             cache()->flush();
 
-            return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withSuccess('Data saved!');
+            return redirect()->route('admin.settings.index', ['tab' => $request->tab])->withSuccess('Data saved!');
         } catch (GeneralException $ex) {
-            return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withDanger('Something went wrong! ' . $ex->getMessage());
+            return redirect()->route('admin.settings.index', ['tab' => $request->tab])->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
-            return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withDanger('Something went wrong!');
+            return redirect()->route('admin.settings.index', ['tab' => $request->tab])->withDanger('Something went wrong!');
         }
     }
 }

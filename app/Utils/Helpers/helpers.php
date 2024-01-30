@@ -13,11 +13,11 @@ if (!function_exists('settings')) {
     function settings($key, $overrideCache = false)
     {
         if ($overrideCache) {
-            return (new Setting())->firstWhere('key', $key)->value;
+            return (new Setting())->firstWhere('key', $key)?->value;
         }
 
         return Cache::rememberForever($key, function () use ($key) {
-            return (new Setting())->firstWhere('key', $key)->value;
+            return (new Setting())->firstWhere('key', $key)?->value;
         });
     }
 }
@@ -31,7 +31,6 @@ if (!function_exists('settings_update')) {
                 (new Setting())->firstWhere('key', $key)->update([
                     'value' => $value
                 ]);
-                # code...
             }
         } else {
             (new Setting())->firstWhere('key', $keys)->update([

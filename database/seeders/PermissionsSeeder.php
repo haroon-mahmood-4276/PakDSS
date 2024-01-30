@@ -240,14 +240,14 @@ class PermissionsSeeder extends Seeder
 
             // Site Permissions
             [
-                'name' => 'admin.settings.tab_admin.index',
+                'name' => 'admin.settings.tab_general.index',
                 'guard_name' => 'admin',
-                'show_name' => 'Settings - Admin - Can View/Update',
+                'show_name' => 'Settings - General - Can View/Update',
             ],
             [
                 'name' => 'admin.settings.tab_shipping.index',
                 'guard_name' => 'admin',
-                'show_name' => 'Settings - shipping - Can View/Update',
+                'show_name' => 'Settings - Shipping - Can View/Update',
             ],
         ];
 

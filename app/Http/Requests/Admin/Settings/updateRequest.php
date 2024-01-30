@@ -23,16 +23,13 @@ class updateRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->tab) {
-            case 'admin':
-                $rules = [
-                    'one_dollar_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
-                    'one_pound_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
-                ];
-                break;
-        }
-        $rules['tab'] = 'required|in:admin,seller,site';
-        $rules['rate_auto_update'] = 'required|in:0,1';
-        return $rules;
+        return match ($this->tab) {
+            'general' => [
+                'rate_auto_update' => 'required|in:0,1',
+                'one_dollar_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
+                'one_pound_rate' => ($this->rate_auto_update === '0' ? 'required' : 'sometimes') . '|numeric|gte:0',
+            ],
+            default => []
+        };
     }
 }
