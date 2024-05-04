@@ -6,6 +6,11 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 trait DatatablesTrait
 {
+    protected function filename(): string
+    {
+        return substr(class_basename($this), 0, -9) . '_' . date('YmdHis');
+    }
+
     public function pdf()
     {
         $data = $this->getDataForPrint();

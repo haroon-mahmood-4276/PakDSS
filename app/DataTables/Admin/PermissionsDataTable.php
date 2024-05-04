@@ -16,12 +16,6 @@ class PermissionsDataTable extends DataTable
 {
     use DatatablesTrait;
 
-    /**
-     * Build DataTable class.
-     *
-     * @param  QueryBuilder  $query Results from query() method.
-     * @return \Yajra\DataTables\EloquentDataTable
-     */
     public function dataTable(QueryBuilder $query)
     {
         $columns = array_column($this->getColumns(), 'data');
@@ -107,16 +101,18 @@ class PermissionsDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            ->dom('BlfrtipC')
             ->pagingType('full_numbers')
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
                 [30, 50, 70, 100, 120, 150, 'All'],
             ])
-            ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
+            ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"d-flex justify-content-between mx-0 pb-2 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
             ->buttons($buttons)
-            ->rowGroupDataSrc('class')
+            // ->rowGroupDataSrc('class')
             ->scrollX()
+            ->fixedColumns([
+                'left' => 2,
+            ])
             ->orders([
                 [1, 'asc'],
             ]);
@@ -129,7 +125,7 @@ class PermissionsDataTable extends DataTable
     {
         $currentAuthRoles = auth()->user()->roles;
         $roles = getLinkedTreeData(new Role(), $currentAuthRoles->pluck('id'));
-        $roles = array_merge($currentAuthRoles->toArray(), $roles); // Add current role to the list
+        // $roles = array_merge($currentAuthRoles->toArray(), $roles); // Add current role to the list
         unset($roles[0]['pivot']);
 
         $colArray = [
@@ -147,28 +143,20 @@ class PermissionsDataTable extends DataTable
                 ->addClass('text-center')
                 ->render('function () {
                     var roles = data.roles;
-                    var isPermissionAssigned = roles.includes("'.$role['id'].'");
+                    var isPermissionAssigned = roles.includes("' . $role['id'] . '");
                     var checkbox = "<div class=\'form-check d-flex justify-content-center\'>";
 
                     if(isPermissionAssigned) {
-                        checkbox += "<input class=\'form-check-input\' type=\'checkbox\' onchange=\'changeRolePermission(\"'.$role['id'].'\", \"" + data.permission_id + "\")\'  id=\'chkRolePermission_'.$role['id'].'__'.'" + data.permission_id + "\' checked />";
+                        checkbox += "<input class=\'form-check-input\' type=\'checkbox\' onchange=\'changeRolePermission(\"' . $role['id'] . '\", \"" + data.permission_id + "\")\'  id=\'chkRolePermission_' . $role['id'] . '__' . '" + data.permission_id + "\' checked />";
                     } else {
-                        checkbox += "<input class=\'form-check-input\' type=\'checkbox\' onchange=\'changeRolePermission(\"'.$role['id'].'\", \"" + data.permission_id + "\")\'  id=\'chkRolePermission_'.$role['id'].'__'.'" + data.permission_id + "\' />";
+                        checkbox += "<input class=\'form-check-input\' type=\'checkbox\' onchange=\'changeRolePermission(\"' . $role['id'] . '\", \"" + data.permission_id + "\")\'  id=\'chkRolePermission_' . $role['id'] . '__' . '" + data.permission_id + "\' />";
                     }
-                    checkbox += "<label class=\'form-check-label\' for=\'chkRolePermission_'.$role['id'].'__'.'" + data.permission_id + "\'></label></div>";
+                    checkbox += "<label class=\'form-check-label\' for=\'chkRolePermission_' . $role['id'] . '__' . '" + data.permission_id + "\'></label></div>";
                     return checkbox;
                 }');
         }
 
         // $colArray[] = Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center');
         return $colArray;
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'Permissions_'.date('YmdHis');
     }
 }

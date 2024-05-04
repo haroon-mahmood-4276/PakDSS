@@ -29,7 +29,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/laravel-health-check',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->redirectGuestsTo(fn () => route('login.view'))
+        $middleware->redirectGuestsTo(fn () => route('admin.login.view'))
             ->redirectUsersTo(fn () => route('dashboard.index'))
             ->alias([
                 'role' => RoleMiddleware::class,

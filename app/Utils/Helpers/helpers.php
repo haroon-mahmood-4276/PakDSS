@@ -311,7 +311,7 @@ if (!function_exists('prepareTreeFromCollection')) {
 if (!function_exists('getLinkedTreeData')) {
     function getLinkedTreeData(Model $model, $id = [])
     {
-        $id = $model::whereIn('parent_id', (array) $id)->get()->toArray();
+        $id = $model::whereIn('parent_id', $id)->get()->toArray();
         if (count($id) > 0) {
             return array_merge($id, getLinkedTreeData($model, array_column($id, 'id')));
         }
