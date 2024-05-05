@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        using: function () {
+        then: function () {
             // Admin & Ajax Routes
             Route::middleware('web')
                 ->prefix('admin')
