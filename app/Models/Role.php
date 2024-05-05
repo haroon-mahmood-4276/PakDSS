@@ -33,4 +33,9 @@ class Role extends SpatieRole
         'name' => 'required|string|between:1,254',
         'guard_name' => 'required|string|between:1,254',
     ];
+
+    public function parent()
+    {
+        return $this->belongsTo(Role::class, 'parent_id');
+    }
 }

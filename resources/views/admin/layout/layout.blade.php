@@ -158,9 +158,9 @@
             });
 
             $('.class-datatable-for-event').on('draw.dt', function() {
-                setTimeout(function() {
+                // setTimeout(function() {
                     changeAllTableRowColor();
-                }, 0);
+                // }, 0);
             });
         });
 

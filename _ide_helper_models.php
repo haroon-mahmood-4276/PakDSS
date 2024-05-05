@@ -1,6 +1,7 @@
 <?php
 
 // @formatter:off
+// phpcs:ignoreFile
 /**
  * A helper file for your Eloquent Models
  * Copy the phpDocs from this file to the correct Model,
@@ -12,51 +13,58 @@
 
 namespace App\Models{
 /**
- * App\Models\Activity
+ * 
  *
  * @property string $id
- * @property string|null $log_name
- * @property string $description
- * @property string|null $subject_type
- * @property string|null $subject_id
- * @property string|null $causer_type
- * @property string|null $causer_id
- * @property \Illuminate\Support\Collection|null $properties
+ * @property string $user_id
+ * @property string $address_type
+ * @property string $country_id
+ * @property string $state_id
+ * @property string $city_id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $address_1
+ * @property string|null $address_2
+ * @property string|null $mobile_no
+ * @property string|null $nearest_landmark
+ * @property int $zip_code
+ * @property bool $default_delivery_address
+ * @property bool $default_billing_address
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $event
- * @property string|null $batch_uuid
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $causer
- * @property-read \Illuminate\Support\Collection $changes
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $subject
- * @method static \Illuminate\Database\Eloquent\Builder|Activity causedBy(\Illuminate\Database\Eloquent\Model $causer)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity forBatch(string $batchUuid)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity forEvent(string $event)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity forSubject(\Illuminate\Database\Eloquent\Model $subject)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity hasBatch()
- * @method static \Illuminate\Database\Eloquent\Builder|Activity inLog(...$logNames)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Activity newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Activity query()
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereBatchUuid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereCauserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereCauserType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereEvent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereLogName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereProperties($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereSubjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereSubjectType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUpdatedAt($value)
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read mixed $name
+ * @method static \Illuminate\Database\Eloquent\Builder|Address newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereAddress1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereAddress2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereAddressType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereCityId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereDefaultBillingAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereDefaultDeliveryAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereMobileNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereNearestLandmark($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereZipCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address withoutTrashed()
  */
-	class Activity extends \Eloquent {}
+	class Address extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Admin
+ * 
  *
  * @property string $id
  * @property string|null $name
@@ -67,22 +75,18 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
  * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
- * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|Admin newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Admin newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Admin onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Admin permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|Admin permission($permissions, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin query()
- * @method static \Illuminate\Database\Eloquent\Builder|Admin role($roles, $guard = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Admin role($roles, $guard = null, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin whereEmail($value)
@@ -93,6 +97,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Admin whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Admin withoutPermission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|Admin withoutRole($roles, $guard = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin withoutTrashed()
  */
 	class Admin extends \Eloquent {}
@@ -100,7 +106,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Brand
+ * 
  *
  * @property string $id
  * @property string $name
@@ -108,11 +114,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
  * @property-read int|null $categories_count
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
  * @property-read int|null $products_count
@@ -134,7 +138,40 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Category
+ * 
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $product_id
+ * @property int $quantity
+ * @property float $price
+ * @property float $total_price
+ * @property object $attributes
+ * @property int|null $created_at
+ * @property int|null $updated_at
+ * @property int|null $deleted_at
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereAttributes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereTotalPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereUserId($value)
+ */
+	class Cart extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
  *
  * @property string $id
  * @property string|null $name
@@ -143,8 +180,6 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Brand> $brands
  * @property-read int|null $brands_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
@@ -168,58 +203,92 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Media
+ * 
  *
- * @property int $id
- * @property string $model_type
- * @property string $model_id
- * @property string|null $uuid
- * @property string $collection_name
+ * @property string $id
+ * @property string $state_id
  * @property string $name
- * @property string $file_name
- * @property string|null $mime_type
- * @property string $disk
- * @property string|null $conversions_disk
- * @property int $size
- * @property array $manipulations
- * @property array $custom_properties
- * @property array $generated_conversions
- * @property array $responsive_images
- * @property int|null $order_column
+ * @property string $slug
+ * @property int $zip_code
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\State $state
+ * @method static \Illuminate\Database\Eloquent\Builder|City newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|City newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|City onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|City query()
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereZipCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|City withoutTrashed()
+ */
+	class City extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property string $id
+ * @property string $name
+ * @property string $slug
+ * @property string $code
+ * @property int $phone_code
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\City> $cities
+ * @property-read int|null $cities_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\State> $states
+ * @property-read int|null $states_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Country newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country wherePhoneCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country withoutTrashed()
+ */
+	class Country extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property-read mixed $extension
+ * @property-read mixed $human_readable_size
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $model
+ * @property-read mixed $original_url
+ * @property-read mixed $preview_url
+ * @property-read mixed $type
  * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, static> all($columns = ['*'])
  * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, static> get($columns = ['*'])
  * @method static \Illuminate\Database\Eloquent\Builder|Media newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Media newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Media ordered()
  * @method static \Illuminate\Database\Eloquent\Builder|Media query()
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereCollectionName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereConversionsDisk($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereCustomProperties($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereDisk($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereFileName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereGeneratedConversions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereManipulations($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereMimeType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereModelId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereModelType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereOrderColumn($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereResponsiveImages($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereUuid($value)
  */
 	class Media extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Permission
+ * 
  *
  * @property string $id
  * @property string $name
@@ -235,22 +304,24 @@ namespace App\Models{
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Permission permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission permission($permissions, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission query()
- * @method static \Illuminate\Database\Eloquent\Builder|Permission role($roles, $guard = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission role($roles, $guard = null, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereGuardName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereShowName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission withoutPermission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission withoutRole($roles, $guard = null)
  */
 	class Permission extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Product
+ * 
  *
  * @property string $id
  * @property string $brand_id
@@ -259,8 +330,8 @@ namespace App\Models{
  * @property string|null $name
  * @property string|null $permalink
  * @property string|null $sku
- * @property string $price
- * @property string $discounted_price
+ * @property float $price
+ * @property float $discounted_price
  * @property bool $call_for_final_rates
  * @property bool $are_rates_printed_on_package
  * @property string $length
@@ -277,12 +348,10 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
  * @property-read \App\Models\Brand $brand
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
  * @property-read int|null $categories_count
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \App\Models\Seller $seller
  * @property-read \App\Models\Shop $shop
@@ -325,7 +394,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Request
+ * 
  *
  * @property string $id
  * @property string|null $modelable
@@ -336,9 +405,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @method static \Illuminate\Database\Eloquent\Builder|Request newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Request newQuery()
@@ -361,7 +428,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Role
+ * 
  *
  * @property string $id
  * @property string $name
@@ -369,15 +436,14 @@ namespace App\Models{
  * @property string|null $parent_id
  * @property int|null $created_at
  * @property int|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
+ * @property-read Role|null $parent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
  * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Role newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Role newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Role permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role permission($permissions, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Role query()
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereGuardName($value)
@@ -385,13 +451,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role withoutPermission($permissions)
  */
 	class Role extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Seller
+ * 
  *
  * @property string $id
  * @property string|null $first_name
@@ -411,16 +478,13 @@ namespace App\Models{
  * @property int|null $created_at
  * @property int|null $updated_at
  * @property int|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
+ * @property mixed $name
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
  * @property-read int|null $products_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Shop> $shops
  * @property-read int|null $shops_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
- * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|Seller newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Seller newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Seller onlyTrashed()
@@ -451,7 +515,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Setting
+ * 
  *
  * @property string $id
  * @property string $tab_id
@@ -459,9 +523,7 @@ namespace App\Models{
  * @property string|null $value
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
@@ -478,7 +540,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Shop
+ * 
  *
  * @property string $id
  * @property string $seller_id
@@ -500,9 +562,7 @@ namespace App\Models{
  * @property int|null $created_at
  * @property int|null $updated_at
  * @property int|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \App\Models\Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
  * @property-read int|null $products_count
@@ -539,15 +599,44 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Tag
+ * 
+ *
+ * @property string $id
+ * @property string $country_id
+ * @property string $name
+ * @property string $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\City> $cities
+ * @property-read int|null $cities_count
+ * @property-read \App\Models\Country $country
+ * @method static \Illuminate\Database\Eloquent\Builder|State newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|State newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|State onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|State query()
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|State withoutTrashed()
+ */
+	class State extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
  *
  * @property string $id
  * @property string $name
  * @property int|null $created_at
  * @property int|null $updated_at
  * @property int|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
  * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder|Tag newModelQuery()
@@ -567,7 +656,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\User
+ * 
  *
  * @property string $id
  * @property string|null $name
@@ -578,17 +667,17 @@ namespace App\Models{
  * @property int|null $created_at
  * @property int|null $updated_at
  * @property int|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
+ * @property string|null $avatar
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Cart> $carts
+ * @property-read int|null $carts_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
- * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAvatar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
@@ -606,22 +695,22 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\UserSocialAccount
+ * 
  *
- * @property int $id
- * @property string $user_id
- * @property string $name
- * @property string $token
- * @property string $refreshToken
+ * @property string $id
+ * @property string $account_id
+ * @property string|null $user_id
+ * @property string|null $name
+ * @property string|null $token
+ * @property string|null $refreshToken
  * @property int $expiresIn
  * @property array $approved_scopes
  * @property int|null $created_at
  * @property int|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
- * @property-read int|null $activities_count
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereAccountId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereApprovedScopes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocialAccount whereExpiresIn($value)

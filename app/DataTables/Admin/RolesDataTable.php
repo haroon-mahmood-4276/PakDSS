@@ -28,7 +28,7 @@ class RolesDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->editColumn('parent_id', function ($role) {
-                return Str::of(getParentByParentId($role->parent_id, Role::class))->ucfirst();
+                return Str::of($role->parent?->name ?? 'parent')->ucfirst();
             })
             ->editColumn('created_at', function ($role) {
                 return editDateColumn($role->created_at);
@@ -53,21 +53,12 @@ class RolesDataTable extends DataTable
      */
     public function query(Role $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('parent');
     }
 
     public function html(): HtmlBuilder
     {
         $buttons = [];
-
-        // if (auth()->user()->can('admin.roles.create')) {
-        //     $buttons[] = Button::raw('delete-selected')
-        //         ->addClass('btn btn-primary waves-effect waves-float waves-light m-1')
-        //         ->text('<i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add New')
-        //         ->attr([
-        //             'onclick' => 'addNew()',
-        //         ]);
-        // }
 
         if (auth()->user()->can('admin.roles.export')) {
             $buttons[] = Button::make('export')
@@ -103,16 +94,15 @@ class RolesDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            ->dom('BlfrtipC')
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
                 [30, 50, 70, 100, 120, 150, 'All'],
             ])
-            ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
+            ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"d-flex justify-content-between mx-0 pb-2 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
             ->buttons($buttons)
             ->scrollX()
             ->pagingType('full_numbers')
-            ->rowGroupDataSrc('parent_id')
+            // ->rowGroupDataSrc('parent_id')
             ->columnDefs([
                 [
                     'targets' => 0,
@@ -132,9 +122,6 @@ class RolesDataTable extends DataTable
                         'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
-            ])
-            ->select([
-                'style' => 'multi',
             ])
             ->fixedColumns([
                 'left' => 1,
@@ -166,13 +153,5 @@ class RolesDataTable extends DataTable
         ];
 
         return $columns;
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'Roles_'.date('YmdHis');
-    }
+    }    
 }
