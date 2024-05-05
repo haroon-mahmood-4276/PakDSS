@@ -27,7 +27,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
           script: |
-            cd /var/www/pakdss
+            cd /var/www/pakdss.com
             php artisan down
             git branch
             git reset --hard
