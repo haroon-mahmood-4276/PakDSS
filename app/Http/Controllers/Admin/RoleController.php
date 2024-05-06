@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\RolesDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Roles\storeRequest;
-use App\Http\Requests\Admin\Roles\updateRequest;
+use App\Http\Requests\Admin\Roles\{storeRequest, updateRequest};
 use App\Models\Role;
 use App\Services\Admin\Roles\RoleInterface;
-use Exception;
 use Illuminate\Http\Request;
+use Exception;
 
 class RoleController extends Controller
 {
@@ -68,8 +66,6 @@ class RoleController extends Controller
             $record = $this->roleInterface->store($inputs);
 
             return redirect()->route('admin.roles.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
@@ -109,8 +105,6 @@ class RoleController extends Controller
             }
 
             return redirect()->route('admin.roles.index')->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
@@ -135,8 +129,6 @@ class RoleController extends Controller
             $record = $this->roleInterface->update($id, $inputs);
 
             return redirect()->route('admin.roles.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }
@@ -157,8 +149,6 @@ class RoleController extends Controller
             }
 
             return redirect()->route('admin.roles.index')->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
         }

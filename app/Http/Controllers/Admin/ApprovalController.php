@@ -11,9 +11,9 @@ use App\Services\Shared\Categories\CategoryInterface;
 use App\Services\Shared\Shops\ShopInterface;
 use App\Services\Shared\Tags\TagInterface;
 use App\Utils\Enums\Status;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Exception;
 
 class ApprovalController extends Controller
 {

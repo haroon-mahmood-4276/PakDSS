@@ -3,17 +3,12 @@
 namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\ProductsDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Seller\Products\storeRequest;
-use App\Http\Requests\Seller\Products\updateRequest;
+use App\Http\Requests\Seller\Products\{storeRequest, updateRequest};
 use App\Services\Products\ProductInterface;
-use App\Services\Shared\Shops\ShopInterface;
-use App\Services\Shared\Brands\BrandInterface;
-use App\Services\Shared\Categories\CategoryInterface;
-use App\Services\Shared\Tags\TagInterface;
-use Exception;
+use App\Services\Shared\{Shops\ShopInterface, Brands\BrandInterface, Categories\CategoryInterface, Tags\TagInterface};
 use Illuminate\Http\Request;
+use Exception;
 
 class ProductController extends Controller
 {
@@ -70,8 +65,6 @@ class ProductController extends Controller
             $this->productInterface->store(auth('seller')->user()->id, $inputs);
 
             return redirect()->route('seller.products.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
         }
@@ -101,8 +94,6 @@ class ProductController extends Controller
             ];
 
             return is_null($data['product']) ? redirect()->route('seller.products.index')->withWarning('Record not found!') : view('seller.products.edit', $data);
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
         }
@@ -117,8 +108,6 @@ class ProductController extends Controller
             $record = $this->productInterface->update($id, $inputs);
 
             return redirect()->route('seller.products.index')->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
         }
@@ -139,8 +128,6 @@ class ProductController extends Controller
             }
 
             return redirect()->route('seller.products.index')->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
         }

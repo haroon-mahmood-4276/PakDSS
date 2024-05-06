@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\ShopsDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Shops\{storeRequest, updateRequest};
 use App\Models\Seller;
@@ -42,7 +41,7 @@ class ShopController extends Controller
             'statuses' => Status::array(),
         ];
 
-        return view('admin.sellers.shops.shops.create', $data);
+        return view('admin.sellers.shops.create', $data);
     }
 
     public function store(storeRequest $request, Seller $seller)
@@ -53,8 +52,6 @@ class ShopController extends Controller
             $inputs = $request->validated();
             $record = $this->shopInterface->store($seller->id, $inputs);
             return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
         }
@@ -84,8 +81,6 @@ class ShopController extends Controller
             }
 
             return redirect()->route('admin.sellers.shops.index', $seller)->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
         }
@@ -105,8 +100,6 @@ class ShopController extends Controller
             $inputs = $request->validated();
             $record = $this->shopInterface->update($seller, $shop, $inputs);
             return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
         }
@@ -127,8 +120,6 @@ class ShopController extends Controller
             }
 
             return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
         }

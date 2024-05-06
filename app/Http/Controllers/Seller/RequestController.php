@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\RequestsDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Requests\{storeRequest, updateRequest};
 use App\Services\Seller\Requests\RequestInterface;
@@ -53,8 +52,6 @@ class RequestController extends Controller
             $inputs['modelable'] = getModel($requestFor)::class;
             $this->requestInterface->store($requestFor, $inputs);
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong!');
         }
@@ -82,8 +79,6 @@ class RequestController extends Controller
             }
 
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong!');
         }
@@ -104,8 +99,6 @@ class RequestController extends Controller
             $inputs = $request->validated();
             $record = $this->requestInterface->update($requestFor, $id, $inputs);
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong!');
         }
@@ -125,8 +118,6 @@ class RequestController extends Controller
                 }
             }
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong!');
         }

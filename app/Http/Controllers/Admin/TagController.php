@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\TagsDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Tags\storeRequest;
-use App\Http\Requests\Admin\Tags\updateRequest;
+use App\Http\Requests\Admin\Tags\{storeRequest, updateRequest};
 use App\Services\Shared\Tags\TagInterface;
-use Exception;
 use Illuminate\Http\Request;
+use Exception;
 
 class TagController extends Controller
 {
@@ -61,8 +59,6 @@ class TagController extends Controller
             $record = $this->tagInterface->store($inputs);
 
             return redirect()->route('admin.tags.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
         }
@@ -101,8 +97,6 @@ class TagController extends Controller
             }
 
             return redirect()->route('admin.tags.index')->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
         }
@@ -127,8 +121,6 @@ class TagController extends Controller
             $record = $this->tagInterface->update($id, $inputs);
 
             return redirect()->route('admin.tags.index')->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
         }
@@ -149,8 +141,6 @@ class TagController extends Controller
             }
 
             return redirect()->route('admin.tags.index')->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
         }
