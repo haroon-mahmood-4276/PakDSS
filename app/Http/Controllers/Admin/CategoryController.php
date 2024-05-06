@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\CategoriesDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Categories\storeRequest;
-use App\Http\Requests\Admin\Categories\updateRequest;
+use App\Http\Requests\Admin\Categories\{storeRequest, updateRequest};
 use App\Services\Shared\Brands\BrandInterface;
 use App\Services\Shared\Categories\CategoryInterface;
 use Exception;
@@ -70,8 +68,6 @@ class CategoryController extends Controller
             $record = $this->categoryInterface->store($inputs);
 
             return redirect()->route('admin.categories.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }
@@ -112,8 +108,6 @@ class CategoryController extends Controller
             }
 
             return redirect()->route('admin.categories.index')->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }
@@ -138,8 +132,6 @@ class CategoryController extends Controller
             $record = $this->categoryInterface->update($id, $inputs);
 
             return redirect()->route('admin.categories.index')->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }
@@ -160,8 +152,6 @@ class CategoryController extends Controller
             }
 
             return redirect()->route('admin.categories.index')->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
         }

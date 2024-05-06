@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\ShopsDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Seller\Shops\storeRequest;
-use App\Http\Requests\Seller\Shops\updateRequest;
-use App\Models\Seller;
-use App\Models\Shop;
+use App\Http\Requests\Seller\Shops\{storeRequest, updateRequest};
+use App\Models\{Seller, Shop};
 use App\Services\Shared\Shops\ShopInterface;
 use App\Utils\Enums\Status;
-use Exception;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\{JsonResponse, Request};
+use Exception;
 
 class ShopController extends Controller
 {
@@ -45,17 +41,15 @@ class ShopController extends Controller
         return view('seller.shops.create', $data);
     }
 
-    public function store(storeRequest $request)
+    public function store(storeRequest $request, Seller $seller)
     {
         abort_if(request()->ajax(), 403);
 
         try {
             $inputs = $request->validated();
-            $record = $this->shopInterface->store($inputs);
+            $record = $this->shopInterface->store($seller, $inputs);
 
             return redirect()->route('seller.shops.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
         }
@@ -84,8 +78,6 @@ class ShopController extends Controller
             }
 
             return redirect()->route('seller.shops.index')->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
         }
@@ -106,8 +98,6 @@ class ShopController extends Controller
             $inputs['status'] = Status::PENDING_APPROVAL;
             $record = $this->shopInterface->update([], $shop, $inputs);
             return redirect()->route('seller.shops.index')->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
         }
@@ -128,8 +118,6 @@ class ShopController extends Controller
             }
 
             return redirect()->route('seller.shops.index')->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
         }

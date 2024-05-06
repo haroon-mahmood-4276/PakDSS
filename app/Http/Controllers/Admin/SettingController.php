@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Settings\updateRequest;
 use App\Services\Admin\Settings\SettingInterface;
@@ -37,8 +36,6 @@ class SettingController extends Controller
             cache()->flush();
 
             return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withDanger('Something went wrong!');
         }

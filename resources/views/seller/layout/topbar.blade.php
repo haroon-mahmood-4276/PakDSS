@@ -298,7 +298,7 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('seller.logout') }}">
+                        <a class="dropdown-item bg-danger text-white" href="{{ route('seller.logout') }}">
                             <i class="ti ti-logout me-2 ti-sm"></i>
                             <span class="align-middle">Log Out</span>
                         </a>

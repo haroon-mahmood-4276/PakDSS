@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\SellersDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Sellers\storeRequest;
 use App\Http\Requests\Admin\Sellers\updateRequest;
@@ -66,8 +65,6 @@ class SellerController extends Controller
             $record = $this->sellerInterface->store($inputs);
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
         }
@@ -107,8 +104,6 @@ class SellerController extends Controller
             }
 
             return redirect()->route('admin.sellers.index')->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
         }
@@ -131,8 +126,6 @@ class SellerController extends Controller
             $record = $this->sellerInterface->update($id, $inputs);
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
         }
@@ -153,8 +146,6 @@ class SellerController extends Controller
             }
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
         }

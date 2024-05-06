@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Services\User\Addresses\AddressInterface;
-use Exception;
 use Illuminate\Http\Request;
+use App\Http\Requests\User\Addresses\{storeRequest, updateRequest};
+use Exception;
 
 class AddressController extends Controller
 {
-
     private AddressInterface $addressInterface;
 
     public function __construct(AddressInterface $addressInterface)
@@ -26,7 +25,7 @@ class AddressController extends Controller
         return view('user.addresses.index', $data);
     }
 
-    public function store(Request $request)
+    public function store(storeRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
@@ -35,8 +34,6 @@ class AddressController extends Controller
             $this->addressInterface->store(auth('web')->id(), $inputs);
 
             return redirect()->route('user.addresses.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('user.addresses.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('user.addresses.index')->withDanger('Something went wrong!');
         }
@@ -65,8 +62,6 @@ class AddressController extends Controller
             }
 
             return redirect()->route('admin.brands.index')->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
@@ -82,8 +77,6 @@ class AddressController extends Controller
             $record = $this->brandInterface->update($id, $inputs);
 
             return redirect()->route('admin.brands.index')->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
@@ -104,8 +97,6 @@ class AddressController extends Controller
             }
 
             return redirect()->route('admin.brands.index')->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }

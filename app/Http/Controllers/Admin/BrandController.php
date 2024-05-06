@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\BrandsDataTable;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Brands\storeRequest;
 use App\Http\Requests\Admin\Brands\updateRequest;
@@ -69,8 +68,6 @@ class BrandController extends Controller
             $record = $this->brandInterface->store($inputs);
 
             return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! ' . $ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
@@ -111,8 +108,6 @@ class BrandController extends Controller
             }
 
             return redirect()->route('admin.brands.index')->withWarning('Record not found!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
@@ -135,8 +130,6 @@ class BrandController extends Controller
             $record = $this->brandInterface->update($id, $inputs);
 
             return redirect()->route('admin.brands.index')->withSuccess('Data updated!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
@@ -157,8 +150,6 @@ class BrandController extends Controller
             }
 
             return redirect()->route('admin.brands.index')->withSuccess('Data deleted!');
-        } catch (GeneralException $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong! '.$ex->getMessage());
         } catch (Exception $ex) {
             return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
         }
