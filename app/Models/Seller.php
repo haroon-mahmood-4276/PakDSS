@@ -68,8 +68,8 @@ class Seller extends Authenticatable implements MustVerifyEmail
             'last_name' => 'required|string|between:3,254',
             'cnic' => 'required|numeric|digits:13|unique:sellers,cnic',
             'ntn_number' => ['nullable', (new AlphaNumDash), 'max:20'],
-            'phone_primary' => 'required|numeric|max_digits:20',
-            'phone_secondary' => 'nullable|numeric|max_digits:20',
+            'phone_primary' => 'required|string|max_digits:20',
+            'phone_secondary' => 'nullable|string|max_digits:20',
             'status' => 'required|in:' . implode(',', Status::values()),
             'reason' => 'required_if:status,objected,inactive',
         ];

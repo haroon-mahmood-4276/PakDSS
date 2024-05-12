@@ -57,19 +57,19 @@ class Shop extends Model implements HasMedia
 
             'email' => 'required|string|between:3,254|unique:shops,email',
 
-            'phone_1' => 'required|numeric|digits:12',
-            'phone_2' => 'nullable|numeric|digits:12',
+            'phone_1' => 'required|string|max_digits:20',
+            'phone_2' => 'nullable|string|max_digits:20',
 
             'address' => 'required|string|between:3,254',
             'pickup_address' => 'required|string|between:3,254',
 
             'description' => 'required|string|between:3,254',
 
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
 
             'manager_name' => 'required|string|between:3,254',
-            'manager_mobile' => 'required|numeric|digits:12',
+            'manager_mobile' => 'required|string|max_digits:20',
             'manager_email' => 'nullable|string|between:3,254|unique:shops,manager_email',
 
             'shop_logo' => 'nullable|image|mimes:jpeg,png,jpg|max:536',

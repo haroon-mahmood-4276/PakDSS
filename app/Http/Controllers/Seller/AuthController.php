@@ -56,7 +56,7 @@ class AuthController extends Controller
         if (Auth::guard('seller')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('seller.dashboard.index'));
+            return redirect()->route('seller.dashboard.index');
         }
 
         return redirect()->route('seller.login.view')->withDanger('The provided credentials do not match our records')->onlyInput('email');
