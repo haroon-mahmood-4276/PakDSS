@@ -26,7 +26,13 @@ class AdminsSeeder extends Seeder
             [
                 'name' => 'Haroon Mahmood',
                 'email' => 'haroon@pakdss.com',
-                'password' => Hash::make('123456'),
+                'password' => Hash::make('IyeTech@4276'),
+                'email_verified_at' => now()->timestamp,
+            ],
+            [
+                'name' => 'Admin',
+                'email' => 'admin@pakdss.com',
+                'password' => Hash::make('IyeTech@2299'),
                 'email_verified_at' => now()->timestamp,
             ],
         ];

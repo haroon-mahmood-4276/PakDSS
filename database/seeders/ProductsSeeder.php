@@ -24,53 +24,55 @@ class ProductsSeeder extends Seeder
     {
         Product::truncate();
 
-        $tags = Tag::all();
+        if (app()->environment() === 'local') {
+            $tags = Tag::all();
 
-        $seller = Seller::first()->id;
-        $shop = Shop::first()->id;
+            $seller = Seller::first()->id;
+            $shop = Shop::first()->id;
 
-        $data = [
-            [
-                'brand_id' => Brand::inRandomOrder(1)->first()->id,
-                'seller_id' => $seller,
-                'shop_id' => $shop,
+            $data = [
+                [
+                    'brand_id' => Brand::inRandomOrder(1)->first()->id,
+                    'seller_id' => $seller,
+                    'shop_id' => $shop,
 
-                'name' => 'Mouse',
+                    'name' => 'Mouse',
 
-                'permalink' => Str::of('Mouse')->slug(),
-                'sku' => 'SHX',
-                'price' => rand(10, 1000),
-                'discounted_price' => rand(10, 100),
-                'call_for_final_rates' => false,
-                'are_rates_printed_on_package' => false,
+                    'permalink' => Str::of('Mouse')->slug(),
+                    'sku' => 'SHX',
+                    'price' => rand(10, 1000),
+                    'discounted_price' => rand(10, 100),
+                    'call_for_final_rates' => false,
+                    'are_rates_printed_on_package' => false,
 
-                'length' => 0,
-                'width' => 0,
-                'height' => 0,
+                    'length' => 0,
+                    'width' => 0,
+                    'height' => 0,
 
-                'weight' => 0,
+                    'weight' => 0,
 
-                'short_description' => Str::markdown('# Mouse'),
-                'long_description' => Str::markdown('# Mouse'),
+                    'short_description' => Str::markdown('# Mouse'),
+                    'long_description' => Str::markdown('# Mouse'),
 
-                'meta_author' => '',
-                'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',
-                'meta_description' => '',
+                    'meta_author' => '',
+                    'meta_keywords' => '[{"value":"Quae aute sunt dolo"}]',
+                    'meta_description' => '',
 
-                'status' => 'active',
-                'reason' => null,
-            ]
-        ];
+                    'status' => 'active',
+                    'reason' => null,
+                ]
+            ];
 
-        for ($i = 0; $i < 100; $i++) {
-            foreach ($data as $value) {
-                $value['brand_id'] = Brand::inRandomOrder(1)->first()->id;
-                $value['name'] .= '-' . $i;
-                $value['permalink']  .= '-' . $i;
-                $value['sku']  .= '-' . $i;
-                $product = Product::create($value);
-                $product->categories()->sync(Category::inRandomOrder()->limit(5)->get()->pluck('id')->toArray());
-                $product->tags()->sync($tags);
+            for ($i = 0; $i < 100; $i++) {
+                foreach ($data as $value) {
+                    $value['brand_id'] = Brand::inRandomOrder(1)->first()->id;
+                    $value['name'] .= '-' . $i;
+                    $value['permalink']  .= '-' . $i;
+                    $value['sku']  .= '-' . $i;
+                    $product = Product::create($value);
+                    $product->categories()->sync(Category::inRandomOrder()->limit(5)->get()->pluck('id')->toArray());
+                    $product->tags()->sync($tags);
+                }
             }
         }
     }
