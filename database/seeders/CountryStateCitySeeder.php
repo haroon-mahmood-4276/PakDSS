@@ -808,7 +808,10 @@ class CountryStateCitySeeder extends Seeder
 
             foreach ($country['states'] as $state) {
                 $newstate = $newcountry->states()->save(new State(['name' => $state['name'], 'slug' => Str::slug($state['name'])]));
-                $newstate->cities()->createMany($state['cities']);
+
+                foreach ($state['cities'] as $city) {
+                    $newstate->cities()->save(new City(['name' => $city['name'], 'slug' => Str::slug($city['name']), 'state_id' => $newstate->id]));
+                }
             }
         }
     }

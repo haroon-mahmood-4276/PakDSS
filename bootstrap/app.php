@@ -25,7 +25,10 @@ return Application::configure(basePath: dirname(__DIR__))
             // User & Ajax Routes
             Route::middleware('web')
                 ->name('user.')
-                ->group(base_path('routes/user/web.php'));
+                ->group([
+                    base_path('routes/user/ajax.php'),
+                    base_path('routes/user/web.php'),
+                ]);
         },
     )
     ->withMiddleware(function (Middleware $middleware) {

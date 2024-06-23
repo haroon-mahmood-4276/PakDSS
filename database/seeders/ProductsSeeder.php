@@ -70,7 +70,7 @@ class ProductsSeeder extends Seeder
                     $value['permalink']  .= '-' . $i;
                     $value['sku']  .= '-' . $i;
                     $product = Product::create($value);
-                    $product->categories()->sync(Category::inRandomOrder()->limit(5)->get()->pluck('id')->toArray());
+                    $product->categories()->sync(Category::limit(5)->get()->pluck('id')->toArray());
                     $product->tags()->sync($tags);
                 }
             }

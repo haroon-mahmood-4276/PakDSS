@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
             [
                 'name' => 'Haroon Mahmood',
                 'email' => 'haroon@pakdss.com',
-                'password' => Hash::make('123456'),
+                'password' => Hash::make('IyeTech@4276'),
                 'email_verified_at' => now()->timestamp,
             ],
         ];

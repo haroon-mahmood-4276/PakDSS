@@ -24,101 +24,101 @@ class CategoriesSeeder extends Seeder
                 'parent_id' => null,
                 'child' => [
                     [
-                        'name' => 'Men Clothing',
+                        'name' => 'Clothing',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Men Traditional Clothing',
+                                'name' => 'Traditional Clothing',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Winter Clothing',
+                                'name' => 'Winter Clothing',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Inner-wear / Sleepwear',
+                                'name' => 'Inner-wear / Sleepwear',
                                 'parent_id' => null,
                             ],
                         ],
                     ],
                     [
-                        'name' => 'Men Shoes',
+                        'name' => 'Shoes',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Men Sandals / Slippers',
+                                'name' => 'Sandals / Slippers',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Formal Shoes',
+                                'name' => 'Formal Shoes',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Casual Shoes',
+                                'name' => 'Casual Shoes',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Sneakers',
+                                'name' => 'Sneakers',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Boots',
+                                'name' => 'Boots',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Shoe Care',
+                                'name' => 'Shoe Care',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Sports Shoes',
+                                'name' => 'Sports Shoes',
                                 'parent_id' => null,
                             ],
                         ],
                     ],
                     [
-                        'name' => 'Men Watches',
+                        'name' => 'Watches',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Men Smart Watches',
+                                'name' => 'Smart Watches',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Digital Watches',
+                                'name' => 'Digital Watches',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Chronographic Watches',
+                                'name' => 'Chronographic Watches',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Analog / Historical Watches',
+                                'name' => 'Analog / Historical Watches',
                                 'parent_id' => null,
                             ],
                         ],
                     ],
                     [
-                        'name' => 'Men Accessories',
+                        'name' => 'Accessories',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Men Belts / Bags / Purses',
+                                'name' => 'Belts / Bags / Purses',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Caps / Gloves / Hats',
+                                'name' => 'Caps / Gloves / Hats',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Wallets / Cardholders',
+                                'name' => 'Wallets / Cardholders',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Jewelry',
+                                'name' => 'Jewelry',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Men Sunglasses',
+                                'name' => 'Sunglasses',
                                 'parent_id' => null,
                             ],
                         ],
@@ -130,153 +130,153 @@ class CategoriesSeeder extends Seeder
                 'parent_id' => null,
                 'child' => [
                     [
-                        'name' => 'Women Islamic Clothes',
+                        'name' => 'Islamic Clothes',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Women Scarfs',
+                                'name' => 'Scarfs',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Abaya',
+                                'name' => 'Abaya',
                                 'parent_id' => null,
                             ],
                         ],
                     ],
                     [
-                        'name' => 'Women Clothing',
+                        'name' => 'Clothing',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Women Traditional Clothing',
+                                'name' => 'Traditional Clothing',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Winter Clothing',
+                                'name' => 'Winter Clothing',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Inner-wear / Sleepwear',
+                                'name' => 'Inner-wear / Sleepwear',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Shawls',
+                                'name' => 'Shawls',
                                 'parent_id' => null,
                             ],
                         ],
                     ],
                     [
-                        'name' => 'Women Shoes',
+                        'name' => 'Shoes',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Women Heels',
+                                'name' => 'Heels',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Flats / Sandals',
+                                'name' => 'Flats / Sandals',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Sports Shoes',
+                                'name' => 'Sports Shoes',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Boots',
+                                'name' => 'Boots',
                                 'parent_id' => null,
                             ],
                         ],
                     ],
                     [
-                        'name' => 'Women Watches',
+                        'name' => 'Watches',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Women Smart Watches',
+                                'name' => 'Smart Watches',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Digital Watches',
+                                'name' => 'Digital Watches',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Chronographic Watches',
+                                'name' => 'Chronographic Watches',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Analog / Historical Watches',
+                                'name' => 'Analog / Historical Watches',
                                 'parent_id' => null,
                             ],
                         ],
                     ],
                     [
-                        'name' => 'Women Accessories',
+                        'name' => 'Accessories',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Women Bags',
+                                'name' => 'Bags',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Brooches',
+                                'name' => 'Brooches',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Hats / Caps / Gloves',
+                                'name' => 'Hats / Caps / Gloves',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Belts / Wallets',
+                                'name' => 'Belts / Wallets',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Sunglasses',
+                                'name' => 'Sunglasses',
                                 'parent_id' => null,
                             ],
                         ],
                     ],
                     [
-                        'name' => 'Women Jewelry',
+                        'name' => 'Jewelry',
                         'parent_id' => null,
                         'child' => [
                             [
-                                'name' => 'Women Jewelry Sets',
+                                'name' => 'Jewelry Sets',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Pendants',
+                                'name' => 'Jewelry Pendants',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Necklace',
+                                'name' => 'Jewelry Necklace',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Ear Rings',
+                                'name' => 'Jewelry Ear Rings',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Rings',
+                                'name' => 'Jewelry Rings',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Ear Studs',
+                                'name' => 'Jewelry Ear Studs',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Anklets',
+                                'name' => 'Jewelry Anklets',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Bracelets',
+                                'name' => 'Jewelry Bracelets',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Bangles',
+                                'name' => 'Jewelry Bangles',
                                 'parent_id' => null,
                             ],
                             [
-                                'name' => 'Women Jewelry Nose Pins',
+                                'name' => 'Jewelry Nose Pins',
                                 'parent_id' => null,
                             ],
                         ],
@@ -512,7 +512,7 @@ class CategoriesSeeder extends Seeder
                         'parent_id' => null,
                     ],
                     [
-                        'name' => 'Kids & Toys',
+                        'name' => 'Kids',
                         'parent_id' => null,
                         'child' => [
                             [
@@ -717,19 +717,19 @@ class CategoriesSeeder extends Seeder
         $this->traverseAndSave($data);
     }
 
-    private function traverseAndSave($data, $parent_id = null)
+    private function traverseAndSave($data, $parent = null)
     {
         foreach ($data as $value) {
 
             $model = new Category([
                 'name' => $value['name'],
-                'slug' => Str::slug($value['name']),
-                'parent_id' => $parent_id,
+                'slug' => Str::slug(($parent?->slug . ' ' ?? '') . $value['name']),
+                'parent_id' => $parent?->id,
             ]);
             $model->save();
 
             if (isset($value['child'])) {
-                $this->traverseAndSave($value['child'], $model->id);
+                $this->traverseAndSave($value['child'], $model);
             }
 
         }

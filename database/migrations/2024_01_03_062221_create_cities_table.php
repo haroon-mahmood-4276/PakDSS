@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->foreignUuid('state_id')->constrained();    
+            $table->uuid('state_id');
             $table->string('name');
             $table->string('slug');
-            $table->integer('zip_code')->default(0);
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();
