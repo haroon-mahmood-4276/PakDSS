@@ -7,6 +7,7 @@ use App\Http\Controllers\User\{
     BrandController,
     CartController,
     HomeController,
+    OrderController,
     ProductController,
 };
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,12 @@ Route::group(['middleware' => 'guest:web'], function () {
 
 Route::group(['middleware' => 'auth:web'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('shipping', 'selectShippingAddress')->name('checkout.shipping');
+        Route::get('payment', 'selectPaymentMethod')->name('checkout.payment');
+        Route::post('order', 'order')->name('order.store');
+    });
 
     // Cart Route
     Route::as('cart.')->controller(CartController::class)->prefix('cart')->group(function () {

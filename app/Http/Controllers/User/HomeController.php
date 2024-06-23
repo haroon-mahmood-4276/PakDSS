@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Services\Shared\Categories\CategoryInterface;
+use App\Services\Categories\CategoryInterface;
 use App\Services\Products\ProductInterface;
 use App\Utils\Enums\Status;
 use Illuminate\Http\Request;

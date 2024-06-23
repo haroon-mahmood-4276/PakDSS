@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use App\Services\Shared\Brands\BrandInterface;
+use App\Services\Brands\BrandInterface;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller

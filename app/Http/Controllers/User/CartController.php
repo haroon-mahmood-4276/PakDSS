@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
-use App\Services\User\Cart\CartInterface;
+use App\Services\Cart\CartInterface;
 use Illuminate\Http\Request;
 
 class CartController extends Controller

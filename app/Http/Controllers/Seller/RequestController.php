@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Seller;
 use App\DataTables\Seller\RequestsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Requests\{storeRequest, updateRequest};
-use App\Services\Seller\Requests\RequestInterface;
+use App\Services\Requests\RequestInterface;
 use Exception;
 use Illuminate\Http\Request;
 

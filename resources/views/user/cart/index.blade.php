@@ -30,7 +30,7 @@
                             Update Cart</button>
                     </div>
                     <form action="{{ route('user.cart.update') }}" method="post" id="form-cart">
-                        
+
                         @csrf
                         @method('PUT')
 
@@ -70,11 +70,15 @@
                                                             <div>
                                                                 <label for="">Quantity</label>
                                                                 <input type="number"
-                                                                class="form-control form-control-sm w-px-100 my-2" name="cart[{{ $cartItem->id }}][quantity]" min="1" max="10" value="{{ $cartItem->quantity }}">
+                                                                    class="form-control form-control-sm w-px-100 my-2"
+                                                                    name="cart[{{ $cartItem->id }}][quantity]"
+                                                                    min="1" max="10"
+                                                                    value="{{ $cartItem->quantity }}">
                                                             </div>
                                                             <h4 class="m-0">
                                                                 <span class="text-primary">
-                                                                    Total {{ currencyParser($cartItem->total_price, symbol: 'Rs.') }}
+                                                                    Total
+                                                                    {{ currencyParser($cartItem->total_price, symbol: 'Rs.') }}
                                                                 </span>
                                                             </h4>
                                                         </div>
@@ -160,7 +164,7 @@
 
                                     <dt class="col-6 fw-normal text-heading">Delivery Charges</dt>
                                     <dd class="col-6 text-end">
-                                        {{-- <s class="text-muted">$5.00</s>  --}}
+                                        <s class="text-muted">$5.00</s>
                                         <span class="badge bg-label-success ms-1">Free</span>
                                     </dd>
                                 </dl>
@@ -173,8 +177,8 @@
                                 </dl>
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-primary btn-next waves-effect waves-light">Proceed to
-                                    checkout</button>
+                                <a href="{{ route('user.checkout.shipping') }}" class="btn btn-primary btn-next waves-effect waves-light">Proceed to
+                                    checkout</a>
                             </div>
                         </div>
                     </div>

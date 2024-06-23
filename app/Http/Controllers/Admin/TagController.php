@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\TagsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Tags\{storeRequest, updateRequest};
-use App\Services\Shared\Tags\TagInterface;
+use App\Services\Tags\TagInterface;
 use Illuminate\Http\Request;
 use Exception;
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\UsersDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Users\{storeRequest, updateRequest};
-use App\Services\Admin\{Roles\RoleInterface, Users\UserInterface};
+use App\Services\{Roles\RoleInterface, Users\UserInterface};
 use Illuminate\Http\Request;
 use Exception;
 

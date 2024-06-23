@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\{Brand};
-use App\Services\Shared\Brands\BrandInterface;
+use App\Services\Brands\BrandInterface;
 use Exception;
 use Illuminate\Http\Request;
 
