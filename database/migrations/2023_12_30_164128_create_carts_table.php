@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->foreignUuid('user_id')->constrained();
-            $table->foreignUuid('product_id')->constrained();
+            $table->uuid('user_id');
+            $table->uuid('product_id');
             $table->integer('quantity')->default(0);
             $table->decimal('price', 8, 2)->default(0);
             $table->decimal('total_price', 8, 2)->default(0);

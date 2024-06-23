@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_social_accounts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('account_id');
-            $table->foreignUuid('user_id')->nullable()->constrained();
+            $table->uuid('user_id')->nullable();
             $table->string('name')->nullable();
             $table->longText('token')->nullable();
             $table->longText('refreshToken')->nullable();

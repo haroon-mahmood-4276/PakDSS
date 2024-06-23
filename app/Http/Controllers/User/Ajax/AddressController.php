@@ -11,7 +11,9 @@ use Exception;
 
 class AddressController extends Controller
 {
-    private $countryInterface, $stateInterface, $cityInterface;
+    private $countryInterface;
+    private $stateInterface;
+    private $cityInterface;
 
     public function __construct(CountryInterface $countryInterface, StateInterface $stateInterface, CityInterface $cityInterface)
     {

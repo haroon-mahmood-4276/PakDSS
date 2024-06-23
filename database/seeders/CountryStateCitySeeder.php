@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\City;
-use App\Models\Country;
-use App\Models\State;
+use App\Models\{City, Country, State};
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class CountryStateCitySeeder extends Seeder
 {
@@ -22,1019 +21,768 @@ class CountryStateCitySeeder extends Seeder
             [
                 'code' => 'PK',
                 'name' => 'Pakistan',
-                'slug' => 'pakistan',
                 'phone_code' => 92,
                 'states' => [
                     [
                         'name' => 'Azad kashmir',
-                        'slug' => 'azad-kashmir',
                         'cities' => [
                             [
-                                'name' => 'Bhimber',
-                                'slug' => 'bhimber'
+                                'name' => 'Bhimber'
                             ],
                             [
-                                'name' => 'Kotli',
-                                'slug' => 'kotli'
+                                'name' => 'Kotli'
                             ],
                             [
-                                'name' => 'Mirpur',
-                                'slug' => 'mirpur'
+                                'name' => 'Mirpur'
                             ],
                             [
-                                'name' => 'Muzaffarabad',
-                                'slug' => 'muzaffarabad'
+                                'name' => 'Muzaffarabad'
                             ],
                             [
-                                'name' => 'Hattian',
-                                'slug' => 'hattian'
+                                'name' => 'Hattian'
                             ],
                             [
-                                'name' => 'Neelum',
-                                'slug' => 'neelum'
+                                'name' => 'Neelum'
                             ],
                             [
-                                'name' => 'Poonch',
-                                'slug' => 'poonch'
+                                'name' => 'Poonch'
                             ],
                             [
-                                'name' => 'Haveli',
-                                'slug' => 'haveli'
+                                'name' => 'Haveli'
                             ],
                             [
-                                'name' => 'Bagh',
-                                'slug' => 'bagh'
+                                'name' => 'Bagh'
                             ],
                             [
-                                'name' => 'Sudhnati',
-                                'slug' => 'sudhnati'
+                                'name' => 'Sudhnati'
                             ],
                         ]
                     ],
                     [
                         'name' => 'Balochistan',
-                        'slug' => 'balochistan',
                         'cities' => [
                             [
-                                'name' => 'Khuzdar',
-                                'slug' => 'khuzdar'
+                                'name' => 'Khuzdar'
                             ],
                             [
-                                'name' => 'Turbat',
-                                'slug' => 'turbat'
+                                'name' => 'Turbat'
                             ],
                             [
-                                'name' => 'Chaman',
-                                'slug' => 'chaman'
+                                'name' => 'Chaman'
                             ],
                             [
-                                'name' => 'Hub',
-                                'slug' => 'hub'
+                                'name' => 'Hub'
                             ],
                             [
-                                'name' => 'Sibi',
-                                'slug' => 'sibi'
+                                'name' => 'Sibi'
                             ],
                             [
-                                'name' => 'Zhob',
-                                'slug' => 'zhob'
+                                'name' => 'Zhob'
                             ],
                             [
-                                'name' => 'Gwadar',
-                                'slug' => 'gwadar'
+                                'name' => 'Gwadar'
                             ],
                             [
-                                'name' => 'Dera Murad Jamali',
-                                'slug' => 'dera-murad-jamali'
+                                'name' => 'Dera Murad Jamali'
                             ],
                             [
-                                'name' => 'Dera Allah Yar',
-                                'slug' => 'dera-allah-yar'
+                                'name' => 'Dera Allah Yar'
                             ],
                             [
-                                'name' => 'Usta Mohammad',
-                                'slug' => 'usta-mohammad'
+                                'name' => 'Usta Mohammad'
                             ],
                             [
-                                'name' => 'Loralai',
-                                'slug' => 'loralai'
+                                'name' => 'Loralai'
                             ],
                             [
-                                'name' => 'Kharan',
-                                'slug' => 'kharan'
+                                'name' => 'Kharan'
                             ],
                             [
-                                'name' => 'Mastung',
-                                'slug' => 'mastung'
+                                'name' => 'Mastung'
                             ],
                             [
-                                'name' => 'Nushki',
-                                'slug' => 'nushki'
+                                'name' => 'Nushki'
                             ],
                             [
-                                'name' => 'Kalat',
-                                'slug' => 'kalat'
+                                'name' => 'Kalat'
                             ],
                             [
-                                'name' => 'Pasni',
-                                'slug' => 'pasni'
+                                'name' => 'Pasni'
                             ],
                             [
-                                'name' => 'Quetta',
-                                'slug' => 'quetta'
+                                'name' => 'Quetta'
                             ]
                         ]
                     ],
                     [
                         'name' => 'Gilgit Baltistan',
-                        'slug' => 'gilgit-baltistan',
                         'cities' => [
                             [
-                                'name' => 'Gilgit',
-                                'slug' => 'gilgit'
+                                'name' => 'Gilgit'
                             ],
                             [
-                                'name' => 'Skardu',
-                                'slug' => 'skardu'
+                                'name' => 'Skardu'
                             ],
                             [
-                                'name' => 'Khaplu',
-                                'slug' => 'khaplu'
+                                'name' => 'Khaplu'
                             ],
                             [
-                                'name' => 'Dambudas',
-                                'slug' => 'dambudas'
+                                'name' => 'Dambudas'
                             ],
                             [
-                                'name' => 'Tolti',
-                                'slug' => 'tolti'
+                                'name' => 'Tolti'
                             ],
                             [
-                                'name' => 'Eidghah',
-                                'slug' => 'eidghah'
+                                'name' => 'Eidghah'
                             ],
                             [
-                                'name' => 'Shigar',
-                                'slug' => 'shigar'
+                                'name' => 'Shigar'
                             ],
                             [
-                                'name' => 'Nagarkhas',
-                                'slug' => 'nagarkhas'
+                                'name' => 'Nagarkhas'
                             ],
                             [
-                                'name' => 'Ishkoman',
-                                'slug' => 'Ishkoman'
+                                'name' => 'Ishkoman'
                             ],
                             [
-                                'name' => 'Juglot',
-                                'slug' => 'juglot'
+                                'name' => 'Juglot'
                             ],
                             [
-                                'name' => 'Danyor',
-                                'slug' => 'danyor'
+                                'name' => 'Danyor'
                             ],
                             [
-                                'name' => 'Karimabad',
-                                'slug' => 'karimabad'
+                                'name' => 'Karimabad'
                             ],
                             [
-                                'name' => 'Aliabad',
-                                'slug' => 'aliabad'
+                                'name' => 'Aliabad'
                             ],
                             [
-                                'name' => 'Chilas',
-                                'slug' => 'chilas'
+                                'name' => 'Chilas'
                             ],
                             [
-                                'name' => 'Gahkuch',
-                                'slug' => 'gahkuch'
+                                'name' => 'Gahkuch'
                             ],
                             [
-                                'name' => 'Tangir',
-                                'slug' => 'tangir'
+                                'name' => 'Tangir'
                             ]
                         ]
                     ],
                     [
                         'name' => 'Khyber Pakhtunkhwa',
-                        'slug' => 'khyber-pakhtunkhwa',
                         'cities' => [
                             [
-                                'name' => 'Abbottabad',
-                                'slug' => 'abbottabad'
+                                'name' => 'Abbottabad'
                             ],
                             [
-                                'name' => 'Adezai',
-                                'slug' => 'adezai'
+                                'name' => 'Adezai'
                             ],
                             [
-                                'name' => 'Alpuri',
-                                'slug' => 'alpuri'
+                                'name' => 'Alpuri'
                             ],
                             [
-                                'name' => 'Ayubia',
-                                'slug' => 'ayubia'
+                                'name' => 'Ayubia'
                             ],
                             [
-                                'name' => 'Banda Daud Shah',
-                                'slug' => 'banda-daud-shah'
+                                'name' => 'Banda Daud Shah'
                             ],
                             [
-                                'name' => 'Bannu',
-                                'slug' => 'bannu'
+                                'name' => 'Bannu'
                             ],
                             [
-                                'name' => 'Batkhela',
-                                'slug' => 'batkhela'
+                                'name' => 'Batkhela'
                             ],
                             [
-                                'name' => 'Battagram',
-                                'slug' => 'battagram'
+                                'name' => 'Battagram'
                             ],
                             [
-                                'name' => 'Birote',
-                                'slug' => 'birote'
+                                'name' => 'Birote'
                             ],
                             [
-                                'name' => 'Chakdara',
-                                'slug' => 'chakdara'
+                                'name' => 'Chakdara'
                             ],
                             [
-                                'name' => 'Charsadda',
-                                'slug' => 'charsadda'
+                                'name' => 'Charsadda'
                             ],
                             [
-                                'name' => 'Chitral',
-                                'slug' => 'chitral'
+                                'name' => 'Chitral'
                             ],
                             [
-                                'name' => 'Daggar',
-                                'slug' => 'daggar'
+                                'name' => 'Daggar'
                             ],
                             [
-                                'name' => 'Dargai',
-                                'slug' => 'dargai'
+                                'name' => 'Dargai'
                             ],
                             [
-                                'name' => 'Darya Khan',
-                                'slug' => 'darya-khan'
+                                'name' => 'Darya Khan'
                             ],
                             [
-                                'name' => 'Dera Ismail Khan',
-                                'slug' => 'dera-ismail-khan'
+                                'name' => 'Dera Ismail Khan'
                             ],
                             [
-                                'name' => 'Dir',
-                                'slug' => 'dir'
+                                'name' => 'Dir'
                             ],
                             [
-                                'name' => 'Drosh',
-                                'slug' => 'drosh'
+                                'name' => 'Drosh'
                             ],
                             [
-                                'name' => 'Hangu',
-                                'slug' => 'hangu'
+                                'name' => 'Hangu'
                             ],
                             [
-                                'name' => 'Haripur',
-                                'slug' => 'haripur'
+                                'name' => 'Haripur'
                             ],
                             [
-                                'name' => 'Karak',
-                                'slug' => 'karak'
+                                'name' => 'Karak'
                             ],
                             [
-                                'name' => 'Kohat',
-                                'slug' => 'kohat'
+                                'name' => 'Kohat'
                             ],
                             [
-                                'name' => 'Lakki Marwat',
-                                'slug' => 'lakki-marwat'
+                                'name' => 'Lakki Marwat'
                             ],
                             [
-                                'name' => 'Latamber',
-                                'slug' => 'latamber'
+                                'name' => 'Latamber'
                             ],
                             [
-                                'name' => 'Madyan',
-                                'slug' => 'madyan'
+                                'name' => 'Madyan'
                             ],
                             [
-                                'name' => 'Mansehra',
-                                'slug' => 'mansehra'
+                                'name' => 'Mansehra'
                             ],
                             [
-                                'name' => 'Mardan',
-                                'slug' => 'mardan'
+                                'name' => 'Mardan'
                             ],
                             [
-                                'name' => 'Mastuj',
-                                'slug' => 'mastuj'
+                                'name' => 'Mastuj'
                             ],
                             [
-                                'name' => 'Nowshera',
-                                'slug' => 'nowshera'
+                                'name' => 'Nowshera'
                             ],
                             [
-                                'name' => 'Paharpur',
-                                'slug' => 'paharpur'
+                                'name' => 'Paharpur'
                             ],
                             [
-                                'name' => 'Saidu Sharif',
-                                'slug' => 'saidu-sharif'
+                                'name' => 'Saidu Sharif'
                             ],
                             [
-                                'name' => 'Swabi',
-                                'slug' => 'swabi'
+                                'name' => 'Swabi'
                             ],
                             [
-                                'name' => 'Swat',
-                                'slug' => 'swat'
+                                'name' => 'Swat'
                             ],
                             [
-                                'name' => 'Tangi',
-                                'slug' => 'tangi'
+                                'name' => 'Tangi'
                             ],
                             [
-                                'name' => 'Tank',
-                                'slug' => 'tank'
+                                'name' => 'Tank'
                             ],
                             [
-                                'name' => 'Thall',
-                                'slug' => 'thall'
+                                'name' => 'Thall'
                             ],
                             [
-                                'name' => 'Timergara',
-                                'slug' => 'timergara'
+                                'name' => 'Timergara'
                             ],
                             [
-                                'name' => 'Tordher',
-                                'slug' => 'tordher'
+                                'name' => 'Tordher'
                             ],
                             [
-                                'name' => 'Bajaur Agency',
-                                'slug' => 'bajaur-agency'
+                                'name' => 'Bajaur Agency'
                             ],
                             [
-                                'name' => 'Mohmand Agency',
-                                'slug' => 'mohmand-agency'
+                                'name' => 'Mohmand Agency'
                             ],
                             [
-                                'name' => 'Khyber Agency',
-                                'slug' => 'khyber-agency'
+                                'name' => 'Khyber Agency'
                             ],
                             [
-                                'name' => 'Frontier Region Peshawar',
-                                'slug' => 'frontier-region-peshawar'
+                                'name' => 'Frontier Region Peshawar'
                             ],
                             [
-                                'name' => 'Frontier Region Kohat',
-                                'slug' => 'frontier-region-kohat'
+                                'name' => 'Frontier Region Kohat'
                             ],
                             [
-                                'name' => 'Orakzai Agency',
-                                'slug' => 'orakzai-agency'
+                                'name' => 'Orakzai Agency'
                             ],
                             [
-                                'name' => 'Kurram Agency',
-                                'slug' => 'kurram-agency'
+                                'name' => 'Kurram Agency'
                             ],
                             [
-                                'name' => 'Frontier Region Bannu',
-                                'slug' => 'frontier-region-bannu'
+                                'name' => 'Frontier Region Bannu'
                             ],
                             [
-                                'name' => 'North Waziristan Agency',
-                                'slug' => 'north-waziristan-agency'
+                                'name' => 'North Waziristan Agency'
                             ],
                             [
-                                'name' => 'Frontier Region Lakki Marwat',
-                                'slug' => 'frontier-region-lakki-marwat'
+                                'name' => 'Frontier Region Lakki Marwat'
                             ],
                             [
-                                'name' => 'Frontier Region Tank',
-                                'slug' => 'frontier-region-tank'
+                                'name' => 'Frontier Region Tank'
                             ],
                             [
-                                'name' => 'South Waziristan Agency',
-                                'slug' => 'south-waziristan-agency'
+                                'name' => 'South Waziristan Agency'
                             ],
                             [
-                                'name' => 'Frontier Region Dera Ismail Khan',
-                                'slug' => 'frontier-region-dera-ismail-khan'
+                                'name' => 'Frontier Region Dera Ismail Khan'
                             ],
                             [
-                                'name' => 'Mingora',
-                                'slug' => 'mingora'
+                                'name' => 'Mingora'
                             ],
                             [
-                                'name' => 'Peshawar',
-                                'slug' => 'peshawar'
+                                'name' => 'Peshawar'
                             ],
                         ]
                     ],
                     [
                         'name' => 'Punjab',
-                        'slug' => 'punjab',
                         'cities' => [
                             [
-                                'name' => 'Ahmed Nager Chatha',
-                                'slug' => 'ahmed-nager-chatha'
+                                'name' => 'Ahmed Nager Chatha'
                             ],
                             [
-                                'name' => 'Alipur',
-                                'slug' => 'alipur'
+                                'name' => 'Alipur'
                             ],
                             [
-                                'name' => 'Arifwala',
-                                'slug' => 'arifwala'
+                                'name' => 'Arifwala'
                             ],
                             [
-                                'name' => 'Attock',
-                                'slug' => 'attock'
+                                'name' => 'Attock'
                             ],
                             [
-                                'name' => 'Bhalwal',
-                                'slug' => 'bhalwal'
+                                'name' => 'Bhalwal'
                             ],
                             [
-                                'name' => 'Bahawalpur',
-                                'slug' => 'bahawalpur'
+                                'name' => 'Bahawalpur'
                             ],
                             [
-                                'name' => 'Bhakkar',
-                                'slug' => 'bhakkar'
+                                'name' => 'Bhakkar'
                             ],
                             [
-                                'name' => 'Burewala',
-                                'slug' => 'burewala'
+                                'name' => 'Burewala'
                             ],
                             [
-                                'name' => 'Chillianwala',
-                                'slug' => 'chillianwala'
+                                'name' => 'Chillianwala'
                             ],
                             [
-                                'name' => 'Chakwal',
-                                'slug' => 'chakwal'
+                                'name' => 'Chakwal'
                             ],
                             [
-                                'name' => 'Chiniot',
-                                'slug' => 'chiniot'
+                                'name' => 'Chiniot'
                             ],
                             [
-                                'name' => 'Chishtian',
-                                'slug' => 'chishtian'
+                                'name' => 'Chishtian'
                             ],
                             [
-                                'name' => 'Daska',
-                                'slug' => 'daska'
+                                'name' => 'Daska'
                             ],
                             [
-                                'name' => 'Darya Khan',
-                                'slug' => 'darya-khan'
+                                'name' => 'Darya Khan'
                             ],
                             [
-                                'name' => 'Dera Ghazi Khan',
-                                'slug' => 'dera-ghazi-khan'
+                                'name' => 'Dera Ghazi Khan'
                             ],
                             [
-                                'name' => 'Dhaular',
-                                'slug' => 'dhaular'
+                                'name' => 'Dhaular'
                             ],
                             [
-                                'name' => 'Dina',
-                                'slug' => 'dina'
+                                'name' => 'Dina'
                             ],
                             [
-                                'name' => 'Dinga',
-                                'slug' => 'dinga'
+                                'name' => 'Dinga'
                             ],
                             [
-                                'name' => 'Faisalabad',
-                                'slug' => 'faisalabad'
+                                'name' => 'Faisalabad'
                             ],
                             [
-                                'name' => 'Fateh Jang',
-                                'slug' => 'fateh-jang'
+                                'name' => 'Fateh Jang'
                             ],
                             [
-                                'name' => 'Ghakhar Mandi',
-                                'slug' => 'ghakhar-mandi'
+                                'name' => 'Ghakhar Mandi'
                             ],
                             [
-                                'name' => 'Gojra',
-                                'slug' => 'gojra'
+                                'name' => 'Gojra'
                             ],
                             [
-                                'name' => 'Gujranwala',
-                                'slug' => 'gujranwala'
+                                'name' => 'Gujranwala'
                             ],
                             [
-                                'name' => 'Gujrat',
-                                'slug' => 'gujrat'
+                                'name' => 'Gujrat'
                             ],
                             [
-                                'name' => 'Hafizabad',
-                                'slug' => 'hafizabad'
+                                'name' => 'Hafizabad'
                             ],
                             [
-                                'name' => 'Haroonabad',
-                                'slug' => 'haroonabad'
+                                'name' => 'Haroonabad'
                             ],
                             [
-                                'name' => 'Hasilpur',
-                                'slug' => 'hasilpur'
+                                'name' => 'Hasilpur'
                             ],
                             [
-                                'name' => 'Haveli Lakha',
-                                'slug' => 'haveli-lakha'
+                                'name' => 'Haveli Lakha'
                             ],
                             [
-                                'name' => 'Jampur',
-                                'slug' => 'jampur'
+                                'name' => 'Jampur'
                             ],
                             [
-                                'name' => 'Jaranwala',
-                                'slug' => 'jaranwala'
+                                'name' => 'Jaranwala'
                             ],
                             [
-                                'name' => 'Jhang',
-                                'slug' => 'jhang'
+                                'name' => 'Jhang'
                             ],
                             [
-                                'name' => 'Jhelum',
-                                'slug' => 'jhelum'
+                                'name' => 'Jhelum'
                             ],
                             [
-                                'name' => 'Karor Lal Esan',
-                                'slug' => 'karor-lal-esan'
+                                'name' => 'Karor Lal Esan'
                             ],
                             [
-                                'name' => 'Kasur',
-                                'slug' => 'kasur'
+                                'name' => 'Kasur'
                             ],
                             [
-                                'name' => 'Kāmoke',
-                                'slug' => 'kamoke'
+                                'name' => 'Kāmoke'
                             ],
                             [
-                                'name' => 'Khanewal',
-                                'slug' => 'khanewal'
+                                'name' => 'Khanewal'
                             ],
                             [
-                                'name' => 'Khanpur',
-                                'slug' => 'khanpur'
+                                'name' => 'Khanpur'
                             ],
                             [
-                                'name' => 'Kharian',
-                                'slug' => 'kharian'
+                                'name' => 'Kharian'
                             ],
                             [
-                                'name' => 'Khushab',
-                                'slug' => 'khushab'
+                                'name' => 'Khushab'
                             ],
                             [
-                                'name' => 'Kot Adu',
-                                'slug' => 'kot-adu'
+                                'name' => 'Kot Adu'
                             ],
                             [
                                 'name' => 'Lahore',
-                                'slug' => 'lahore',
                                 'zip_code' => 54000,
                             ],
                             [
-                                'name' => 'Lalamusa',
-                                'slug' => 'lalamusa'
+                                'name' => 'Lalamusa'
                             ],
                             [
-                                'name' => 'Layyah',
-                                'slug' => 'layyah'
+                                'name' => 'Layyah'
                             ],
                             [
-                                'name' => 'Liaquat Pur',
-                                'slug' => 'liaquat-pur'
+                                'name' => 'Liaquat Pur'
                             ],
                             [
-                                'name' => 'Lodhran',
-                                'slug' => 'lodhran'
+                                'name' => 'Lodhran'
                             ],
                             [
-                                'name' => 'Mamoori',
-                                'slug' => 'mamoori'
+                                'name' => 'Mamoori'
                             ],
                             [
-                                'name' => 'Mailsi',
-                                'slug' => 'mailsi'
+                                'name' => 'Mailsi'
                             ],
                             [
-                                'name' => 'Mandi Bahauddin',
-                                'slug' => 'mandi-bahauddin'
+                                'name' => 'Mandi Bahauddin'
                             ],
                             [
-                                'name' => 'Mianwali',
-                                'slug' => 'mianwali'
+                                'name' => 'Mianwali'
                             ],
                             [
-                                'name' => 'Multan',
-                                'slug' => 'multan'
+                                'name' => 'Multan'
                             ],
                             [
-                                'name' => 'Muridke',
-                                'slug' => 'muridke'
+                                'name' => 'Muridke'
                             ],
                             [
-                                'name' => 'Mianwali Bangla',
-                                'slug' => 'mianwali-bangla'
+                                'name' => 'Mianwali Bangla'
                             ],
                             [
-                                'name' => 'Muzaffargarh',
-                                'slug' => 'muzaffargarh'
+                                'name' => 'Muzaffargarh'
                             ],
                             [
-                                'name' => 'Narowal',
-                                'slug' => 'narowal'
+                                'name' => 'Narowal'
                             ],
                             [
-                                'name' => 'Okara',
-                                'slug' => 'okara'
+                                'name' => 'Okara'
                             ],
                             [
-                                'name' => 'Pakpattan',
-                                'slug' => 'pakpattan'
+                                'name' => 'Pakpattan'
                             ],
                             [
-                                'name' => 'Qila Didar Singh',
-                                'slug' => 'qila-didar-singh'
+                                'name' => 'Qila Didar Singh'
                             ],
                             [
-                                'name' => 'Rabwah',
-                                'slug' => 'rabwah'
+                                'name' => 'Rabwah'
                             ],
                             [
-                                'name' => 'Rajanpur',
-                                'slug' => 'rajanpur'
+                                'name' => 'Rajanpur'
                             ],
                             [
-                                'name' => 'Rahim Yar Khan',
-                                'slug' => 'rahim-yar-khan'
+                                'name' => 'Rahim Yar Khan'
                             ],
                             [
-                                'name' => 'Rawalpindi',
-                                'slug' => 'rawalpindi'
+                                'name' => 'Rawalpindi'
                             ],
                             [
-                                'name' => 'Sadiqabad',
-                                'slug' => 'sadiqabad'
+                                'name' => 'Sadiqabad'
                             ],
                             [
-                                'name' => 'Safdarabad',
-                                'slug' => 'safdarabad'
+                                'name' => 'Safdarabad'
                             ],
                             [
-                                'name' => 'Sargodha',
-                                'slug' => 'sargodha'
+                                'name' => 'Sargodha'
                             ],
                             [
-                                'name' => 'Shakargarh',
-                                'slug' => 'shakargarh'
+                                'name' => 'Shakargarh'
                             ],
                             [
-                                'name' => 'Sheikhupura',
-                                'slug' => 'sheikhupura'
+                                'name' => 'Sheikhupura'
                             ],
                             [
-                                'name' => 'Sialkot',
-                                'slug' => 'sialkot'
+                                'name' => 'Sialkot'
                             ],
                             [
-                                'name' => 'Sohawa',
-                                'slug' => 'sohawa'
+                                'name' => 'Sohawa'
                             ],
                             [
-                                'name' => 'Soianwala',
-                                'slug' => 'soianwala'
+                                'name' => 'Soianwala'
                             ],
                             [
-                                'name' => 'Siranwali',
-                                'slug' => 'siranwali'
+                                'name' => 'Siranwali'
                             ],
                             [
-                                'name' => 'Taxila',
-                                'slug' => 'taxila'
+                                'name' => 'Taxila'
                             ],
                             [
-                                'name' => 'Toba Tek Singh',
-                                'slug' => 'toba-tek-singh'
+                                'name' => 'Toba Tek Singh'
                             ],
                             [
-                                'name' => 'Vehari',
-                                'slug' => 'vehari'
+                                'name' => 'Vehari'
                             ],
                             [
-                                'name' => 'Wah Cantonment',
-                                'slug' => 'wah-cantonment'
+                                'name' => 'Wah Cantonment'
                             ],
                             [
-                                'name' => 'Wazirabad',
-                                'slug' => 'wazirabad'
+                                'name' => 'Wazirabad'
                             ],
                             [
-                                'name' => 'Kalabagh',
-                                'slug' => 'kalabagh'
+                                'name' => 'Kalabagh'
                             ],
                             [
-                                'name' => 'Murree',
-                                'slug' => 'murree'
+                                'name' => 'Murree'
                             ],
                             [
-                                'name' => 'Raiwind',
-                                'slug' => 'raiwind'
+                                'name' => 'Raiwind'
                             ],
                             [
-                                'name' => 'Pir Mahal',
-                                'slug' => 'pir-mahal'
+                                'name' => 'Pir Mahal'
                             ],
                             [
-                                'name' => 'Renala Khurd',
-                                'slug' => 'renala-khurd'
+                                'name' => 'Renala Khurd'
                             ],
                             [
-                                'name' => 'Sahiwal',
-                                'slug' => 'sahiwal'
+                                'name' => 'Sahiwal'
                             ],
                             [
-                                'name' => 'Sarai Alamgir',
-                                'slug' => 'sarai-alamgir'
+                                'name' => 'Sarai Alamgir'
                             ],
                             [
-                                'name' => 'Talagang',
-                                'slug' => 'talagang'
+                                'name' => 'Talagang'
                             ],
                             [
-                                'name' => 'Jauharabad',
-                                'slug' => 'jauharabad'
+                                'name' => 'Jauharabad'
                             ],
                             [
-                                'name' => 'Sangla Hill',
-                                'slug' => 'sangla-hill'
+                                'name' => 'Sangla Hill'
                             ],
                             [
-                                'name' => 'Gujar Khan',
-                                'slug' => 'gujar-khan'
+                                'name' => 'Gujar Khan'
                             ],
                             [
-                                'name' => 'Pattoki',
-                                'slug' => 'pattoki'
+                                'name' => 'Pattoki'
                             ],
                             [
-                                'name' => 'Dipalpur',
-                                'slug' => 'dipalpur'
+                                'name' => 'Dipalpur'
                             ],
                             [
-                                'name' => 'Mian Channu',
-                                'slug' => 'mian-channu'
+                                'name' => 'Mian Channu'
                             ],
                             [
-                                'name' => 'Chichawatni',
-                                'slug' => 'chichawatni'
+                                'name' => 'Chichawatni'
                             ],
                             [
-                                'name' => 'Jalalpur Jattan',
-                                'slug' => 'jalalpur-jattan'
+                                'name' => 'Jalalpur Jattan'
                             ],
                             [
-                                'name' => 'Kamalia',
-                                'slug' => 'kamalia'
+                                'name' => 'Kamalia'
                             ],
                             [
-                                'name' => 'Ahmadpur East',
-                                'slug' => 'ahmadpur-east'
+                                'name' => 'Ahmadpur East'
                             ],
                             [
-                                'name' => 'Bahawalnagar',
-                                'slug' => 'bahawalnagar'
+                                'name' => 'Bahawalnagar'
                             ],
                         ]
                     ],
                     [
                         'name' => 'Sindh',
-                        'slug' => 'sindh',
                         'cities' => [
                             [
-                                'name' => 'Badin',
-                                'slug' => 'badin'
+                                'name' => 'Badin'
                             ],
                             [
-                                'name' => 'Bhirkan',
-                                'slug' => 'bhirkan'
+                                'name' => 'Bhirkan'
                             ],
                             [
-                                'name' => 'Chak',
-                                'slug' => 'chak'
+                                'name' => 'Chak'
                             ],
                             [
-                                'name' => 'Dadu',
-                                'slug' => 'dadu'
+                                'name' => 'Dadu'
                             ],
                             [
-                                'name' => 'Dokri',
-                                'slug' => 'dokri'
+                                'name' => 'Dokri'
                             ],
                             [
-                                'name' => 'Ghotki',
-                                'slug' => 'ghotki'
+                                'name' => 'Ghotki'
                             ],
                             [
-                                'name' => 'Haala',
-                                'slug' => 'haala'
+                                'name' => 'Haala'
                             ],
                             [
-                                'name' => 'Hyderabad',
-                                'slug' => 'hyderabad'
+                                'name' => 'Hyderabad'
                             ],
                             [
-                                'name' => 'Jacobabad',
-                                'slug' => 'jacobabad'
+                                'name' => 'Jacobabad'
                             ],
                             [
-                                'name' => 'Jamshoro',
-                                'slug' => 'jamshoro'
+                                'name' => 'Jamshoro'
                             ],
                             [
-                                'name' => 'Jungshahi',
-                                'slug' => 'jungshahi'
+                                'name' => 'Jungshahi'
                             ],
                             [
-                                'name' => 'Kandhkot',
-                                'slug' => 'kandhkot'
+                                'name' => 'Kandhkot'
                             ],
                             [
-                                'name' => 'Khairpur',
-                                'slug' => 'khairpur'
+                                'name' => 'Khairpur'
                             ],
                             [
-                                'name' => 'Kotri',
-                                'slug' => 'kotri'
+                                'name' => 'Kotri'
                             ],
                             [
-                                'name' => 'Larkana',
-                                'slug' => 'larkana'
+                                'name' => 'Larkana'
                             ],
                             [
-                                'name' => 'Matiari',
-                                'slug' => 'matiari'
+                                'name' => 'Matiari'
                             ],
                             [
-                                'name' => 'Mehar',
-                                'slug' => 'mehar'
+                                'name' => 'Mehar'
                             ],
                             [
-                                'name' => 'Mirpur Khas',
-                                'slug' => 'mirpur-khas'
+                                'name' => 'Mirpur Khas'
                             ],
                             [
-                                'name' => 'Mithani',
-                                'slug' => 'mithani'
+                                'name' => 'Mithani'
                             ],
                             [
-                                'name' => 'Mithi',
-                                'slug' => 'mithi'
+                                'name' => 'Mithi'
                             ],
                             [
-                                'name' => 'Mehrabpur',
-                                'slug' => 'mehrabpur'
+                                'name' => 'Mehrabpur'
                             ],
                             [
-                                'name' => 'Nagarparkar',
-                                'slug' => 'nagarparkar'
+                                'name' => 'Nagarparkar'
                             ],
                             [
-                                'name' => 'Naushahro Feroze',
-                                'slug' => 'naushahro-feroze'
+                                'name' => 'Naushahro Feroze'
                             ],
                             [
-                                'name' => 'Naushara',
-                                'slug' => 'naushara'
+                                'name' => 'Naushara'
                             ],
                             [
-                                'name' => 'Nawabshah',
-                                'slug' => 'nawabshah'
+                                'name' => 'Nawabshah'
                             ],
                             [
-                                'name' => 'Nazimabad',
-                                'slug' => 'nazimabad'
+                                'name' => 'Nazimabad'
                             ],
                             [
-                                'name' => 'Ranipur',
-                                'slug' => 'ranipur'
+                                'name' => 'Ranipur'
                             ],
                             [
-                                'name' => 'Sanghar',
-                                'slug' => 'sanghar'
+                                'name' => 'Sanghar'
                             ],
                             [
-                                'name' => 'Shahbandar',
-                                'slug' => 'shahbandar'
+                                'name' => 'Shahbandar'
                             ],
                             [
-                                'name' => 'Shahdadkot',
-                                'slug' => 'shahdadkot'
+                                'name' => 'Shahdadkot'
                             ],
                             [
-                                'name' => 'Shikarpaur',
-                                'slug' => 'shikarpaur'
+                                'name' => 'Shikarpaur'
                             ],
                             [
-                                'name' => 'Sukkur',
-                                'slug' => 'sukkur'
+                                'name' => 'Sukkur'
                             ],
                             [
-                                'name' => 'Tando Adam Khan',
-                                'slug' => 'tando-adam-khan'
+                                'name' => 'Tando Adam Khan'
                             ],
                             [
-                                'name' => 'Tando Allahyar',
-                                'slug' => 'tando-allahyar'
+                                'name' => 'Tando Allahyar'
                             ],
                             [
-                                'name' => 'Tando Muhammad Khan',
-                                'slug' => 'tando-muhammad-khan'
+                                'name' => 'Tando Muhammad Khan'
                             ],
                             [
-                                'name' => 'Thatta',
-                                'slug' => 'thatta'
+                                'name' => 'Thatta'
                             ],
                             [
-                                'name' => 'Qasimabad',
-                                'slug' => 'qasimabad'
+                                'name' => 'Qasimabad'
                             ],
                             [
-                                'name' => 'Umerkot',
-                                'slug' => 'umerkot'
+                                'name' => 'Umerkot'
                             ],
                             [
-                                'name' => 'Warah',
-                                'slug' => 'warah'
+                                'name' => 'Warah'
                             ],
                             [
-                                'name' => 'Keti Bandar',
-                                'slug' => 'keti-bandar'
+                                'name' => 'Keti Bandar'
                             ],
                             [
-                                'name' => 'Rajo Khanani',
-                                'slug' => 'rajo-khanani'
+                                'name' => 'Rajo Khanani'
                             ],
                             [
-                                'name' => 'Diplo',
-                                'slug' => 'diplo'
+                                'name' => 'Diplo'
                             ],
                             [
-                                'name' => 'Islamkot',
-                                'slug' => 'islamkot'
+                                'name' => 'Islamkot'
                             ],
                             [
-                                'name' => 'Shahpur Chakar',
-                                'slug' => 'shahpur-chakar'
+                                'name' => 'Shahpur Chakar'
                             ],
                             [
-                                'name' => 'Kandiaro',
-                                'slug' => 'kandiaro'
+                                'name' => 'Kandiaro'
                             ],
                             [
-                                'name' => 'Sakrand',
-                                'slug' => 'sakrand'
+                                'name' => 'Sakrand'
                             ],
                             [
-                                'name' => 'Digri',
-                                'slug' => 'digri'
+                                'name' => 'Digri'
                             ],
                             [
-                                'name' => 'Naudero',
-                                'slug' => 'naudero'
+                                'name' => 'Naudero'
                             ],
                             [
-                                'name' => 'Kashmore',
-                                'slug' => 'kashmore'
+                                'name' => 'Kashmore'
                             ],
                             [
-                                'name' => 'Ratodero',
-                                'slug' => 'ratodero'
+                                'name' => 'Ratodero'
                             ],
                             [
-                                'name' => 'Rohri',
-                                'slug' => 'rohri'
+                                'name' => 'Rohri'
                             ],
                             [
-                                'name' => 'Shahdadpur',
-                                'slug' => 'shahdadpur'
+                                'name' => 'Shahdadpur'
                             ],
                             [
-                                'name' => 'Moro',
-                                'slug' => 'moro'
+                                'name' => 'Moro'
                             ],
                             [
-                                'name' => 'Karachi',
-                                'slug' => 'karachi'
+                                'name' => 'Karachi'
                             ]
                         ]
                     ],
@@ -1051,7 +799,7 @@ class CountryStateCitySeeder extends Seeder
 
             $newcountry = new Country([
                 'name' => $country['name'],
-                'slug' => $country['slug'],
+                'slug' => Str::slug($country['name']),
                 'code' => $country['code'],
                 'phone_code' => $country['phone_code'],
             ]);
@@ -1059,8 +807,11 @@ class CountryStateCitySeeder extends Seeder
             $newcountry->save();
 
             foreach ($country['states'] as $state) {
-                $newstate = $newcountry->states()->save(new State(['name' => $state['name'], 'slug' => $state['slug']]));
-                $newstate->cities()->createMany($state['cities']);
+                $newstate = $newcountry->states()->save(new State(['name' => $state['name'], 'slug' => Str::slug($state['name'])]));
+
+                foreach ($state['cities'] as $city) {
+                    $newstate->cities()->save(new City(['name' => $city['name'], 'slug' => Str::slug($city['name']), 'state_id' => $newstate->id]));
+                }
             }
         }
     }

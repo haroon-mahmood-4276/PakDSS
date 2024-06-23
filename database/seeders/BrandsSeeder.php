@@ -21,51 +21,41 @@ class BrandsSeeder extends Seeder
         $data = [
             [
                 'name' => 'Dell',
-                'slug' => Str::slug('Dell'),
             ],
             [
                 'name' => 'HP',
-                'slug' => Str::slug('HP'),
             ],
             [
                 'name' => 'Intel',
-                'slug' => Str::slug('Intel'),
             ],
             [
                 'name' => 'Huawei',
-                'slug' => Str::slug('Huawei'),
             ],
             [
                 'name' => 'Apple',
-                'slug' => Str::slug('Apple'),
             ],
             [
                 'name' => 'Nokia',
-                'slug' => Str::slug('Nokia'),
             ],
             [
                 'name' => 'Brighto Paints',
-                'slug' => Str::slug('Brighto Paints'),
             ],
             [
                 'name' => 'Dalda',
-                'slug' => Str::slug('Dalda'),
             ],
             [
                 'name' => 'Dawlance',
-                'slug' => Str::slug('Dawlance'),
             ],
             [
                 'name' => 'Omoré',
-                'slug' => Str::slug('Omoré'),
             ],
             [
                 'name' => 'Pakola',
-                'slug' => Str::slug('Pakola'),
             ],
         ];
 
         foreach ($data as $key => $value) {
+            $value['slug'] = Str::slug($value['name']);
             Brand::create($value);
         }
     }

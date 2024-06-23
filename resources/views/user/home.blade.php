@@ -217,13 +217,11 @@
     <section class="">
         <div class="container-xxl flex-grow-1">
             @forelse ($categories_products as $catrgory_name => $product_chunks)
-                @continue($loop->index > 3)
                 <div class="row mb-5">
                     <div class="col-12">
                         <div class="d-flex align-items-center border-bottom mb-3">
                             <div class="flex-grow-1">
                                 <div class="d-flex align-items-center">
-                                    <h4 class="m-0"><i class="fa-solid fa-star"></i>&nbsp;</h4>
                                     <h1 class="m-0">{{ Str::of($catrgory_name)->title() }}</h1>
                                 </div>
                             </div>

@@ -25,14 +25,17 @@ return Application::configure(basePath: dirname(__DIR__))
             // User & Ajax Routes
             Route::middleware('web')
                 ->name('user.')
-                ->group(base_path('routes/user/web.php'));
+                ->group([
+                    base_path('routes/user/ajax.php'),
+                    base_path('routes/user/web.php'),
+                ]);
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectGuestsTo(fn (Request $request) => match ($request->segment(1)) {
             'admin' => route('admin.login.view'),
             'seller' => route('seller.login.view'),
-            default => route('user.login.view'),
+            default => route('user.login'),
         })->redirectUsersTo(function () {
             foreach (array_keys(config('auth.guards')) as $guard) {
                 if (Auth::guard($guard)->check()) {

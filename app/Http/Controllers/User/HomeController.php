@@ -3,30 +3,21 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Services\Shared\Brands\BrandInterface;
 use App\Services\Shared\Categories\CategoryInterface;
-use App\Services\Shared\Tags\TagInterface;
 use App\Services\Products\ProductInterface;
 use App\Utils\Enums\Status;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //     private BrandInterface $brandInterface;
-
     private CategoryInterface $categoryInterface;
-
     private ProductInterface $productInterface;
 
-    //     private TagInterface $tagInterface;
 
-
-    public function __construct(BrandInterface $brandInterface, CategoryInterface $categoryInterface, ProductInterface $productInterface, TagInterface $tagInterface)
+    public function __construct(CategoryInterface $categoryInterface, ProductInterface $productInterface)
     {
-        // $this->brandInterface = $brandInterface;
         $this->categoryInterface = $categoryInterface;
         $this->productInterface = $productInterface;
-        // $this->tagInterface = $tagInterface;
     }
 
     public function index(Request $request)
@@ -36,6 +27,10 @@ class HomeController extends Controller
         $data = [
             'categories_products' => $this->productInterface->getAllByParentCategory($this->categoryInterface->getParents(), ['brand'], 6)
         ];
+
+        $data['categories_products'] = collect($data['categories_products'])->map(function ($category) {
+            return count($category) > 0 ? $category : null;
+        })->filter();
 
         return view('user.home', $data);
     }

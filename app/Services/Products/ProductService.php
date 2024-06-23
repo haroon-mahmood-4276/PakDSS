@@ -50,11 +50,7 @@ class ProductService implements ProductInterface
         foreach ($categories as $key => $category) {
             $products[$category->slug] = $this->model()->whereHas('categories', function ($query) use ($category) {
                 $query->whereIn('category_id', collect(getLinkedTreeData(new Category(), [$category->id]))->pluck('id')->toArray());
-            })->when($relationships, function ($query, $relationships) {
-                return $query->with($relationships);
-            })
-                ->where('status', Status::ACTIVE)
-                ->get();
+            })->when($relationships, fn ($query, $relationships) => $query->with($relationships))->where('status', Status::ACTIVE)->get();
 
             if ($chunk_size > 0) {
                 $products[$category->slug] = $products[$category->slug]->chunk($chunk_size);
