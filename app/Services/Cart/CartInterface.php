@@ -12,5 +12,5 @@ interface CartInterface
 
     public function update($cart_id, $quantity);
 
-    // public function destroy($inputs);
+    public function destroy($cart_id);
 }

@@ -36,7 +36,7 @@ class UpdateExchangeRate extends Command
             $USDToPKR = $response['rates']['PKR'];
             $GBPToPKR = (1 / floatval($response['rates']['GBP'])) * floatval($response['rates']['PKR']);
 
-            settings_update(['one_dollar_rate', 'one_pound_rate'], [number_format($USDToPKR, 2), number_format($GBPToPKR, 2)]);
+            settingsUpdate(['one_dollar_rate', 'one_pound_rate'], [number_format($USDToPKR, 2), number_format($GBPToPKR, 2)]);
         }
     }
 }

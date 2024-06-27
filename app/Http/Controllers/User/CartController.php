@@ -20,9 +20,7 @@ class CartController extends Controller
     public function index(Request $request)
     {
         abort_if(request()->ajax(), 403);
-
-        $cartItems = $this->cartInterface->get(auth()->id(), relationships: ['product', 'product.brand']);
-        return view('user.cart.index', ['cartItems' => $cartItems]);
+        return view('user.cart.index');
     }
 
     public function store(Request $request)

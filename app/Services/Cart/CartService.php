@@ -74,4 +74,10 @@ class CartService implements CartInterface
             
         });
     }
+    public function destroy($cart_id)
+    {
+        return DB::transaction(function () use ($cart_id) {
+            return $this->find($cart_id)->delete();
+        });
+    }
 }

@@ -22,8 +22,8 @@ if (!function_exists('settings')) {
     }
 }
 
-if (!function_exists('settings_update')) {
-    function settings_update(array|string $keys, array|string $values)
+if (!function_exists('settingsUpdate')) {
+    function settingsUpdate(array|string $keys, array|string $values)
     {
         if (is_array($keys) && is_array($values)) {
             $settings = array_combine($keys, $values);

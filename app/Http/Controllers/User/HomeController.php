@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Services\Categories\CategoryInterface;
 use App\Services\Products\ProductInterface;
-use App\Utils\Enums\Status;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

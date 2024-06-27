@@ -256,7 +256,7 @@
                                                             <div class="p-3">
                                                                 <img class="card-img-top img-fluid"
                                                                     src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                                    alt="Card girl image" width="140">
+                                                                    alt="Card girl" width="140">
                                                             </div>
                                                         </div>
                                                         <div class="card-body px-3 pt-1 pb-3 d-flex flex-column">

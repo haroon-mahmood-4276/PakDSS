@@ -16,61 +16,61 @@
 @endsection
 
 @section('content')
+    @php
+
+    @endphp
+
     <section class="bg-white">
         <div class="container-xxl flex-grow-1 container-p-y" style="min-height: 450px;">
             <div class="row">
                 <!-- Address left -->
-                <div class="col-xl-8 mb-6 mb-xl-0">
+                <div class="col-xl-8 mb-3 mb-xl-0">
 
                     <!-- Select address -->
                     <p class="fw-medium text-heading">Select your preferable address</p>
-                    <div class="row mb-6 g-6">
-                        <div class="col-md">
-                            <div class="form-check custom-option custom-option-basic checked">
-                                <label class="form-check-label custom-option-content" for="customRadioAddress1">
-                                    <input name="customRadioTemp" class="form-check-input" type="radio" value=""
-                                        id="customRadioAddress1" checked="">
-                                    <span class="custom-option-header mb-2">
-                                        <span class="fw-medium text-heading mb-0">John Doe (Default)</span>
-                                        <span class="badge bg-label-primary">Home</span>
-                                    </span>
-                                    <span class="custom-option-body">
-                                        <small>4135 Parkway Street, Los Angeles, CA, 90017.<br> Mobile : 1234567890 Card /
-                                            Cash on
-                                            delivery available</small>
-                                        <span class="my-3 border-bottom d-block"></span>
-                                        <span class="d-flex">
-                                            <a class="me-4" href="javascript:void(0)">Edit</a> <a
-                                                href="javascript:void(0)">Remove</a>
+                    <div class="row mb-3 g-3">
+
+                        @forelse ($addresses as $address)
+                            <div class="col-xl-6">
+                                <div
+                                    class="form-check custom-option custom-option-basic {{ $address->default_delivery_address ? 'checked' : '' }}">
+                                    <label class="form-check-label custom-option-content" for="address_{{ $address->id }}">
+
+                                        <input name="shpping[address]" type="hidden" value="0">
+                                        <input name="shpping[address]" class="form-check-input" type="radio"
+                                            value="1" id="address_{{ $address->id }}"
+                                            {{ $address->default_delivery_address ? 'checked' : '' }}>
+
+                                        <span class="custom-option-header mb-2">
+                                            <span class="fw-medium text-heading mb-0">{{ $address->name }}
+                                                {{ $address->default_delivery_address ? '(Default)' : '' }}</span>
+                                            <span
+                                                class="badge {{ $address->address_type === 'office' ? 'bg-label-success' : 'bg-label-primary' }}">{{ ucfirst($address->address_type) }}</span>
                                         </span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-check custom-option custom-option-basic">
-                                <label class="form-check-label custom-option-content" for="customRadioAddress2">
-                                    <input name="customRadioTemp" class="form-check-input" type="radio" value=""
-                                        id="customRadioAddress2">
-                                    <span class="custom-option-header mb-2">
-                                        <span class="fw-medium text-heading mb-0">ACME Inc.</span>
-                                        <span class="badge bg-label-success">Office</span>
-                                    </span>
-                                    <span class="custom-option-body">
-                                        <small>87 Hoffman Avenue, New York, NY, 10016.<br>Mobile : 1234567890 Card / Cash on
-                                            delivery available</small>
-                                        <span class="my-3 border-bottom d-block"></span>
-                                        <span class="d-flex">
-                                            <a class="me-4" href="javascript:void(0)">Edit</a> <a
-                                                href="javascript:void(0)">Remove</a>
+
+                                        <span class="custom-option-body">
+                                            <small>{{ $address->address_1 }}, {{ $address->address_2 }}</small>
+                                            <br>
+                                            <small>Mobile: {{ $address->mobile_no }}</small>
+                                            {{-- <span class="my-3 border-bottom d-block"></span>
+                                            <span class="d-flex">
+                                                <a class="me-4" href="javascript:void(0)">Edit</a> <a
+                                                    href="javascript:void(0)">Remove</a>
+                                            </span> --}}
                                         </span>
-                                    </span>
-                                </label>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
+                        @empty
+                            <div class="col-12">
+                                <div class="w-100 h-100 p-3 rounded">
+                                    <h3>No address found! 😔</h3>
+                                </div>
+                            </div>
+                        @endforelse
                     </div>
-                    <button type="button" class="btn btn-label-primary mb-6 waves-effect" data-bs-toggle="modal"
-                        data-bs-target="#addNewAddress">Add new address</button>
+                    {{-- <button type="button" class="btn btn-label-primary mb-5 waves-effect" data-bs-toggle="modal"
+                        data-bs-target="#addNewAddress">Add new address</button> --}}
 
                     <!-- Choose Delivery -->
                     <p class="fw-medium text-heading">Choose Delivery Speed</p>
@@ -122,14 +122,14 @@
 
                 <!-- Address right -->
                 <div class="col-xl-4">
-                    <div class="border rounded p-6 mb-4">
+                    <div class="border rounded p-3 mb-4">
 
                         <!-- Estimated Delivery -->
                         <h6>Estimated Delivery Date</h6>
                         <ul class="list-unstyled">
                             <li class="d-flex gap-4 align-items-center py-2 mb-4">
                                 <div class="flex-shrink-0">
-                                    <img src="../../assets/img/products/1.png" alt="google home" class="w-px-50">
+                                    <img src="{{ asset('admin-assets') }}/img/products/1.png" alt="google home" class="w-px-50">
                                 </div>
                                 <div class="flex-grow-1">
                                     <p class="mb-0"><a class="text-body" href="javascript:void(0)">Google - Google Home
@@ -140,7 +140,7 @@
                             </li>
                             <li class="d-flex gap-4 align-items-center py-2">
                                 <div class="flex-shrink-0">
-                                    <img src="../../assets/img/products/2.png" alt="google home" class="w-px-50">
+                                    <img src="{{ asset('admin-assets') }}/img/products/2.png" alt="google home" class="w-px-50">
                                 </div>
                                 <div class="flex-grow-1">
                                     <p class="mb-0"><a class="text-body" href="javascript:void(0)">Apple iPhone 11
@@ -151,24 +151,24 @@
                             </li>
                         </ul>
 
-                        <hr class="mx-n6 my-6">
+                        <hr class="mx-n6 my-3">
 
                         <!-- Price Details -->
                         <h6>Price Details</h6>
                         <dl class="row mb-0 text-heading">
 
-                            <dt class="col-6 fw-normal">Order Total</dt>
-                            <dd class="col-6 text-end">$1198.00</dd>
+                            <dt class="col-3 fw-normal">Order Total</dt>
+                            <dd class="col-3 text-end">$1198.00</dd>
 
-                            <dt class="col-6 fw-normal">Delivery Charges</dt>
-                            <dd class="col-6 text-end"><s class="text-muted">$5.00</s> <span
+                            <dt class="col-3 fw-normal">Delivery Charges</dt>
+                            <dd class="col-3 text-end"><s class="text-muted">$5.00</s> <span
                                     class="badge bg-label-success ms-2">Free</span></dd>
 
                         </dl>
-                        <hr class="mx-n6 my-6">
+                        <hr class="mx-n6 my-3">
                         <dl class="row mb-0">
-                            <dt class="col-6 text-heading">Total</dt>
-                            <dd class="col-6 fw-medium text-end text-heading mb-0">$1198.00</dd>
+                            <dt class="col-3 text-heading">Total</dt>
+                            <dd class="col-3 fw-medium text-end text-heading mb-0">$1198.00</dd>
                         </dl>
                     </div>
                     <div class="d-grid">

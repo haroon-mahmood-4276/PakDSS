@@ -17,6 +17,9 @@ class OrderController extends Controller
     
     public function selectShippingAddress(Request $request)
     {
-        return view('user.order.shipping.addresses.index');
+        $data = [
+            'addresses' => $this->addressInterface->get()
+        ];
+        return view('user.order.shipping.addresses.index', $data);
     }
 }
