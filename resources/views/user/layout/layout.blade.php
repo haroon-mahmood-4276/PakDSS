@@ -150,7 +150,7 @@
 
                 <div class="content-wrapper">
 
-                    @include('user.layout.topbar')
+                    {{-- @include('user.layout.topbar') --}}
                     {{--                     
                     <div style="margin-top: 55px">
                         @yield('breadcrumbs')

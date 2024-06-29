@@ -12,14 +12,16 @@ class Index extends Component
     public $cartItems;
 
     // States
-    public $activeCartItems;
-
     public $cartTotal = 0;
 
-    #[On('refreshCart')]
-    public function refreshCartItems($cartActiveItem) {
-        dd($cartActiveItem);
-    }
+    protected $listeners = [
+        'deleteItemFromCartEvent' => '$refresh'
+    ];
+
+    // #[On('refreshCartListEvent')]
+    // public function refreshCartListHandler($cartActiveItem) {
+    //     dd($cartActiveItem);
+    // }
 
     public function mount(CartInterface $cartInterface) {
         $this->cartItems = $cartInterface->get(auth()->id(), relationships: ['product', 'product.brand']);

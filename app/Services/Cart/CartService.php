@@ -40,6 +40,12 @@ class CartService implements CartInterface
     {
         return DB::transaction(function () use ($user_id, $inputs) {
 
+            // Check if product is already in the cart
+            $cartItem = $this->model()->where('user_id', $user_id)->where('product_id', $inputs['referance'])->first();
+            if ($cartItem) {
+                return $this->update($cartItem->id, $cartItem->quantity + $inputs['product_quantity']);
+            }
+            
             $product = $this->productInterface->find($inputs['referance'], only: ['price', 'discounted_price']);
 
             $data = [
@@ -71,7 +77,6 @@ class CartService implements CartInterface
             $data['total_price'] = floatval($data['price'] * $data['quantity']);
 
             return $cart_item->update($data);
-            
         });
     }
     public function destroy($cart_id)

@@ -40,28 +40,20 @@ class Item extends Component
     public function calculate()
     {
         $this->totalPrice = $this->quantity * $this->unitPrice;
-        if ($this->isSelected) {
-            $this->dispatchRefreshCartEvent();
-        }
+        // if ($this->isSelected) {
+        //     $this->dispatchEvent();
+        // }
     }
 
     public function deleteItemFromCart(CartInterface $cartInterface, $cart_id)
     {
         $cartInterface->destroy($cart_id);
-        if ($this->isSelected) {
-            $this->dispatchRefreshCartEvent();
-        }
+        $this->dispatchEvent('deleteItemFromCart');
     }
 
-    public function dispatchRefreshCartEvent()
+    public function dispatchEvent(string $event, $data = [])
     {
-        $this->dispatch('refreshCart', [
-            'cart_id' => $this->cartItem->id,
-            'isSelected' => $this->isSelected,
-            'quantity' => $this->quantity,
-            'unitPrice' => $this->unitPrice,
-            'totalPrice' => $this->totalPrice,
-        ]);
+        $this->dispatch($event . 'Event', $data);
     }
 }
 

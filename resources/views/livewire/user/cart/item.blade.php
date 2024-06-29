@@ -25,7 +25,7 @@
                         </div>
                         <div>
                             <label for="">Quantity</label>
-                            <input type="number" wire:model.blur="quantity" wire:change="calculate"
+                            <input type="number" wire:model.blur="quantity" wire:blur="calculate"
                                 class="form-control form-control-sm w-px-100 my-2"
                                 name="cart[{{ $cartItem->id }}][quantity]" min="1" max="10"
                                 value="{{ $quantity }}">
