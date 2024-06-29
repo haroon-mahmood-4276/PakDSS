@@ -16,6 +16,38 @@ class Item extends Component
     public float $unitPrice;
     public float $totalPrice;
 
+    public function updated(CartInterface $cartInterface, $name, $value)
+    {
+        if ($name == 'isSelected') {
+            $this->dispatchEvent($this->isSelected ? 'addOrUpdateItemFromCheckoutBag' : 'deleteItemFromCheckoutBag', $this->cartItem->toArray());
+        }
+
+        $this->totalPrice = $this->quantity * $this->unitPrice;
+        $this->cartItem->quantity = $this->quantity;
+        $this->cartItem->price = $this->unitPrice;
+        $this->cartItem->total_price = $this->totalPrice;
+
+        if ($name == 'quantity') {
+            $cartInterface->update($this->cartItem->id, $this->quantity);
+            if ($this->isSelected) {
+                $this->dispatchEvent('addOrUpdateItemFromCheckoutBag', $this->cartItem->toArray());
+            }
+        }
+    }
+
+    public function deleteItemFromCart(CartInterface $cartInterface, $cart_id)
+    {
+        $cartInterface->destroy($cart_id);
+        $this->dispatchEvent('deleteItemFromCart');
+        if ($this->isSelected) {
+            $this->dispatchEvent('deleteItemFromCheckoutBag', $this->cartItem->toArray());
+        }
+    }
+
+    public function dispatchEvent(string $event, $data = [])
+    {
+        $this->dispatch($event . 'Event', $data);
+    }
 
     public function mount()
     {
@@ -28,32 +60,6 @@ class Item extends Component
     public function render()
     {
         return view('livewire.user.cart.item');
-    }
-
-    public function updated(CartInterface $cartInterface, $name, $value)
-    {
-        if ($name == 'quantity') {
-            $cartInterface->update($this->cartItem->id, $this->quantity);
-        }
-    }
-
-    public function calculate()
-    {
-        $this->totalPrice = $this->quantity * $this->unitPrice;
-        // if ($this->isSelected) {
-        //     $this->dispatchEvent();
-        // }
-    }
-
-    public function deleteItemFromCart(CartInterface $cartInterface, $cart_id)
-    {
-        $cartInterface->destroy($cart_id);
-        $this->dispatchEvent('deleteItemFromCart');
-    }
-
-    public function dispatchEvent(string $event, $data = [])
-    {
-        $this->dispatch($event . 'Event', $data);
     }
 }
 

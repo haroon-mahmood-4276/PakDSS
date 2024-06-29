@@ -1,27 +1,33 @@
 <section class="bg-white">
     <div class="container-xxl flex-grow-1 container-p-y" style="min-height: 450px;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="m-0">My Shopping Bag ({{ count($cartItems) }}
+                Item{{ count($cartItems) > 1 ? 's' : '' }})</h5>
+        </div>
         <div class="row">
-            <div class="{{ count($cartItems) > 0 ? 'col-xl-8' : 'col-xl-12' }}">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="m-0">My Shopping Bag ({{ count($cartItems) }}
-                        Item{{ count($cartItems) > 1 ? 's' : '' }})</h5>
-                </div>
-                <form action="{{ route('user.cart.update') }}" method="post" id="form-cart">
-                    @csrf
-                    @method('PUT')
+            <div class="{{ count($cartItems) > 0 ? 'col-xl-8' : 'col-xl-12' }} overflow-scroll"
+                style="max-height: 1000px">
+                <div>
+                    <form action="{{ route('user.checkout.shipping') }}" method="post" id="form-cart">
+                        @csrf
 
-                    <div class="row flex-column gap-2">
-                        @forelse ($cartItems as $cartItem)
-                            <livewire:user.cart.item :key="$cartItem->id" :$cartItem />
-                        @empty
-                            <div class="col-12">
-                                <div class="d-flex justify-content-center align-items-center p-3">
-                                    <h3 class="m-0 p-0P">The bag is empty! 😔</h3>
+                        @foreach ($checkoutBag as $bagItem)
+                            <input type="hidden" name="bag[]" value="{{ $bagItem['id'] }}">
+                        @endforeach
+
+                        <div class="row flex-column gap-2">
+                            @forelse ($cartItems as $cartItem)
+                                <livewire:user.cart.item :key="$cartItem->id" :$cartItem />
+                            @empty
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-center align-items-center p-3">
+                                        <h3 class="m-0 p-0P">The bag is empty! 😔</h3>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforelse
-                    </div>
-                </form>
+                            @endforelse
+                        </div>
+                    </form>
+                </div>
             </div>
             @if (count($cartItems) > 0)
                 <div class="col-xl-4">
@@ -53,30 +59,36 @@
                         <h6>Price Details</h6>
                         <dl class="row mb-0 text-heading">
                             <dt class="col-6 fw-normal">Bag Total</dt>
-                            <dd class="col-6 text-end">$1198.00</dd>
-
-                            <dt class="col-6 fw-normal">Coupon Discount</dt>
-                            <dd class="col-6 text-end"><a href="javascript:void(0)">Apply Coupon</a></dd>
-
-                            <dt class="col-6 fw-normal">Order Total</dt>
-                            <dd class="col-6 text-end">$1198.00</dd>
+                            <dd class="col-6 text-end">{{ currencyParser($checkoutBagTotal, symbol: 'Rs.') }}</dd>
 
                             <dt class="col-6 fw-normal">Delivery Charges</dt>
-                            <dd class="col-6 text-end"><s class="text-muted">$5.00</s> <span
-                                    class="badge bg-label-success ms-1">Free</span></dd>
+                            <dd class="col-6 text-end">
+                                {{-- <s class="text-muted">{{ currencyParser($deliveryCharges, symbol: 'Rs.') }}</s> --}}
+                                <span class="badge bg-label-success ms-1">Free</span>
+                            </dd>
                         </dl>
 
                         <hr class="mx-n6 my-6">
                         <dl class="row mb-0">
                             <dt class="col-6 text-heading">Total</dt>
-                            <dd class="col-6 fw-medium text-end text-heading mb-0">$1198.00</dd>
+                            <dd class="col-6 fw-medium text-end text-heading mb-0">
+                                {{ currencyParser($checkoutBagTotal, symbol: 'Rs.') }}</dd>
                         </dl>
                     </div>
                     <div class="d-grid">
-                        <button class="btn btn-primary btn-next waves-effect waves-light">Place Order</button>
+                        <button class="btn btn-primary btn-next waves-effect waves-light" id="btn-place-order"
+                            {{ count($checkoutBag) ? '' : 'disabled' }}>{{ count($checkoutBag) ? 'Place Order (' . count($checkoutBag) . ')' : 'Place Order' }}</button>
                     </div>
                 </div>
             @endif
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        $('#btn-place-order').on('click', function() {
+            $('#form-cart').submit();
+        });
+    });
+</script>

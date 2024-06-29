@@ -50,6 +50,7 @@
 
     <script src="{{ asset('admin-assets') }}/vendor/js/template-customizer.js"></script>
     <script src="{{ asset('admin-assets') }}/js/config.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/jquery/jquery.js"></script>
     <style>
         .landing-footer .footer-link {
             transition: all .2s ease-in-out
@@ -175,7 +176,6 @@
 
     <div class="drag-target"></div>
 
-    <script src="{{ asset('admin-assets') }}/vendor/libs/jquery/jquery.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/popper/popper.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/js/bootstrap.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/block-ui/block-ui.js"></script>

@@ -660,11 +660,12 @@ if (!function_exists('getImageUrlByCollection')) {
 }
 
 if (!function_exists('currencyParser')) {
-    function currencyParser($amount, $decimals = 0, $symbol = '$')
+    function currencyParser($amount, $decimals = 2, $symbol = '$')
     {
         $amount = floatval($amount);
-        if ($amount < 1)
-            return 0;
+        if ($amount < 1) {
+            $amount = 0;
+        }
 
         return $symbol . ' ' . number_format($amount, $decimals);
     }

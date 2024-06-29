@@ -17,6 +17,7 @@ class OrderController extends Controller
     
     public function selectShippingAddress(Request $request)
     {
+        dd($request->input());
         $data = [
             'addresses' => $this->addressInterface->get()
         ];

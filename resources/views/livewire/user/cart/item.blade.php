@@ -1,10 +1,8 @@
 <div class="col-12">
-
     <div class="d-flex border p-3 rounded gap-3 {{ $isSelected ? 'border-primary' : '' }}">
         <div>
             <input class="form-check-input" type="checkbox" wire:model.live="isSelected" value="1"
-                id="cart-product-{{ $cartItem->product_id }}"
-                wire:change="dispatchRefreshCartEvent()">
+                id="cart-product-{{ $cartItem->product_id }}">
         </div>
         <div class="d-flex gap-3 w-100">
             <div class="flex-shrink-0 d-flex align-items-center">
@@ -25,10 +23,8 @@
                         </div>
                         <div>
                             <label for="">Quantity</label>
-                            <input type="number" wire:model.blur="quantity" wire:blur="calculate"
-                                class="form-control form-control-sm w-px-100 my-2"
-                                name="cart[{{ $cartItem->id }}][quantity]" min="1" max="10"
-                                value="{{ $quantity }}">
+                            <input type="number" wire:model.blur="quantity" value="{{ $quantity }}"
+                                class="form-control form-control-sm w-px-100 my-2" min="1" max="10">
                         </div>
                         <h5 class="m-0">
                             <span class="text-primary">
