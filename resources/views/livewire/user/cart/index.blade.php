@@ -17,7 +17,7 @@
 
                         <div class="row flex-column gap-2">
                             @forelse ($cartItems as $cartItem)
-                                <livewire:user.cart.item :key="$cartItem->id" :$cartItem />
+                                <livewire:user.cart.item x-transition :key="$cartItem->id" :$cartItem />
                             @empty
                                 <div class="col-12">
                                     <div class="d-flex justify-content-center align-items-center p-3">
@@ -87,8 +87,12 @@
 
 <script>
     $(document).ready(function() {
+        // showBlockUI();
         $('#btn-place-order').on('click', function() {
             $('#form-cart').submit();
         });
+        setInterval(() => {
+            // hideBlockUI();
+        }, 3000);
     });
 </script>

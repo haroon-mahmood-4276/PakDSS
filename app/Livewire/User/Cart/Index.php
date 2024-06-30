@@ -3,7 +3,6 @@
 namespace App\Livewire\User\Cart;
 
 use App\Services\Cart\CartInterface;
-use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
