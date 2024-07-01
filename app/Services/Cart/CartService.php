@@ -15,7 +15,7 @@ class CartService implements CartInterface
         $this->productInterface = $productInterface;
     }
 
-    private function model()
+    public function model()
     {
         return new Cart();
     }

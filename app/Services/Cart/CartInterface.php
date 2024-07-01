@@ -4,6 +4,8 @@ namespace App\Services\Cart;
 
 interface CartInterface
 {
+    public function model();
+
     public function get($user_id, $relationships = []);
     
     // public function find($id, $relationships = []);

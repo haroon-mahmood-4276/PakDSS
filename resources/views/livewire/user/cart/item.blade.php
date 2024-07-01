@@ -2,7 +2,7 @@
     <div class="d-flex border p-3 rounded gap-3 {{ $isSelected ? 'border-primary' : '' }}">
         <div>
             <input class="form-check-input" type="checkbox" wire:model.live="isSelected" value="1"
-                id="cart-product-{{ $cartItem->product_id }}" wire:loading.attr="disabled">
+                id="cart-product-{{ $cartItem->product_id }}" >
         </div>
         <div class="d-flex gap-3 w-100">
             <div class="flex-shrink-0 d-flex align-items-center">
@@ -23,8 +23,8 @@
                         </div>
                         <div>
                             <label for="">Quantity</label>
-                            <input type="number" wire:model.blur="quantity" value="{{ $quantity }}" wire:loading.attr="disabled"
-                                class="form-control form-control-sm w-px-100 my-2" min="1" max="10">
+                            <input type="number" wire:model.blur="quantity" value="{{ $quantity }}"
+                                class="form-control form-control-sm w-px-100 my-2" min="1" max="10" >
                         </div>
                         <h5 class="m-0">
                             <span class="text-primary">
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="text-md-end position-relative">
-                            <button type="button" class="btn-delete-item btn-close" wire:loading.attr="disabled"
+                            <button type="button" class="btn-delete-item btn-close"
                                 wire:click="deleteItemFromCart('{{ $cartItem->id }}')"></button>
                             <div class="my-2 my-md-4 mb-md-5">
                                 <h4>

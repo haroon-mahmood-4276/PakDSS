@@ -77,7 +77,7 @@
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-primary btn-next waves-effect waves-light" id="btn-place-order"
-                            {{ count($checkoutBag) ? '' : 'disabled' }}>{{ count($checkoutBag) ? 'Place Order (' . count($checkoutBag) . ')' : 'Place Order' }}</button>
+                            {{ count($checkoutBag) ? '' : 'disabled' }}> Proceed to Shipping {{ count($checkoutBag) ? '(' . count($checkoutBag) . ')' : '' }}</button>
                     </div>
                 </div>
             @endif
@@ -85,6 +85,7 @@
     </div>
 </section>
 
+@script
 <script>
     $(document).ready(function() {
         // showBlockUI();
@@ -96,3 +97,4 @@
         }, 3000);
     });
 </script>
+@endscript

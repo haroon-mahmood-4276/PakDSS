@@ -38,8 +38,9 @@ Route::group(['middleware' => 'auth:web'], function () {
 
     Route::controller(OrderController::class)->group(function () {
         Route::post('shipping', 'selectShippingAddress')->name('checkout.shipping');
+        Route::post('order', 'placeOrder')->name('order.store');
+
         Route::get('payment', 'selectPaymentMethod')->name('checkout.payment');
-        Route::post('order', 'order')->name('order.store');
     });
 
     // Cart Route
