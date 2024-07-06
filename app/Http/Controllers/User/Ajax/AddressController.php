@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User\Ajax;
 
 use App\Http\Controllers\Controller;
-use App\Services\User\Cities\CityInterface;
-use App\Services\User\Countries\CountryInterface;
-use App\Services\User\States\StateInterface;
+use App\Services\Cities\CityInterface;
+use App\Services\Countries\CountryInterface;
+use App\Services\States\StateInterface;
 use Illuminate\Http\Request;
 use Exception;
 

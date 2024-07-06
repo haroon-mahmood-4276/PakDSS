@@ -6,7 +6,7 @@ use App\DataTables\Admin\SellersDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Sellers\storeRequest;
 use App\Http\Requests\Admin\Sellers\updateRequest;
-use App\Services\Admin\Sellers\SellerInterface;
+use App\Services\Sellers\SellerInterface;
 use App\Utils\Enums\Status;
 use Exception;
 use Illuminate\Http\Request;

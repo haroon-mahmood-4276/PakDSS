@@ -125,6 +125,7 @@
                         @csrf
 
                         <input type="hidden" name="referance" value="{{ $product->id }}">
+                        
                         <div class="product-heading">
                             <h2 class="m-0 p-0">{{ $product->name }}</h2>
                         </div>
@@ -215,7 +216,6 @@
                                 <div class="col-8">
                                     <div class="d-flex justify-content-end align-items-center gap-3">
                                         <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                            {{-- <span class="fa-solid fa-cart-plus me-1"></span> --}}
                                             Add to cart
                                         </button>
                                         {{-- <button class="btn btn-primary waves-effect waves-light">
@@ -225,15 +225,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            {{-- <div class="box-quantity">
-                                    <div class="input-quantity">
-                                        <input class="font-xl color-brand-3" type="text" value="1"><span
-                                            class="minus-cart"></span><span class="plus-cart"></span>
-                                    </div>
-                                    <div class="button-buy"><a class="btn btn-cart" href="shop-cart.html">Add to cart</a><a
-                                            class="btn btn-buy" href="shop-checkout.html">Buy now</a></div>
-                                </div> --}}
                         </div>
                         <div class="info-product mb-3">
                             <div class="row">

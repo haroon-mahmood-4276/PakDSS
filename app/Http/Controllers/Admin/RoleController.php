@@ -6,7 +6,7 @@ use App\DataTables\Admin\RolesDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Roles\{storeRequest, updateRequest};
 use App\Models\Role;
-use App\Services\Admin\Roles\RoleInterface;
+use App\Services\Roles\RoleInterface;
 use Illuminate\Http\Request;
 use Exception;
 

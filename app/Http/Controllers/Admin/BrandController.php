@@ -6,8 +6,8 @@ use App\DataTables\Admin\BrandsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Brands\storeRequest;
 use App\Http\Requests\Admin\Brands\updateRequest;
-use App\Services\Shared\Brands\BrandInterface;
-use App\Services\Shared\Categories\CategoryInterface;
+use App\Services\Brands\BrandInterface;
+use App\Services\Categories\CategoryInterface;
 use Exception;
 use Illuminate\Http\Request;
 

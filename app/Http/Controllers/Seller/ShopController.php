@@ -6,7 +6,7 @@ use App\DataTables\Seller\ShopsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Shops\{storeRequest, updateRequest};
 use App\Models\{Seller, Shop};
-use App\Services\Shared\Shops\ShopInterface;
+use App\Services\Shops\ShopInterface;
 use App\Utils\Enums\Status;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\{JsonResponse, Request};

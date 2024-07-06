@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\CategoriesDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Categories\{storeRequest, updateRequest};
-use App\Services\Shared\Brands\BrandInterface;
-use App\Services\Shared\Categories\CategoryInterface;
+use App\Services\Brands\BrandInterface;
+use App\Services\Categories\CategoryInterface;
 use Exception;
 use Illuminate\Http\Request;
 

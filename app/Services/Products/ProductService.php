@@ -229,4 +229,9 @@ class ProductService implements ProductInterface
             ]);
         });
     }
+
+    public function getRandomProducts($quantity = 5)
+    {
+        return $this->model()->inRandomOrder()->limit($quantity)->get();
+    }
 }

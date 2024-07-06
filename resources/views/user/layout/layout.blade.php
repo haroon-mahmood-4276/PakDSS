@@ -18,9 +18,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {{--
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet" />
+        rel="stylesheet" /> --}}
 
     <!-- Icons -->
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/fonts/fontawesome.css" />
@@ -50,6 +51,7 @@
 
     <script src="{{ asset('admin-assets') }}/vendor/js/template-customizer.js"></script>
     <script src="{{ asset('admin-assets') }}/js/config.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/jquery/jquery.js"></script>
     <style>
         .landing-footer .footer-link {
             transition: all .2s ease-in-out
@@ -137,6 +139,7 @@
         }
     </style>
     @yield('page-css')
+    @livewireStyles
 </head>
 
 <body style="overflow-y: scroll; ">
@@ -149,8 +152,8 @@
 
                 <div class="content-wrapper">
 
-                    @include('user.layout.topbar')
-                    {{--                     
+                    {{-- @include('user.layout.topbar') --}}
+                    {{--
                     <div style="margin-top: 55px">
                         @yield('breadcrumbs')
                     </div> --}}
@@ -174,7 +177,6 @@
 
     <div class="drag-target"></div>
 
-    <script src="{{ asset('admin-assets') }}/vendor/libs/jquery/jquery.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/popper/popper.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/js/bootstrap.js"></script>
     <script src="{{ asset('admin-assets') }}/vendor/libs/block-ui/block-ui.js"></script>
@@ -393,7 +395,18 @@
     </script>
     <!-- Page JS -->
     @yield('page-js')
-
+    @livewireScripts
+    <script>
+        Livewire.hook('commit', ({ component, commit, respond, succeed, fail }) => {
+            showBlockUI();
+            succeed(({ snapshot, effect }) => {
+                hideBlockUI();
+            })
+            fail(() => {
+                hideBlockUI();
+            })
+        })
+    </script>
 </body>
 
 </html>

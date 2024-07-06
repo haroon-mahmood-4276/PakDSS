@@ -16,4 +16,6 @@ interface ProductInterface
     public function destroy($inputs);
 
     public function status($ids, $status);
+
+    public function getRandomProducts($quantity = 5);
 }

@@ -2,26 +2,26 @@
 
 namespace App\Providers;
 
-use App\Services\Admin\Permissions\{PermissionInterface as AdminPermissionInterface, PermissionService as AdminPermissionService};
-use App\Services\Admin\Roles\{RoleInterface as AdminRoleInterface, RoleService as AdminRoleService};
-use App\Services\Admin\Sellers\{SellerInterface as AdminSellerInterface, SellerService as AdminSellerService};
-use App\Services\Admin\Users\{UserInterface as AdminUserInterface, UserService as AdminUserService};
-use App\Services\Admin\Settings\{SettingInterface as AdminSettingInterface,SettingService as AdminSettingService};
+use App\Services\Permissions\{PermissionInterface as AdminPermissionInterface, PermissionService as AdminPermissionService};
+use App\Services\Roles\{RoleInterface as AdminRoleInterface, RoleService as AdminRoleService};
+use App\Services\Sellers\{SellerInterface as AdminSellerInterface, SellerService as AdminSellerService};
+use App\Services\Users\{UserInterface as AdminUserInterface, UserService as AdminUserService};
+use App\Services\Settings\{SettingInterface as AdminSettingInterface,SettingService as AdminSettingService};
 
-use App\Services\Seller\Requests\{RequestInterface as SellerRequestInterface, RequestService as SellerRequestService};
+use App\Services\Requests\{RequestInterface as SellerRequestInterface, RequestService as SellerRequestService};
 
-use App\Services\Shared\Brands\{BrandInterface, BrandService};
-use App\Services\Shared\Categories\{CategoryInterface, CategoryService};
-use App\Services\Shared\Shops\{ShopInterface, ShopService};
-use App\Services\Shared\Tags\{TagInterface, TagService};
+use App\Services\Brands\{BrandInterface, BrandService};
+use App\Services\Categories\{CategoryInterface, CategoryService};
+use App\Services\Shops\{ShopInterface, ShopService};
+use App\Services\Tags\{TagInterface, TagService};
 
 use App\Services\Products\{ProductInterface, ProductService};
-use App\Services\User\Cart\{CartInterface, CartService};
-use App\Services\User\Addresses\{AddressInterface, AddressService};
-use App\Services\User\Countries\{CountryInterface, CountryService};
-use App\Services\User\States\{StateInterface, StateService};
-use App\Services\User\Cities\{CityInterface, CityService};
-
+use App\Services\Cart\{CartInterface, CartService};
+use App\Services\Addresses\{AddressInterface, AddressService};
+use App\Services\Countries\{CountryInterface, CountryService};
+use App\Services\States\{StateInterface, StateService};
+use App\Services\Cities\{CityInterface, CityService};
+use App\Services\Orders\{OrderInterface, OrderService};
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -54,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CountryInterface::class, CountryService::class);
         $this->app->bind(StateInterface::class, StateService::class);
         $this->app->bind(CityInterface::class, CityService::class);
+        $this->app->bind(OrderInterface::class, OrderService::class);
     }
 
     /**

@@ -6,7 +6,7 @@ use App\DataTables\Seller\ProductsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Products\{storeRequest, updateRequest};
 use App\Services\Products\ProductInterface;
-use App\Services\Shared\{Shops\ShopInterface, Brands\BrandInterface, Categories\CategoryInterface, Tags\TagInterface};
+use App\Services\{Shops\ShopInterface, Brands\BrandInterface, Categories\CategoryInterface, Tags\TagInterface};
 use Illuminate\Http\Request;
 use Exception;
 

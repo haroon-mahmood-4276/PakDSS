@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\ApprovalsDataTable;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\Sellers\SellerInterface;
+use App\Services\Sellers\SellerInterface;
 use App\Services\Products\ProductInterface;
-use App\Services\Shared\Brands\BrandInterface;
-use App\Services\Shared\Categories\CategoryInterface;
-use App\Services\Shared\Shops\ShopInterface;
-use App\Services\Shared\Tags\TagInterface;
+use App\Services\Brands\BrandInterface;
+use App\Services\Categories\CategoryInterface;
+use App\Services\Shops\ShopInterface;
+use App\Services\Tags\TagInterface;
 use App\Utils\Enums\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
