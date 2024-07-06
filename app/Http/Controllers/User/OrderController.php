@@ -5,17 +5,21 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Services\Addresses\AddressInterface;
 use App\Services\Cart\CartInterface;
+use App\Services\Orders\OrderInterface;
+use Exception;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     private AddressInterface $addressInterface;
     private CartInterface $cartInterface;
+    private OrderInterface $orderInterface;
 
-    public function __construct(AddressInterface $addressInterface, CartInterface $cartInterface)
+    public function __construct(AddressInterface $addressInterface, CartInterface $cartInterface, OrderInterface $orderInterface)
     {
         $this->addressInterface = $addressInterface;
         $this->cartInterface = $cartInterface;
+        $this->orderInterface = $orderInterface;
     }
 
     public function selectShippingAddress(Request $request)
@@ -38,7 +42,16 @@ class OrderController extends Controller
 
     public function placeOrder(Request $request)
     {
-        dd($request->all());
-        return view('user.order.place');
+        abort_if(request()->ajax(), 403);
+
+        try {
+            $inputs = $request->input();
+
+            $this->orderInterface->store(auth()->user(), $inputs);
+    
+            return redirect()->route('user.home.index')->withSuccess('Data saved!');
+        } catch (Exception $ex) {
+            return redirect()->route('user.home.index')->withDanger('Something went wrong!');
+        }
     }
 }

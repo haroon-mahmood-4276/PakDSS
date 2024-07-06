@@ -125,9 +125,12 @@
                             <h6>Estimated Delivery Date</h6>
                             <ul class="list-unstyled">
     
-                                @foreach ($checkoutBag as $bagItem)
+                                @foreach ($checkoutBag as $index => $bagItem)
 
-                                    <input type="hidden" name="bag[]" value="{{ $bagItem->id }}">
+                                    <input type="hidden" name="bag[{{ $index }}][id]" value="{{ $bagItem->id }}">
+                                    <input type="hidden" name="bag[{{ $index }}][quantity]" value="{{ $bagItem->quantity }}">
+                                    <input type="hidden" name="bag[{{ $index }}][price]" value="{{ $bagItem->price }}">
+                                    <input type="hidden" name="bag[{{ $index }}][attributes]" value="{{ json_encode($bagItem->attributes) }}">
                                     <li class="d-flex gap-4 align-items-center py-2 mb-4">
                                         <div class="flex-shrink-0">
                                             <img src="{{ asset('admin-assets') }}/img/products/1.png" alt="google home"

@@ -21,7 +21,7 @@ use App\Services\Addresses\{AddressInterface, AddressService};
 use App\Services\Countries\{CountryInterface, CountryService};
 use App\Services\States\{StateInterface, StateService};
 use App\Services\Cities\{CityInterface, CityService};
-
+use App\Services\Orders\{OrderInterface, OrderService};
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -54,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CountryInterface::class, CountryService::class);
         $this->app->bind(StateInterface::class, StateService::class);
         $this->app->bind(CityInterface::class, CityService::class);
+        $this->app->bind(OrderInterface::class, OrderService::class);
     }
 
     /**

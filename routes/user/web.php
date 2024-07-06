@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth:web'], function () {
 
     Route::controller(OrderController::class)->group(function () {
         Route::post('shipping', 'selectShippingAddress')->name('checkout.shipping');
-        Route::post('order', 'placeOrder')->name('order.store');
+        Route::post('order/place', 'placeOrder')->name('order.store');
 
         Route::get('payment', 'selectPaymentMethod')->name('checkout.payment');
     });
@@ -70,9 +70,3 @@ Route::group(['middleware' => 'auth:web'], function () {
         Route::get('delete', 'destroy')->name('destroy');
     });
 });
-
-// Route::group(['prefix' => 'tests'], function () {
-//     Route::get('pusher', function () {
-//         event(new TestEvent('hello world'));
-//     });
-// });
