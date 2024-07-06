@@ -27,7 +27,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
           script: |
-            cd /var/www/pakdss.com
+            cd /home/iyesoft/laravel/pakdss
             php artisan down
             git branch
             git reset --hard
