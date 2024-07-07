@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Categories;
+namespace App\Http\Requests\Admin\Brands;
 
-use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Foundation\Http\FormRequest;
 
-class updateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class updateRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = (new Category())->rules;
+        $rules = (new Brand())->rules;
         $id = decryptParams($this->id);
         $rules['slug'] .= ','.$id;
 

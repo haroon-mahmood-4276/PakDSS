@@ -5,7 +5,7 @@ namespace App\Http\Requests\User\Addresses;
 use App\Models\Address;
 use Illuminate\Foundation\Http\FormRequest;
 
-class updateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     public function authorize()
     {

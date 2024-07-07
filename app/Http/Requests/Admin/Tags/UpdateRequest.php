@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\Tags;
 use App\Models\Tag;
 use Illuminate\Foundation\Http\FormRequest;
 
-class updateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

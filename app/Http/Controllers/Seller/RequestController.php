@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\RequestsDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Seller\Requests\{storeRequest, updateRequest};
+use App\Http\Requests\Seller\Requests\{StoreRequest, UpdateRequest};
 use App\Services\Requests\RequestInterface;
 use Exception;
 use Illuminate\Http\Request;
@@ -43,7 +43,7 @@ class RequestController extends Controller
         return view('seller.requests.create', $data);
     }
 
-    public function store(storeRequest $request, $requestFor)
+    public function store(StoreRequest $request, $requestFor)
     {
         abort_if(request()->ajax(), 403);
 
@@ -91,7 +91,7 @@ class RequestController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, $requestFor, $id)
+    public function update(UpdateRequest $request, $requestFor, $id)
     {
         abort_if(request()->ajax(), 403);
         try {

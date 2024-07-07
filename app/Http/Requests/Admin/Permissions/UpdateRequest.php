@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Roles;
+namespace App\Http\Requests\Admin\Permissions;
 
-use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +23,9 @@ class storeRequest extends FormRequest
      */
     public function rules()
     {
-        return (new Role())->rules;
+        return [
+            'permission_name' => 'required|string|between:1,254',
+            'guard_name' => 'required|string|between:1,254',
+        ];
     }
 }

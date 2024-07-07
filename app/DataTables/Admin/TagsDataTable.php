@@ -141,28 +141,19 @@ class TagsDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center');
+        $columnClass = 'text-nowrap align-middle text-center';
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass($columnClass);
 
         if (auth()->user()->can('admin.tags.destroy')) {
             $checkColumn->addClass('disabled');
         }
 
-        $columns = [
+        return [
             $checkColumn,
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->title('Name')->addClass($columnClass),
+            Column::make('created_at')->addClass($columnClass),
+            Column::make('updated_at')->addClass($columnClass),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
-
-        return $columns;
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'tags_'.date('YmdHis');
     }
 }

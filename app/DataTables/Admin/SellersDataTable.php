@@ -138,34 +138,25 @@ class SellersDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center');
+        $columnClass = 'text-nowrap align-middle text-center';
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass($columnClass);
 
         if (auth()->user()->can('admin.sellers.destroy')) {
             $checkColumn->addClass('disabled');
         }
 
-        $columns = [
+        return [
             $checkColumn,
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('email')->title('email')->addClass('text-nowrap align-middle text-center'),
-            Column::make('cnic')->title('cnic')->addClass('text-nowrap align-middle text-center'),
-            Column::make('ntn_number')->title('ntn')->addClass('text-nowrap align-middle text-center'),
-            Column::make('phone_primary')->title('phone 1')->addClass('text-nowrap align-middle text-center'),
-            Column::make('status')->title('Status')->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->title('Name')->addClass($columnClass),
+            Column::make('email')->title('email')->addClass($columnClass),
+            Column::make('cnic')->title('cnic')->addClass($columnClass),
+            Column::make('ntn_number')->title('ntn')->addClass($columnClass),
+            Column::make('phone_primary')->title('phone 1')->addClass($columnClass),
+            Column::make('status')->title('Status')->addClass($columnClass),
 
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('updated_at')->addClass($columnClass),
 
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
-
-        return $columns;
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'seller_'.date('YmdHis');
     }
 }

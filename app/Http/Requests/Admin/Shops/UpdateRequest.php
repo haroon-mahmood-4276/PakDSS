@@ -6,7 +6,7 @@ use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-class updateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     protected function prepareForValidation(): void
     {

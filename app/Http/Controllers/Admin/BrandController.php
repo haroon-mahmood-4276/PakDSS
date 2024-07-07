@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\BrandsDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Brands\storeRequest;
-use App\Http\Requests\Admin\Brands\updateRequest;
+use App\Http\Requests\Admin\Brands\StoreRequest;
+use App\Http\Requests\Admin\Brands\UpdateRequest;
 use App\Services\Brands\BrandInterface;
 use App\Services\Categories\CategoryInterface;
 use Exception;
@@ -59,7 +59,7 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storeRequest $request)
+    public function store(StoreRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
@@ -120,7 +120,7 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
         try {

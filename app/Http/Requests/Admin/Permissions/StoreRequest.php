@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Users;
+namespace App\Http\Requests\Admin\Permissions;
 
-use App\Models\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 
-class updateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +23,9 @@ class updateRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = (new Admin())->rules;
-        $rules['email'] .= ','.$this->id;
-        $rules['password'][0] = 'nullable';
-
-        return $rules;
+        return [
+            'permission_name' => 'required|string|between:1,254',
+            'guard_name' => 'required|string|between:1,254',
+        ];
     }
 }

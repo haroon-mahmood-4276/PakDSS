@@ -5,7 +5,7 @@ namespace App\Http\Requests\Seller\Shops;
 use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     public function authorize()
     {

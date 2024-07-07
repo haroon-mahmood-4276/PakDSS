@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\ShopsDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Shops\{storeRequest, updateRequest};
+use App\Http\Requests\Admin\Shops\{StoreRequest, UpdateRequest};
 use App\Models\Seller;
 use App\Models\Shop;
 use App\Services\Shops\ShopInterface;
@@ -44,7 +44,7 @@ class ShopController extends Controller
         return view('admin.sellers.shops.create', $data);
     }
 
-    public function store(storeRequest $request, Seller $seller)
+    public function store(StoreRequest $request, Seller $seller)
     {
         abort_if(request()->ajax(), 403);
 
@@ -93,7 +93,7 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, Seller $seller, Shop $shop)
+    public function update(UpdateRequest $request, Seller $seller, Shop $shop)
     {
         abort_if(request()->ajax(), 403);
         try {

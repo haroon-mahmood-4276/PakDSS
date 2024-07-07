@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Brands;
+namespace App\Http\Requests\Admin\Categories;
 
-use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,6 +14,6 @@ class storeRequest extends FormRequest
 
     public function rules()
     {
-        return (new Brand())->rules;
+        return (new Category())->rules;
     }
 }

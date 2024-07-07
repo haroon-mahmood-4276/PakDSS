@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User\Addresses;
+namespace App\Http\Requests\Seller\Products;
 
-use App\Models\Address;
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,6 +14,6 @@ class storeRequest extends FormRequest
 
     public function rules()
     {
-        return (new Address())->rules;
+        return (new Product())->rules;
     }
 }
