@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\SellersDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Sellers\storeRequest;
-use App\Http\Requests\Admin\Sellers\updateRequest;
+use App\Http\Requests\Admin\Sellers\StoreRequest;
+use App\Http\Requests\Admin\Sellers\UpdateRequest;
 use App\Services\Sellers\SellerInterface;
 use App\Utils\Enums\Status;
 use Exception;
@@ -56,7 +56,7 @@ class SellerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storeRequest $request)
+    public function store(StoreRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
@@ -116,7 +116,7 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
         try {

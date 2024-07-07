@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Settings\updateRequest;
+use App\Http\Requests\Admin\Settings\UpdateRequest;
 use App\Services\Settings\SettingInterface;
 use Exception;
 use Illuminate\Http\Request;
@@ -26,7 +26,7 @@ class SettingController extends Controller
         ]);
     }
 
-    public function store(updateRequest $request)
+    public function store(UpdateRequest $request)
     {
         abort_if(request()->ajax() || auth('admin')->user()->cannot('admin.settings.tab_' . $request->get('tab') . '.index'), 403);
 

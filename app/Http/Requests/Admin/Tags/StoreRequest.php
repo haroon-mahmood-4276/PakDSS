@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Seller\Products;
+namespace App\Http\Requests\Admin\Tags;
 
-use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,6 +14,6 @@ class storeRequest extends FormRequest
 
     public function rules()
     {
-        return (new Product())->rules;
+        return (new Tag())->rules;
     }
 }

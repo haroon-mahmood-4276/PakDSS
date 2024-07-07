@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\TagsDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Tags\{storeRequest, updateRequest};
+use App\Http\Requests\Admin\Tags\{StoreRequest, UpdateRequest};
 use App\Services\Tags\TagInterface;
 use Illuminate\Http\Request;
 use Exception;
@@ -50,7 +50,7 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storeRequest $request)
+    public function store(StoreRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
@@ -109,7 +109,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
         try {

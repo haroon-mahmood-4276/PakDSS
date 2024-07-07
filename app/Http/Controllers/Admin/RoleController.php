@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\RolesDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Roles\{storeRequest, updateRequest};
+use App\Http\Requests\Admin\Roles\{StoreRequest, UpdateRequest};
 use App\Models\Role;
 use App\Services\Roles\RoleInterface;
 use Illuminate\Http\Request;
@@ -57,7 +57,7 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storeRequest $request)
+    public function store(StoreRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
@@ -117,7 +117,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
         try {

@@ -33,10 +33,10 @@ class UpdateExchangeRate extends Command
         if ($response->successful()) {
             $response = $response->json();
 
-            $USDToPKR = $response['rates']['PKR'];
-            $GBPToPKR = (1 / floatval($response['rates']['GBP'])) * floatval($response['rates']['PKR']);
+            $usdToPKR = $response['rates']['PKR'];
+            $gbpToPKR = (1 / floatval($response['rates']['GBP'])) * floatval($response['rates']['PKR']);
 
-            settingsUpdate(['one_dollar_rate', 'one_pound_rate'], [number_format($USDToPKR, 2), number_format($GBPToPKR, 2)]);
+            settingsUpdate(['one_dollar_rate', 'one_pound_rate'], [number_format($usdToPKR, 2), number_format($gbpToPKR, 2)]);
         }
     }
 }

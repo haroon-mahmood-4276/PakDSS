@@ -6,11 +6,21 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 trait DatatablesTrait
 {
+    /**
+     * Generates a filename based on the current class name and the current timestamp.
+     *
+     * @return string The generated filename.
+     */
     protected function filename(): string
     {
         return substr(class_basename($this), 0, -9) . '_' . date('YmdHis');
     }
 
+    /**
+     * Generates a PDF file for download.
+     *
+     * @return mixed
+     */
     public function pdf()
     {
         $data = $this->getDataForPrint();

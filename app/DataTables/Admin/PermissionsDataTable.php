@@ -46,25 +46,11 @@ class PermissionsDataTable extends DataTable
     public function query(Permission $model): QueryBuilder
     {
         return $model->newQuery()->with('roles');
-        // if (auth()->user()->can('permissions.view_all')) {
-        // } else {
-        //     $CurrentUserRole = auth()->user()->roles->pluck('id');
-        //     return (new Role())->where('id', $CurrentUserRole[0])->with('permissions')->first()->permissions->toQuery();
-        // }
     }
 
     public function html(): HtmlBuilder
     {
         $buttons = [];
-
-        // if (auth()->user()->can('admin.permissions.create')) {
-        //     $buttons[] = Button::raw('delete-selected')
-        //         ->addClass('btn btn-primary waves-effect waves-float waves-light m-1')
-        //         ->text('<i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add New')
-        //         ->attr([
-        //             'onclick' => 'addNew()',
-        //         ]);
-        // }
 
         if (auth()->user()->can('admin.permissions.export')) {
             $buttons[] = Button::make('export')
@@ -133,7 +119,7 @@ class PermissionsDataTable extends DataTable
             Column::make('show_name')->title('Permission Name')->addClass('text-nowrap')->ucfirst(),
         ];
 
-        foreach ($roles as $key => $role) {
+        foreach ($roles as $role) {
 
             $colArray[] = Column::computed('roles')
                 ->title($role['name'])
@@ -155,8 +141,6 @@ class PermissionsDataTable extends DataTable
                     return checkbox;
                 }');
         }
-
-        // $colArray[] = Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-center');
         return $colArray;
     }
 }

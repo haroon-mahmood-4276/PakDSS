@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Users;
+namespace App\Http\Requests\Admin\Categories;
 
-use App\Models\Admin;
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,10 @@ class storeRequest extends FormRequest
      */
     public function rules()
     {
-        return (new Admin())->rules;
+        $rules = (new Category())->rules;
+        $id = decryptParams($this->id);
+        $rules['slug'] .= ','.$id;
+
+        return $rules;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\ProductsDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Seller\Products\{storeRequest, updateRequest};
+use App\Http\Requests\Seller\Products\{StoreRequest, UpdateRequest};
 use App\Services\Products\ProductInterface;
 use App\Services\{Shops\ShopInterface, Brands\BrandInterface, Categories\CategoryInterface, Tags\TagInterface};
 use Illuminate\Http\Request;
@@ -54,7 +54,7 @@ class ProductController extends Controller
         return view('seller.products.create', $data);
     }
 
-    public function store(storeRequest $request)
+    public function store(StoreRequest $request)
     {
         abort_if(request()->ajax(), 403);
 
@@ -99,7 +99,7 @@ class ProductController extends Controller
         }
     }
 
-    public function update(updateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         abort_if(request()->ajax(), 403);
         try {

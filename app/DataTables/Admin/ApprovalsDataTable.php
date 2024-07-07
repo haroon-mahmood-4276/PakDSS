@@ -63,17 +63,12 @@ class ApprovalsDataTable extends DataTable
      */
     public function query(): QueryBuilder
     {
-        switch ($this->model) {
-            case 'shops':
-                $model = (new Shop());
-                break;
-            case 'products':
-                $model = (new Product());
-                break;
-            case 'sellers':
-                $model = (new Seller());
-                break;
-        }
+
+        $model = match ($this->model) {
+            'shops' => (new Shop()),
+            'products' => (new Product()),
+            'sellers' => (new Seller()),
+        };
 
         return $model->newQuery()->whereIn('status', [Status::PENDING_APPROVAL, Status::OBJECTED]);
     }
@@ -115,7 +110,7 @@ class ApprovalsDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            
+
             ->lengthMenu([
                 [30, 50, 70, 100, 120, 150, -1],
                 [30, 50, 70, 100, 120, 150, 'All'],
@@ -158,43 +153,30 @@ class ApprovalsDataTable extends DataTable
      */
     protected function getColumns(): array
     {
+        $columnClass = 'text-nowrap align-middle text-center';
         $columns = [
-            Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
-            Column::make('name')->addClass('text-nowrap align-middle text-center'),
+            Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
+            Column::make('name')->addClass($columnClass),
         ];
 
-        switch ($this->model) {
-            case 'shops':
-                $columns = array_merge($columns, [
-                    Column::make('address')->addClass('text-nowrap align-middle text-center'),
-                    Column::make('slug')->addClass('text-nowrap align-middle text-center'),
-                ]);
-                break;
-            case 'products':
-                $columns = array_merge($columns, [
-                    Column::make('sku')->addClass('text-nowrap align-middle text-center'),
-                    Column::make('permalink')->addClass('text-nowrap align-middle text-center'),
-                ]);
-                break;
-            case 'seller':
-                $columns = array_merge($columns, []);
-                break;
-        }
+        $columns = match ($this->model) {
+            'shops' => array_merge($columns, [
+                Column::make('address')->addClass($columnClass),
+                Column::make('slug')->addClass($columnClass),
+            ]),
+            'products' => array_merge($columns, [
+                Column::make('sku')->addClass($columnClass),
+                Column::make('permalink')->addClass($columnClass),
+            ]),
+            'seller' => array_merge($columns, []),
+        };
 
         $columns = array_merge($columns, [
-            Column::make('status')->addClass('text-nowrap align-middle text-center'),
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::make('status')->addClass($columnClass),
+            Column::make('updated_at')->addClass($columnClass),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ]);
 
         return $columns;
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return Str::of($this->model)->ucfirst() . 'Approvals_' . date('YmdHis');
     }
 }

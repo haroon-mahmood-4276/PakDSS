@@ -142,44 +142,35 @@ class ShopsDataTable extends DataTable
      */
     protected function getColumns(): array
     {
-        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center');
+        $columnClass = 'text-nowrap align-middle text-center';
+        $checkColumn = Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass($columnClass);
 
         if (auth()->user()->can('admin.sellers.shops.destroy')) {
             $checkColumn->addClass('disabled');
         }
 
-        $columns = [
+        return [
             $checkColumn,
 
-            Column::make('image')->addClass('text-nowrap align-middle text-center'),
+            Column::make('image')->addClass($columnClass),
 
-            Column::make('name')->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->addClass($columnClass),
 
-            Column::make('slug')->addClass('text-nowrap align-middle text-center'),
-            Column::make('email')->addClass('text-nowrap align-middle text-center'),
+            Column::make('slug')->addClass($columnClass),
+            Column::make('email')->addClass($columnClass),
 
-            Column::make('phone_1')->addClass('text-nowrap align-middle text-center'),
-            Column::make('phone_2')->addClass('text-nowrap align-middle text-center'),
+            Column::make('phone_1')->addClass($columnClass),
+            Column::make('phone_2')->addClass($columnClass),
 
-            Column::make('manager_name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('manager_mobile')->addClass('text-nowrap align-middle text-center'),
-            Column::make('manager_email')->addClass('text-nowrap align-middle text-center'),
+            Column::make('manager_name')->addClass($columnClass),
+            Column::make('manager_mobile')->addClass($columnClass),
+            Column::make('manager_email')->addClass($columnClass),
 
-            Column::make('status')->addClass('text-nowrap align-middle text-center'),
+            Column::make('status')->addClass($columnClass),
 
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('updated_at')->addClass($columnClass),
 
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
-
-        return $columns;
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'seller_' . date('YmdHis');
     }
 }

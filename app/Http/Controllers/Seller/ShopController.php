@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\DataTables\Seller\ShopsDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Seller\Shops\{storeRequest, updateRequest};
+use App\Http\Requests\Seller\Shops\{StoreRequest, UpdateRequest};
 use App\Models\{Seller, Shop};
 use App\Services\Shops\ShopInterface;
 use App\Utils\Enums\Status;
@@ -41,7 +41,7 @@ class ShopController extends Controller
         return view('seller.shops.create', $data);
     }
 
-    public function store(storeRequest $request, Seller $seller)
+    public function store(StoreRequest $request, Seller $seller)
     {
         abort_if(request()->ajax(), 403);
 
@@ -90,7 +90,7 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(updateRequest $request, Shop $shop)
+    public function update(UpdateRequest $request, Shop $shop)
     {
         abort_if(request()->ajax(), 403);
         try {

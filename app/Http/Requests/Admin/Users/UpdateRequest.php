@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Sellers;
+namespace App\Http\Requests\Admin\Users;
 
-use App\Models\Seller;
+use App\Models\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 
-class updateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class updateRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = (new Seller())->rules;
+        $rules = (new Admin())->rules;
+        $rules['email'] .= ','.$this->id;
         $rules['password'][0] = 'nullable';
-        $id = decryptParams($this->id);
-        $rules['email'] .= ','.$id;
-        $rules['cnic'] .= ','.$id;
 
         return $rules;
     }
