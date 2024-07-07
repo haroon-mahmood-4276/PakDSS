@@ -19,3 +19,5 @@ yarn-error.log
 /.vscode
 Envoy.blade.php
 public/attachments-assets
+_ide_helper.php
+_ide_helper_models.php
