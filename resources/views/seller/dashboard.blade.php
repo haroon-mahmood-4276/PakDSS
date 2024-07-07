@@ -445,7 +445,7 @@
                 </div>
                 <div class="card-body">
                     <div class="nav-align-top">
-                        <ul class="nav nav-tabs nav-fill" role="tablist">
+                        <ul class="nav nav-tabs nav-fill">
                             <li class="nav-item">
                                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
                                     data-bs-target="#navs-justified-new" aria-controls="navs-justified-new"
