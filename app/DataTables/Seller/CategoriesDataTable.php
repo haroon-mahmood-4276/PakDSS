@@ -92,21 +92,14 @@ class CategoriesDataTable extends DataTable
      */
     protected function getColumns(): array
     {
+        $columnClass = 'text-nowrap align-middle text-center';
         return [
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
-            Column::make('parent_id')->title('Parent')->addClass('text-nowrap align-middle text-center'),
-            Column::computed('linked_brands_count')->title('Associated Brands')->addClass('text-nowrap align-middle text-center'),
-            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->title('Name')->addClass($columnClass),
+            Column::make('slug')->title('Slug')->addClass($columnClass),
+            Column::make('parent_id')->title('Parent')->addClass($columnClass),
+            Column::computed('linked_brands_count')->title('Associated Brands')->addClass($columnClass),
+            Column::make('created_at')->addClass($columnClass),
+            Column::make('updated_at')->addClass($columnClass),
         ];
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'Categories_' . date('YmdHis');
     }
 }

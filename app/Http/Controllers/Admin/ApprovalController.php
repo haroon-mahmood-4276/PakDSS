@@ -69,23 +69,19 @@ class ApprovalController extends Controller
             };
 
             $returnStatus = null;
-            switch ($request->status) {
-                case 'approve':
-                    $interface->status(ids: $request->checkForDelete ?? $request->id, status: Status::ACTIVE);
-                    $returnStatus = [
-                        'status' => 'success',
-                        'message' => Str::of($request->for)->ucfirst() . ' approved successfully',
-                    ];
-                    break;
-
-                case 'object':
-                    $interface->status(ids: $request->checkForDelete ?? $request->id, status: Status::OBJECTED);
-                    $returnStatus = [
-                        'status' => 'success',
-                        'message' => Str::of($request->for)->ucfirst() . ' objected successfully',
-                    ];
-                    break;
-            }
+            $interface->status(ids: $request->checkForDelete ?? $request->id, status: $request->status === 'approve' ? Status::ACTIVE : Status::OBJECTED);
+            
+            $returnStatus = match ($request->status) {
+                'approve' => [
+                    'status' => 'success',
+                    'message' => Str::of($request->for)->ucfirst() . ' approved successfully',
+                ],
+                'object' => [
+                    'status' => 'success',
+                    'message' => Str::of($request->for)->ucfirst() . ' objected successfully',
+                ],
+                default => null,
+            };
 
             return redirect()->route('admin.approvals.' . $request->for . '.index')->with($returnStatus['status'], $returnStatus['message'])->with('for', $request->for);
         } catch (Exception $e) {

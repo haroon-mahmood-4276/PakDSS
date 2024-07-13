@@ -130,30 +130,21 @@ class ShopsDataTable extends DataTable
      */
     protected function getColumns(): array
     {
+        $columnClass = 'text-nowrap align-middle text-center';
         return [
-            // Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('DT_RowIndex')->title('#')->addClass($columnClass),
 
-            Column::computed('DT_RowIndex')->title('#')->addClass('text-nowrap align-middle text-center'),
+            Column::computed('image')->addClass($columnClass),
 
-            Column::computed('image')->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->title('Name')->addClass($columnClass),
+            Column::make('slug')->title('Slug')->addClass($columnClass),
+            Column::make('address')->addClass($columnClass),
 
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
-            Column::make('address')->addClass('text-nowrap align-middle text-center'),
+            Column::make('status')->width(100)->addClass($columnClass),
 
-            Column::make('status')->width(100)->addClass('text-nowrap align-middle text-center'),
+            Column::make('updated_at')->addClass($columnClass),
 
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
-
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'shops_' . date('YmdHis');
     }
 }

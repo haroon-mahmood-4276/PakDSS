@@ -45,14 +45,13 @@ class ApprovalsDataTable extends DataTable
             })
             ->rawColumns($columns);
 
-        switch ($this->model) {
-            case 'sellers':
-                $eloquentDataTable->filterColumn('name', function ($query, $keyword) {
-                    $query->whereRaw("LOWER(CAST(CONCAT(first_name, ' ', middle_name, ' ', last_name) as TEXT)) like ? OR CAST(CONCAT(first_name, ' ', middle_name, ' ', last_name) as TEXT) like ?", ["%{$keyword}%", "%{$keyword}%"]);
-                })->orderColumn('name', function ($query, $order) {
-                    $query->orderBy('first_name', $order);
-                });
-                break;
+        if ($this->model === 'sellers')
+        {
+            $eloquentDataTable->filterColumn('name', function ($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(CONCAT(first_name, ' ', middle_name, ' ', last_name) as TEXT)) like ? OR CAST(CONCAT(first_name, ' ', middle_name, ' ', last_name) as TEXT) like ?", ["%{$keyword}%", "%{$keyword}%"]);
+            })->orderColumn('name', function ($query, $order) {
+                $query->orderBy('first_name', $order);
+            });
         }
 
         return $eloquentDataTable;
