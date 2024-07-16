@@ -169,6 +169,7 @@ class ApprovalsDataTable extends DataTable
                 Column::make('permalink')->addClass($columnClass),
             ]),
             'seller' => array_merge($columns, []),
+            default => array_merge($columns, []),
         };
 
         $columns = array_merge($columns, [
