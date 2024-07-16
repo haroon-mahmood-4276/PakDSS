@@ -98,7 +98,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
             Route::post('store', [BrandController::class, 'store'])->name('store');
         });
 
-        Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.brands.edit'], function () {
+        Route::group(['prefix' => '/{brand}', 'middleware' => 'permission:admin.brands.edit'], function () {
             Route::get('edit', [BrandController::class, 'edit'])->whereUuid('id')->name('edit');
             Route::put('update', [BrandController::class, 'update'])->whereUuid('id')->name('update');
         });

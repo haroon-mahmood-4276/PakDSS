@@ -120,14 +120,13 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, $brand)
     {
         abort_if(request()->ajax(), 403);
         try {
 
-            $id = decryptParams($id);
             $inputs = $request->validated();
-            $record = $this->brandInterface->update($id, $inputs);
+            $this->brandInterface->update($brand, $inputs);
 
             return redirect()->route('admin.brands.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
