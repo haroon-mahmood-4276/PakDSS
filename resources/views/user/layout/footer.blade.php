@@ -24,9 +24,10 @@
                         <span class="app-brand-text demo footer-link fw-bold ms-2 ps-1">{{ env('APP_NAME') }}</span>
                     </a>
                     <p class="footer-text footer-logo-description mb-4">
-                        Most developer friendly & highly customisable Admin Dashboard Template.
+                        Pakistan's best online shopping store with 15+ million products at resounding discounts in
+                        Karachi | Lahore | Islamabad | All across Pakistan with cash on delivery (COD).
                     </p>
-                    <form class="footer-form">
+                    {{-- <form class="footer-form">
                         <label for="footer-email" class="small">Subscribe to newsletter</label>
                         <div class="d-flex mt-1">
                             <input type="email" class="form-control rounded-0 rounded-start-bottom rounded-start-top"
@@ -36,10 +37,10 @@
                                 Subscribe
                             </button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    <h6 class="footer-title mb-4">Demos</h6>
+                    {{-- <h6 class="footer-title mb-4">Demos</h6>
                     <ul class="list-unstyled">
                         <li class="mb-3">
                             <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template/"
@@ -61,10 +62,10 @@
                             <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template-dark/"
                                 target="_blank" class="footer-link">Dark Layout</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    <h6 class="footer-title mb-4">Pages</h6>
+                    {{-- <h6 class="footer-title mb-4">Pages</h6>
                     <ul class="list-unstyled">
                         <li class="mb-3">
                             <a href="pricing-page.html" class="footer-link">Pricing</a>
@@ -83,12 +84,13 @@
                             <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template/auth-login-cover.html"
                                 target="_blank" class="footer-link">Login/Register</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </div>
                 <div class="col-lg-3 col-md-4">
                     <h6 class="footer-title mb-4">Download our app</h6>
                     <a href="javascript:void(0);" class="d-block footer-link mb-3 pb-2"><img
-                            src="{{ asset('admin-assets') }}/img/front-pages/landing-page/apple-icon.png" alt="apple icon" /></a>
+                            src="{{ asset('admin-assets') }}/img/front-pages/landing-page/apple-icon.png"
+                            alt="apple icon" /></a>
                     <a href="javascript:void(0);" class="d-block footer-link"><img
                             src="{{ asset('admin-assets') }}/img/front-pages/landing-page/google-play-icon.png"
                             alt="google play icon" /></a>
@@ -115,8 +117,8 @@
                         data-app-dark-img="front-pages/icons/github-dark.png" />
                 </a>
                 <a href="https://www.facebook.com/pixinvents/" class="footer-link me-3" target="_blank">
-                    <img src="{{ asset('admin-assets') }}/img/front-pages/icons/facebook-light.png" alt="facebook icon"
-                        data-app-light-img="front-pages/icons/facebook-light.png"
+                    <img src="{{ asset('admin-assets') }}/img/front-pages/icons/facebook-light.png"
+                        alt="facebook icon" data-app-light-img="front-pages/icons/facebook-light.png"
                         data-app-dark-img="front-pages/icons/facebook-dark.png" />
                 </a>
                 <a href="https://twitter.com/pixinvents" class="footer-link me-3" target="_blank">

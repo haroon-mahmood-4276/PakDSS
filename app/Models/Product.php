@@ -69,7 +69,7 @@ class Product extends Model implements HasMedia
         'weight' => 'sometimes|decimal:0,2|gte:0',
 
         'short_description' => 'required|max:2500',
-        'long_description' => 'nullable|max:5000',
+        'long_description' => 'nullable',
 
         'meta_keywords' => 'nullable|json',
         'meta_description' => 'nullable|string',

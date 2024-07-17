@@ -53,7 +53,9 @@
         }
 
         #product-swiper .product-thumbs .swiper-slide-thumb-active {
-            opacity: 1
+            opacity: 1;
+            cursor: pointer;
+            border: 1px solid #7267f096;
         }
 
         .swiper-slide {
@@ -75,45 +77,22 @@
                     <div id="product-swiper">
                         <div class="swiper product-top">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="{{ asset('admin-assets') }}/img/backgrounds/2.jpg" alt="">
+                                @forelse ($product?->media as $image)
+                                    <div class="swiper-slide">
+                                        <div class="swiper-zoom-container">
+                                            <img src="{{ $image->getUrl() }}" alt="{{ $product?->sku }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="{{ asset('admin-assets') }}/img/backgrounds/1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="{{ asset('admin-assets') }}/img/backgrounds/3.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="{{ asset('admin-assets') }}/img/backgrounds/4.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="{{ asset('admin-assets') }}/img/backgrounds/6.jpg" alt="">
-                                    </div>
-                                </div>
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                         <div class="swiper product-thumbs">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"
-                                    style="background-image:url({{ asset('admin-assets') }}/img/backgrounds/2.jpg)"></div>
-                                <div class="swiper-slide"
-                                    style="background-image:url({{ asset('admin-assets') }}/img/backgrounds/1.jpg)"></div>
-                                <div class="swiper-slide"
-                                    style="background-image:url({{ asset('admin-assets') }}/img/backgrounds/3.jpg)"></div>
-                                <div class="swiper-slide"
-                                    style="background-image:url({{ asset('admin-assets') }}/img/backgrounds/4.jpg)"></div>
-                                <div class="swiper-slide"
-                                    style="background-image:url({{ asset('admin-assets') }}/img/backgrounds/6.jpg)"></div>
+                                @forelse ($product?->media as $image)
+                                    <div class="swiper-slide" style="background-repeat: no-repeat; background-image:url({{ $image->getUrl() }})"></div>
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -125,7 +104,7 @@
                         @csrf
 
                         <input type="hidden" name="referance" value="{{ $product->id }}">
-                        
+
                         <div class="product-heading">
                             <h2 class="m-0 p-0">{{ $product->name }}</h2>
                         </div>
@@ -138,17 +117,17 @@
                                             <small class="ms-1">by <a
                                                     href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}">{{ $product->brand->name }}</a></small>
                                         </div>
-                                        <div class="product-rating" style="z-index: 1;">
+                                        {{-- <div class="product-rating" style="z-index: 1;">
                                             <div class="d-flex gap-1">
                                                 <div id="product-rating" class="p-0"></div>
                                                 <span class="font-xs font-medium"> (65 reviews)</span>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
                                 {{-- Product Wishlist --}}
-                                <div class="col-6">
+                                {{-- <div class="col-6">
                                     <div class="d-flex align-items-end h-100 justify-content-end gap-3">
                                         <a href="#" class="btn btn-icon btn-primary waves-effect"
                                             data-bs-toggle="tooltip" data-bs-placement="top"
@@ -161,7 +140,7 @@
                                             <span class="fa-solid fa-code-compare"></span>
                                         </a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="product-price mb-3">
@@ -169,12 +148,12 @@
                                 {{ currencyParser($product->discounted_price > 0 ? $product->discounted_price : $product->price, symbol: 'Rs.') }}
                                 @if ($product->discounted_price > 0)
                                     <small
-                                        class="text-body-secondary"><s>{{ currencyParser($product->discounted_price, symbol: 'Rs.') }}</s></small>
+                                        class="text-body-secondary"><s>{{ currencyParser($product->price, symbol: 'Rs.') }}</s></small>
                                 @endif
                             </h3>
                         </div>
                         <div class="product-short-description mb-3" style="min-height: 130px ">
-                            {{ strip_tags($product->short_description) }}
+                            {!! decodeHtmlEntities($product->short_description) !!}
                         </div>
                         {{-- <div class="product-color mt-20">
                             <p class="font-sm color-gray-900">Color:<span class="color-brand-2 nameColor">Pink Gold</span>
@@ -231,12 +210,9 @@
                                 <div class="col-lg-5 col-md-5">
                                     <span class="font-sm font-medium color-gray-900">
                                         <strong class="text-primary">SKU:</strong> <span
-                                            class="">iphone12pro128</span>
+                                            class="">{{ $product->sku }}</span>
                                         <br>
-                                        <strong class="text-primary">Category:</strong> <span
-                                            class="">Smartphones</span> <br>
-                                        <strong class="text-primary">Tags:</strong> <span class="">Blue,
-                                            Smartphone</span>
+                                        <strong class="text-primary">Tags:</strong> <span class="">{{ implode(', ', $product->tags?->pluck('name')->all() ?? []) }}</span>
                                     </span>
                                 </div>
                                 <div class="col-lg-4 col-md-4">
@@ -245,7 +221,7 @@
                                         <span class="">Delivery Options &amp; Info</span>
                                     </span>
                                 </div>
-                                <div class="col-lg-3 col-md-3">
+                                {{-- <div class="col-lg-3 col-md-3">
                                     <div class="d-flex justify-content-end align-items-center h-100">
                                         <div class="icons d-flex justify-content-around w-50">
                                             <a class="icon-facebook fs-3" href="#" data-bs-toggle="tooltip"
@@ -259,7 +235,7 @@
                                                     class="fa-brands fa-square-instagram"></i></a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </form>
@@ -279,104 +255,30 @@
             <div class="row mb-4">
                 <div class="col-xl-12">
                     <div class="nav-align-top mb-4">
-                        <ul class="nav nav-pills nav-fill gap-3 mb-3" role="tablist">
-                            <li class="nav-item border rounded-3" role="presentation">
+                        <ul class="nav nav-pills nav-fill gap-3 mb-3">
+                            <li class="nav-item border rounded-3">
                                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
                                     data-bs-target="#navs-description" aria-controls="navs-description"
                                     aria-selected="false" tabindex="-1"><i class="fa-solid fa-file-pen me-1"></i>
                                     Description</button>
                             </li>
-                            <li class="nav-item border rounded-3" role="presentation">
-                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                                    data-bs-target="#navs-specifications" aria-controls="navs-specifications"
-                                    aria-selected="true"><i class="fa-solid fa-circle-info me-1"></i>
-                                    Specifications</button>
-                            </li>
-                            <li class="nav-item border rounded-3" role="presentation">
-                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                                    data-bs-target="#navs-additional-information"
-                                    aria-controls="navs-additional-information" aria-selected="false" tabindex="-1"><i
-                                        class="fa-solid fa-circle-info me-1"></i> Additional Information</button>
-                            </li>
-                            <li class="nav-item border rounded-3" role="presentation">
+                            {{-- <li class="nav-item border rounded-3">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                                     data-bs-target="#navs-reviews" aria-controls="navs-reviews" aria-selected="false"
                                     tabindex="-1"><i class="fa-regular fa-comments me-1"></i> Reviews (65)</button>
                             </li>
-                            <li class="nav-item border rounded-3" role="presentation">
+                            <li class="nav-item border rounded-3">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                                     data-bs-target="#navs-questions-answers" aria-controls="navs-questions-answers"
                                     aria-selected="false" tabindex="-1"><i
                                         class="fa-regular fa-circle-question me-1"></i> Q&A (65)</button>
-                            </li>
+                            </li> --}}
                         </ul>
                         <div class="tab-content shadow-none ">
                             <div class="tab-pane fade active show" id="navs-description" role="tabpanel">
-                                {!! $product->long_description !!}
+                                {!! decodeHtmlEntities($product->long_description) !!}
                             </div>
-                            <div class="tab-pane fade" id="navs-specifications" role="tabpanel">
-                                <h5 class="mb-25">Specification</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <td>Mode</td>
-                                                <td>#SK10923</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brand</td>
-                                                <td>SamSung</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Size</td>
-                                                <td>6.7"</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Finish</td>
-                                                <td>Pacific Blue</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Origin of Country</td>
-                                                <td>United States</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Manufacturer</td>
-                                                <td>USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Released Year</td>
-                                                <td>2022</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Warranty</td>
-                                                <td>International</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="navs-additional-information" role="tabpanel">
-                                <h5 class="mb-25">Additional information</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <td>Weight</td>
-                                                <td>
-                                                    <p>0.240 kg</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dimensions</td>
-                                                <td>
-                                                    <p>0.74 x 7.64 x 16.08 cm</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="navs-reviews" role="tabpanel">
+                            {{-- <div class="tab-pane fade" id="navs-reviews" role="tabpanel">
                                 <p>
                                     Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon
                                     gummies cupcake gummi
@@ -405,7 +307,7 @@
                                     jelly-o tart brownie
                                     jelly.
                                 </p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -457,6 +359,7 @@
         var product_top = new Swiper(".product-top", {
             spaceBetween: 10,
             zoom: true,
+            loop: true,
             thumbs: {
                 swiper: new Swiper(".product-thumbs", {
                     spaceBetween: 10,

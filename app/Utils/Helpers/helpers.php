@@ -87,9 +87,9 @@ if (!function_exists('filter_strip_tags')) {
     }
 }
 
-if (!function_exists('filter_script_tags')) {
+if (!function_exists('filterScriptTags')) {
 
-    function filter_script_tags($text): string
+    function filterScriptTags($text): string
     {
         $pattern = [
             '@<script[^>]*?>.*?</script>@si',
@@ -99,17 +99,17 @@ if (!function_exists('filter_script_tags')) {
     }
 }
 
-if (!function_exists('encode_html_entities')) {
+if (!function_exists('encodeHtmlEntities')) {
 
-    function encode_html_entities($field): string
+    function encodeHtmlEntities($field): string
     {
         return trim(htmlentities($field));
     }
 }
 
-if (!function_exists('decode_html_entities')) {
+if (!function_exists('decodeHtmlEntities')) {
 
-    function decode_html_entities($field): string
+    function decodeHtmlEntities($field): string
     {
         return trim(html_entity_decode($field));
     }
