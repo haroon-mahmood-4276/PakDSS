@@ -3,7 +3,7 @@
 namespace App\DataTables\Seller;
 
 use App\Models\Shop;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ShopsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -26,22 +26,13 @@ class ShopsDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            // ->editColumn('check', function ($shop) {
-            //     return $shop;
-            // })
             ->editColumn('image', function ($model) {
                 $imagePath = $model->getFirstMediaUrl('shops');
                 return editImageColumn(image: strlen($imagePath) > 0 ? $imagePath : asset('admin-assets/img/do_not_delete/do_not_delete.png'), name: $model->name, width: 50);
             })
-            ->editColumn('status', function ($shop) {
-                return editStatusColumn($shop->status);
-            })
-            ->editColumn('updated_at', function ($shop) {
-                return editDateColumn($shop->updated_at);
-            })
-            ->editColumn('actions', function ($shop) {
-                return view('seller.shops.actions', ['shop' => $shop->id]);
-            })
+            ->editColumn('status', fn ($shop) => editStatusColumn($shop->status->value))
+            ->editColumn('updated_at', fn ($shop) => editDateColumn($shop->updated_at))
+            ->editColumn('actions', fn ($shop) => view('seller.shops.actions', ['shop' => $shop->id]))
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -57,12 +48,6 @@ class ShopsDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $buttons = [
-            // Button::raw('add-new')
-            //     ->addClass('btn btn-primary')
-            //     ->text('<i class="icon material-icons md-add text-white "></i>Add New')
-            //     ->attr([
-            //         'onclick' => 'addNew()',
-            //     ]),
             Button::make('export')
                 ->addClass('btn btn-primary waves-effect waves-float waves-light dropdown-toggle m-1')
                 ->buttons([
@@ -74,12 +59,6 @@ class ShopsDataTable extends DataTable
                 ]),
             Button::make('reset')->addClass('btn btn-danger'),
             Button::make('reload')->addClass('btn btn-primary'),
-            // Button::raw('delete-selected')
-            //     ->addClass('btn btn-danger')
-            //     ->text('<i class="icon material-icons md-delete"></i><span id="delete_selected_count" style="display:none">0</span> Delete Selected')
-            //     ->attr([
-            //         'onclick' => 'deleteSelected()',
-            //     ]),
         ];
 
         return $this->builder()
@@ -99,23 +78,6 @@ class ShopsDataTable extends DataTable
                 [30, 50, 70, 100, 120, 150, 'All'],
             ])
             ->dom('<"card-header pt-0"<"head-label"><"dt-action-buttons text-end"B>> <"d-flex justify-content-between align-items-center my-3 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>> t<"d-flex justify-content-between mt-3 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>> C<"clear">')
-            // ->columnDefs([
-            //     [
-            //         'targets' => 0,
-            //         'className' => 'text-center align-middle text-primary',
-            //         'width' => '10%',
-            //         'orderable' => false,
-            //         'searchable' => false,
-            //         'responsivePriority' => 3,
-            //         'render' => "function (data, type, full, setting) {
-            //             var role = JSON.parse(data);
-            //             return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'danger\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
-            //         }",
-            //         'checkboxes' => [
-            //             'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
-            //         ],
-            //     ],
-            // ])
             ->fixedColumns([
                 'left' => 1,
                 'right' => 1,
@@ -130,30 +92,21 @@ class ShopsDataTable extends DataTable
      */
     protected function getColumns(): array
     {
+        $columnClass = 'text-nowrap align-middle text-center';
         return [
-            // Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('DT_RowIndex')->title('#')->addClass($columnClass),
 
-            Column::computed('DT_RowIndex')->title('#')->addClass('text-nowrap align-middle text-center'),
+            Column::computed('image')->addClass($columnClass),
 
-            Column::computed('image')->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->title('Name')->addClass($columnClass),
+            Column::make('slug')->title('Slug')->addClass($columnClass),
+            Column::make('address')->addClass($columnClass),
 
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
-            Column::make('address')->addClass('text-nowrap align-middle text-center'),
+            Column::make('status')->width(100)->addClass($columnClass),
 
-            Column::make('status')->width(100)->addClass('text-nowrap align-middle text-center'),
+            Column::make('updated_at')->addClass($columnClass),
 
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
-
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'shops_' . date('YmdHis');
     }
 }

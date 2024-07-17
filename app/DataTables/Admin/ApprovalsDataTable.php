@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\Seller;
 use App\Models\Shop;
 use App\Utils\Enums\Status;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 use Yajra\DataTables\EloquentDataTable;
@@ -17,7 +17,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ApprovalsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -31,18 +31,10 @@ class ApprovalsDataTable extends DataTable
 
         $eloquentDataTable = (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('check', function ($model) {
-                return $model;
-            })
-            ->editColumn('status', function ($model) {
-                return editStatusColumn($model->status);
-            })
-            ->editColumn('updated_at', function ($model) {
-                return editDateColumn($model->updated_at);
-            })
-            ->editColumn('actions', function ($model) {
-                return view('admin.approvals.actions', ['id' => $model->id, 'for' => $this->model]);
-            })
+            ->editColumn('check', fn ($model) => $model)
+            ->editColumn('status', fn ($model) => editStatusColumn($model->status->value))
+            ->editColumn('updated_at', fn ($model) => editDateColumn($model->updated_at))
+            ->editColumn('actions', fn ($model) => view('admin.approvals.actions', ['id' => $model->id, 'for' => $this->model]))
             ->rawColumns($columns);
 
         switch ($this->model) {

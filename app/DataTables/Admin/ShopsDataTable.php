@@ -3,7 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Shop;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ShopsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -23,27 +23,14 @@ class ShopsDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query)
     {
-        $columns = array_column($this->getColumns(), 'data');
-
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($model) {
-                return $model;
-            })
-            ->editColumn('image', function ($model) {
-                $imagePath = $model->getFirstMediaUrl('shops');
-                return editImageColumn(image: strlen($imagePath) > 0 ? $imagePath : asset('admin-assets/img/do_not_delete/do_not_delete.png'), name: $model->name, width: 50);
-            })
-            ->editColumn('updated_at', function ($model) {
-                return editDateColumn($model->updated_at);
-            })
-            ->editColumn('status', function ($model) {
-                return editStatusColumn($model->status);
-            })
-            ->editColumn('actions', function ($model) {
-                return view('admin.sellers.shops.actions', ['seller' => $this->seller->id, 'shop' => $model->id,]);
-            })
+            ->editColumn('check', fn ($model) => $model)
+            ->editColumn('image', fn ($model) => editImageColumn(image: strlen($model->getFirstMediaUrl('shops')) > 0 ? $model->getFirstMediaUrl('shops') : asset('admin-assets/img/do_not_delete/do_not_delete.png'), name: $model->name, width: 50))
+            ->editColumn('updated_at', fn ($model) => editDateTimeColumn($model->updated_at))
+            ->editColumn('status', fn ($model) => editStatusColumn($model->status->value))
+            ->editColumn('actions', fn ($model) => view('admin.sellers.shops.actions', ['seller' => $this->seller->id, 'shop' => $model->id,]))
             ->setRowId('id')
-            ->rawColumns($columns);
+            ->rawColumns(array_column($this->getColumns(), 'data'));
     }
 
     /**
@@ -101,7 +88,7 @@ class ShopsDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            
+
             ->scrollX()
             ->pagingType('full_numbers')
             ->lengthMenu([

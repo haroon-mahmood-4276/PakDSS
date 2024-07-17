@@ -80,7 +80,7 @@ class ProductController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $product = $this->productInterface->find($id, ['categories', 'tags']);
+            $product = $this->productInterface->find($id, relationships: ['categories', 'tags']);
 
             $data = [
                 'brands' => $this->brandInterface->get(),

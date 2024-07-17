@@ -67,7 +67,7 @@ class ProductService implements ProductInterface
                 $query->select($only);
             })
             ->when($relationships, function($query, $relationships) {
-                $query->select($relationships);
+                $query->with($relationships);
             })->find($id);
     }
 
@@ -96,8 +96,8 @@ class ProductService implements ProductInterface
 
                 'weight' => $inputs['weight'],
 
-                'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
-                'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
+                'short_description' => encodeHtmlEntities(filterScriptTags($inputs['short_description'])),
+                'long_description' => encodeHtmlEntities(filterScriptTags($inputs['long_description'])),
 
                 'meta_author' => $inputs['meta_author'],
                 'meta_keywords' => $inputs['meta_keywords'],
@@ -155,13 +155,13 @@ class ProductService implements ProductInterface
 
                 'weight' => $inputs['weight'],
 
-                'short_description' => encode_html_entities(filter_script_tags($inputs['short_description'])),
-                'long_description' => encode_html_entities(filter_script_tags($inputs['long_description'])),
+                'short_description' => encodeHtmlEntities(filterScriptTags($inputs['short_description'])),
+                'long_description' => encodeHtmlEntities(filterScriptTags($inputs['long_description'])),
 
                 'meta_keywords' => $inputs['meta_keywords'],
                 'meta_description' => $inputs['meta_description'],
 
-                'status' => Status::PENDING_APPROVAL,
+                // 'status' => Status::PENDING_APPROVAL,
             ];
             $product->update($data);
 

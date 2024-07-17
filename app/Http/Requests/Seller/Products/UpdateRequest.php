@@ -33,9 +33,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         $rules = (new Product())->rules;
-        $id = decryptParams($this->id);
-        $rules['permalink'] .= ','.$id;
-        $rules['sku'] .= ','.$id;
+        $rules['permalink'] .= ',' . $this->id;
+        $rules['sku'] .= ',' . $this->id;
 
         return $rules;
     }

@@ -4,7 +4,10 @@
     {{ Breadcrumbs::view('breadcrumbs::json-ld', 'user.home') }}
 @endsection
 
-@section('page-title', env('APP_NAME'))
+@section('page-title',
+    "Pakistan's best online shopping store with 15+ million products at resounding discounts in
+    Karachi | Lahore | Islamabad | All across Pakistan with cash on delivery (COD). Pick your favorite Mobiles, Appliances,
+    Apparels, and Fashion accessories on amazing deals exclusively available at Pakdss.com")
 
 @section('vendor-css')
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.css" />
@@ -159,7 +162,7 @@
                             </div>
                         </div>
                         {{-- <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div> --}}
+                    <div class="swiper-button-prev"></div> --}}
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
@@ -225,53 +228,56 @@
                                     <h1 class="m-0">{{ Str::of($catrgory_name)->title() }}</h1>
                                 </div>
                             </div>
-                            <div class="{{ $catrgory_name }}-swiper-navigation-button d-flex gap-1">
-                                <div class="{{ $catrgory_name }}-swiper-button-next btn btn-sm btn-primary">
+                            <div class="parent-swiper-navigation-button d-flex gap-1">
+                                <div class="parent-swiper-button-next btn btn-sm btn-primary">
                                     <i class="fa-solid fa-angle-left"></i>
                                 </div>
-                                <div class="{{ $catrgory_name }}-swiper-button-prev btn btn-sm btn-primary">
+                                <div class="parent-swiper-button-prev btn btn-sm btn-primary">
                                     <i class="fa-solid fa-angle-right"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="swiper {{ $catrgory_name }}-categories-swiper">
+                        <div class="swiper parent-categories-swiper">
                             <div class="swiper-wrapper">
                                 @foreach ($product_chunks as $chunk)
                                     <div class="swiper-slide">
                                         <div class="row row-cols-6 g-2">
                                             @foreach ($chunk as $product)
+                                                {{-- Product --}}
                                                 <div class="col">
-                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                                        style="border-color: #7367f0">
-                                                        <div class="top-border"></div>
-                                                        <div
-                                                            class="bg-label-primary rounded text-center m-2 position-relative">
-                                                            <div
-                                                                class="d-flex justify-content-between position-absolute w-100">
-                                                                <span class="badge bg-warning">10%</span>
-                                                                <span class="badge bg-danger">Hot</span>
-                                                            </div>
-                                                            <div class="p-3">
-                                                                <img class="card-img-top img-fluid"
-                                                                    src="{{ asset('admin-assets') }}/img/illustrations/girl-with-laptop.png"
-                                                                    alt="Card girl" width="140">
+                                                    <div class="card overflow-hidden h-100 position-relative shadow-none">
+                                                        <div class="rounded text-center position-relative">
+                                                            <div class="p-1">
+                                                                <div class="swiper productImageSwipper">
+                                                                    <div class="swiper-wrapper">
+                                                                        @forelse ($product?->media as $image)
+                                                                            <div class="swiper-slide">
+                                                                                <img class="card-img-top img-fluid"
+                                                                                    src="{{ $image->getUrl() }}"
+                                                                                    alt="{{ $product?->sku }}"
+                                                                                    width="140" />
+                                                                            </div>
+                                                                        @empty
+                                                                        @endforelse
+                                                                    </div>
+                                                                    <div class="swiper-pagination"></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="card-body px-3 pt-1 pb-3 d-flex flex-column">
                                                             <div class="d-flex justify-content-between align-items-center">
                                                                 <a
-                                                                    href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}"><small>{{ $product->brand->name }}</small></a>
+                                                                    href="#"><small>{{ $product->brand->name }}</small></a>
+                                                                {{-- <a
+                                                                    href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}"><small>{{ $product->brand->name }}</small></a> --}}
                                                                 <div id="rateYo"></div>
                                                             </div>
                                                             <p>
                                                                 <a href="{{ route('user.products.index', ['product' => $product->permalink]) }}"
                                                                     class="mb-1 text-dark"><strong>{{ $product->name }}</strong></a>
                                                             </p>
-                                                            {{-- <div class="flex-grow-1">
-                                                                    asdasd
-                                                                </div> --}}
 
                                                         </div>
                                                     </div>
@@ -317,19 +323,21 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="col-3">
-                    <div class="card shadow-none border">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-start">
-                                <img class="img-fluid m-2" src="http://localhost:8000/user-assets/imgs/template/voucher.svg" alt="Ecom">
-                                <div class="flex-grow-1 m-2">
-                                    <h5 class="m-0">Gift voucher</h5>
-                                    <p class="m-0">Refer a friend</p>
+                        <div class="col-3">
+                            <div class="card shadow-none border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-start">
+                                        <img class="img-fluid m-2"
+                                            src="http://localhost:8000/user-assets/imgs/template/voucher.svg"
+                                            alt="Ecom">
+                                        <div class="flex-grow-1 m-2">
+                                            <h5 class="m-0">Gift voucher</h5>
+                                            <p class="m-0">Refer a friend</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div> --}}
                         <div class="col-3">
                             <div class="card shadow-none border">
                                 <div class="card-body">
@@ -362,59 +370,66 @@
                         </div>
                     </div>
                 @endif
-            @empty
-            @endforelse
-        </div>
-    </section>
-@endsection
+                @empty
+                @endforelse
+            </div>
+        </section>
+    @endsection
 
-@section('vendor-js')
-    <script src="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.js"></script>
-@endsection
+    @section('vendor-js')
+        <script src="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.js"></script>
+        <script src="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.js"></script>
+    @endsection
 
-@section('page-js')
-    {{-- @vite(['resources/js/app.js']) --}}
-    <script>
-        $(document).ready(function() {
-            $("#rateYo").rateYo({
-                starWidth: "15px",
-                // normalFill: "#685dd8"
-                ratedFill: "#7367f0",
-                starSvg: "<i class='fa-solid fa-star'></i>"
+    @section('page-js')
+        {{-- @vite(['resources/js/app.js']) --}}
+        <script>
+            $(document).ready(function() {
+                $("#rateYo").rateYo({
+                    starWidth: "15px",
+                    // normalFill: "#685dd8"
+                    ratedFill: "#7367f0",
+                    starSvg: "<i class='fa-solid fa-star'></i>"
+                });
             });
-        });
 
-        new Swiper(".banner-swiper", {
-            spaceBetween: 10,
-            autoplay: {
-                delay: 15000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".banner-swiper .swiper-pagination",
-                // dynamicBullets: true,
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".banner-swiper .swiper-button-next",
-                prevEl: ".banner-swiper .swiper-button-prev",
-            },
-        });
+            new Swiper(".banner-swiper", {
+                spaceBetween: 10,
+                autoplay: {
+                    delay: 15000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".banner-swiper .swiper-pagination",
+                    // dynamicBullets: true,
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".banner-swiper .swiper-button-next",
+                    prevEl: ".banner-swiper .swiper-button-prev",
+                },
+            });
 
-        @forelse ($categories_products as $catrgory_name => $product_chunks)
-            new Swiper(".{{ $catrgory_name }}-categories-swiper", {
+            new Swiper(".productImageSwipper", {
+                spaceBetween: 10,
+                loop: true,
+                pagination: {
+                    el: ".productImageSwipper .swiper-pagination",
+                    // dynamicBullets: true,
+                    clickable: true,
+                },
+            });
+
+            new Swiper(".parent-categories-swiper", {
                 spaceBetween: 7,
                 autoplay: {
                     delay: 25000,
                     disableOnInteraction: false,
                 },
                 navigation: {
-                    prevEl: ".{{ $catrgory_name }}-swiper-button-next",
-                    nextEl: ".{{ $catrgory_name }}-swiper-button-prev",
+                    prevEl: ".parent-swiper-button-next",
+                    nextEl: ".parent-swiper-button-prev",
                 }
             });
-        @empty
-        @endforelse
-    </script>
-@endsection
+        </script>
+    @endsection

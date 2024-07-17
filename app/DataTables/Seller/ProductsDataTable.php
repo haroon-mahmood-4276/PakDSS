@@ -3,7 +3,7 @@
 namespace App\DataTables\Seller;
 
 use App\Models\Product;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ProductsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -25,24 +25,12 @@ class ProductsDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($product) {
-                return $product;
-            })
-            ->editColumn('price', function ($product) {
-                return 'Rs. ' . ($product->price > 0 ? $product->price : '-');
-            })
-            ->editColumn('discounted_price', function ($product) {
-                return ($product->discounted_price > 0 ? 'Rs. ' . $product->discounted_price : '-');
-            })
-            ->editColumn('status', function ($product) {
-                return editStatusColumn($product->status);
-            })
-            ->editColumn('updated_at', function ($product) {
-                return editDateColumn($product->updated_at);
-            })
-            ->editColumn('actions', function ($product) {
-                return view('seller.products.actions', ['id' => $product->id]);
-            })
+            ->editColumn('check', fn ($product) => $product)
+            ->editColumn('price', fn ($product) => 'Rs. ' . ($product->price > 0 ? $product->price : '-'))
+            ->editColumn('discounted_price', fn ($product) => $product->discounted_price > 0 ? 'Rs. ' . $product->discounted_price : '-')
+            ->editColumn('status', fn ($product) => editStatusColumn($product->status->value))
+            ->editColumn('updated_at', fn ($product) => editDateTimeColumn($product->updated_at))
+            ->editColumn('actions', fn ($product) => view('seller.products.actions', ['id' => $product->id]))
             ->setRowId('id')
             ->rawColumns($columns);
     }

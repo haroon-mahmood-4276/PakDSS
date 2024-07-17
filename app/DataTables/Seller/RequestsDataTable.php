@@ -3,7 +3,7 @@
 namespace App\DataTables\Seller;
 
 use App\Models\Request as RequestForModel;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class RequestsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
     /**
      * Build DataTable class.
      *

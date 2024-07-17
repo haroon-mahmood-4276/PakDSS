@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utils\Enums\Status;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -67,8 +68,8 @@ class Product extends Model implements HasMedia
 
         'weight' => 'sometimes|decimal:0,2|gte:0',
 
-        'short_description' => 'required|max:500',
-        'long_description' => 'nullable|max:5000',
+        'short_description' => 'required|max:2500',
+        'long_description' => 'nullable',
 
         'meta_keywords' => 'nullable|json',
         'meta_description' => 'nullable|string',
@@ -83,7 +84,7 @@ class Product extends Model implements HasMedia
         'tags.*' => 'nullable|uuid|exists:tags,id',
 
         'product_images' => 'nullable|array',
-        'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
+        'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:536',
 
         'product_pdf' => 'nullable|file|mimes:pdf',
 
@@ -104,6 +105,8 @@ class Product extends Model implements HasMedia
         'weight' => 'decimal:2',
 
         'meta_keywords' => 'array',
+
+        'status' => Status::class,
     ];
 
     public function brand(): BelongsTo

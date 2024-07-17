@@ -3,7 +3,7 @@
 namespace App\DataTables\Seller;
 
 use App\Models\Category;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,7 +14,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class CategoriesDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -26,18 +26,9 @@ class CategoriesDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('parent_id', function ($category) {
-                return Str::of(getParentByParentId($category->parent_id, Category::class))->ucfirst();
-            })
-            ->editColumn('linked_brands_count', function ($brand) {
-                return $brand->brands_count > 0 ? $brand->brands_count : '-';
-            })
-            ->editColumn('created_at', function ($category) {
-                return editDateColumn($category->created_at);
-            })
-            ->editColumn('updated_at', function ($category) {
-                return editDateColumn($category->updated_at);
-            })
+            ->editColumn('parent_id', fn ($category) => Str::of(getParentByParentId($category->parent_id, Category::class))->ucfirst())
+            ->editColumn('linked_brands_count', fn ($brand) => $brand->brands_count > 0 ? $brand->brands_count : '-')
+            ->editColumn('created_at', fn ($category) => editDateTimeColumn($category->created_at))
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -92,13 +83,13 @@ class CategoriesDataTable extends DataTable
      */
     protected function getColumns(): array
     {
+        $columnClass = 'text-nowrap align-middle text-center';
         return [
-            Column::make('name')->title('Name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('slug')->title('Slug')->addClass('text-nowrap align-middle text-center'),
-            Column::make('parent_id')->title('Parent')->addClass('text-nowrap align-middle text-center'),
-            Column::computed('linked_brands_count')->title('Associated Brands')->addClass('text-nowrap align-middle text-center'),
-            Column::make('created_at')->addClass('text-nowrap align-middle text-center'),
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->title('Name')->addClass($columnClass),
+            Column::make('slug')->title('Slug')->addClass($columnClass),
+            Column::make('parent_id')->title('Parent')->addClass($columnClass),
+            Column::computed('linked_brands_count')->title('Associated Brands')->addClass($columnClass),
+            Column::make('created_at')->addClass($columnClass),
         ];
     }
 
