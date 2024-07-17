@@ -22,18 +22,7 @@ class PermissionsDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->editColumn('roles', function ($permission) {
-                return [
-                    'permission_id' => $permission->id,
-                    'roles' => $permission->roles->pluck('id')->toArray(),
-                ];
-            })
-            ->editColumn('created_at', function ($permission) {
-                return editDateColumn($permission->created_at);
-            })
-            ->editColumn('updated_at', function ($permission) {
-                return editDateColumn($permission->updated_at);
-            })
+            ->editColumn('roles', fn ($permission) => ['permission_id' => $permission->id, 'roles' => $permission->roles->pluck('id')->toArray()])
             ->setRowId('id')
             ->rawColumns($columns);
     }

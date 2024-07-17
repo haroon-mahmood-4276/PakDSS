@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,7 +11,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Brand extends Model implements HasMedia
 {
-    use HasUuids, HasFactory, SoftDeletes, InteractsWithMedia;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $dateFormat = 'U';
 
@@ -26,7 +25,7 @@ class Brand extends Model implements HasMedia
         'slug' => 'required|string|between:1,254|unique:brands,slug',
         'brand_image' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
         'categories' => 'nullable|array',
-        'categories.*' => 'uuid',
+        'categories.*' => 'integer',
     ];
 
     public function categories(): BelongsToMany

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_social_accounts', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('account_id');
-            $table->uuid('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('name')->nullable();
             $table->longText('token')->nullable();
             $table->longText('refreshToken')->nullable();

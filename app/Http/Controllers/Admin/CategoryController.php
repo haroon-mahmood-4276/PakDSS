@@ -97,7 +97,7 @@ class CategoryController extends Controller
         try {
             $category = $this->categoryInterface->find($id, ['brands:id']);
 
-            if ($category && ! empty($category)) {
+            if ($category && !empty($category)) {
                 $data = [
                     'brands' => $this->brandInterface->get(),
                     'category' => $category,
@@ -124,12 +124,8 @@ class CategoryController extends Controller
     {
         abort_if(request()->ajax(), 403);
         try {
-
-            $id = decryptParams($id);
-
             $inputs = $request->validated();
-
-            $record = $this->categoryInterface->update($id, $inputs);
+            $this->categoryInterface->update($id, $inputs);
 
             return redirect()->route('admin.categories.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
@@ -146,7 +142,7 @@ class CategoryController extends Controller
 
                 $record = $this->categoryInterface->destroy($request->checkForDelete);
 
-                if (! $record) {
+                if (!$record) {
                     return redirect()->route('admin.categories.index')->withDanger('Data not found!');
                 }
             }

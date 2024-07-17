@@ -103,7 +103,7 @@ class ProductController extends Controller
     {
         abort_if(request()->ajax(), 403);
         try {
-            $id = decryptParams($id);
+            
             $inputs = $request->validated();
             $record = $this->productInterface->update($id, $inputs);
 

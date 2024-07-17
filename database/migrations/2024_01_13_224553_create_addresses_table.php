@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
 
-            $table->uuid('user_id');
-            $table->enum('address_type', ['home', 'office']);
-            $table->uuid('country_id');
-            $table->uuid('state_id');
-            $table->uuid('city_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('state_id');
+            $table->unsignedBigInteger('city_id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('address_1');
@@ -28,6 +27,7 @@ return new class extends Migration
             $table->integer('zip_code')->default(0);
             $table->boolean('default_delivery_address')->default(false);
             $table->boolean('default_billing_address')->default(false);
+            $table->enum('address_type', ['home', 'office']);
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();

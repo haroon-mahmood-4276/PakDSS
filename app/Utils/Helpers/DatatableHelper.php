@@ -63,8 +63,8 @@ if (!function_exists('editTimeColumn')) {
     }
 }
 
-if (!function_exists('editDateColumn')) {
-    function editDateColumn($date, $format = 'Y-m-d')
+if (!function_exists('editDateTimeColumn')) {
+    function editDateTimeColumn($date, $format = 'Y-m-d')
     {
         if (($date instanceof Carbon ? $date->timestamp : $date) < 1) {
             return '-';
@@ -94,12 +94,10 @@ if (!function_exists('editStatusColumn')) {
                 break;
                 
             case 'yes':
-            case true:
                 $badge = editBadgeColumn('Yes', 'success');
                 break;
 
             case 'no':
-            case false:
                 $badge = editBadgeColumn('No', 'danger');
                 break;
 

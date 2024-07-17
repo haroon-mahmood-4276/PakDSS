@@ -25,8 +25,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         $rules = (new Category())->rules;
-        $id = decryptParams($this->id);
-        $rules['slug'] .= ','.$id;
+        $rules['slug'] .= ',' . $this->id;
 
         return $rules;
     }

@@ -27,23 +27,10 @@ class RolesDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('parent_id', function ($role) {
-                return Str::of($role->parent?->name ?? 'parent')->ucfirst();
-            })
-            ->editColumn('created_at', function ($role) {
-                return editDateColumn($role->created_at);
-            })
-            ->editColumn('updated_at', function ($role) {
-                return editDateColumn($role->updated_at);
-            })
-            ->editColumn('actions', function ($role) {
-                if ($role->name != 'Admin') {
-                    return view('admin.roles.actions', ['id' => $role->id]);
-                }
-            })
-            ->editColumn('check', function ($role) {
-                return $role;
-            })
+            ->editColumn('check', fn ($role) => $role)
+            ->editColumn('parent_id', fn ($role) => Str::of($role->parent?->name ?? 'parent')->ucfirst())
+            ->editColumn('created_at', fn ($role) => editDateTimeColumn($role->created_at))
+            ->editColumn('actions', fn ($role) => $role->name != 'Admin' ? view('admin.roles.actions', ['id' => $role->id]) : null)
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -119,7 +106,7 @@ class RolesDataTable extends DataTable
                         return null;
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -148,7 +135,6 @@ class RolesDataTable extends DataTable
             Column::make('name')->title('Role Name')->addClass($columnClass),
             Column::make('parent_id')->title('Parent')->addClass($columnClass),
             Column::make('created_at')->addClass($columnClass),
-            Column::make('updated_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
     }

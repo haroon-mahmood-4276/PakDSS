@@ -33,7 +33,8 @@ class ApprovalsDataTable extends DataTable
             ->setRowId('id')
             ->editColumn('check', fn ($model) => $model)
             ->editColumn('status', fn ($model) => editStatusColumn($model->status->value))
-            ->editColumn('updated_at', fn ($model) => editDateColumn($model->updated_at))
+            ->editColumn('created_at', fn ($model) => editDateTimeColumn($model->created_at))
+            ->editColumn('updated_at', fn ($model) => editDateTimeColumn($model->updated_at))
             ->editColumn('actions', fn ($model) => view('admin.approvals.actions', ['id' => $model->id, 'for' => $this->model]))
             ->rawColumns($columns);
 
@@ -124,7 +125,7 @@ class ApprovalsDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'primary\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkAdmin_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -166,6 +167,7 @@ class ApprovalsDataTable extends DataTable
 
         $columns = array_merge($columns, [
             Column::make('status')->addClass($columnClass),
+            Column::make('created_at')->addClass($columnClass),
             Column::make('updated_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ]);

@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
 
-            $table->uuid('brand_id');
-            $table->uuid('seller_id');
-            $table->uuid('shop_id');
+            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('seller_id');
+            $table->unsignedBigInteger('shop_id');
 
             $table->string('name', 150)->nullable();
 
@@ -40,7 +40,7 @@ return new class extends Migration
             $table->text('short_description')->nullable();
             $table->longText('long_description')->nullable();
 
-            $table->string('meta_aurthor', 50)->nullable();
+            $table->string('meta_author', 50)->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
 

@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Models\Role as SpatieRole;
 
 class Role extends SpatieRole
 {
-    use HasUuids, HasFactory;
+    use HasFactory;
 
     protected $dateFormat = 'U';
 
@@ -29,7 +28,7 @@ class Role extends SpatieRole
     ];
 
     public $rules = [
-        'parent_id' => 'required|uuid',
+        'parent_id' => 'required|integer',
         'name' => 'required|string|between:1,254',
         'guard_name' => 'required|string|between:1,254',
     ];

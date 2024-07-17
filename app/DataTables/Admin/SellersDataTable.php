@@ -28,7 +28,7 @@ class SellersDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->editColumn('check', fn ($seller) => $seller)
             ->editColumn('ntn_number', fn ($seller) => empty($seller->ntn_number) ? '-' : $seller->ntn_number)
-            ->editColumn('updated_at', fn ($seller) => editDateTimeColumn($seller->updated_at))
+            ->editColumn('created_at', fn ($seller) => editDateTimeColumn($seller->created_at))
             ->editColumn('status', fn ($seller) => editStatusColumn($seller->status->value))
             ->editColumn('actions', fn ($seller) => view('admin.sellers.actions', ['seller' => $seller->id]))
             ->setRowId('id')
@@ -113,7 +113,7 @@ class SellersDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -146,9 +146,7 @@ class SellersDataTable extends DataTable
             Column::make('ntn_number')->title('ntn')->addClass($columnClass),
             Column::make('phone_primary')->title('phone 1')->addClass($columnClass),
             Column::make('status')->title('Status')->addClass($columnClass),
-
-            Column::make('updated_at')->addClass($columnClass),
-
+            Column::make('created_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
     }
