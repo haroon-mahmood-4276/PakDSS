@@ -158,7 +158,7 @@ class ApprovalsDataTable extends DataTable
                 Column::make('slug')->addClass($columnClass),
             ]),
             'products' => array_merge($columns, [
-                Column::make('sku')->addClass($columnClass),
+                Column::make('model_no')->addClass($columnClass),
                 Column::make('permalink')->addClass($columnClass),
             ]),
             'seller' => array_merge($columns, []),
