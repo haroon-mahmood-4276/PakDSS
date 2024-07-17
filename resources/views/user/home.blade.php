@@ -4,7 +4,7 @@
     {{ Breadcrumbs::view('breadcrumbs::json-ld', 'user.home') }}
 @endsection
 
-@section('page-title', env('APP_NAME'))
+@section('page-title', "Pakistan's best online shopping store with 15+ million products at resounding discounts in Karachi | Lahore | Islamabad | All across Pakistan with cash on delivery (COD). Pick your favorite Mobiles, Appliances, Apparels, and Fashion accessories on amazing deals exclusively available at Pakdss.com")
 
 @section('vendor-css')
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.css" />
@@ -243,15 +243,13 @@
                                         <div class="row row-cols-6 g-2">
                                             @foreach ($chunk as $product)
                                                 <div class="col">
-                                                    <div class="card border-1 overflow-hidden h-100 position-relative"
-                                                        style="border-color: #7367f0">
-                                                        <div class="top-border"></div>
+                                                    <div class="card overflow-hidden h-100 position-relative">
                                                         <div
                                                             class="bg-label-primary rounded text-center m-2 position-relative">
                                                             <div
                                                                 class="d-flex justify-content-between position-absolute w-100">
                                                                 <span class="badge bg-warning">10%</span>
-                                                                <span class="badge bg-danger">Hot</span>
+                                                                {{-- <span class="badge bg-danger">Hot</span> --}}
                                                             </div>
                                                             <div class="p-3">
                                                                 <img class="card-img-top img-fluid"

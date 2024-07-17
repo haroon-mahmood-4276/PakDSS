@@ -3,7 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Seller;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class SellersDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -26,18 +26,11 @@ class SellersDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($seller) {
-                return $seller;
-            })
-            ->editColumn('updated_at', function ($seller) {
-                return editDateColumn($seller->updated_at);
-            })
-            ->editColumn('status', function ($seller) {
-                return editStatusColumn($seller->status);
-            })
-            ->editColumn('actions', function ($seller) {
-                return view('admin.sellers.actions', ['seller' => $seller->id]);
-            })
+            ->editColumn('check', fn ($seller) => $seller)
+            ->editColumn('ntn_number', fn ($seller) => empty($seller->ntn_number) ? '-' : $seller->ntn_number)
+            ->editColumn('updated_at', fn ($seller) => editDateTimeColumn($seller->updated_at))
+            ->editColumn('status', fn ($seller) => editStatusColumn($seller->status->value))
+            ->editColumn('actions', fn ($seller) => view('admin.sellers.actions', ['seller' => $seller->id]))
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -97,7 +90,7 @@ class SellersDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            
+
             ->scrollX()
             ->pagingType('full_numbers')
             ->lengthMenu([

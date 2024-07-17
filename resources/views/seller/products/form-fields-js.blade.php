@@ -140,7 +140,7 @@
         },
 
         files: files['product_images'],
-        acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+        acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'],
         allowMultiple: true,
         maxFiles: 3,
     });
@@ -158,9 +158,7 @@
         storeAsFile: true,
         checkValidity: true,
         maxFiles: 1,
-        acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv',
-            'video/mkv'
-        ],
+        acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv', 'video/mkv'],
         credits: {
             label: '',
             url: ''

@@ -67,7 +67,7 @@ class ProductService implements ProductInterface
                 $query->select($only);
             })
             ->when($relationships, function($query, $relationships) {
-                $query->select($relationships);
+                $query->with($relationships);
             })->find($id);
     }
 

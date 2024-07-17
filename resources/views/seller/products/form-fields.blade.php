@@ -308,7 +308,7 @@
                                 <label class="form-label" style="font-size: 15px" for="product_images">Images</label>
                                 <input id="product_images" type="file"
                                     class="filepond m-0 @error('product_images') is-invalid @enderror"
-                                    name="product_images[]" accept="image/png, image/jpeg, image/gif" multiple />
+                                    name="product_images[]" accept="image/png, image/jpeg, image/gif, image/webp" multiple />
                                 @error('product_images')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else

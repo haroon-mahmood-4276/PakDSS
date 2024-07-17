@@ -191,7 +191,7 @@
                         <select class="select2-size-lg form-select" id="status" name="status">
                             @foreach ($statuses as $key => $status)
                                 <option data-icon="fa-solid fa-angle-right" value="{{ $key }}"
-                                    {{ (isset($seller) ? $seller->status : old('status')) == $key ? 'selected' : '' }}>
+                                    {{ (isset($seller) ? $seller->status->value : old('status')) == $key ? 'selected' : '' }}>
                                     {{ $status['text'] }}</option>
                             @endforeach
                         </select>

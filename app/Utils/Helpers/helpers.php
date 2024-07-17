@@ -457,67 +457,6 @@ if (!function_exists('getImageByName')) {
     }
 }
 
-if (!function_exists('editDateColumn')) {
-    function editDateColumn($date)
-    {
-        $date = new Carbon($date);
-
-        return '<span>' . $date->format('H:i:s') . "</span> <br> <span class='text-primary fw-bold'>" . $date->format('Y-m-d') . '</span>';
-    }
-}
-
-if (!function_exists('editImageColumn')) {
-    function editImageColumn($image, $name = '', $width = 100)
-    {
-        return "<img style='border: 1px dashed #eee;border-radius: 10px' src='" . $image . "' alt='" . $name . "' width='" . $width . "'>";
-    }
-}
-
-if (!function_exists('editStatusColumn')) {
-    function editStatusColumn($status)
-    {
-        $badge = '';
-        switch ($status) {
-            case 'yes':
-                $badge = "<span class='badge bg-success bg-glow me-1'>" . __('lang.commons.yes') . '</span>';
-                break;
-
-            case 'no':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.no') . '</span>';
-                break;
-
-            case 'active':
-                $badge = "<span class='badge bg-success bg-glow me-1'>" . __('lang.commons.active') . '</span>';
-                break;
-
-            case 'inactive':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.inactive') . '</span>';
-                break;
-
-            case 'objected':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.objected') . '</span>';
-                break;
-
-            case 'pending_approval':
-                $badge = "<span class='badge bg-warning bg-glow me-1'>" . __('lang.commons.pending_approval') . '</span>';
-                break;
-
-            default:
-                $badge = "<span class='badge bg-primary bg-glow me-1'>" . $status . '</span>';
-                break;
-        }
-
-        return $badge;
-    }
-}
-
-if (!function_exists('editBadgeColumn')) {
-    function editBadgeColumn($value)
-    {
-        return "<span class='badge bg-primary bg-glow me-1'>" . $value . '</span>';
-    }
-}
-
 if (!function_exists('getParentByParentId')) {
     function getParentByParentId($parent_id, $model)
     {

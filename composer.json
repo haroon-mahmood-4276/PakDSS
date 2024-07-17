@@ -37,7 +37,8 @@
         },
         "files": [
             "app/Utils/Helpers/helpers.php",
-            "app/Utils/Helpers/cart_helper.php"
+            "app/Utils/Helpers/CartHelper.php",
+            "app/Utils/Helpers/DatatableHelper.php"
         ]
     },
     "autoload-dev": {

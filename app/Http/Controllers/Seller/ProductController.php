@@ -79,8 +79,8 @@ class ProductController extends Controller
     {
         abort_if(request()->ajax(), 403);
 
-        try {
-            $product = $this->productInterface->find($id, ['categories', 'tags']);
+        // try {
+            $product = $this->productInterface->find($id, relationships: ['categories', 'tags']);
 
             $data = [
                 'brands' => $this->brandInterface->get(),
@@ -94,9 +94,9 @@ class ProductController extends Controller
             ];
 
             return is_null($data['product']) ? redirect()->route('seller.products.index')->withWarning('Record not found!') : view('seller.products.edit', $data);
-        } catch (Exception $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
-        }
+        // } catch (Exception $ex) {
+        //     return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+        // }
     }
 
     public function update(UpdateRequest $request, $id)

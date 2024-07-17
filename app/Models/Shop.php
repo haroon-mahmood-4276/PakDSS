@@ -40,6 +40,9 @@ class Shop extends Model implements HasMedia
 
     protected $casts = [
         'email_verified_at' => 'integer',
+
+        'status' => Status::class,
+
         'created_at' => 'timestamp',
         'updated_at' => 'timestamp',
         'deleted_at' => 'timestamp',
