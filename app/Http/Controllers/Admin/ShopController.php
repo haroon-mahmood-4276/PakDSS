@@ -38,7 +38,7 @@ class ShopController extends Controller
 
         $data = [
             'seller' => $seller,
-            'statuses' => Status::array(),
+            'statuses' => Status::array(true),
         ];
 
         return view('admin.sellers.shops.create', $data);
@@ -73,7 +73,7 @@ class ShopController extends Controller
                 $data = [
                     'seller' => $seller,
                     'shop' => $shop,
-                    'statuses' => Status::array(),
+                    'statuses' => Status::array(true),
                     'shop_logo' => $shop->getMedia('shops'),
                 ];
 

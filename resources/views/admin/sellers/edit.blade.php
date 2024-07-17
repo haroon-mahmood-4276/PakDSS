@@ -23,7 +23,7 @@
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('admin.sellers.update', ['id' => encryptParams($seller->id)]) }}"
+    <form class="form form-vertical" action="{{ route('admin.sellers.update', ['seller' => $seller]) }}"
         method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">

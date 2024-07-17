@@ -176,7 +176,7 @@
                     @foreach ($statuses as $key => $status)
                         <option data-icon="fa-solid fa-angle-right" value="{{ $key }}"
                             {{ (isset($shop) ? $shop->status : old('status')) == $key ? 'selected' : '' }}>
-                            {{ Str::of($status)->replace('_', ' ') }}</option>
+                            {{ $status['text'] }}</option>
                     @endforeach
                 </select>
                 @error('status')

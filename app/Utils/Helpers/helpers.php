@@ -3,11 +3,9 @@
 use App\Models\Setting;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\{Cache, Crypt, File};
 use Illuminate\Support\{Collection};
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 if (!function_exists('settings')) {
     function settings($key, $overrideCache = false)

@@ -27,9 +27,8 @@
                         <label class="form-label" style="font-size: 15px" for="password">Password <span
                                 class="text-danger">*</span></label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            id="password" name="password"
-                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                            value="" />
+                            id="password" name="password" autocomplete="off"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
@@ -193,7 +192,7 @@
                             @foreach ($statuses as $key => $status)
                                 <option data-icon="fa-solid fa-angle-right" value="{{ $key }}"
                                     {{ (isset($seller) ? $seller->status : old('status')) == $key ? 'selected' : '' }}>
-                                    {{ $status }}</option>
+                                    {{ $status['text'] }}</option>
                             @endforeach
                         </select>
                         @error('status')
