@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -10,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasUuids, HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $dateFormat = 'U';
 
@@ -25,11 +24,11 @@ class Category extends Model
     ];
 
     public $rules = [
-        'parent_category' => 'nullable|uuid',
+        'parent_category' => 'nullable|integer',
         'name' => 'required|string|between:1,254',
         'slug' => 'required|string|between:1,254|unique:categories,slug',
         'brands' => 'nullable|array',
-        'brands.*' => 'uuid',
+        'brands.*' => 'integer',
     ];
 
     public function brands(): BelongsToMany

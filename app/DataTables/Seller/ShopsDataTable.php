@@ -31,7 +31,7 @@ class ShopsDataTable extends DataTable
                 return editImageColumn(image: strlen($imagePath) > 0 ? $imagePath : asset('admin-assets/img/do_not_delete/do_not_delete.png'), name: $model->name, width: 50);
             })
             ->editColumn('status', fn ($shop) => editStatusColumn($shop->status->value))
-            ->editColumn('updated_at', fn ($shop) => editDateColumn($shop->updated_at))
+            ->editColumn('updated_at', fn ($shop) => editDateTimeColumn($shop->updated_at))
             ->editColumn('actions', fn ($shop) => view('seller.shops.actions', ['shop' => $shop->id]))
             ->setRowId('id')
             ->rawColumns($columns);

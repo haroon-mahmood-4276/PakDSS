@@ -93,7 +93,7 @@ class RoleController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $role = (new Role())->find(decryptParams($id));
+            $role = (new Role())->find($id);
 
             if ($role && ! empty($role)) {
                 $data = [
@@ -122,7 +122,7 @@ class RoleController extends Controller
         abort_if(request()->ajax(), 403);
         try {
 
-            $id = decryptParams($id);
+            
 
             $inputs = $request->validated();
 

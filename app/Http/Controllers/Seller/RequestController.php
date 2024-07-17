@@ -95,7 +95,7 @@ class RequestController extends Controller
     {
         abort_if(request()->ajax(), 403);
         try {
-            $id = decryptParams($id);
+            
             $inputs = $request->validated();
             $record = $this->requestInterface->update($requestFor, $id, $inputs);
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withSuccess('Data updated!');

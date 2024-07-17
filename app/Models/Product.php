@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Utils\Enums\Status;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +13,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use HasUuids, HasFactory, SoftDeletes, InteractsWithMedia;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $dateFormat = 'U';
 
@@ -74,14 +73,14 @@ class Product extends Model implements HasMedia
         'meta_keywords' => 'nullable|json',
         'meta_description' => 'nullable|string',
 
-        'shop' => 'required|uuid|exists:shops,id',
-        'brand' => 'sometimes|uuid|exists:brands,id',
+        'shop' => 'required|integer|exists:shops,id',
+        'brand' => 'sometimes|integer|exists:brands,id',
 
         'categories' => 'required|array|min:1',
-        'categories.*' => 'uuid|exists:categories,id',
+        'categories.*' => 'integer|exists:categories,id',
 
         'tags' => 'nullable|array|min:1',
-        'tags.*' => 'nullable|uuid|exists:tags,id',
+        'tags.*' => 'nullable|integer|exists:tags,id',
 
         'product_images' => 'nullable|array',
         'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:536',

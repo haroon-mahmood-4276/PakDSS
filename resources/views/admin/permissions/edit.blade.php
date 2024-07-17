@@ -37,7 +37,7 @@
 
 @section('content')
     <div class="card">
-        <form action="{{ route('permissions.update', ['id' => encryptParams($permission->id)]) }}" method="POST">
+        <form action="{{ route('permissions.update', ['id' => $permission->id]) }}" method="POST">
 
             <div class="card-header">
             </div>

@@ -20,6 +20,9 @@ class BrandsSeeder extends Seeder
         Brand::truncate();
         $data = [
             [
+                'name' => 'No Brand',
+            ],
+            [
                 'name' => 'Dell',
             ],
             [

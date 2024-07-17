@@ -42,8 +42,8 @@ Route::group(['middleware' => ['auth:seller']], function () {
             });
 
             Route::group(['prefix' => '/{shop}'], function () {
-                Route::get('edit', 'edit')->whereUuid('id')->name('edit');
-                Route::put('update', 'update')->whereUuid('id')->name('update');
+                Route::get('edit', 'edit')->whereNumber('id')->name('edit');
+                Route::put('update', 'update')->whereNumber('id')->name('update');
             });
 
             Route::get('delete', 'destroy')->name('destroy');
@@ -59,8 +59,8 @@ Route::group(['middleware' => ['auth:seller']], function () {
             });
 
             Route::group(['prefix' => '/{id}'], function () {
-                Route::get('edit', 'edit')->whereUuid('id')->name('edit');
-                Route::put('update', 'update')->whereUuid('id')->name('update');
+                Route::get('edit', 'edit')->whereNumber('id')->name('edit');
+                Route::put('update', 'update')->whereNumber('id')->name('update');
             });
 
             Route::get('delete', 'destroy')->name('destroy');
@@ -76,8 +76,8 @@ Route::group(['middleware' => ['auth:seller']], function () {
             });
 
             Route::group(['prefix' => '/{id}'], function () {
-                Route::get('edit', 'edit')->whereUuid('id')->name('edit');
-                Route::put('update', 'update')->whereUuid('id')->name('update');
+                Route::get('edit', 'edit')->whereNumber('id')->name('edit');
+                Route::put('update', 'update')->whereNumber('id')->name('update');
             });
 
             Route::get('delete', 'destroy')->name('destroy');
