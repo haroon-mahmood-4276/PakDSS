@@ -82,7 +82,7 @@ class ProductService implements ProductInterface
                 'name' => $inputs['name'],
 
                 'permalink' => Str::of($inputs['name'])->slug(),
-                'sku' => Str::of($inputs['sku'])->slug()->lower(),
+                'model_no' => Str::of($inputs['model_no'])->slug()->lower(),
 
                 'price' => floatval($inputs['price']),
                 'discounted_price' => floatval($inputs['discounted_price']),
@@ -141,7 +141,7 @@ class ProductService implements ProductInterface
                 'name' => $inputs['name'],
 
                 'permalink' => Str::of($inputs['name'])->slug(),
-                'sku' => Str::of($inputs['sku'])->slug()->lower(),
+                'model_no' => Str::of($inputs['model_no'])->slug()->lower(),
 
                 'price' => floatval($inputs['price']),
                 'discounted_price' => floatval($inputs['discounted_price']),
@@ -161,7 +161,7 @@ class ProductService implements ProductInterface
                 'meta_keywords' => $inputs['meta_keywords'],
                 'meta_description' => $inputs['meta_description'],
 
-                // 'status' => Status::PENDING_APPROVAL,
+                'status' => Status::PENDING_APPROVAL,
             ];
             $product->update($data);
 

@@ -256,7 +256,7 @@
                                                                             <div class="swiper-slide">
                                                                                 <img class="card-img-top img-fluid"
                                                                                     src="{{ $image->getUrl() }}"
-                                                                                    alt="{{ $product?->sku }}"
+                                                                                    alt="{{ $product?->model_no }}"
                                                                                     width="140" />
                                                                             </div>
                                                                         @empty

@@ -39,7 +39,7 @@ class ProductsSeeder extends Seeder
                     'name' => 'Mouse',
 
                     'permalink' => Str::of('Mouse')->slug(),
-                    'sku' => 'SHX',
+                    'model_no' => 'SHX',
                     'price' => rand(10, 1000),
                     'discounted_price' => rand(10, 100),
                     'call_for_final_rates' => false,
@@ -68,7 +68,7 @@ class ProductsSeeder extends Seeder
                     $value['brand_id'] = Brand::inRandomOrder(1)->first()->id;
                     $value['name'] .= '-' . $i;
                     $value['permalink']  .= '-' . $i;
-                    $value['sku']  .= '-' . $i;
+                    $value['model_no']  .= '-' . $i;
                     $product = Product::create($value);
                     $product->categories()->sync(Category::limit(5)->get()->pluck('id')->toArray());
                     $product->tags()->sync($tags);

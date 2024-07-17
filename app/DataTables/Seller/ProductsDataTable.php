@@ -122,7 +122,7 @@ class ProductsDataTable extends DataTable
         return [
             Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
             Column::make('name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('sku')->title('SKU')->addClass('text-nowrap align-middle text-center'),
+            Column::make('model_no')->addClass('text-nowrap align-middle text-center'),
             Column::make('price')->addClass('text-nowrap align-middle text-center'),
             Column::make('discounted_price')->addClass('text-nowrap align-middle text-center'),
             Column::make('status')->addClass('text-nowrap align-middle text-center'),

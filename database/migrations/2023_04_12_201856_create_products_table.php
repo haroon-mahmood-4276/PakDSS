@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('name', 150)->nullable();
 
             $table->string('permalink', 200)->nullable()->unique();
-            $table->string('sku', 50)->nullable()->unique();
+            $table->string('model_no', 50)->nullable()->unique();
 
             $table->decimal('price', 8, 2)->default(0);
             $table->decimal('discounted_price', 8, 2)->default(0);

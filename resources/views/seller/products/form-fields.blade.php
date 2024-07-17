@@ -26,16 +26,16 @@
 
                 <div class="row mb-3">
                     <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
-                        <label class="form-label" style="font-size: 15px" for="sku">SKU <span
+                        <label class="form-label" style="font-size: 15px" for="model_no">Model No <span
                                 class="text-danger">**</span></label>
-                        <input type="text" class="form-control @error('sku') is-invalid @enderror" id="sku"
-                            name="sku" placeholder="SKU" value="{{ isset($product) ? $product->sku : old('sku') }}"
+                        <input type="text" class="form-control @error('model_no') is-invalid @enderror" id="model_no"
+                            name="model_no" placeholder="Model No" value="{{ isset($product) ? $product->model_no : old('model_no') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
-                        @error('sku')
+                        @error('model_no')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @else
                             <p class="m-0">
-                                <small class="text-muted">Enter product SKU.</small>
+                                <small class="text-muted">Enter product model no.</small>
                             </p>
                         @enderror
                     </div>

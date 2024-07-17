@@ -80,7 +80,7 @@
                                 @forelse ($product?->media as $image)
                                     <div class="swiper-slide">
                                         <div class="swiper-zoom-container">
-                                            <img src="{{ $image->getUrl() }}" alt="{{ $product?->sku }}">
+                                            <img src="{{ $image->getUrl() }}" alt="{{ $product?->model_no }}">
                                         </div>
                                     </div>
                                 @empty
@@ -210,7 +210,7 @@
                                 <div class="col-lg-5 col-md-5">
                                     <span class="font-sm font-medium color-gray-900">
                                         <strong class="text-primary">SKU:</strong> <span
-                                            class="">{{ $product->sku }}</span>
+                                            class="">{{ $product->model_no }}</span>
                                         <br>
                                         <strong class="text-primary">Tags:</strong> <span class="">{{ implode(', ', $product->tags?->pluck('name')->all() ?? []) }}</span>
                                     </span>
