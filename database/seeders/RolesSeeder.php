@@ -15,7 +15,7 @@ class RolesSeeder extends Seeder
     public function run(): void
     {
         Role::truncate();
-        $AdminRole = (new Role())->create([
+        $adminRole = (new Role())->create([
             'name' => 'Admin',
             'guard_name' => 'admin',
             'parent_id' => null,
@@ -25,21 +25,21 @@ class RolesSeeder extends Seeder
             [
                 'name' => 'Admin Manager',
                 'guard_name' => 'admin',
-                'parent_id' => $AdminRole->id,
+                'parent_id' => $adminRole->id,
             ],
             [
                 'name' => 'Seller Manager',
                 'guard_name' => 'admin',
-                'parent_id' => $AdminRole->id,
+                'parent_id' => $adminRole->id,
             ],
             [
                 'name' => 'Brand/Category Manager',
                 'guard_name' => 'admin',
-                'parent_id' => $AdminRole->id,
+                'parent_id' => $adminRole->id,
             ],
         ];
 
-        foreach ($data as $key => $value) {
+        foreach ($data as $value) {
             (new Role())->create($value);
         }
     }

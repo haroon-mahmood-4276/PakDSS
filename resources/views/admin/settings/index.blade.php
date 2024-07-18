@@ -26,21 +26,21 @@
     <div class="row">
         <div class="col-12">
             <div class="nav-align-top mb-4">
-                <ul class="nav nav-pills mb-3" role="tablist">
-                    <li class="nav-item" role="presentation">
+                <ul class="nav nav-pills mb-3">
+                    <li class="nav-item">
                         <a href="{{ route('admin.settings.index', ['tab' => 'admin']) }}"
                             class="nav-link {{ $tab === 'admin' ? 'active' : '' }}" role="tab">
                             <i class="fa-solid fa-user-shield me-2"></i>
                             <span>Admin</span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item" role="presentation">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('admin.settings.index', ['tab' => 'seller']) }}"
                             class="nav-link {{ $tab === 'seller' ? 'active' : '' }}" role="tab">
                             <i class="fa-solid fa-person-shelter me-2"></i>
                             <span>Seller </span>
                         </a>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item">
                         <a href="{{ route('admin.settings.index', ['tab' => 'site']) }}"
                             class="nav-link {{ $tab === 'site' ? 'active' : '' }}" role="tab">
                             <i class="fa-solid fa-globe me-2"></i>

@@ -129,8 +129,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
                 });
 
                 Route::group(['prefix' => '/{shop}', 'middleware' => 'permission:admin.sellers.shops.edit'], function () {
-                    Route::get('edit', 'edit')->whereUuid('shop')->name('edit');
-                    Route::put('update', 'update')->whereUuid('shop')->name('update');
+                    Route::get('edit', 'edit')->whereNumber('shop')->name('edit');
+                    Route::put('update', 'update')->whereNumber('shop')->name('update');
                 });
 
                 Route::get('delete', 'destroy')->middleware('permission:admin.sellers.shops.destroy')->name('destroy');

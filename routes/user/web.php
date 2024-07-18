@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth:web'], function () {
         Route::put('update', 'update')->name('update');
 
         Route::group(['prefix' => '/{cart}'], function () {
-            Route::get('delete', 'delete')->whereUuid('cart')->name('delete');
+            Route::get('delete', 'delete')->whereNumber('cart')->name('delete');
         });
     });
 
@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth:web'], function () {
         });
 
         Route::group(['prefix' => '/{address}'], function () {
-            Route::put('update', 'update')->whereUuid('address')->name('update');
+            Route::put('update', 'update')->whereNumber('address')->name('update');
         });
 
         Route::get('delete', 'destroy')->name('destroy');

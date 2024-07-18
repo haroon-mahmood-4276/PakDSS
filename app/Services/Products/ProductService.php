@@ -82,7 +82,7 @@ class ProductService implements ProductInterface
                 'name' => $inputs['name'],
 
                 'permalink' => Str::of($inputs['name'])->slug(),
-                'model_no' => Str::of($inputs['model_no'])->slug()->lower(),
+                'model_no' => Str::of($inputs['model_no'])->slug(),
 
                 'price' => floatval($inputs['price']),
                 'discounted_price' => floatval($inputs['discounted_price']),
