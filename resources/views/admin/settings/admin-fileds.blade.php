@@ -13,7 +13,9 @@
                             <div>
                                 <label class="switch switch-square m-0">
                                     <input type="hidden" name="rate_auto_update" value="0">
-                                    <input type="checkbox" class="switch-input" id="rate_auto_update" name="rate_auto_update" {{ settings('rate_auto_update') ? 'checked' : null }} value="1">
+                                    <input type="checkbox" class="switch-input" id="rate_auto_update"
+                                        name="rate_auto_update" {{ settings('rate_auto_update') ? 'checked' : null }}
+                                        value="1">
                                     <span class="switch-toggle-slider">
                                         <span class="switch-on"><i class="ti ti-check"></i></span>
                                         <span class="switch-off"><i class="ti ti-x"></i></span>
@@ -35,7 +37,7 @@
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 position-relative">
                                     <label class="form-label" style="font-size: 15px" for="one_dollar_rate">One Dollor
-                                        Rate (<i class="fa-solid fa-dollar-sign"></i>)  <span
+                                        Rate (<i class="fa-solid fa-dollar-sign"></i>) <span
                                             class="text-danger">*</span></label>
                                     <input type="number"
                                         class="form-control @error('one_dollar_rate') is-invalid @enderror"

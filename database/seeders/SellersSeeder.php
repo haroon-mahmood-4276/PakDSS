@@ -25,7 +25,7 @@ class SellersSeeder extends Seeder
                     'middle_name' => null,
                     'last_name' => 'Mahmood',
                     'email' => 'haroon@pakdss.com',
-                    'password' => Hash::make('123456'),
+                    'password' => Hash::make('IyeTech@4276'),
                     'email_verified_at' => now()->timestamp,
                     'cnic' => '0000000000000',
                     'ntn_number' => '000001',
