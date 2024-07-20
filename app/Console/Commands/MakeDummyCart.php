@@ -42,7 +42,7 @@ class MakeDummyCart extends Command
 
         $user = User::first();
 
-        foreach ($products as $key => $product) {
+        foreach ($products as $product) {
             $this->cartInterface->store($user->id, [
                 'referance' => $product->id,
                 'product_quantity' => rand(1, 10),

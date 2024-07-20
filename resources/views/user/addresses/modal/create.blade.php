@@ -1,6 +1,6 @@
 <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
-    {{-- <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document"> --}}
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    {{-- <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"> --}}
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 {{-- <h5 class="modal-title" id="modal-title">Add Address</h5> --}}
@@ -291,7 +291,7 @@
             return row.name;
         },
     }).on('select2:select', function(e) {
-        $("#city").val(null).trigger("change"); 
+        $("#city").val(null).trigger("change");
     });
 
     city = $("#city").wrap('<div class="position-relative"></div>');

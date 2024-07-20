@@ -92,12 +92,4 @@ class CategoriesDataTable extends DataTable
             Column::make('created_at')->addClass($columnClass),
         ];
     }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'Categories_' . date('YmdHis');
-    }
 }

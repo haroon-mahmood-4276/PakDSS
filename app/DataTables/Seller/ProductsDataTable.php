@@ -119,23 +119,16 @@ class ProductsDataTable extends DataTable
      */
     protected function getColumns(): array
     {
+        $columnClass = 'text-nowrap align-middle text-center';
         return [
-            Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
-            Column::make('name')->addClass('text-nowrap align-middle text-center'),
-            Column::make('model_no')->addClass('text-nowrap align-middle text-center'),
-            Column::make('price')->addClass('text-nowrap align-middle text-center'),
-            Column::make('discounted_price')->addClass('text-nowrap align-middle text-center'),
-            Column::make('status')->addClass('text-nowrap align-middle text-center'),
-            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
+            Column::make('name')->addClass($columnClass),
+            Column::make('model_no')->addClass($columnClass),
+            Column::make('price')->addClass($columnClass),
+            Column::make('discounted_price')->addClass($columnClass),
+            Column::make('status')->addClass($columnClass),
+            Column::make('updated_at')->addClass($columnClass),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
-    }
-
-    /**
-     * Get filename for export.
-     */
-    protected function filename(): string
-    {
-        return 'Products_' . date('YmdHis');
     }
 }
