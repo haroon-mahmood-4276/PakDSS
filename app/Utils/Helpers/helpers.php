@@ -69,24 +69,6 @@ if (!function_exists('gravatar')) {
     }
 }
 
-if (!function_exists('filter_strip_tags')) {
-
-    function filter_strip_tags($text, $with_script_content = false): string
-    {
-        $pattern = [
-            '@<[\/\!]*?[^<>]*?>@si',           // Strip out HTML tags
-            '@<style[^>]*?>.*?</style>@siU',  // Strip style tags properly
-            '@<![\s\S]*?--[ \t\n\r]*>@',       // Strip multi-line comments
-        ];
-
-        if ($with_script_content) {
-            $pattern[] = '@<script[^>]*?>.*?</script>@si';
-        }
-
-        return preg_replace($pattern, '', $text);
-    }
-}
-
 if (!function_exists('filterScriptTags')) {
 
     function filterScriptTags($text): string
@@ -206,16 +188,15 @@ if (!function_exists('getModel')) {
 if (!function_exists('getAllModels')) {
     function getAllModels($path = null): array
     {
-        $Modelpath = ($path ?? app_path()) . '/Models';
+        $modelpath = ($path ?? app_path()) . '/Models';
 
         $out = [];
-        $results = scandir($Modelpath);
+        $results = scandir($modelpath);
         foreach ($results as $result) {
-            //			dd($results);
-            if ($result === '.' or $result === '..') {
+            if ($result === '.' || $result === '..') {
                 continue;
             }
-            $filename = $Modelpath . '/' . $result;
+            $filename = $modelpath . '/' . $result;
             if (is_dir($filename)) {
                 $out = array_merge($out, getAllModels($filename));
             } else {
@@ -249,8 +230,7 @@ if (!function_exists('prepareLinkedTree')) {
     {
 
         $typesTmp = [];
-
-        // $model = "\\App\\Models\\" . $model;
+        
         $dbTypes = ($queryFromDB ? $model::all() : $collectionData);
 
         foreach ($collectionData as $key => $row) {
@@ -322,23 +302,20 @@ if (!function_exists('getParentWithChildHierarchy')) {
     function getParentWithChildHierarchy($model)
     {
         $data = collect($model::all());
-        $parents = $data->whereNull('parent_id')->map(function ($parent) use ($data) {
+        return $data->whereNull('parent_id')->map(function ($parent) use ($data) {
             $parent['children'] = getChildFromParent($data, $parent);
             return $parent;
         });
-        return $parents;
     }
 }
 
 if (!function_exists('getChildFromParent')) {
     function getChildFromParent(collection $data, $parent)
     {
-        $parents = $data->where('parent_id', $parent->id)->map(function ($parent) use ($data) {
+        return $data->where('parent_id', $parent->id)->map(function ($parent) use ($data) {
             $parent['children'] = getChildFromParent(collect($data), $parent);
             return $parent;
         });
-
-        return $parents;
     }
 }
 
@@ -362,101 +339,6 @@ if (!function_exists('base64ToImage')) {
     }
 }
 
-// if (!function_exists('makeImageThumbs')) {
-//     function makeImageThumbs($request, $key = ""): string
-//     {
-//         $publicPath = public_path('public_assets/admin/sites_images') . DIRECTORY_SEPARATOR;
-//         if (!is_string($request)) {
-//             if (is_array($request)) {
-//                 $image = $request[$key];
-//             } else {
-//                 $image = $request->file($key);
-//             }
-//             $imageHashedName = $image->hashName();
-//         } else {
-//             $image = $publicPath . $request;
-//         }
-
-//         $imgExplodedName = explode(".", $imageHashedName);
-
-//         $img = Image::make($image)->backup();
-
-//         $img->resize(1000, null, function ($constraint) {
-//             $constraint->aspectRatio();
-//             $constraint->upsize();
-//         })->save($publicPath . $imgExplodedName[0] . '-thumbs1000.' . $imgExplodedName[1]);
-//         $img->reset();
-
-//         $img->resize(600, null, function ($constraint) {
-//             $constraint->aspectRatio();
-//             $constraint->upsize();
-//         })->save($publicPath . $imgExplodedName[0] . '.' . $imgExplodedName[1]);
-//         $img->reset();
-
-//         $img->resize(350, null, function ($constraint) {
-//             $constraint->aspectRatio();
-//             $constraint->upsize();
-//         })->save($publicPath . $imgExplodedName[0] . '-thumbs350.' . $imgExplodedName[1]);
-//         $img->reset();
-
-//         $img->resize(200, null, function ($constraint) {
-//             $constraint->aspectRatio();
-//             $constraint->upsize();
-//         })->save($publicPath . $imgExplodedName[0] . '-thumbs200.' . $imgExplodedName[1]);
-//         $img->reset();
-
-//         $img->destroy();
-
-//         return $imgExplodedName[0] . '.' . $imgExplodedName[1];
-//     }
-// }
-
-if (!function_exists('deleteImageThumbs')) {
-    function deleteImageThumbs($imgName, $imageDirectory = 'admin'): string
-    {
-        $publicServerPath = public_path('public_assets/' . $imageDirectory . '/sites_images') . DIRECTORY_SEPARATOR;
-        if (File::exists($publicServerPath . $imgName)) {
-            $imageExplodedName = explode('.', $imgName);
-            // dd($imageExplodedName);
-            File::delete([
-                $publicServerPath . $imageExplodedName[0] . '.' . $imageExplodedName[1],
-                $publicServerPath . $imageExplodedName[0] . '-thumbs1000.' . $imageExplodedName[1],
-                $publicServerPath . $imageExplodedName[0] . '-thumbs350.' . $imageExplodedName[1],
-                $publicServerPath . $imageExplodedName[0] . '-thumbs200.' . $imageExplodedName[1],
-            ]);
-
-            return true;
-        }
-
-        return false;
-    }
-}
-
-if (!function_exists('getImageByName')) {
-    function getImageByName($imgName, $imageDirectory = 'admin'): array
-    {
-        $img = '';
-        $imgThumb = '';
-        $publicServerPath = public_path('public_assets/' . $imageDirectory . '/sites_images') . DIRECTORY_SEPARATOR;
-        $publicLinkPath = asset('public_assets/' . $imageDirectory . '/sites_images') . DIRECTORY_SEPARATOR;
-
-        $imageExplodedName = explode('.', (!is_null($imgName) && !empty($imgName) ? $imgName : 'TelK7BnW63IAN6zuTTwJkqZeuM0YI5aNc7aFqOyz.jpg'));
-
-        if (File::exists($publicServerPath . ($imageExplodedName[0] . '-thumbs200.' . $imageExplodedName[1]))) {
-            $img = $publicLinkPath . $imageExplodedName[0] . '-thumbs1000.' . $imageExplodedName[1];
-            $imgThumb = $publicLinkPath . $imageExplodedName[0] . '-thumbs200.' . $imageExplodedName[1];
-        } elseif (File::exists($publicServerPath . ($imageExplodedName[0] . '.' . $imageExplodedName[1]))) {
-            $img = $publicLinkPath . $imageExplodedName[0] . '.' . $imageExplodedName[1];
-            $imgThumb = $publicLinkPath . $imageExplodedName[0] . '.' . $imageExplodedName[1];
-        } else {
-            $img = $publicLinkPath . 'do_not_delete/do_not_delete.png';
-            $imgThumb = $publicLinkPath . 'do_not_delete/do_not_delete.png';
-        }
-
-        return [$img, $imgThumb];
-    }
-}
-
 if (!function_exists('getParentByParentId')) {
     function getParentByParentId($parent_id, $model)
     {
@@ -466,13 +348,6 @@ if (!function_exists('getParentByParentId')) {
         }
 
         return 'parent';
-    }
-}
-
-if (!function_exists('getNHeightestNumber')) {
-    function getNHeightestNumber($numberOfDigits = 1)
-    {
-        return (int) str_repeat('9', $numberOfDigits);
     }
 }
 
@@ -510,36 +385,6 @@ if (!function_exists('apiSuccessResponse')) {
     }
 }
 
-if (!function_exists('sqlErrorMessagesByCode')) {
-    function sqlErrorMessagesByCode($errCode)
-    {
-        $messages = [
-            '1062' => 'Duplicate entry',
-            '1452' => 'Cannot add or update a child row',
-            '1451' => 'Cannot delete or update a parent row',
-            '1364' => 'Field does not have a default value',
-            '1048' => 'Column cannot be null',
-            '1054' => 'Unknown column',
-            '1052' => 'Column in where clause is ambiguous',
-            '1051' => 'Unknown table',
-            '1050' => 'Table already exists',
-            '1046' => 'No database selected',
-            '1045' => 'Access denied for user',
-            '1044' => 'Access denied for user',
-            '1042' => 'Cannot get hostname for your address',
-            '1040' => 'Too many connections',
-            '1038' => 'Out of sort memory, consider increasing server sort buffer size',
-            '1036' => 'Table is read only',
-            '1035' => 'CRASHED ON USAGE',
-            '1034' => 'CRASHED ON REPAIR',
-            '1033' => 'Out of memory; restart server and try again (needed 98304 bytes)',
-            '23505' => 'Data already exists',
-        ];
-
-        return $messages[$errCode] ?? 'Unknown error';
-    }
-}
-
 if (!function_exists('actionLog')) {
     function actionLog($logName, $causedByModel, $performedOnModel, $log, $properties = [], $event = '')
     {
@@ -550,17 +395,6 @@ if (!function_exists('actionLog')) {
             ->event($event)
             ->withProperties($properties)
             ->log($log);
-    }
-}
-
-if (!function_exists('getIconDirection')) {
-    function getIconDirection($direction)
-    {
-        if ($direction == 'ltr') {
-            return 'right';
-        } else {
-            return 'left';
-        }
     }
 }
 

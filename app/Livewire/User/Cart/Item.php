@@ -62,5 +62,3 @@ class Item extends Component
         return view('livewire.user.cart.item');
     }
 }
-
-// $dispatch('refreshCart', { cartActiveItem: { cart_id: '{{ $cartItem->id }}', quantity: {{ $quantity }}, unit_price: {{ $unitPrice }}, total_price: {{ $totalPrice }}, isSelected: {{ $isSelected }} } })
