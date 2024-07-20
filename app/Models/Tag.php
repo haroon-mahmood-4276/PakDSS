@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Observers\TagObserver;
+use Illuminate\Database\Eloquent\{Attributes\ObservedBy, Factories\HasFactory, Model, Relations\BelongsToMany, SoftDeletes};
 
+#[ObservedBy([TagObserver::class])]
 class Tag extends Model
 {
     use HasFactory, SoftDeletes;
