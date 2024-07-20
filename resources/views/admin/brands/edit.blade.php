@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.brands.edit', encryptParams($brand->id)) }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.brands.edit', $brand->id) }}
 @endsection
 
 @section('page-title', 'Edit Brand')
@@ -30,20 +30,20 @@
         }
 
         /* .filepond--item {
-                                    width: calc(20% - 0.5em);
-                                } */
+            width: calc(20% - 0.5em);
+        } */
     </style>
 @endsection
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
         <h2 class="content-header-title float-start mb-0 mx-3">Edit Brand</h2>
-        {{ Breadcrumbs::render('admin.brands.edit', encryptParams($brand->id)) }}
+        {{ Breadcrumbs::render('admin.brands.edit', $brand->id) }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('admin.brands.update', ['id' => encryptParams($brand->id)]) }}"
+    <form class="form form-vertical" action="{{ route('admin.brands.update', ['brand' => $brand->id]) }}"
         method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">

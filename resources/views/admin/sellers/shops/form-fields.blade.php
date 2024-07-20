@@ -175,8 +175,8 @@
                 <select class="select2-size-lg form-select" id="status" name="status">
                     @foreach ($statuses as $key => $status)
                         <option data-icon="fa-solid fa-angle-right" value="{{ $key }}"
-                            {{ (isset($shop) ? $shop->status : old('status')) == $key ? 'selected' : '' }}>
-                            {{ Str::of($status)->replace('_', ' ') }}</option>
+                            {{ (isset($shop) ? $shop->status->value : old('status')) == $key ? 'selected' : '' }}>
+                            {{ $status['text'] }}</option>
                     @endforeach
                 </select>
                 @error('status')

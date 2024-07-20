@@ -3,11 +3,9 @@
 use App\Models\Setting;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\{Cache, Crypt, File};
 use Illuminate\Support\{Collection};
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 if (!function_exists('settings')) {
     function settings($key, $overrideCache = false)
@@ -89,9 +87,9 @@ if (!function_exists('filter_strip_tags')) {
     }
 }
 
-if (!function_exists('filter_script_tags')) {
+if (!function_exists('filterScriptTags')) {
 
-    function filter_script_tags($text): string
+    function filterScriptTags($text): string
     {
         $pattern = [
             '@<script[^>]*?>.*?</script>@si',
@@ -101,17 +99,17 @@ if (!function_exists('filter_script_tags')) {
     }
 }
 
-if (!function_exists('encode_html_entities')) {
+if (!function_exists('encodeHtmlEntities')) {
 
-    function encode_html_entities($field): string
+    function encodeHtmlEntities($field): string
     {
         return trim(htmlentities($field));
     }
 }
 
-if (!function_exists('decode_html_entities')) {
+if (!function_exists('decodeHtmlEntities')) {
 
-    function decode_html_entities($field): string
+    function decodeHtmlEntities($field): string
     {
         return trim(html_entity_decode($field));
     }
@@ -456,67 +454,6 @@ if (!function_exists('getImageByName')) {
         }
 
         return [$img, $imgThumb];
-    }
-}
-
-if (!function_exists('editDateColumn')) {
-    function editDateColumn($date)
-    {
-        $date = new Carbon($date);
-
-        return '<span>' . $date->format('H:i:s') . "</span> <br> <span class='text-primary fw-bold'>" . $date->format('Y-m-d') . '</span>';
-    }
-}
-
-if (!function_exists('editImageColumn')) {
-    function editImageColumn($image, $name = '', $width = 100)
-    {
-        return "<img style='border: 1px dashed #eee;border-radius: 10px' src='" . $image . "' alt='" . $name . "' width='" . $width . "'>";
-    }
-}
-
-if (!function_exists('editStatusColumn')) {
-    function editStatusColumn($status)
-    {
-        $badge = '';
-        switch ($status) {
-            case 'yes':
-                $badge = "<span class='badge bg-success bg-glow me-1'>" . __('lang.commons.yes') . '</span>';
-                break;
-
-            case 'no':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.no') . '</span>';
-                break;
-
-            case 'active':
-                $badge = "<span class='badge bg-success bg-glow me-1'>" . __('lang.commons.active') . '</span>';
-                break;
-
-            case 'inactive':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.inactive') . '</span>';
-                break;
-
-            case 'objected':
-                $badge = "<span class='badge bg-danger bg-glow me-1'>" . __('lang.commons.objected') . '</span>';
-                break;
-
-            case 'pending_approval':
-                $badge = "<span class='badge bg-warning bg-glow me-1'>" . __('lang.commons.pending_approval') . '</span>';
-                break;
-
-            default:
-                $badge = "<span class='badge bg-primary bg-glow me-1'>" . $status . '</span>';
-                break;
-        }
-
-        return $badge;
-    }
-}
-
-if (!function_exists('editBadgeColumn')) {
-    function editBadgeColumn($value)
-    {
-        return "<span class='badge bg-primary bg-glow me-1'>" . $value . '</span>';
     }
 }
 

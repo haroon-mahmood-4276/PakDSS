@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\Seller;
 use App\Models\Shop;
 use App\Utils\Enums\Status;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 use Yajra\DataTables\EloquentDataTable;
@@ -17,7 +17,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ApprovalsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -31,18 +31,11 @@ class ApprovalsDataTable extends DataTable
 
         $eloquentDataTable = (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('check', function ($model) {
-                return $model;
-            })
-            ->editColumn('status', function ($model) {
-                return editStatusColumn($model->status);
-            })
-            ->editColumn('updated_at', function ($model) {
-                return editDateColumn($model->updated_at);
-            })
-            ->editColumn('actions', function ($model) {
-                return view('admin.approvals.actions', ['id' => $model->id, 'for' => $this->model]);
-            })
+            ->editColumn('check', fn ($model) => $model)
+            ->editColumn('status', fn ($model) => editStatusColumn($model->status->value))
+            ->editColumn('created_at', fn ($model) => editDateTimeColumn($model->created_at))
+            ->editColumn('updated_at', fn ($model) => editDateTimeColumn($model->updated_at))
+            ->editColumn('actions', fn ($model) => view('admin.approvals.actions', ['id' => $model->id, 'for' => $this->model]))
             ->rawColumns($columns);
 
         if ($this->model === 'sellers')
@@ -131,7 +124,7 @@ class ApprovalsDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'primary\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkAdmin_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -164,14 +157,16 @@ class ApprovalsDataTable extends DataTable
                 Column::make('slug')->addClass($columnClass),
             ]),
             'products' => array_merge($columns, [
-                Column::make('sku')->addClass($columnClass),
+                Column::make('model_no')->addClass($columnClass),
                 Column::make('permalink')->addClass($columnClass),
             ]),
             'seller' => array_merge($columns, []),
+            default => array_merge($columns, []),
         };
 
         $columns = array_merge($columns, [
             Column::make('status')->addClass($columnClass),
+            Column::make('created_at')->addClass($columnClass),
             Column::make('updated_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ]);

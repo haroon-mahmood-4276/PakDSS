@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use App\Utils\Enums\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +13,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use HasUuids, HasFactory, SoftDeletes, InteractsWithMedia;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $dateFormat = 'U';
 
@@ -25,7 +25,7 @@ class Product extends Model implements HasMedia
         'name',
 
         'permalink',
-        'sku',
+        'model_no',
 
         'price',
         'discounted_price',
@@ -53,7 +53,7 @@ class Product extends Model implements HasMedia
     public array $rules = [
         'name' => 'required|string|between:3,254',
         'permalink' => 'required|string|between:3,254|unique:products,permalink',
-        'sku' => 'required|string|between:3,20|unique:products,sku',
+        'model_no' => 'required|string|between:3,20|unique:products,model_no',
 
         'price' => 'required|decimal:0,2|gte:0',
         'discounted_price' => 'nullable|decimal:0,2|gte:0',
@@ -61,29 +61,29 @@ class Product extends Model implements HasMedia
         'call_for_final_rates' => 'sometimes|boolean|in:0,1',
         'are_rates_printed_on_package' => 'sometimes|boolean|in:0,1',
 
-        'length' => 'sometimes|decimal:0,2|gte:0',
-        'width' => 'sometimes|decimal:0,2|gte:0',
-        'height' => 'sometimes|decimal:0,2|gte:0',
+        'length' => 'sometimes|decimal:0,3|gte:0',
+        'width' => 'sometimes|decimal:0,3|gte:0',
+        'height' => 'sometimes|decimal:0,3|gte:0',
 
         'weight' => 'sometimes|decimal:0,2|gte:0',
 
-        'short_description' => 'required|max:500',
-        'long_description' => 'nullable|max:5000',
+        'short_description' => 'required|max:2500',
+        'long_description' => 'nullable',
 
         'meta_keywords' => 'nullable|json',
         'meta_description' => 'nullable|string',
 
-        'shop' => 'required|uuid|exists:shops,id',
-        'brand' => 'sometimes|uuid|exists:brands,id',
+        'shop' => 'required|integer|exists:shops,id',
+        'brand' => 'sometimes|integer|exists:brands,id',
 
         'categories' => 'required|array|min:1',
-        'categories.*' => 'uuid|exists:categories,id',
+        'categories.*' => 'integer|exists:categories,id',
 
         'tags' => 'nullable|array|min:1',
-        'tags.*' => 'nullable|uuid|exists:tags,id',
+        'tags.*' => 'nullable|integer|exists:tags,id',
 
         'product_images' => 'nullable|array',
-        'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
+        'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:536',
 
         'product_pdf' => 'nullable|file|mimes:pdf',
 
@@ -104,6 +104,8 @@ class Product extends Model implements HasMedia
         'weight' => 'decimal:2',
 
         'meta_keywords' => 'array',
+
+        'status' => Status::class,
     ];
 
     public function brand(): BelongsTo

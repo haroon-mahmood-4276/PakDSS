@@ -4,7 +4,7 @@ namespace App\DataTables\Admin;
 
 use App\Models\Permission;
 use App\Models\Role;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -14,7 +14,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class PermissionsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     public function dataTable(QueryBuilder $query)
     {
@@ -22,18 +22,7 @@ class PermissionsDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->editColumn('roles', function ($permission) {
-                return [
-                    'permission_id' => $permission->id,
-                    'roles' => $permission->roles->pluck('id')->toArray(),
-                ];
-            })
-            ->editColumn('created_at', function ($permission) {
-                return editDateColumn($permission->created_at);
-            })
-            ->editColumn('updated_at', function ($permission) {
-                return editDateColumn($permission->updated_at);
-            })
+            ->editColumn('roles', fn ($permission) => ['permission_id' => $permission->id, 'roles' => $permission->roles->pluck('id')->toArray()])
             ->setRowId('id')
             ->rawColumns($columns);
     }

@@ -6,6 +6,7 @@ use App\DataTables\Admin\SellersDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Sellers\StoreRequest;
 use App\Http\Requests\Admin\Sellers\UpdateRequest;
+use App\Models\Seller;
 use App\Services\Sellers\SellerInterface;
 use App\Utils\Enums\Status;
 use Exception;
@@ -44,7 +45,7 @@ class SellerController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'statuses' => Status::array(),
+            'statuses' => Status::array(true),
         ];
 
         return view('admin.sellers.create', $data);
@@ -62,7 +63,7 @@ class SellerController extends Controller
 
         try {
             $inputs = $request->validated();
-            $record = $this->sellerInterface->store($inputs);
+            $this->sellerInterface->store($inputs);
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
@@ -97,7 +98,7 @@ class SellerController extends Controller
             if ($seller && ! empty($seller)) {
                 $data = [
                     'seller' => $seller,
-                    'statuses' => Status::array(),
+                    'statuses' => Status::array(true),
                 ];
 
                 return view('admin.sellers.edit', $data);
@@ -116,14 +117,12 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, $seller)
     {
         abort_if(request()->ajax(), 403);
         try {
-
-            $id = decryptParams($id);
             $inputs = $request->validated();
-            $record = $this->sellerInterface->update($id, $inputs);
+            $this->sellerInterface->update($seller, $inputs);
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {

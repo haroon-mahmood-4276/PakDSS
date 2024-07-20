@@ -3,7 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Brand;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class BrandsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -25,24 +25,11 @@ class BrandsDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($brand) {
-                return $brand;
-            })
-            ->editColumn('logo_image', function ($brand) {
-                return editImageColumn($brand->getFirstMediaUrl('brands'));
-            })
-            ->editColumn('linked_categories_count', function ($brand) {
-                return $brand->categories_count > 0 ? $brand->categories_count : '-';
-            })
-            ->editColumn('created_at', function ($brand) {
-                return editDateColumn($brand->created_at);
-            })
-            ->editColumn('updated_at', function ($brand) {
-                return editDateColumn($brand->updated_at);
-            })
-            ->editColumn('actions', function ($brand) {
-                return view('admin.brands.actions', ['id' => $brand->id]);
-            })
+            ->editColumn('check', fn ($brand) => $brand)
+            ->editColumn('logo_image', fn ($brand) => editImageColumn($brand->getFirstMediaUrl('brands')))
+            ->editColumn('linked_categories_count', fn ($brand) => $brand->categories_count > 0 ? $brand->categories_count : '-')
+            ->editColumn('created_at', fn ($brand) => editDateTimeColumn($brand->created_at))
+            ->editColumn('actions', fn ($brand) => view('admin.brands.actions', ['id' => $brand->id]))
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -124,7 +111,7 @@ class BrandsDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -156,7 +143,6 @@ class BrandsDataTable extends DataTable
             Column::make('slug')->title('Slug')->addClass($columnClass),
             Column::computed('linked_categories_count')->title('Associated <br>Categories')->addClass($columnClass),
             Column::make('created_at')->addClass($columnClass),
-            Column::make('updated_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
     }

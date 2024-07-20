@@ -3,7 +3,7 @@
 namespace App\DataTables\Seller;
 
 use App\Models\Product;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ProductsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -25,24 +25,12 @@ class ProductsDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($product) {
-                return $product;
-            })
-            ->editColumn('price', function ($product) {
-                return 'Rs. ' . ($product->price > 0 ? $product->price : '-');
-            })
-            ->editColumn('discounted_price', function ($product) {
-                return $product->discounted_price > 0 ? 'Rs. ' . $product->discounted_price : '-';
-            })
-            ->editColumn('status', function ($product) {
-                return editStatusColumn($product->status);
-            })
-            ->editColumn('updated_at', function ($product) {
-                return editDateColumn($product->updated_at);
-            })
-            ->editColumn('actions', function ($product) {
-                return view('seller.products.actions', ['id' => $product->id]);
-            })
+            ->editColumn('check', fn ($product) => $product)
+            ->editColumn('price', fn ($product) => 'Rs. ' . ($product->price > 0 ? $product->price : '-'))
+            ->editColumn('discounted_price', fn ($product) => $product->discounted_price > 0 ? 'Rs. ' . $product->discounted_price : '-')
+            ->editColumn('status', fn ($product) => editStatusColumn($product->status->value))
+            ->editColumn('updated_at', fn ($product) => editDateTimeColumn($product->updated_at))
+            ->editColumn('actions', fn ($product) => view('seller.products.actions', ['id' => $product->id]))
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -113,7 +101,7 @@ class ProductsDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'danger\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -133,14 +121,14 @@ class ProductsDataTable extends DataTable
     {
         $columnClass = 'text-nowrap align-middle text-center';
         return [
-            Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
-            Column::make('name')->addClass($columnClass),
-            Column::make('sku')->title('SKU')->addClass($columnClass),
-            Column::make('price')->addClass($columnClass),
-            Column::make('discounted_price')->addClass($columnClass),
-            Column::make('status')->addClass($columnClass),
-            Column::make('updated_at')->addClass($columnClass),
-            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
+            Column::computed('check')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
+            Column::make('name')->addClass('text-nowrap align-middle text-center'),
+            Column::make('model_no')->addClass('text-nowrap align-middle text-center'),
+            Column::make('price')->addClass('text-nowrap align-middle text-center'),
+            Column::make('discounted_price')->addClass('text-nowrap align-middle text-center'),
+            Column::make('status')->addClass('text-nowrap align-middle text-center'),
+            Column::make('updated_at')->addClass('text-nowrap align-middle text-center'),
+            Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass('text-nowrap align-middle text-center'),
         ];
     }
 }

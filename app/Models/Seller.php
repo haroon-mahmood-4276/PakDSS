@@ -9,7 +9,6 @@ use App\Rules\Password;
 use App\Utils\Enums\Status;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,7 +17,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Seller extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, HasUuids, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $dateFormat = 'U';
 
@@ -46,6 +45,9 @@ class Seller extends Authenticatable implements MustVerifyEmail
 
     protected $casts = [
         'email_verified_at' => 'integer',
+
+        'status' => Status::class,
+
         'created_at' => 'timestamp',
         'updated_at' => 'timestamp',
         'deleted_at' => 'timestamp',

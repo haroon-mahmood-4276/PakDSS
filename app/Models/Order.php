@@ -4,13 +4,12 @@ namespace App\Models;
 
 use App\Utils\Enums\{OrderStatuses, PaymentStatuses};
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 class Order extends Model
 {
-    use HasUuids, HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $dateFormat = 'U';
 

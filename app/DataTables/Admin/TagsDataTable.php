@@ -3,7 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Tag;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class TagsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -26,21 +26,10 @@ class TagsDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($tag) {
-                return $tag;
-            })
-            ->editColumn('name', function ($tag) {
-                return '#'.$tag->name;
-            })
-            ->editColumn('created_at', function ($tag) {
-                return editDateColumn($tag->created_at);
-            })
-            ->editColumn('updated_at', function ($tag) {
-                return editDateColumn($tag->updated_at);
-            })
-            ->editColumn('actions', function ($tag) {
-                return view('admin.tags.actions', ['id' => $tag->id]);
-            })
+            ->editColumn('check', fn ($tag)  => $tag)
+            ->editColumn('name', fn ($tag) => '#' . $tag->name)
+            ->editColumn('created_at', fn ($tag) => editDateTimeColumn($tag->created_at))
+            ->editColumn('actions', fn ($tag) => view('admin.tags.actions', ['id' => $tag->id]))
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -100,7 +89,7 @@ class TagsDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            
+
             ->scrollX()
             ->pagingType('full_numbers')
             ->lengthMenu([
@@ -123,7 +112,7 @@ class TagsDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -132,7 +121,7 @@ class TagsDataTable extends DataTable
                 'right' => 1,
             ])
             ->orders([
-                [4, 'desc'],
+                [2, 'desc'],
             ]);
     }
 
@@ -152,7 +141,6 @@ class TagsDataTable extends DataTable
             $checkColumn,
             Column::make('name')->title('Name')->addClass($columnClass),
             Column::make('created_at')->addClass($columnClass),
-            Column::make('updated_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
     }

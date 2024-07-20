@@ -18,67 +18,37 @@ class BrandService implements BrandInterface
 
     public function store($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
-            $data = [
-                'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']),
-            ];
-
-            $brand = $this->model()->create($data);
-
-            $brand->categories()->sync($inputs['categories'] ?? []);
-
-            if (isset($inputs['brand_image'])) {
-                $attachment = $inputs['brand_image'];
-                $brand->addMedia($attachment)->toMediaCollection('brands');
-            }
-
-            return $brand;
-        });
-
-        return $returnData;
+        return DB::transaction(fn () => $this->createOrUpdate($inputs));
     }
 
     public function update($id, $inputs)
     {
-        $returnData = DB::transaction(function () use ($id, $inputs) {
-
-            $brand = $this->model()->find($id);
-
-            $data = [
-                'name' => $inputs['name'],
-                'slug' => Str::slug($inputs['name']),
-            ];
-
-            $brand->update($data);
-
-            $brand->categories()->sync($inputs['categories'] ?? []);
-
-            $brand->clearMediaCollection('brands');
-
-            if (isset($inputs['brand_image'])) {
-                $attachment = $inputs['brand_image'];
-                $brand->addMedia($attachment)->toMediaCollection('brands');
-            }
-
-            return $brand;
-        });
-
-        return $returnData;
+        return DB::transaction(fn () => $this->createOrUpdate($inputs, $id));
     }
 
     public function destroy($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
+        return DB::transaction(fn () => $this->model()->whereIn('id', $inputs)->get()->each(function ($brand) {
+            $brand->clearMediaCollection('brands');
+            $brand->delete();
+        }));
+    }
 
-            $brand = $this->model()->whereIn('id', $inputs)->get()->each(function ($brand) {
-                $brand->clearMediaCollection('brands');
-                $brand->delete();
-            });
+    private function createOrUpdate($inputs, $id = 0)
+    {
+        $brand = $this->model()->updateOrCreate(
+            ['id' => $id],
+            ['name' => $inputs['name'], 'slug' => Str::slug($inputs['name'])]
+        );
 
-            return $brand;
-        });
+        $brand->categories()->sync($inputs['categories'] ?? []);
 
-        return $returnData;
+        $brand->clearMediaCollection('brands');
+
+        if (isset($inputs['brand_image'])) {
+            $brand->addMedia($inputs['brand_image'])->toMediaCollection('brands');
+        }
+
+        return $brand;
     }
 }

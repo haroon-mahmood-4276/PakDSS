@@ -261,11 +261,7 @@
                 $(element).closest('tr').removeClass('table-danger');
             }
         }
-
-        function changeAllTableRowColor() {
-            $('.dt-checkboxes').trigger('change');
-        }
-
+        
         "undefined" != typeof $ && $(function() {
             window.Helpers.initSidebarToggle();
             var t, a, e, s = $(".search-toggler"),

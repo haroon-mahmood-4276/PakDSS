@@ -3,7 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Admin;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class UsersDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -26,18 +26,9 @@ class UsersDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('created_at', function ($user) {
-                return editDateColumn($user->created_at);
-            })
-            ->editColumn('updated_at', function ($user) {
-                return editDateColumn($user->updated_at);
-            })
-            ->editColumn('actions', function ($user) {
-                return view('admin.users.actions', ['id' => $user->id]);
-            })
-            ->editColumn('check', function ($user) {
-                return $user;
-            })
+            ->editColumn('check', fn ($user) => $user)
+            ->editColumn('created_at', fn ($user) => editDateTimeColumn($user->created_at))
+            ->editColumn('actions', fn ($user)  => view('admin.users.actions', ['id' => $user->id]))
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -122,7 +113,7 @@ class UsersDataTable extends DataTable
                         return null;
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -153,7 +144,6 @@ class UsersDataTable extends DataTable
             $checkColumn,
             Column::make('name')->addClass($columnClass),
             Column::make('created_at')->addClass($columnClass),
-            Column::make('updated_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
     }

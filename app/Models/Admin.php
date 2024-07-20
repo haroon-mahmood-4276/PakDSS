@@ -5,7 +5,6 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Rules\Password;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, Notifiable, HasUuids, SoftDeletes, HasRoles;
+    use HasFactory, Notifiable, SoftDeletes, HasRoles;
 
     protected $dateFormat = 'U';
 

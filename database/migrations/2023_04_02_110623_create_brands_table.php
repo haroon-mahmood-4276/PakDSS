@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('brands', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
 
             $table->string('name');
             $table->string('slug')->unique();
+            $table->boolean('is_default')->default(false);
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();

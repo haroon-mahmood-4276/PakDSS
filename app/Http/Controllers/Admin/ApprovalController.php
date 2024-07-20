@@ -103,7 +103,7 @@ class ApprovalController extends Controller
 
         switch ($modalData['model']) {
             case 'products':
-                $product = $this->productInterface->find($id, ['categories', 'tags']);
+                $product = $this->productInterface->find($id, relationships: ['categories', 'tags']);
                 $modalData = array_merge($modalData, [
                     'brands' => $this->brandInterface->get(),
                     'categories' => $this->categoryInterface->get(with_tree: true),

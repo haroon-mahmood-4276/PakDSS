@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.categories.edit', encryptParams($category->id)) }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.categories.edit', $category->id) }}
 @endsection
 
 @section('page-title', 'Edit Category')
@@ -18,12 +18,12 @@
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
         <h2 class="content-header-title float-start mb-0 mx-3">Edit Category</h2>
-        {{ Breadcrumbs::render('admin.categories.edit', encryptParams($category->id)) }}
+        {{ Breadcrumbs::render('admin.categories.edit', $category->id) }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('admin.categories.update', ['id' => encryptParams($category->id)]) }}"
+    <form class="form form-vertical" action="{{ route('admin.categories.update', ['id' => $category->id]) }}"
         method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">

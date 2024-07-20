@@ -11,12 +11,11 @@ class UpdateRequest extends FormRequest
     {
         return true;
     }
-    
+
     public function rules()
     {
         $rules = (new Address())->rules;
-        $id = decryptParams($this->id);
-        $rules['slug'] .= ','.$id;
+        $rules['slug'] .= ',' . $this->id;
 
         return $rules;
     }

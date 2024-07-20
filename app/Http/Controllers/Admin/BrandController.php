@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\BrandsDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Brands\StoreRequest;
-use App\Http\Requests\Admin\Brands\UpdateRequest;
+use App\Http\Requests\Admin\Brands\{StoreRequest, UpdateRequest};
 use App\Services\Brands\BrandInterface;
 use App\Services\Categories\CategoryInterface;
 use Exception;
@@ -97,7 +96,7 @@ class BrandController extends Controller
         try {
             $brand = $this->brandInterface->find($id, ['categories:id']);
 
-            if ($brand && ! empty($brand)) {
+            if ($brand && !empty($brand)) {
                 $data = [
                     'brand' => $brand,
                     'brand_logo' => $brand->getMedia('brands'),
@@ -120,14 +119,13 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, $brand)
     {
         abort_if(request()->ajax(), 403);
         try {
 
-            $id = decryptParams($id);
             $inputs = $request->validated();
-            $record = $this->brandInterface->update($id, $inputs);
+            $this->brandInterface->update($brand, $inputs);
 
             return redirect()->route('admin.brands.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
@@ -144,7 +142,7 @@ class BrandController extends Controller
 
                 $record = $this->brandInterface->destroy($request->checkForDelete);
 
-                if (! $record) {
+                if (!$record) {
                     return redirect()->route('admin.brands.index')->withDanger('Data not found!');
                 }
             }

@@ -12,7 +12,7 @@
             height: 300,
             menubar: false,
             schema: 'html5-strict',
-            invalid_elements: 'script,style',
+            invalid_elements: 'script',
             branding: false,
             @if (isset($isReadOnly))
                 readonly: true,
@@ -38,7 +38,7 @@
         $('#long_description').tinymce({
             height: 500,
             schema: 'html5-strict',
-            invalid_elements: 'script,style',
+            invalid_elements: 'script',
             menubar: true,
             branding: false,
             plugins: [
@@ -48,8 +48,11 @@
             ],
             toolbar: 'undo redo | blocks | bold italic backcolor | ' +
                 'alignleft aligncenter alignright alignjustify | ' +
-                'bullist numlist outdent indent | removeformat | help',
+                'bullist numlist outdent indent | removeformat',
             maxlength: 2,
+            table_default_attributes: {
+                class: 'table'
+            },
             @if (isset($isReadOnly))
                 readonly: true,
             @endif
@@ -140,7 +143,7 @@
         },
 
         files: files['product_images'],
-        acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+        acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'],
         allowMultiple: true,
         maxFiles: 3,
     });
@@ -158,9 +161,7 @@
         storeAsFile: true,
         checkValidity: true,
         maxFiles: 1,
-        acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv',
-            'video/mkv'
-        ],
+        acceptedFileTypes: ['video/mp4', 'video/webm', 'video/mov', 'video/avi', 'video/wmv', 'video/mkv'],
         credits: {
             label: '',
             url: ''

@@ -3,7 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Seller;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class SellersDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
 
     /**
      * Build DataTable class.
@@ -26,18 +26,11 @@ class SellersDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         return (new EloquentDataTable($query))
-            ->editColumn('check', function ($seller) {
-                return $seller;
-            })
-            ->editColumn('updated_at', function ($seller) {
-                return editDateColumn($seller->updated_at);
-            })
-            ->editColumn('status', function ($seller) {
-                return editStatusColumn($seller->status);
-            })
-            ->editColumn('actions', function ($seller) {
-                return view('admin.sellers.actions', ['seller' => $seller->id]);
-            })
+            ->editColumn('check', fn ($seller) => $seller)
+            ->editColumn('ntn_number', fn ($seller) => empty($seller->ntn_number) ? '-' : $seller->ntn_number)
+            ->editColumn('created_at', fn ($seller) => editDateTimeColumn($seller->created_at))
+            ->editColumn('status', fn ($seller) => editStatusColumn($seller->status->value))
+            ->editColumn('actions', fn ($seller) => view('admin.sellers.actions', ['seller' => $seller->id]))
             ->setRowId('id')
             ->rawColumns($columns);
     }
@@ -97,7 +90,7 @@ class SellersDataTable extends DataTable
             ->serverSide()
             ->processing()
             ->deferRender()
-            
+
             ->scrollX()
             ->pagingType('full_numbers')
             ->lengthMenu([
@@ -120,7 +113,7 @@ class SellersDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \"danger\")\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' => '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ],
                 ],
             ])
@@ -153,9 +146,7 @@ class SellersDataTable extends DataTable
             Column::make('ntn_number')->title('ntn')->addClass($columnClass),
             Column::make('phone_primary')->title('phone 1')->addClass($columnClass),
             Column::make('status')->title('Status')->addClass($columnClass),
-
-            Column::make('updated_at')->addClass($columnClass),
-
+            Column::make('created_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];
     }

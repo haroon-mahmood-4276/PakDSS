@@ -25,8 +25,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         $rules = (new Brand())->rules;
-        $id = decryptParams($this->id);
-        $rules['slug'] .= ','.$id;
+        $rules['slug'] .= ',' . $this->brand;
 
         return $rules;
     }

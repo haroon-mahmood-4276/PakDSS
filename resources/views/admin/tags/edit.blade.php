@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.tags.edit', encryptParams($tag->id)) }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.tags.edit', $tag->id) }}
 @endsection
 
 @section('page-title', 'Edit Tag')
@@ -18,12 +18,12 @@
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
         <h2 class="content-header-title float-start mb-0 mx-3">Edit Tag</h2>
-        {{ Breadcrumbs::render('admin.tags.edit', encryptParams($tag->id)) }}
+        {{ Breadcrumbs::render('admin.tags.edit', $tag->id) }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('admin.tags.update', ['id' => encryptParams($tag->id)]) }}"
+    <form class="form form-vertical" action="{{ route('admin.tags.update', ['id' => $tag->id]) }}"
         method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">

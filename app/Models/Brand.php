@@ -2,23 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Observers\BrandObserver;
+use Illuminate\Database\Eloquent\{Attributes\ObservedBy, Factories\HasFactory, Model, Relations\BelongsToMany, SoftDeletes};
+use Spatie\MediaLibrary\{HasMedia, InteractsWithMedia};
 
+#[ObservedBy([BrandObserver::class])]
 class Brand extends Model implements HasMedia
 {
-    use HasUuids, HasFactory, SoftDeletes, InteractsWithMedia;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $dateFormat = 'U';
 
     protected $fillable = [
         'name',
         'slug',
+        'is_default',
     ];
 
     public $rules = [
@@ -26,7 +24,7 @@ class Brand extends Model implements HasMedia
         'slug' => 'required|string|between:1,254|unique:brands,slug',
         'brand_image' => 'nullable|image|mimes:jpeg,png,jpg|max:536',
         'categories' => 'nullable|array',
-        'categories.*' => 'uuid',
+        'categories.*' => 'integer',
     ];
 
     public function categories(): BelongsToMany

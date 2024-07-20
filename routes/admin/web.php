@@ -40,8 +40,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
         });
 
         Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.roles.edit'], function () {
-            Route::get('edit', [RoleController::class, 'edit'])->whereUuid('id')->name('edit');
-            Route::put('update', [RoleController::class, 'update'])->whereUuid('id')->name('update');
+            Route::get('edit', [RoleController::class, 'edit'])->whereNumber('id')->name('edit');
+            Route::put('update', [RoleController::class, 'update'])->whereNumber('id')->name('update');
         });
 
         Route::get('delete', [RoleController::class, 'destroy'])->middleware('permission:admin.roles.destroy')->name('destroy');
@@ -65,8 +65,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
         });
 
         Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.categories.edit'], function () {
-            Route::get('edit', [CategoryController::class, 'edit'])->whereUuid('id')->name('edit');
-            Route::put('update', [CategoryController::class, 'update'])->whereUuid('id')->name('update');
+            Route::get('edit', [CategoryController::class, 'edit'])->whereNumber('id')->name('edit');
+            Route::put('update', [CategoryController::class, 'update'])->whereNumber('id')->name('update');
         });
 
         Route::get('delete', [CategoryController::class, 'destroy'])->middleware('permission:admin.categories.destroy')->name('destroy');
@@ -82,8 +82,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
         });
 
         Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.tags.edit'], function () {
-            Route::get('edit', [TagController::class, 'edit'])->whereUuid('id')->name('edit');
-            Route::put('update', [TagController::class, 'update'])->whereUuid('id')->name('update');
+            Route::get('edit', [TagController::class, 'edit'])->whereNumber('id')->name('edit');
+            Route::put('update', [TagController::class, 'update'])->whereNumber('id')->name('update');
         });
 
         Route::get('delete', [TagController::class, 'destroy'])->middleware('permission:admin.tags.destroy')->name('destroy');
@@ -98,9 +98,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
             Route::post('store', [BrandController::class, 'store'])->name('store');
         });
 
-        Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.brands.edit'], function () {
-            Route::get('edit', [BrandController::class, 'edit'])->whereUuid('id')->name('edit');
-            Route::put('update', [BrandController::class, 'update'])->whereUuid('id')->name('update');
+        Route::group(['prefix' => '/{brand}', 'middleware' => 'permission:admin.brands.edit'], function () {
+            Route::get('edit', [BrandController::class, 'edit'])->whereNumber('id')->name('edit');
+            Route::put('update', [BrandController::class, 'update'])->whereNumber('id')->name('update');
         });
 
         Route::get('delete', [BrandController::class, 'destroy'])->middleware('permission:admin.brands.destroy')->name('destroy');
@@ -116,8 +116,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
         });
 
         Route::group(['prefix' => '/{seller}'], function () {
-            Route::get('edit', 'edit')->whereUuid('id')->middleware('permission:admin.sellers.edit')->name('edit');
-            Route::put('update', 'update')->whereUuid('id')->middleware('permission:admin.sellers.edit')->name('update');
+            Route::get('edit', 'edit')->whereNumber('id')->middleware('permission:admin.sellers.edit')->name('edit');
+            Route::put('update', 'update')->whereNumber('id')->middleware('permission:admin.sellers.edit')->name('update');
 
             //Shop Routes
             Route::prefix('shops')->name('shops.')->controller(ShopController::class)->group(function () {
@@ -129,8 +129,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
                 });
 
                 Route::group(['prefix' => '/{shop}', 'middleware' => 'permission:admin.sellers.shops.edit'], function () {
-                    Route::get('edit', 'edit')->whereUuid('shop')->name('edit');
-                    Route::put('update', 'update')->whereUuid('shop')->name('update');
+                    Route::get('edit', 'edit')->whereNumber('shop')->name('edit');
+                    Route::put('update', 'update')->whereNumber('shop')->name('update');
                 });
 
                 Route::get('delete', 'destroy')->middleware('permission:admin.sellers.shops.destroy')->name('destroy');
@@ -150,8 +150,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
         });
 
         Route::group(['prefix' => '/{id}', 'middleware' => 'permission:admin.users.edit'], function () {
-            Route::get('edit', 'edit')->whereUuid('id')->name('edit');
-            Route::put('update', 'update')->whereUuid('id')->name('update');
+            Route::get('edit', 'edit')->whereNumber('id')->name('edit');
+            Route::put('update', 'update')->whereNumber('id')->name('update');
         });
 
         Route::get('delete', 'destroy')->middleware('permission:admin.users.destroy')->name('destroy');

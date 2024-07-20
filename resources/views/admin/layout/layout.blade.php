@@ -156,12 +156,6 @@
                     }
                 });
             });
-
-            $('.class-datatable-for-event').on('draw.dt', function() {
-                // setTimeout(function() {
-                    changeAllTableRowColor();
-                // }, 0);
-            });
         });
 
         function c(e) {
@@ -234,10 +228,6 @@
             } else {
                 $('#delete_selected_count').hide().html(0);
             }
-        }
-
-        function changeAllTableRowColor() {
-            $('.dt-checkboxes').trigger('change');
         }
 
         function convertToSlug(Text) {

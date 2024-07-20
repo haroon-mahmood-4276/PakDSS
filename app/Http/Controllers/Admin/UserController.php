@@ -93,7 +93,7 @@ class UserController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $user = $this->userInterface->find(decryptParams($id));
+            $user = $this->userInterface->find($id);
 
             if ($user && ! empty($user)) {
                 $data = [
@@ -122,7 +122,7 @@ class UserController extends Controller
         abort_if(request()->ajax(), 403);
         try {
 
-            $id = decryptParams($id);
+            
             $inputs = $request->validated();
             $record = $this->userInterface->update($id, $inputs);
 

@@ -3,7 +3,7 @@
 namespace App\DataTables\Seller;
 
 use App\Models\Request as RequestForModel;
-use App\Utils\Traits\DatatablesTrait;
+use App\Utils\Traits\DataTableTrait;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class RequestsDataTable extends DataTable
 {
-    use DatatablesTrait;
+    use DataTableTrait;
     /**
      * Build DataTable class.
      *
@@ -35,7 +35,7 @@ class RequestsDataTable extends DataTable
                 return editStatusColumn($requestForRow->status);
             })
             ->editColumn('updated_at', function ($requestForRow) {
-                return editDateColumn($requestForRow->updated_at);
+                return editDateTimeColumn($requestForRow->updated_at);
             })
             ->editColumn('actions', function ($requestForRow) {
                 return view('seller.requests.actions', ['id' => $requestForRow->id, 'requestFor' => $this->requestFor]);
@@ -113,7 +113,7 @@ class RequestsDataTable extends DataTable
                         return '<div class=\"form-check\"> <input class=\"form-check-input dt-checkboxes\" onchange=\"changeTableRowColor(this, \'danger\')\" type=\"checkbox\" value=\"' + role.id + '\" name=\"checkForDelete[]\" id=\"checkForDelete_' + role.id + '\" /><label class=\"form-check-label\" for=\"chkRole_' + role.id + '\"></label></div>';
                     }",
                     'checkboxes' => [
-                        'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" onchange="changeAllTableRowColor()" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
+                        'selectAllRender' =>  '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>',
                     ]
                 ],
             ])
