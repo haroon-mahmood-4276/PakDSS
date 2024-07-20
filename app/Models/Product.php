@@ -61,9 +61,9 @@ class Product extends Model implements HasMedia
         'call_for_final_rates' => 'sometimes|boolean|in:0,1',
         'are_rates_printed_on_package' => 'sometimes|boolean|in:0,1',
 
-        'length' => 'sometimes|decimal:0,2|gte:0',
-        'width' => 'sometimes|decimal:0,2|gte:0',
-        'height' => 'sometimes|decimal:0,2|gte:0',
+        'length' => 'sometimes|decimal:0,3|gte:0',
+        'width' => 'sometimes|decimal:0,3|gte:0',
+        'height' => 'sometimes|decimal:0,3|gte:0',
 
         'weight' => 'sometimes|decimal:0,2|gte:0',
 

@@ -137,7 +137,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Length</label>
-                        <input type="number" min="0"
+                        <input type="number" min="0" step="any"
                             class="form-control @error('length') is-invalid @enderror" id="length" name="length"
                             placeholder="Length(cm)" value="{{ isset($product) ? $product->length : old('length') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -152,7 +152,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Width</label>
-                        <input type="number" min="0"
+                        <input type="number" min="0" step="any"
                             class="form-control @error('width') is-invalid @enderror" id="width" name="width"
                             placeholder="width(cm)" value="{{ isset($product) ? $product->width : old('width') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
@@ -167,7 +167,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Height</label>
-                        <input type="number" min="0"
+                        <input type="number" min="0" step="any"
                             class="form-control @error('height') is-invalid @enderror" id="height" name="height"
                             placeholder="height(cm)" value="{{ isset($product) ? $product->height : old('height') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
