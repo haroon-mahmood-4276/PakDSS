@@ -20,26 +20,27 @@ class ShopsSeeder extends Seeder
     {
         Shop::truncate();
 
+        $logoPath = public_path('admin-assets/img/do_not_delete/do_not_delete.png');
+
         if (app()->environment() === 'local') {
             $seller = Seller::first();
 
             $data = [
                 [
-                    'name' => 'Shopx',
-                    'slug' => Str::of('Shopx')->slug(),
+                    'name' => 'Games And Tech',
 
-                    'email' => 'admin@shopx.com',
+                    'email' => 'info@gamesandtech.com',
 
-                    'phone_1' => '923031111111',
-                    'phone_2' => '923031111111',
+                    'phone_1' => '03123456789',
+                    'phone_2' => '03123456789',
 
                     'address' => 'Lahore, Pakistan',
                     'pickup_address' => 'Lahore, Pakistan',
-                    'description' => 'Ecommerce Store',
+                    'description' => 'Gaming Shop',
 
-                    'manager_name' => 'Mubeen',
-                    'manager_mobile' => '923031111111',
-                    'manager_email' => 'admin@shopx.com',
+                    'manager_name' => 'Haroon',
+                    'manager_mobile' => '03123456789',
+                    'manager_email' => 'haroon@gamesandtech.com',
 
                     'lat' => '31.5864912',
                     'long' => '74.3901942',
@@ -47,56 +48,12 @@ class ShopsSeeder extends Seeder
                     'status' => 'active',
                     'reason' => null,
                 ],
-                [
-                    'name' => 'Shopx1',
-                    'slug' => Str::of('Shopx1')->slug(),
-
-                    'email' => 'admin@shopx1.com',
-
-                    'phone_1' => '923031111112',
-                    'phone_2' => '923031111112',
-
-                    'address' => 'Lahore, Pakistan',
-                    'pickup_address' => 'Lahore, Pakistan',
-                    'description' => 'Ecommerce Store',
-
-                    'manager_name' => 'Mubeen',
-                    'manager_mobile' => '923031111112',
-                    'manager_email' => 'admin@shopx2.com',
-
-                    'lat' => '31.5864912',
-                    'long' => '74.3901942',
-
-                    'status' => 'pending_approval',
-                    'reason' => null,
-                ],
-                [
-                    'name' => 'Shopx3',
-                    'slug' => Str::of('Shopx3')->slug(),
-
-                    'email' => 'admin@shopx3.com',
-
-                    'phone_1' => '923031111113',
-                    'phone_2' => '923031111113',
-
-                    'address' => 'Lahore, Pakistan',
-                    'pickup_address' => 'Lahore, Pakistan',
-                    'description' => 'Ecommerce Store',
-
-                    'manager_name' => 'Mubeen',
-                    'manager_mobile' => '923031111113',
-                    'manager_email' => 'admin@shopx3.com',
-
-                    'lat' => '31.5864912',
-                    'long' => '74.3901942',
-
-                    'status' => 'pending_approval',
-                    'reason' => null,
-                ],
             ];
 
             foreach ($data as $value) {
-                $seller->shops()->create($value);
+                $value['slug'] = Str::slug($value['name']);
+                $shop = $seller->shops()->create($value);
+                $shop->addMedia($logoPath)->preservingOriginal()->toMediaCollection('shops');
             }
         }
     }

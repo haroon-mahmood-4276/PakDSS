@@ -18,45 +18,24 @@ class TagService implements TagInterface
 
     public function store($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
-            $data = [
-                'name' => Str::slug($inputs['name']),
-            ];
-
-            $tag = $this->model()->create($data);
-
-            return $tag;
-        });
-
-        return $returnData;
+        return DB::transaction(fn () => $this->createOrUpdate($inputs));
     }
 
     public function update($id, $inputs)
     {
-        $returnData = DB::transaction(function () use ($id, $inputs) {
-            $data = [
-                'name' => Str::slug($inputs['name']),
-            ];
-
-            $tag = $this->model()->find($id)->update($data);
-
-            return $tag;
-        });
-
-        return $returnData;
+        return DB::transaction(fn () => $this->createOrUpdate($inputs, $id));
     }
 
     public function destroy($inputs)
     {
-        $returnData = DB::transaction(function () use ($inputs) {
+        return DB::transaction(fn () => $this->model()->destroy($inputs));
+    }
 
-            $tags = $this->model()->whereIn('id', $inputs)->get()->each(function ($tag) {
-                $tag->delete();
-            });
-
-            return $tags;
-        });
-
-        return $returnData;
+    private function createOrUpdate($inputs, $id = 0)
+    {
+        return $this->model()->updateOrCreate(
+            ['id' => $id],
+            ['name' => Str::slug($inputs['name'])]
+        );
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Utils\Traits;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+
 trait ServiceShared
 {
     public function get($relationships = [], $ignore = null, $with_tree = false, $withCount = false, $withPagination = false, $perPage = 10, $includeOnlyLast = false)
@@ -16,17 +19,19 @@ trait ServiceShared
             $model = $model->withCount($relationships);
         }
 
-        if ($withPagination) {
-            $model = $model->paginate($perPage);
-        } else {
-            $model = $model->get();
-        }
+        return Cache::rememberForever(Str::of(explode('\\', $this->model()::class)[2])->lower()->plural()->value(), function () use ($model, $withPagination, $perPage, $with_tree, $includeOnlyLast) {
+            if ($withPagination) {
+                $model = $model->paginate($perPage);
+            } else {
+                $model = $model->get();
+            }
 
-        if ($with_tree) {
-            return prepareLinkedTree(collectionData: collect($model), model: $this->model(), includeOnlyLast: $includeOnlyLast);
-        }
+            if ($with_tree) {
+                return prepareLinkedTree(collectionData: collect($model), model: $this->model(), includeOnlyLast: $includeOnlyLast);
+            }
 
-        return $model;
+            return $model;
+        });
     }
 
     public function find($id, $relationships = [])

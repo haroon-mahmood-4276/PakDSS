@@ -66,7 +66,7 @@ class ProductController extends Controller
 
             return redirect()->route('seller.products.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+            return redirect()->route('seller.products.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -95,7 +95,7 @@ class ProductController extends Controller
 
             return is_null($data['product']) ? redirect()->route('seller.products.index')->withWarning('Record not found!') : view('seller.products.edit', $data);
         } catch (Exception $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+            return redirect()->route('seller.products.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -105,11 +105,11 @@ class ProductController extends Controller
         try {
             
             $inputs = $request->validated();
-            $record = $this->productInterface->update($id, $inputs);
+            $this->productInterface->update($id, $inputs);
 
             return redirect()->route('seller.products.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+            return redirect()->route('seller.products.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -129,7 +129,7 @@ class ProductController extends Controller
 
             return redirect()->route('seller.products.index')->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.products.index')->withDanger('Something went wrong!');
+            return redirect()->route('seller.products.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

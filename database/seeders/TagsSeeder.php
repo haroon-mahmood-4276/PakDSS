@@ -30,7 +30,7 @@ class TagsSeeder extends Seeder
             ],
         ];
 
-        foreach ($data as $key => $value) {
+        foreach ($data as $value) {
             Tag::create($value);
         }
     }
