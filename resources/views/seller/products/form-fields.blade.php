@@ -28,8 +28,9 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="model_no">Model No <span
                                 class="text-danger">**</span></label>
-                        <input type="text" class="form-control @error('model_no') is-invalid @enderror" id="model_no"
-                            name="model_no" placeholder="Model No" value="{{ isset($product) ? $product->model_no : old('model_no') }}"
+                        <input type="text" class="form-control @error('model_no') is-invalid @enderror"
+                            id="model_no" name="model_no" placeholder="Model No"
+                            value="{{ isset($product) ? $product->model_no : old('model_no') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
                         @error('model_no')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -46,7 +47,8 @@
                         <label class="form-label" style="font-size: 15px" for="price">Price <span
                                 class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
-                            name="price" placeholder="Price" min="0" {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
+                            name="price" placeholder="Price" min="0"
+                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
                             value="{{ isset($product) ? $product->price : old('price') }}" />
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -60,8 +62,9 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="discounted_price">Discounted
                             Price</label>
-                        <input type="number" min="0" class="form-control @error('discounted_price') is-invalid @enderror"
-                            id="discounted_price" name="discounted_price" placeholder="Discounted Price"
+                        <input type="number" min="0"
+                            class="form-control @error('discounted_price') is-invalid @enderror" id="discounted_price"
+                            name="discounted_price" placeholder="Discounted Price"
                             value="{{ isset($product) ? $product->discounted_price : old('discounted_price') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
                         @error('discounted_price')
@@ -134,9 +137,9 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Length</label>
-                        <input type="number" min="0" class="form-control @error('length') is-invalid @enderror"
-                            id="length" name="length" placeholder="Length(cm)"
-                            value="{{ isset($product) ? $product->length : old('length') }}"
+                        <input type="number" min="0"
+                            class="form-control @error('length') is-invalid @enderror" id="length" name="length"
+                            placeholder="Length(cm)" value="{{ isset($product) ? $product->length : old('length') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
                         @error('length')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -149,9 +152,9 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Width</label>
-                        <input type="number" min="0" class="form-control @error('width') is-invalid @enderror"
-                            id="width" name="width" placeholder="width(cm)"
-                            value="{{ isset($product) ? $product->width : old('width') }}"
+                        <input type="number" min="0"
+                            class="form-control @error('width') is-invalid @enderror" id="width" name="width"
+                            placeholder="width(cm)" value="{{ isset($product) ? $product->width : old('width') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
                         @error('width')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -164,9 +167,9 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Height</label>
-                        <input type="number" min="0" class="form-control @error('height') is-invalid @enderror"
-                            id="height" name="height" placeholder="height(cm)"
-                            value="{{ isset($product) ? $product->height : old('height') }}"
+                        <input type="number" min="0"
+                            class="form-control @error('height') is-invalid @enderror" id="height" name="height"
+                            placeholder="height(cm)" value="{{ isset($product) ? $product->height : old('height') }}"
                             {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }} />
                         @error('height')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -194,9 +197,9 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
                         <label class="form-label" style="font-size: 15px" for="weight">Weight</label>
-                        <input type="number" min="0" class="form-control @error('weight') is-invalid @enderror"
-                            id="weight" name="weight" placeholder="Weight"
-                            {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
+                        <input type="number" min="0"
+                            class="form-control @error('weight') is-invalid @enderror" id="weight" name="weight"
+                            placeholder="Weight" {{ isset($isReadOnly) && $isReadOnly ? 'readonly' : '' }}
                             value="{{ isset($product) ? $product->weight : old('weight') }}" />
                         @error('weight')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -308,7 +311,8 @@
                                 <label class="form-label" style="font-size: 15px" for="product_images">Images</label>
                                 <input id="product_images" type="file"
                                     class="filepond m-0 @error('product_images') is-invalid @enderror"
-                                    name="product_images[]" accept="image/png, image/jpeg, image/gif, image/webp" multiple />
+                                    name="product_images[]" accept="image/png, image/jpeg, image/gif, image/webp"
+                                    multiple />
                                 @error('product_images')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @else
@@ -376,7 +380,7 @@
                                 @foreach ($brands as $key => $brand)
                                     <option data-icon="material-icons md-keyboard_arrow_right"
                                         value="{{ $brand->id }}"
-                                        {{ (isset($product) ? $product->brand_id : old('brand')) == $brand->id ? 'selected' : '' }}>
+                                        {{ (isset($product) ? $product->brand_id : old('brand')) == $brand->id ? 'selected' : ($brand->is_default ? 'selected' : '') }}>
                                         {{ Str::of($brand->name)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
@@ -399,7 +403,8 @@
                                 name="categories[]" multiple>
                                 @foreach ($categories as $key => $category)
                                     <option value="{{ $category->id }}"
-                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>{{ Str::of($category->tree)->replace('_', ' ') }}</option>
+                                        {{ in_array($category->id, isset($product) ? $product->categories->pluck('id')->toArray() : old('categories') ?? []) ? 'selected' : '' }}>
+                                        {{ Str::of($category->tree)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('categories')
@@ -420,7 +425,8 @@
                                 name="tags[]" multiple>
                                 @foreach ($tags as $key => $tag)
                                     <option value="{{ $tag->id }}"
-                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>{{ Str::of($tag->name)->replace('_', ' ') }}</option>
+                                        {{ in_array($tag->id, isset($product) ? $product->tags->pluck('id')->toArray() : old('tags') ?? []) ? 'selected' : '' }}>
+                                        {{ Str::of($tag->name)->replace('_', ' ') }}</option>
                                 @endforeach
                             </select>
                             @error('tags')

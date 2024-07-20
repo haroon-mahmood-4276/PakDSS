@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Observers\BrandObserver;
+use Illuminate\Database\Eloquent\{Attributes\ObservedBy, Factories\HasFactory, Model, Relations\BelongsToMany, SoftDeletes};
+use Spatie\MediaLibrary\{HasMedia, InteractsWithMedia};
 
+#[ObservedBy([BrandObserver::class])]
 class Brand extends Model implements HasMedia
 {
     use HasFactory, SoftDeletes, InteractsWithMedia;
@@ -18,6 +16,7 @@ class Brand extends Model implements HasMedia
     protected $fillable = [
         'name',
         'slug',
+        'is_default',
     ];
 
     public $rules = [

@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('slug')->unique();
+            $table->boolean('is_default')->default(false);
 
             $table->integer('created_at')->nullable();
             $table->integer('updated_at')->nullable();
