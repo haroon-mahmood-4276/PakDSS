@@ -147,7 +147,7 @@
                                 </div> --}}
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="{{ $product->call_for_final_rates ? 'col-6' : 'col-12' }}">
                                 <h3 class="m-0">
                                     {{ currencyParser($product->discounted_price > 0 ? $product->discounted_price : $product->price, symbol: 'Rs.') }}
