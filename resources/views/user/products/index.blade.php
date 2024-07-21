@@ -148,7 +148,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="{{ $product->call_for_final_rates ? 'col-6' : 'col-12' }}">
                                 <h3 class="m-0">
                                     {{ currencyParser($product->discounted_price > 0 ? $product->discounted_price : $product->price, symbol: 'Rs.') }}
                                     @if ($product->discounted_price > 0)
@@ -158,16 +158,16 @@
                                     @endif
                                 </h3>
                             </div>
-                            <div class="col-8">
-                                @if ($product->call_for_final_rates)
+                            @if ($product->call_for_final_rates)
+                                <div class="col-6">
                                     <div class="alert alert-warning d-flex align-items-center gap-2 m-0" role="alert">
                                         <span class="alert-icon rounded">
                                             <i class="ti ti-exclamation-mark"></i>
                                         </span>
                                         Call for final rates!.
                                     </div>
-                                @endif
-                            </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="product-short-description mb-3" style="min-height: 130px ">
                             {!! decodeHtmlEntities($product->short_description) !!}
