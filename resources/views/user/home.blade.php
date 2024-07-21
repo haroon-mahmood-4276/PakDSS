@@ -71,18 +71,6 @@
             border-radius: 8px;
             background-color: #FFF4F6;
         }
-
-        .custom-swiper-button-next,
-        .custom-swiper-button-prev {
-            border: 2px solid #685dd8;
-            border-radius: 10px;
-            height: 30px;
-            width: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 5px;
-        }
     </style>
 @endsection
 
@@ -205,7 +193,7 @@
         </div>
     </section>
 
-    <section class="">
+    <section class="bg-white">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-lg-12">
@@ -217,75 +205,106 @@
     </section>
 
     {{-- Categories Swiper --}}
-    <section class="">
+    <section class="bg-white pb-4">
         <div class="container-xxl flex-grow-1">
-            @forelse ($categories_products as $catrgory_name => $product_chunks)
-                <div class="row mb-5">
+            @foreach ($categories_products as $catrgory_name => $product_chunks)
+                <div class="row">
                     <div class="col-12">
-                        <div class="d-flex align-items-center border-bottom mb-3">
+                        <div class="d-flex align-items-center mb-3">
                             <div class="flex-grow-1">
                                 <div class="d-flex align-items-center">
                                     <h1 class="m-0">{{ Str::of($catrgory_name)->title() }}</h1>
                                 </div>
                             </div>
-                            <div class="parent-swiper-navigation-button d-flex gap-1">
-                                <div class="parent-swiper-button-next btn btn-sm btn-primary">
-                                    <i class="fa-solid fa-angle-left"></i>
-                                </div>
-                                <div class="parent-swiper-button-prev btn btn-sm btn-primary">
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="swiper parent-categories-swiper">
-                            <div class="swiper-wrapper">
-                                @foreach ($product_chunks as $chunk)
-                                    <div class="swiper-slide">
-                                        <div class="row row-cols-6 g-2">
-                                            @foreach ($chunk as $product)
-                                                {{-- Product --}}
-                                                <div class="col">
-                                                    <div class="card overflow-hidden h-100 position-relative shadow-none">
-                                                        <div class="rounded text-center position-relative">
-                                                            <div class="p-1">
-                                                                <div class="swiper productImageSwipper">
-                                                                    <div class="swiper-wrapper">
-                                                                        @forelse ($product?->media as $image)
-                                                                            <div class="swiper-slide">
-                                                                                <img class="card-img-top img-fluid"
-                                                                                    src="{{ $image->getUrl() }}"
-                                                                                    alt="{{ $product?->model_no }}"
-                                                                                    width="140" />
+                        <div class="position-relative">
+                            <button
+                                class="position-absolute top-50 start-0 translate-middle parent-swiper-button-next btn btn-sm bg-white shadow-none border rounded-pill"
+                                style="z-index: 10; height: 70px; translate: 5px;">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </button>
+                            <button
+                                class="position-absolute top-50 start-100 translate-middle parent-swiper-button-prev btn btn-sm bg-white shadow-none border rounded-pill"
+                                style="z-index: 10; height: 70px; translate: -5px;">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </button>
+                            <div class="swiper parent-categories-swiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($product_chunks as $chunk)
+                                        <div class="swiper-slide">
+                                            <div class="row row-cols-6 g-2">
+                                                @foreach ($chunk as $product)
+                                                    {{-- Product --}}
+                                                    <div class="col p-2 m-0">
+                                                        <a
+                                                            href="{{ route('user.products.index', ['product' => $product->permalink]) }}">
+                                                            <div class="card shadow-none border h-100"
+                                                                style="border-radius: 15px">
+                                                                <div class="text-center position-relative"
+                                                                    style="border-radius: 15px">
+                                                                    <div class="p-1">
+                                                                        @if ($product?->media->count())
+                                                                            <div class="swiper productImageSwipper">
+                                                                                <div class="swiper-wrapper">
+                                                                                    @foreach ($product?->media as $image)
+                                                                                        <div class="swiper-slide">
+                                                                                            <img class="card-img-top img-fluid"
+                                                                                                src="{{ $image->getUrl() }}"
+                                                                                                alt="{{ $product?->model_no }}"
+                                                                                                width="140" />
+                                                                                        </div>
+                                                                                    @endforeach
+                                                                                </div>
+                                                                                <div class="swiper-pagination"></div>
                                                                             </div>
-                                                                        @empty
-                                                                        @endforelse
+                                                                        @else
+                                                                            <img class="card-img-top img-fluid"
+                                                                                src="{{ getDoNotDeleteImage() }}"
+                                                                                alt="{{ $product?->model_no }}"
+                                                                                width="140" />
+                                                                        @endif
                                                                     </div>
-                                                                    <div class="swiper-pagination"></div>
+                                                                </div>
+                                                                <div class="card-body p-3 d-flex flex-column">
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-center">
+                                                                        <p class="m-0 p-0">
+                                                                            <small>{{ $product->brand->name }}</small>
+                                                                        </p>
+                                                                        <div id="rateYo" class="rateYo"></div>
+                                                                    </div>
+                                                                    <p class="mb-1 text-dark fw-bolder">
+                                                                        <a<strong>{{ $product->name }}</strong>
+                                                                    </p>
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-center flex-col mb-2">
+                                                                        <p class="m-0 p-0 text-dark">
+                                                                            <span
+                                                                                class="fw-bolder">{{ currencyParser($product->discounted_price > 0 ? $product->discounted_price : $product->price, symbol: 'Rs.') }}</span>
+                                                                            @if ($product->discounted_price > 0)
+                                                                                <small
+                                                                                    class="text-body-secondary"><s>{{ currencyParser($product->price, symbol: 'Rs.') }}</s></small>
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="m-0 p-0 text-dark">
+                                                                            @if ($product->discounted_price > 0)
+                                                                                <span
+                                                                                    class="badge text-bg-primary">{{ calculateDiscountPercentage($product->price, $product->discounted_price) }}%</span>
+                                                                            @endif
+                                                                        </p>
+                                                                    </div>
+                                                                    <p class="m-0 p-0"><span class="text-dark">By</span> {{ $product->seller->name }}</p>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="card-body px-3 pt-1 pb-3 d-flex flex-column">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <a
-                                                                    href="#"><small>{{ $product->brand->name }}</small></a>
-                                                                {{-- <a
-                                                                    href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}"><small>{{ $product->brand->name }}</small></a> --}}
-                                                                <div id="rateYo"></div>
-                                                            </div>
-                                                            <p>
-                                                                <a href="{{ route('user.products.index', ['product' => $product->permalink]) }}"
-                                                                    class="mb-1 text-dark"><strong>{{ $product->name }}</strong></a>
-                                                            </p>
-
-                                                        </div>
+                                                        </a>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -370,33 +389,32 @@
                         </div>
                     </div>
                 @endif
-                @empty
-                @endforelse
-            </div>
-        </section>
-    @endsection
+            @endforeach
+        </div>
+    </section>
+@endsection
 
-    @section('vendor-js')
-        <script src="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.js"></script>
-        <script src="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.js"></script>
-    @endsection
+@section('vendor-js')
+    <script src="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.js"></script>
+    <script src="{{ asset('admin-assets') }}/vendor/libs/rateyo/jquery.rateyo.min.js"></script>
+@endsection
 
-    @section('page-js')
-        {{-- @vite(['resources/js/app.js']) --}}
-        <script>
-            $(document).ready(function() {
-                $("#rateYo").rateYo({
-                    starWidth: "15px",
-                    // normalFill: "#685dd8"
-                    ratedFill: "#7367f0",
-                    starSvg: "<i class='fa-solid fa-star'></i>"
-                });
+@section('page-js')
+    {{-- @vite(['resources/js/app.js']) --}}
+    <script>
+        $(document).ready(function() {
+            $(".rateYo").rateYo({
+                starWidth: "15px",
+                // normalFill: "#685dd8"
+                ratedFill: "#7367f0",
+                starSvg: "<i class='fa-solid fa-star'></i>"
             });
+
 
             new Swiper(".banner-swiper", {
                 spaceBetween: 10,
                 autoplay: {
-                    delay: 15000,
+                    delay: 150000,
                     disableOnInteraction: false,
                 },
                 pagination: {
@@ -412,7 +430,6 @@
 
             new Swiper(".productImageSwipper", {
                 spaceBetween: 10,
-                loop: true,
                 pagination: {
                     el: ".productImageSwipper .swiper-pagination",
                     // dynamicBullets: true,
@@ -431,5 +448,6 @@
                     nextEl: ".parent-swiper-button-prev",
                 }
             });
-        </script>
-    @endsection
+        });
+    </script>
+@endsection

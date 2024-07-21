@@ -4,7 +4,7 @@
     {{ Breadcrumbs::view('breadcrumbs::json-ld', 'user.home') }}
 @endsection
 
-@section('page-title', env('APP_NAME'))
+@section('page-title', $product->name)
 
 @section('vendor-css')
     <link rel="stylesheet" href="{{ asset('admin-assets') }}/vendor/libs/swiper/swiper.css" />
@@ -74,28 +74,33 @@
             <div class="row">
                 {{-- Product Pictures --}}
                 <div class="col-5">
-                    <div id="product-swiper">
-                        <div class="swiper product-top">
-                            <div class="swiper-wrapper">
-                                @forelse ($product?->media as $image)
-                                    <div class="swiper-slide">
-                                        <div class="swiper-zoom-container">
-                                            <img src="{{ $image->getUrl() }}" alt="{{ $product?->model_no }}">
+                    @if ($product->media->count() > 0)
+                        <div id="product-swiper">
+                            <div class="swiper product-top">
+                                <div class="swiper-wrapper">
+                                    @foreach ($product?->media as $image)
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img src="{{ $image->getUrl() }}" alt="{{ $product?->model_no }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                @empty
-                                @endforelse
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="swiper product-thumbs">
+                                <div class="swiper-wrapper">
+                                    @foreach ($product?->media as $image)
+                                        <div class="swiper-slide"
+                                            style="background-repeat: no-repeat; background-image:url({{ $image->getUrl() }})">
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                        <div class="swiper product-thumbs">
-                            <div class="swiper-wrapper">
-                                @forelse ($product?->media as $image)
-                                    <div class="swiper-slide" style="background-repeat: no-repeat; background-image:url({{ $image->getUrl() }})"></div>
-                                @empty
-                                @endforelse
-                            </div>
-                        </div>
-                    </div>
+                    @else
+                        <img class="card-img-top img-fluid" src="{{ getDoNotDeleteImage() }}"
+                            alt="{{ $product?->model_no }}" width="140" />
+                    @endif
                 </div>
 
                 {{-- Product Details --}}
@@ -114,8 +119,7 @@
                                 <div class="col-6">
                                     <div class="d-flex flex-column gap-2">
                                         <div class="product-brand">
-                                            <small class="ms-1">by <a
-                                                    href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}">{{ $product->brand->name }}</a></small>
+                                            <small class="ms-1 text-primary">by {{ $product->seller->name }}</small>
                                         </div>
                                         {{-- <div class="product-rating" style="z-index: 1;">
                                             <div class="d-flex gap-1">
@@ -143,14 +147,27 @@
                                 </div> --}}
                             </div>
                         </div>
-                        <div class="product-price mb-3">
-                            <h3>
-                                {{ currencyParser($product->discounted_price > 0 ? $product->discounted_price : $product->price, symbol: 'Rs.') }}
-                                @if ($product->discounted_price > 0)
-                                    <small
-                                        class="text-body-secondary"><s>{{ currencyParser($product->price, symbol: 'Rs.') }}</s></small>
+                        <div class="row">
+                            <div class="col-4">
+                                <h3 class="m-0">
+                                    {{ currencyParser($product->discounted_price > 0 ? $product->discounted_price : $product->price, symbol: 'Rs.') }}
+                                    @if ($product->discounted_price > 0)
+                                        <small
+                                            class="text-body-secondary"><s>{{ currencyParser($product->price, symbol: 'Rs.') }}</s>&nbsp;&nbsp;&nbsp;<span
+                                                class="badge text-bg-primary">{{ calculateDiscountPercentage($product->price, $product->discounted_price) }}%</span></small>
+                                    @endif
+                                </h3>
+                            </div>
+                            <div class="col-8">
+                                @if ($product->call_for_final_rates)
+                                    <div class="alert alert-warning d-flex align-items-center gap-2 m-0" role="alert">
+                                        <span class="alert-icon rounded">
+                                            <i class="ti ti-exclamation-mark"></i>
+                                        </span>
+                                        Call for final rates!.
+                                    </div>
                                 @endif
-                            </h3>
+                            </div>
                         </div>
                         <div class="product-short-description mb-3" style="min-height: 130px ">
                             {!! decodeHtmlEntities($product->short_description) !!}
@@ -209,10 +226,16 @@
                             <div class="row">
                                 <div class="col-lg-5 col-md-5">
                                     <span class="font-sm font-medium color-gray-900">
-                                        <strong class="text-primary">SKU:</strong> <span
-                                            class="">{{ $product->model_no }}</span>
+                                        <strong class="text-primary">Brand:</strong>
+                                        <a
+                                            href="{{ route('user.brands.index', ['brand' => $product->brand->slug]) }}">{{ $product->brand->name }}</a>
                                         <br>
-                                        <strong class="text-primary">Tags:</strong> <span class="">{{ implode(', ', $product->tags?->pluck('name')->all() ?? []) }}</span>
+                                        <strong class="text-primary">SKU:</strong>
+                                        <span class="">{{ $product->model_no }}</span>
+                                        <br>
+                                        <strong class="text-primary">Tags:</strong>
+                                        <span
+                                            class="">{{ implode(', ', $product->tags?->pluck('name')->all() ?? []) }}</span>
                                     </span>
                                 </div>
                                 <div class="col-lg-4 col-md-4">
