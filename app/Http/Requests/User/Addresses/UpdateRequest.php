@@ -4,6 +4,8 @@ namespace App\Http\Requests\User\Addresses;
 
 use App\Models\Address;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -14,9 +16,19 @@ class UpdateRequest extends FormRequest
 
     public function rules()
     {
-        $rules = (new Address())->rules;
-        $rules['slug'] .= ',' . $this->id;
-
-        return $rules;
+        return array_merge((new Address())->rules, [
+            'state' => [
+                'required',
+                Rule::exists('states', 'id')->where(function (Builder $query) {
+                    $query->where('country_id', $this->country);
+                })
+            ],
+            'city' => [
+                'required',
+                Rule::exists('cities', 'id')->where(function (Builder $query) {
+                    $query->where('state_id', $this->state);
+                })
+            ],
+        ]);
     }
 }

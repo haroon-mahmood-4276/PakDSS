@@ -126,8 +126,7 @@
                             <ul class="list-unstyled">
     
                                 @foreach ($checkoutBag as $index => $bagItem)
-
-                                    <input type="hidden" name="bag[{{ $index }}][id]" value="{{ $bagItem->id }}">
+                                    <input type="hidden" name="bag[{{ $index }}][id]" value="{{ $bagItem->product_id }}">
                                     <input type="hidden" name="bag[{{ $index }}][quantity]" value="{{ $bagItem->quantity }}">
                                     <input type="hidden" name="bag[{{ $index }}][price]" value="{{ $bagItem->price }}">
                                     <input type="hidden" name="bag[{{ $index }}][attributes]" value="{{ json_encode($bagItem->attributes) }}">

@@ -19,9 +19,8 @@ trait ServiceShared
             $model = $model->withCount($relationships);
         }
 
-        return Cache::rememberForever(Str::of(explode('\\', $this->model()::class)[2])->lower()->plural()->value(), function () use ($model, $withPagination, $perPage, $with_tree, $includeOnlyLast) {
-            if ($withPagination) {
-                $model = $model->paginate($perPage);
+        if ($withPagination) {
+            $model = $model->paginate($perPage);
             } else {
                 $model = $model->get();
             }
@@ -29,8 +28,9 @@ trait ServiceShared
             if ($with_tree) {
                 return prepareLinkedTree(collectionData: collect($model), model: $this->model(), includeOnlyLast: $includeOnlyLast);
             }
-
+            
             return $model;
+        return Cache::rememberForever(Str::of(explode('\\', $this->model()::class)[2])->lower()->plural()->value(), function () use ($model, $withPagination, $perPage, $with_tree, $includeOnlyLast) {
         });
     }
 

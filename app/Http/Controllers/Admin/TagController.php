@@ -60,7 +60,7 @@ class TagController extends Controller
 
             return redirect()->route('admin.tags.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.tags.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -98,7 +98,7 @@ class TagController extends Controller
 
             return redirect()->route('admin.tags.index')->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.tags.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -122,7 +122,7 @@ class TagController extends Controller
 
             return redirect()->route('admin.tags.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.tags.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -142,7 +142,7 @@ class TagController extends Controller
 
             return redirect()->route('admin.tags.index')->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.tags.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.tags.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

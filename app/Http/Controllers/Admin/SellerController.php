@@ -67,7 +67,7 @@ class SellerController extends Controller
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -106,7 +106,7 @@ class SellerController extends Controller
 
             return redirect()->route('admin.sellers.index')->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -126,7 +126,7 @@ class SellerController extends Controller
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -146,7 +146,7 @@ class SellerController extends Controller
 
             return redirect()->route('admin.sellers.index')->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

@@ -17,17 +17,25 @@ class AddressController extends Controller
         $this->addressInterface = $addressInterface;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = [
-            'addresses' => $this->addressInterface->get()
-        ];
-        return view('user.addresses.index', $data);
+        abort_if($request->ajax(), 403);
+
+        return view('user.addresses.index', [
+            'addresses' => $this->addressInterface->get($request->user()->id),
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        abort_if($request->ajax(), 403);
+
+        return view('user.addresses.create');
     }
 
     public function store(StoreRequest $request)
     {
-        abort_if(request()->ajax(), 403);
+        abort_if($request->ajax(), 403);
 
         try {
             $inputs = $request->input();
@@ -35,7 +43,43 @@ class AddressController extends Controller
 
             return redirect()->route('user.addresses.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('user.addresses.index')->withDanger('Something went wrong!');
+            return redirect()->route('user.addresses.index')->withDanger(__('lang.commons.something_went_wrong'));
+        }
+    }
+
+    public function edit(Request $request, $address)
+    {
+        abort_if($request->ajax(), 403);
+
+        return view('user.addresses.edit', [
+            'address' => $this->addressInterface->find($address, ['country', 'state', 'city']),
+        ]);
+    }
+
+    public function update(UpdateRequest $request, $address)
+    {
+        abort_if($request->ajax(), 403);
+
+        try {
+            $inputs = $request->input();
+            $this->addressInterface->update($address, $inputs);
+
+            return redirect()->route('user.addresses.index')->withSuccess('Data saved!');
+        } catch (Exception $ex) {
+            return redirect()->route('user.addresses.index')->withDanger(__('lang.commons.something_went_wrong'));
+        }
+    }
+
+    public function destroy(Request $request, $address)
+    {
+        abort_if($request->ajax(), 403);
+
+        try {
+            $this->addressInterface->destroy($address);
+
+            return redirect()->route('user.addresses.index')->withSuccess('Data deleted!');
+        } catch (Exception $ex) {
+            return redirect()->route('user.addresses.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

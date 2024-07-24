@@ -16,8 +16,8 @@
 @endsection
 
 @section('content')
-    <section class="bg-white">
-        <div class="container-xxl flex-grow-1 container-p-y" style="min-height: 450px;">
+    <section>
+        <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-xl-12">
 
@@ -25,9 +25,9 @@
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="m-0">Address Book</h5>
-                        <button class="btn btn-primary waves-effect waves-light" id="btn-add-address">
+                        <a href="{{ route('user.addresses.create') }}" class="btn btn-primary waves-effect waves-light" id="btn-add-address">
                             <i class="fa-solid fa-plus me-1"></i>
-                            Add Address</button>
+                            Add Address</a>
                     </div>
 
                     <div class="row">
@@ -47,8 +47,8 @@
                                         <small>Mobile: {{ $address->mobile_no }}</small>
                                         <span class="my-2 border-bottom d-block"></span>
                                         <span class="d-flex">
-                                            <a class="me-2" href="javascript:void(0)">Edit</a>
-                                            <a class="me-2" href="javascript:void(0)">Remove</a>
+                                            <a class="me-2" href="{{ route('user.addresses.edit', ['address' => $address->id]) }}">Edit</a>
+                                            <a class="me-2" href="{{ route('user.addresses.destroy', ['address' => $address->id]) }}">Remove</a>
                                         </span>
                                     </span>
                                 </div>
@@ -71,38 +71,4 @@
 @endsection
 
 @section('page-js')
-    <script>
-        $(document).ready(function() {
-            $('#btn-add-address').on('click', function() {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $(' meta[name="csrf-token"]').attr('content'),
-                    },
-                    url: "{{ route('user.ajax.modal.addresses.create') }}",
-                    type: 'GET',
-                    cache: false,
-                    success: function(response) {
-                        if (response.status) {
-                            $('#' + response.data.modalPlace).html(response.data.modal);
-                            $('#' + response.data.currentModal).modal('show');
-                            hideBlockUI();
-                        }
-                    },
-                    error: function(jqXhr, json, errorThrown) {
-                        hideBlockUI();
-
-                        var errors = jqXhr.responseJSON;
-                        var errorsHtml = '';
-
-                        $.each(errors['errors'], function(index, value) {
-                            errorsHtml +=
-                                "<span class='badge rounded-pill bg-danger p-3 m-3'>" +
-                                index +
-                                " -> " + value + "</span>";
-                        });
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

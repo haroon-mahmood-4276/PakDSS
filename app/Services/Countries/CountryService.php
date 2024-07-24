@@ -16,8 +16,10 @@ class CountryService implements CountryInterface
     public function search($search = null, $per_page = 10, $ignore_id = null)
     {
         return $this->model()
+            ->select('*', 'name as text')
             ->when($search, fn (QueryBuilder $query, $search) => $query->where('slug', 'LIKE', '%' . Str::slug($search) . '%'))
             ->when($ignore_id, fn (QueryBuilder $query, $ignore_id) => $query->whereNot('id', $ignore_id))
+            ->orderBy('name')
             ->simplePaginate($per_page);
     }
 }

@@ -51,7 +51,7 @@ class ShopController extends Controller
 
             return redirect()->route('seller.shops.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
+            return redirect()->route('seller.shops.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -79,7 +79,7 @@ class ShopController extends Controller
 
             return redirect()->route('seller.shops.index')->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
+            return redirect()->route('seller.shops.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -99,7 +99,7 @@ class ShopController extends Controller
             $record = $this->shopInterface->update([], $shop, $inputs);
             return redirect()->route('seller.shops.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
+            return redirect()->route('seller.shops.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -119,7 +119,7 @@ class ShopController extends Controller
 
             return redirect()->route('seller.shops.index')->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.shops.index')->withDanger('Something went wrong!');
+            return redirect()->route('seller.shops.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

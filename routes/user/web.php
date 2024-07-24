@@ -60,13 +60,15 @@ Route::group(['middleware' => 'auth:web'], function () {
         Route::get('/', 'index')->name('index');
 
         Route::group([], function () {
+            Route::get('create', 'create')->name('create');
             Route::post('store', 'store')->name('store');
         });
-
+        
         Route::group(['prefix' => '/{address}'], function () {
+            Route::get('edit', 'edit')->whereNumber('address')->name('edit');
             Route::put('update', 'update')->whereNumber('address')->name('update');
+            Route::get('delete', 'destroy')->whereNumber('address')->name('destroy');
         });
 
-        Route::get('delete', 'destroy')->name('destroy');
     });
 });

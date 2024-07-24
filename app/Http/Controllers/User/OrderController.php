@@ -34,7 +34,7 @@ class OrderController extends Controller
             'checkoutBag' => $checkoutBag,
             'deliveryCharges' => 0,
             'checkoutBagTotal' => $checkoutBag->sum('total_price'),
-            'addresses' => $this->addressInterface->get()
+            'addresses' => $this->addressInterface->get($request->user()->id)
         ];
 
         return view('user.order.shipping.addresses.index', $data);
@@ -51,7 +51,7 @@ class OrderController extends Controller
     
             return redirect()->route('user.home.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('user.home.index')->withDanger('Something went wrong!');
+            return redirect()->route('user.home.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }
