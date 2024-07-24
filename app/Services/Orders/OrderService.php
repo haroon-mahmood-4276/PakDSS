@@ -2,20 +2,12 @@
 
 namespace App\Services\Orders;
 
-use App\Models\{User, Order, OrderItem};
-use App\Services\Addresses\AddressInterface;
+use App\Models\{Cart, User, Order, OrderItem};
 use App\Utils\Enums\{OrderStatuses, PaymentStatuses};
 use Illuminate\Support\Facades\DB;
 
 class OrderService implements OrderInterface
 {
-    private AddressInterface $addressInterface;
-
-    public function __construct(AddressInterface $addressInterface)
-    {
-        $this->addressInterface = $addressInterface;
-    }
-
     private function model()
     {
         return new Order();
@@ -38,16 +30,21 @@ class OrderService implements OrderInterface
                 'payment_method' => null,
                 'payment_status' => PaymentStatuses::PENDING->value,
             ]);
-            
+
             foreach ($inputs['bag'] as $orderItem) {
                 $order->items()->save(new OrderItem([
                     'order_id' => $order->id,
-                    'product_id' => $orderItem  ['id'],
+                    'product_id' => $orderItem['id'],
                     'quantity' => intval($orderItem['quantity']),
                     'price' => floatval($orderItem['price']),
                     'total_price' => floatval(intval($orderItem['quantity']) * floatval($orderItem['price'])),
                     'attributes' => $orderItem['attributes'],
                 ]));
+                
+                Cart::where([
+                    'user_id' => $user->id,
+                    'product_id' => $orderItem['id']
+                ])->delete();
             }
         });
     }

@@ -34,7 +34,7 @@ class OrderController extends Controller
             'checkoutBag' => $checkoutBag,
             'deliveryCharges' => 0,
             'checkoutBagTotal' => $checkoutBag->sum('total_price'),
-            'addresses' => $this->addressInterface->get()
+            'addresses' => $this->addressInterface->get($request->user()->id)
         ];
 
         return view('user.order.shipping.addresses.index', $data);
