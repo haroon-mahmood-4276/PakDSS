@@ -40,7 +40,7 @@ class OrderService implements OrderInterface
                     'total_price' => floatval(intval($orderItem['quantity']) * floatval($orderItem['price'])),
                     'attributes' => $orderItem['attributes'],
                 ]));
-                
+                // TODO: Remove following code and add event here to remove item from cart
                 Cart::where([
                     'user_id' => $user->id,
                     'product_id' => $orderItem['id']
