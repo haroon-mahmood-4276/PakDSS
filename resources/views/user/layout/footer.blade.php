@@ -107,10 +107,10 @@
                         document.write(new Date().getFullYear());
                     </script>
                 </span>
-                <a href="https://pixinvent.com/" target="_blank" class="fw-medium text-white footer-link">Pixinvent,</a>
-                <span class="footer-text"> Made with ❤️ for a better web.</span>
+                <a href="https://pakdss.com/" target="_blank" class="fw-medium text-white footer-link">PakDSS,</a>
+                <span class="footer-text"> Made with ❤️ for a human.</span>
             </div>
-            <div>
+            {{-- <div>
                 <a href="https://github.com/pixinvent" class="footer-link me-3" target="_blank">
                     <img src="{{ asset('admin-assets') }}/img/front-pages/icons/github-light.png" alt="github icon"
                         data-app-light-img="front-pages/icons/github-light.png"
@@ -132,6 +132,6 @@
                         data-app-dark-img="front-pages/icons/instagram-dark.png" />
                 </a>
             </div>
-        </div>
+        </div> --}}
     </div>
 </footer>

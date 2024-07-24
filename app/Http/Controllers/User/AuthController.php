@@ -15,14 +15,14 @@ class AuthController extends Controller
 {
     public function loginView(Request $request)
     {
-        abort_if(request()->ajax(), 403);
+        abort_if($request->ajax(), 403);
 
         return view('user.auth.login');
     }
 
     public function loginPost(LoginRequest $request)
     {
-        abort_if(request()->ajax(), 403);
+        abort_if($request->ajax(), 403);
         $credentials = $request->validated();
 
         $remember = boolval($credentials['remember']);
@@ -47,12 +47,12 @@ class AuthController extends Controller
         return redirect()->route('user.login');
     }
 
-    public function socialiateRedirect(Request $request, $social_account)
+    public function socialiateRedirect($social_account)
     {
         return Socialite::driver($social_account)->redirect();
     }
 
-    public function socialiateCallback(Request $request, $social_account)
+    public function socialiateCallback($social_account)
     {
         $socialAccount = Socialite::driver($social_account)->user();
 
@@ -73,7 +73,7 @@ class AuthController extends Controller
 
         $linkedSocialAccount = UserSocialAccount::whereAccountId('' . $socialAccount->id)->first();
         if (!$linkedSocialAccount) {
-            $linkedSocialAccount = UserSocialAccount::create([
+            UserSocialAccount::create([
                 'account_id' => $socialAccount->id,
                 'user_id' => $user->id,
                 'name' => $social_account,

@@ -51,7 +51,7 @@ class OrderController extends Controller
     
             return redirect()->route('user.home.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('user.home.index')->withDanger('Something went wrong!');
+            return redirect()->route('user.home.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

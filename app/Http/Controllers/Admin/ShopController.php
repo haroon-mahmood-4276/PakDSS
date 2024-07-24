@@ -53,7 +53,7 @@ class ShopController extends Controller
             $record = $this->shopInterface->store($seller->id, $inputs);
             return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -82,7 +82,7 @@ class ShopController extends Controller
 
             return redirect()->route('admin.sellers.shops.index', $seller)->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -101,7 +101,7 @@ class ShopController extends Controller
             $record = $this->shopInterface->update($seller, $shop, $inputs);
             return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -121,7 +121,7 @@ class ShopController extends Controller
 
             return redirect()->route('admin.sellers.shops.index', $seller)->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger('Something went wrong!');
+            return redirect()->route('admin.sellers.shops.index', $seller)->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

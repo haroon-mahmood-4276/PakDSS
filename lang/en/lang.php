@@ -8,7 +8,7 @@ return [
         'inactive' => 'Inactive',
         'objected' => 'Objected',
         'pending_approval' => 'Pending Approval',
-        'something_went_wrong' => 'Something went wrong!',
+        'something_went_wrong' => __('lang.commons.something_went_wrong'),
         'data_not_found' => 'Data not found!',
         'data_saved' => 'Data saved!',
         'data_updated' => 'Data updated!',

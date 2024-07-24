@@ -67,7 +67,7 @@ class RoleController extends Controller
 
             return redirect()->route('admin.roles.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.roles.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -106,7 +106,7 @@ class RoleController extends Controller
 
             return redirect()->route('admin.roles.index')->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.roles.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -130,7 +130,7 @@ class RoleController extends Controller
 
             return redirect()->route('admin.roles.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.roles.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -150,7 +150,7 @@ class RoleController extends Controller
 
             return redirect()->route('admin.roles.index')->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.roles.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.roles.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

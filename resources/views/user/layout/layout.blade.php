@@ -143,7 +143,7 @@
 </head>
 
 <body style="overflow-y: scroll; ">
-    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu bg-white">
         <div class="layout-container">
 
             @include('user.layout.header')
@@ -153,15 +153,10 @@
                 <div class="content-wrapper">
 
                     {{-- @include('user.layout.topbar') --}}
-                    {{--
-                    <div style="margin-top: 55px">
-                        @yield('breadcrumbs')
-                    </div> --}}
 
                     <div style="margin-top: 58px">
                         @yield('content')
                     </div>
-
 
                     @include('user.layout.footer')
 

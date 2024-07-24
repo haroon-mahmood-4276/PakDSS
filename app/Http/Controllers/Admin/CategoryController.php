@@ -69,7 +69,7 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.categories.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.categories.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -109,7 +109,7 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.categories.index')->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.categories.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -129,7 +129,7 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.categories.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.categories.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -149,7 +149,7 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.categories.index')->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.categories.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.categories.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

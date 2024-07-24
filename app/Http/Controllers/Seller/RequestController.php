@@ -53,7 +53,7 @@ class RequestController extends Controller
             $this->requestInterface->store($requestFor, $inputs);
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong!');
+            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -80,7 +80,7 @@ class RequestController extends Controller
 
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong!');
+            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -100,7 +100,7 @@ class RequestController extends Controller
             $record = $this->requestInterface->update($requestFor, $id, $inputs);
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong!');
+            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -119,7 +119,7 @@ class RequestController extends Controller
             }
             return redirect()->route('seller.requests.index', ['request' => $requestFor])->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger('Something went wrong!');
+            return redirect()->route('seller.requests.index', ['request' => $requestFor])->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

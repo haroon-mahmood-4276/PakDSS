@@ -2,11 +2,9 @@
 
 namespace App\Services\Addresses;
 
-use App\Utils\Traits\InterfaceShared;
-
-interface AddressInterface extends InterfaceShared
+interface AddressInterface
 {
-    public function get($relationships = [], $ignore = null, $with_tree = false, $withCount = false, $withPagination = false, $perPage = 10, $includeOnlyLast = false);
+    public function get($user_id, $relationships = [], $withPagination = false, $perPage = 10);
 
     public function find($id, $relationships = []);
 

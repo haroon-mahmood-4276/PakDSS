@@ -68,7 +68,7 @@ class BrandController extends Controller
 
             return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.brands.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -108,7 +108,7 @@ class BrandController extends Controller
 
             return redirect()->route('admin.brands.index')->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.brands.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -129,7 +129,7 @@ class BrandController extends Controller
 
             return redirect()->route('admin.brands.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.brands.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -149,7 +149,7 @@ class BrandController extends Controller
 
             return redirect()->route('admin.brands.index')->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger('Something went wrong!');
+            return redirect()->route('admin.brands.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

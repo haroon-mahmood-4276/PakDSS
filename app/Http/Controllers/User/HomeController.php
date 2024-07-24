@@ -24,7 +24,7 @@ class HomeController extends Controller
         abort_if(request()->ajax(), 403);
 
         $data = [
-            'categories_products' => $this->productInterface->getAllByParentCategory($this->categoryInterface->getParents(), ['brand', 'media'], 6)
+            'categories_products' => $this->productInterface->getAllByParentCategory($this->categoryInterface->getParents(), ['brand', 'media', 'seller'], 6)
         ];
 
         $data['categories_products'] = collect($data['categories_products'])->map(function ($category) {

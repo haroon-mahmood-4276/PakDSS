@@ -37,7 +37,7 @@ class SettingController extends Controller
 
             return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withDanger('Something went wrong!');
+            return redirect()->route('admin.settings.index', ['tab' => $inputs['tab']])->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }
