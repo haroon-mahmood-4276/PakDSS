@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Observers\BrandObserver;
-use Illuminate\Database\Eloquent\{Attributes\ObservedBy, Factories\HasFactory, Model, Relations\BelongsToMany, SoftDeletes};
+use Illuminate\Database\Eloquent\{Attributes\ObservedBy, Factories\HasFactory, Model, Relations\HasMany, Relations\BelongsToMany, SoftDeletes};
 use Spatie\MediaLibrary\{HasMedia, InteractsWithMedia};
 
 #[ObservedBy([BrandObserver::class])]
@@ -32,8 +32,8 @@ class Brand extends Model implements HasMedia
         return $this->belongsToMany(Category::class);
     }
 
-    public function products(): BelongsToMany
+    public function products(): HasMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->hasMany(Product::class);
     }
 }

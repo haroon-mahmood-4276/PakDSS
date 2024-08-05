@@ -15,48 +15,25 @@ class ProductService implements ProductInterface
         return new Product();
     }
 
-    public function get($status = '', $relationships = [], $ignore = null)
+    public function get($status = '', $relationships = [], $ignore = [])
     {
-
         return $this->model()
-            ->when($status, function ($query, $status) {
-                return $query->where('status', $status);
-            })
-            ->when($relationships, function ($query, $relationships) {
-                return $query->with($relationships);
-            })->get();
-
-
-
-
-        // $product = $this->model()->where('seller_id', $seller_id);
-        // if (is_array($ignore)) {
-        //     $product = $product->whereNotIn('id', $ignore);
-        // } elseif (is_string($ignore)) {
-        //     $product = $product->where('id', '!=', $ignore);
-        // }
-        // if (count($relationships) > 0) {
-        //     $product = $product->with($relationships);
-        // }
-        // $product = $product->get();
-
-        // return $product;
+            ->when($status, fn ($query) => $query->where('status', $status))
+            ->when($relationships, fn ($query) => $query->with($relationships))
+            ->when($ignore, fn ($query) => $query->whereNotIn('id', $ignore))
+            ->get();
     }
 
     public function getAllByParentCategory($categories, $relationships = [], $chunk_size = 0)
     {
         $products = [];
 
-        foreach ($categories as $key => $category) {
+        foreach ($categories as $category) {
             $products[$category->slug] = $this->model()->whereHas('categories', function ($query) use ($category) {
                 $query->whereIn('category_id', collect(getLinkedTreeData(new Category(), [$category->id]))->pluck('id')->toArray());
-            })->when($relationships, fn ($query, $relationships) => $query->with($relationships))->where('status', Status::ACTIVE)->get();
-
-            if ($chunk_size > 0) {
-                $products[$category->slug] = $products[$category->slug]->chunk($chunk_size);
-            }
+            })->when($relationships, fn ($query) => $query->with($relationships))->where('status', Status::ACTIVE)->limit(12)->get();
         }
-
+        
         return $products;
     }
 
