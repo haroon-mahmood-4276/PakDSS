@@ -27,7 +27,7 @@
                         Pakistan's best online shopping store with 15+ million products at resounding discounts in
                         Karachi | Lahore | Islamabad | All across Pakistan with cash on delivery (COD).
                     </p>
-                    {{-- <form class="footer-form">
+                    <form class="footer-form">
                         <label for="footer-email" class="small">Subscribe to newsletter</label>
                         <div class="d-flex mt-1">
                             <input type="email" class="form-control rounded-0 rounded-start-bottom rounded-start-top"
@@ -37,54 +37,50 @@
                                 Subscribe
                             </button>
                         </div>
-                    </form> --}}
+                    </form>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    {{-- <h6 class="footer-title mb-4">Demos</h6>
+                    <h6 class="footer-title mb-4">Customer Care</h6>
                     <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template/"
-                                target="_blank" class="footer-link">Vertical Layout</a>
+                        <li class="mb-1">
+                            <a href="pricing-page.html" class="footer-link">Contact Us</a>
                         </li>
-                        <li class="mb-3">
-                            <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/horizontal-menu-template/"
-                                target="_blank" class="footer-link">Horizontal Layout</a>
+                        <li class="mb-1">
+                            <a href="pricing-page.html" class="footer-link">How to Buy</a>
                         </li>
-                        <li class="mb-3">
-                            <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template-bordered/"
-                                target="_blank" class="footer-link">Bordered Layout</a>
-                        </li>
-                        <li class="mb-3">
-                            <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template-semi-dark/"
-                                target="_blank" class="footer-link">Semi Dark Layout</a>
-                        </li>
-                        <li class="mb-3">
-                            <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template-dark/"
-                                target="_blank" class="footer-link">Dark Layout</a>
-                        </li>
-                    </ul> --}}
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                    {{-- <h6 class="footer-title mb-4">Pages</h6>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <a href="pricing-page.html" class="footer-link">Pricing</a>
-                        </li>
-                        <li class="mb-3">
-                            <a href="payment-page.html" class="footer-link">Payment<span
-                                    class="badge rounded bg-primary ms-2">New</span></a>
-                        </li>
-                        <li class="mb-3">
-                            <a href="checkout-page.html" class="footer-link">Checkout</a>
-                        </li>
-                        <li class="mb-3">
+                        <li class="mb-1">
                             <a href="help-center-landing.html" class="footer-link">Help Center</a>
                         </li>
-                        <li class="mb-3">
-                            <a href="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template/auth-login-cover.html"
-                                target="_blank" class="footer-link">Login/Register</a>
+                        <li class="mb-1">
+                            <a href="help-center-landing.html" class="footer-link">Return/Refund Policy</a>
                         </li>
-                    </ul> --}}
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <h6 class="footer-title mb-4">PakDSS</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-1">
+                            <a href="help-center-landing.html" class="footer-link">About Us</a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="help-center-landing.html" class="footer-link">PakDSS Blog</a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="help-center-landing.html" class="footer-link">Terms & Conditions</a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="help-center-landing.html" class="footer-link">Privacy Policy</a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="help-center-landing.html" class="footer-link">Sell on PakDSS</a>
+                        </li>
+                        <li class="mb-1">
+                            <span class="footer-link">NTN Number: </span>
+                        </li>
+                        <li class="mb-1">
+                            <span class="footer-link">STRN Number: </span>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-lg-3 col-md-4">
                     <h6 class="footer-title mb-4">Download our app</h6>
@@ -107,18 +103,18 @@
                         document.write(new Date().getFullYear());
                     </script>
                 </span>
-                <a href="https://pakdss.com/" target="_blank" class="fw-medium text-white footer-link">PakDSS,</a>
-                <span class="footer-text"> Made with ❤️ for a human.</span>
+                <a href="{{ env('APP_URL') }}" target="_blank" class="fw-medium text-white footer-link">PakDSS,</a>
+                <span class="footer-text"> Made with ❤️ for a you.</span>
             </div>
-            {{-- <div>
+            <div>
                 <a href="https://github.com/pixinvent" class="footer-link me-3" target="_blank">
                     <img src="{{ asset('admin-assets') }}/img/front-pages/icons/github-light.png" alt="github icon"
                         data-app-light-img="front-pages/icons/github-light.png"
                         data-app-dark-img="front-pages/icons/github-dark.png" />
                 </a>
                 <a href="https://www.facebook.com/pixinvents/" class="footer-link me-3" target="_blank">
-                    <img src="{{ asset('admin-assets') }}/img/front-pages/icons/facebook-light.png"
-                        alt="facebook icon" data-app-light-img="front-pages/icons/facebook-light.png"
+                    <img src="{{ asset('admin-assets') }}/img/front-pages/icons/facebook-light.png" alt="facebook icon"
+                        data-app-light-img="front-pages/icons/facebook-light.png"
                         data-app-dark-img="front-pages/icons/facebook-dark.png" />
                 </a>
                 <a href="https://twitter.com/pixinvents" class="footer-link me-3" target="_blank">
@@ -132,6 +128,6 @@
                         data-app-dark-img="front-pages/icons/instagram-dark.png" />
                 </a>
             </div>
-        </div> --}}
+        </div>
     </div>
 </footer>

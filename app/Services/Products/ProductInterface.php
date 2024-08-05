@@ -4,7 +4,7 @@ namespace App\Services\Products;
 
 interface ProductInterface
 {
-    public function get($status = '', $relationships = [], $ignore = null);
+    public function get($status = '', $relationships = [], $ignore = []);
     public function getAllByParentCategory($categories, $relationships = [], $chunk_size = 0);
 
     public function find($id, $only = [], $relationships = []);
