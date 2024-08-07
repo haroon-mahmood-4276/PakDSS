@@ -1,15 +1,6 @@
 <?php
 
-use App\Events\TestEvent;
-use App\Http\Controllers\User\{
-    AddressController,
-    AuthController,
-    BrandController,
-    CartController,
-    HomeController,
-    OrderController,
-    ProductController,
-};
+use App\Http\Controllers\User\{AddressController,AuthController,BrandController,CartController,HomeController,OrderController,ProductController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -63,12 +54,11 @@ Route::group(['middleware' => 'auth:web'], function () {
             Route::get('create', 'create')->name('create');
             Route::post('store', 'store')->name('store');
         });
-        
+
         Route::group(['prefix' => '/{address}'], function () {
             Route::get('edit', 'edit')->whereNumber('address')->name('edit');
             Route::put('update', 'update')->whereNumber('address')->name('update');
             Route::get('delete', 'destroy')->whereNumber('address')->name('destroy');
         });
-
     });
 });

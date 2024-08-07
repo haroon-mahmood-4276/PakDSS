@@ -6,7 +6,8 @@ use App\Services\Permissions\{PermissionInterface as AdminPermissionInterface, P
 use App\Services\Roles\{RoleInterface as AdminRoleInterface, RoleService as AdminRoleService};
 use App\Services\Sellers\{SellerInterface as AdminSellerInterface, SellerService as AdminSellerService};
 use App\Services\Users\{UserInterface as AdminUserInterface, UserService as AdminUserService};
-use App\Services\Settings\{SettingInterface as AdminSettingInterface,SettingService as AdminSettingService};
+use App\Services\Settings\{SettingInterface as AdminSettingInterface, SettingService as AdminSettingService};
+use App\Services\Homepage\Sliders\{SliderInterface as AdminSliderInterface, SliderService as AdminSliderService};
 
 use App\Services\Requests\{RequestInterface as SellerRequestInterface, RequestService as SellerRequestService};
 
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AdminPermissionInterface::class, AdminPermissionService::class);
         $this->app->bind(AdminSellerInterface::class, AdminSellerService::class);
         $this->app->bind(AdminSettingInterface::class, AdminSettingService::class);
+        $this->app->bind(AdminSliderInterface::class, AdminSliderService::class);
 
         // Seller
         $this->app->bind(SellerRequestInterface::class, SellerRequestService::class);

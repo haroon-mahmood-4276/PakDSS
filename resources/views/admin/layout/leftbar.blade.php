@@ -53,7 +53,7 @@
 
         @canany(['admin.users.index', 'admin.users.create'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.users.index', 'admin.users.create'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.users.index', 'admin.users.create']) ? 'open active' : null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-users menu-icon"></i>
                     <div>Users</div>
@@ -82,7 +82,7 @@
         <!-- Roles & Permissions -->
         @canany(['admin.roles.index', 'admin.permissions.index'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.roles.index', 'admin.permissions.index'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.roles.index', 'admin.permissions.index']) ? 'open active' : null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-lock menu-icon"></i>
                     <div>Roles & Permissions</div>
@@ -117,7 +117,7 @@
 
         @canany(['admin.approvals.shops.index', 'admin.approvals.products.index'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.approvals.shops.index', 'admin.approvals.products.index'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.approvals.shops.index', 'admin.approvals.products.index']) ? 'open active' : null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-check menu-icon"></i>
                     <div>Approvals</div>
@@ -149,7 +149,7 @@
 
         @canany(['admin.brands.index', 'admin.brands.create'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.brands.index', 'admin.brands.create'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.brands.index', 'admin.brands.create']) ? 'open active' : null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-store menu-icon"></i>
                     <div>Brands</div>
@@ -177,7 +177,7 @@
 
         @canany(['admin.categories.index', 'admin.categories.create'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.categories.index', 'admin.categories.create'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.categories.index', 'admin.categories.create']) ? 'open active' : null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-brands fa-hive menu-icon"></i>
                     <div>Categories</div>
@@ -205,7 +205,7 @@
 
         @canany(['admin.tags.index', 'admin.tags.create'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.tags.index', 'admin.tags.create'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.tags.index', 'admin.tags.create']) ? 'open active' : null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-tags menu-icon"></i>
                     <div>Tags</div>
@@ -233,7 +233,7 @@
 
         @canany(['admin.sellers.index', 'admin.sellers.create'])
             <li
-                class="menu-item {{ in_array(request()->route()->getName(),['admin.sellers.index', 'admin.sellers.create'])? 'open active': null }}">
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.sellers.index', 'admin.sellers.create']) ? 'open active' : null }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="fa-solid fa-person-shelter menu-icon"></i>
                     <div>Sellers</div>
@@ -255,6 +255,51 @@
                             </a>
                         </li>
                     @endcan
+                </ul>
+            </li>
+        @endcanany
+
+        @canany(['admin.homepage.sliders.index'])
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Homepage</span>
+            </li>
+        @endcanany
+
+        @canany(['admin.homepage.sliders.index'])
+            <li
+                class="menu-item {{ in_array(request()->route()->getName(), ['admin.homepage.sliders.index']) ? 'open active' : null }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="fa-solid fa-store menu-icon"></i>
+                    <div>Homepage</div>
+                </a>
+                <ul class="menu-sub">
+                    <li
+                        class="menu-item {{ in_array(request()->route()->getName(), ['admin.homepage.sliders.index', 'admin.homepage.sliders.create']) ? 'open active' : null }}">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="fa-solid fa-store menu-icon"></i>
+                            <div>Sliders</div>
+                        </a>
+                        <ul class="menu-sub">
+
+                            @can('admin.homepage.sliders.index')
+                                <li
+                                    class="menu-item {{ request()->routeIs('admin.homepage.sliders.index') ? 'active' : null }}">
+                                    <a href="{{ route('admin.homepage.sliders.index') }}" class="menu-link">
+                                        <div>View All</div>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('admin.homepage.sliders.create')
+                                <li
+                                    class="menu-item {{ request()->routeIs('admin.homepage.sliders.create') ? 'active' : null }}">
+                                    <a href="{{ route('admin.homepage.sliders.create') }}" class="menu-link">
+                                        <div>Add New</div>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
                 </ul>
             </li>
         @endcanany

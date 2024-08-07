@@ -1,19 +1,18 @@
 <?php
 
-use App\Http\Controllers\Admin\{
-    ApprovalController,
-    AuthController,
-    BrandController,
-    CategoryController,
-    DashboardController,
-    PermissionController,
-    RoleController,
-    SellerController,
-    TagController,
-    UserController,
-    SettingController,
-    ShopController,
-};
+use App\Http\Controllers\Admin\ApprovalController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Homepage\SliderController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SellerController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\ShopController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -192,5 +191,24 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::prefix('settings')->name('settings.')->controller(SettingController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
+    });
+
+    //Homepage Slider Routes
+    Route::name('homepage.')->prefix('homepage')->group(function () {
+        Route::controller(SliderController::class)->name('sliders.')->prefix('sliders')->group(function () {
+            Route::get('/', 'index')->middleware('permission:admin.homepage.sliders.index')->name('index');
+
+            Route::middleware('permission:admin.homepage.sliders.create')->group(function () {
+                Route::get('create', 'create')->name('create');
+                Route::post('store', 'store')->name('store');
+            });
+
+            Route::middleware('permission:admin.homepage.sliders.edit')->prefix('/{sider}')->group(function () {
+                Route::get('edit', 'edit')->whereNumber('id')->name('edit');
+                Route::put('update', 'update')->whereNumber('id')->name('update');
+            });
+
+            Route::get('delete', 'destroy')->middleware('permission:admin.homepage.sliders.destroy')->name('destroy');
+        });
     });
 });

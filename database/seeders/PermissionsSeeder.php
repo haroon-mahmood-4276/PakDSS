@@ -242,6 +242,33 @@ class PermissionsSeeder extends Seeder
                 'guard_name' => 'admin',
                 'show_name' => 'Settings - Admin - Can View/Update',
             ],
+
+            // Sliders Permissions
+            [
+                'name' => 'admin.homepage.sliders.index',
+                'guard_name' => 'admin',
+                'show_name' => 'Homepage - Sliders - Can View',
+            ],
+            [
+                'name' => 'admin.homepage.sliders.create',
+                'guard_name' => 'admin',
+                'show_name' => 'Homepage - Sliders - Can Create',
+            ],
+            [
+                'name' => 'admin.homepage.sliders.edit',
+                'guard_name' => 'admin',
+                'show_name' => 'Homepage - Sliders - Can Edit',
+            ],
+            [
+                'name' => 'admin.homepage.sliders.destroy',
+                'guard_name' => 'admin',
+                'show_name' => 'Homepage - Sliders - Can Delete',
+            ],
+            [
+                'name' => 'admin.homepage.sliders.export',
+                'guard_name' => 'admin',
+                'show_name' => 'Homepage - Sliders - Can Export',
+            ],
         ];
 
         $role = (new Role())->first();
