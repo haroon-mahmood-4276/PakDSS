@@ -2,7 +2,13 @@
 
 namespace App\Services\Homepage\Sliders;
 
-interface SliderInterface
-{
+use App\Utils\Traits\InterfaceShared;
 
+interface SliderInterface extends InterfaceShared
+{
+    public function store($inputs);
+
+    public function update($id, $inputs);
+
+    public function destroy($inputs);
 }

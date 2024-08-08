@@ -180,3 +180,9 @@ Breadcrumbs::for('admin.homepage.sliders.create', function (BreadcrumbTrail $tra
     $trail->parent('admin.homepage.index');
     $trail->push('Create Slider');
 });
+
+
+Breadcrumbs::for('admin.homepage.sliders.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.homepage.index');
+    $trail->push('Edit Slider');
+});

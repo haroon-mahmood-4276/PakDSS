@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Homepage;
 
 use App\DataTables\Admin\Homepage\SlidersDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Brands\{StoreRequest, UpdateRequest};
+use App\Http\Requests\Admin\Homepage\Sliders\{StoreRequest, UpdateRequest};
 use App\Services\Homepage\Sliders\SliderInterface;
 use Illuminate\Http\Request;
 use Exception;
@@ -56,11 +56,11 @@ class SliderController extends Controller
 
         try {
             $inputs = $request->validated();
-            $record = $this->brandInterface->store($inputs);
+            $this->sliderInterface->store($inputs);
 
-            return redirect()->route('admin.brands.index')->withSuccess('Data saved!');
+            return redirect()->route('admin.homepage.sliders.index')->withSuccess('Data saved!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger(__('lang.commons.something_went_wrong'));
+            return redirect()->route('admin.homepage.sliders.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -86,21 +86,20 @@ class SliderController extends Controller
         abort_if(request()->ajax(), 403);
 
         try {
-            $brand = $this->brandInterface->find($id, ['categories:id']);
+            $slider = $this->sliderInterface->find($id);
 
-            if ($brand && !empty($brand)) {
+            if ($slider && !empty($slider)) {
                 $data = [
-                    'brand' => $brand,
-                    'brand_logo' => $brand->getMedia('brands'),
-                    'categories' => $this->categoryInterface->get(with_tree: true),
+                    'slider' => $slider,
+                    'slider_logo' => $slider->getMedia('sliders'),
                 ];
 
-                return view('admin.brands.edit', $data);
+                return view('admin.homepage.sliders.edit', $data);
             }
 
-            return redirect()->route('admin.brands.index')->withWarning('Record not found!');
+            return redirect()->route('admin.homepage.sliders.index')->withWarning('Record not found!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger(__('lang.commons.something_went_wrong'));
+            return redirect()->route('admin.homepage.sliders.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -111,17 +110,17 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, $brand)
+    public function update(UpdateRequest $request, $slider)
     {
         abort_if(request()->ajax(), 403);
         try {
 
             $inputs = $request->validated();
-            $this->brandInterface->update($brand, $inputs);
+            $this->sliderInterface->update($slider, $inputs);
 
-            return redirect()->route('admin.brands.index')->withSuccess('Data updated!');
+            return redirect()->route('admin.homepage.sliders.index')->withSuccess('Data updated!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger(__('lang.commons.something_went_wrong'));
+            return redirect()->route('admin.homepage.sliders.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 
@@ -132,16 +131,16 @@ class SliderController extends Controller
 
             if ($request->has('checkForDelete')) {
 
-                $record = $this->brandInterface->destroy($request->checkForDelete);
+                $record = $this->sliderInterface->destroy($request->checkForDelete);
 
                 if (!$record) {
-                    return redirect()->route('admin.brands.index')->withDanger('Data not found!');
+                    return redirect()->route('admin.homepage.sliders.index')->withDanger('Data not found!');
                 }
             }
 
-            return redirect()->route('admin.brands.index')->withSuccess('Data deleted!');
+            return redirect()->route('admin.homepage.sliders.index')->withSuccess('Data deleted!');
         } catch (Exception $ex) {
-            return redirect()->route('admin.brands.index')->withDanger(__('lang.commons.something_went_wrong'));
+            return redirect()->route('admin.homepage.sliders.index')->withDanger(__('lang.commons.something_went_wrong'));
         }
     }
 }

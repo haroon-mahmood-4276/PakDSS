@@ -203,7 +203,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
                 Route::post('store', 'store')->name('store');
             });
 
-            Route::middleware('permission:admin.homepage.sliders.edit')->prefix('/{sider}')->group(function () {
+            Route::middleware('permission:admin.homepage.sliders.edit')->prefix('/{slider}')->group(function () {
                 Route::get('edit', 'edit')->whereNumber('id')->name('edit');
                 Route::put('update', 'update')->whereNumber('id')->name('update');
             });

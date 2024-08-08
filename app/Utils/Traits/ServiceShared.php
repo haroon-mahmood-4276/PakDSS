@@ -30,8 +30,8 @@ trait ServiceShared
             }
             
             return $model;
-        return Cache::rememberForever(Str::of(explode('\\', $this->model()::class)[2])->lower()->plural()->value(), function () use ($model, $withPagination, $perPage, $with_tree, $includeOnlyLast) {
-        });
+        // return Cache::rememberForever(Str::of(explode('\\', $this->model()::class)[2])->lower()->plural()->value(), function () use ($model, $withPagination, $perPage, $with_tree, $includeOnlyLast) {
+        // });
     }
 
     public function find($id, $relationships = [])

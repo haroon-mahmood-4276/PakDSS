@@ -18,8 +18,8 @@ class Slider extends Model implements HasMedia
     ];
 
     public $rules = [
-        'collection_name' => 'required',
         'name' => 'required|string|max:255',
-        'link' => 'required|url:http,https',
+        'link' => 'nullable|url:http,https',
+        'slider_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:536',
     ];
 }

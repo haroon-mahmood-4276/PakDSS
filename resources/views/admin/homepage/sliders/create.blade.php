@@ -30,8 +30,8 @@
         }
 
         /* .filepond--item {
-            width: calc(20% - 0.5em);
-        } */
+                width: calc(20% - 0.5em);
+            } */
     </style>
 @endsection
 
@@ -61,10 +61,11 @@
                             <div class="row g-3">
                                 <div class="col-md-12">
                                     <div class="d-block mb-1">
-                                        <label class="form-label" style="font-size: 15px" for="slider_image">Slider Image</label>
+                                        <label class="form-label" style="font-size: 15px" for="slider_image">Slider
+                                            Image</label>
                                         <input id="slider_image" type="file"
                                             class="filepond m-0 @error('slider_image') is-invalid @enderror"
-                                            name="slider_image" accept="image/png, image/jpeg, image/gif" />
+                                            name="slider_image" accept="image/png, image/jpeg, image/gif, image/webp" />
                                         @error('slider_image')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @else
@@ -117,43 +118,8 @@
 @endsection
 
 @section('page-js')
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.preview.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.typevalidation.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.imagecrop.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.imagesizevalidation.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/plugins/filepond.filesizevalidation.min.js"></script>
-    <script src="{{ asset('admin-assets') }}/vendor/libs/filepond/filepond.min.js"></script>
 @endsection
 
 @section('custom-js')
-    <script>
-        FilePond.registerPlugin(
-            FilePondPluginImagePreview,
-            FilePondPluginFileValidateType,
-            FilePondPluginFileValidateSize,
-            FilePondPluginImageValidateSize,
-            FilePondPluginImageCrop,
-        );
-
-        $(document).ready(function() {
-            window.addEventListener('load', function() {
-                FilePond.create(document.getElementById('slider_image'), {
-                    styleButtonRemoveItemPosition: 'right',
-                    imageCropAspectRatio: '1:1',
-                    acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
-                    maxFileSize: '536KB',
-                    ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
-                    storeAsFile: true,
-                    allowMultiple: false,
-                    maxFiles: 1,
-                    checkValidity: true,
-                    credits: {
-                        label: '',
-                        url: ''
-                    }
-                });
-
-            });
-        });
-    </script>
+    @include('admin.homepage.sliders.form-fields-js', ['source' => 'create'])
 @endsection

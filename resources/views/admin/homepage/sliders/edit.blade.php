@@ -1,10 +1,10 @@
 @extends('admin.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.brands.edit', $brand->id) }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'admin.homepage.sliders.edit') }}
 @endsection
 
-@section('page-title', 'Edit Brand')
+@section('page-title', 'Edit slider')
 
 @section('page-vendor')
 @endsection
@@ -30,20 +30,20 @@
         }
 
         /* .filepond--item {
-            width: calc(20% - 0.5em);
-        } */
+                    width: calc(20% - 0.5em);
+                } */
     </style>
 @endsection
 
 @section('breadcrumbs')
     <div class="d-flex justify-content-start align-items-center mb-3">
-        <h2 class="content-header-title float-start mb-0 mx-3">Edit Brand</h2>
-        {{ Breadcrumbs::render('admin.brands.edit', $brand->id) }}
+        <h2 class="content-header-title float-start mb-0 mx-3">Edit Slider</h2>
+        {{ Breadcrumbs::render('admin.homepage.sliders.edit') }}
     </div>
 @endsection
 
 @section('content')
-    <form class="form form-vertical" action="{{ route('admin.brands.update', ['brand' => $brand->id]) }}"
+    <form class="form form-vertical" action="{{ route('admin.homepage.sliders.update', ['slider' => $slider->id]) }}"
         method="POST" enctype="multipart/form-data">
 
         <div class="row g-3">
@@ -51,8 +51,7 @@
 
                 @csrf
                 @method('PUT')
-
-                {{ view('admin.brands.form-fields', ['brand' => $brand, 'categories' => $categories]) }}
+                @include('admin.homepage.sliders.form-fields')
 
             </div>
 
@@ -63,16 +62,16 @@
                             <div class="row g-3">
                                 <div class="col-md-12">
                                     <div class="d-block mb-1">
-                                        <label class="form-label" style="font-size: 15px" for="brand_image">Brand
-                                            Logo</label>
-                                        <input id="brand_image" type="file"
-                                            class="filepond m-0 @error('brand_image') is-invalid @enderror"
-                                            name="brand_image" accept="image/png, image/jpeg, image/gif" />
-                                        @error('brand_image')
+                                        <label class="form-label" style="font-size: 15px" for="slider_image">Slider
+                                            Image</label>
+                                        <input id="slider_image" type="file"
+                                            class="filepond m-0 @error('slider_image') is-invalid @enderror"
+                                            name="slider_image" accept="image/png, image/jpeg, image/gif, image/webp" />
+                                        @error('slider_image')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @else
                                             <p class="m-0">
-                                                <small class="text-muted">Upload brand logo.</small>
+                                                <small class="text-muted">Upload slider image.</small>
                                             </p>
                                         @enderror
                                     </div>
@@ -86,11 +85,11 @@
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-success w-100  buttonToBlockUI me-1">
                                         <i class="fa-solid fa-floppy-disk icon me-2"></i>
-                                        Update Brand
+                                        Update Slider
                                     </button>
                                 </div>
                                 <div class="col-md-12">
-                                    <a href="{{ route('admin.brands.index') }}" class="btn btn-danger w-100 ">
+                                    <a href="{{ route('admin.homepage.sliders.index') }}" class="btn btn-danger w-100 ">
                                         <i class="fa-solid fa-xmark icon me-2"></i>
                                         Cancel
                                     </a>
@@ -132,52 +131,5 @@
 @endsection
 
 @section('custom-js')
-    <script>
-        FilePond.registerPlugin(
-            FilePondPluginImagePreview,
-            FilePondPluginFileValidateType,
-            FilePondPluginFileValidateSize,
-            FilePondPluginImageValidateSize,
-            FilePondPluginImageCrop,
-        );
-
-        $(document).ready(function() {
-            $('#name').on('keyup blur', function() {
-                $('#slug').val($(this).val().toLowerCase().trim().replace(/[\/\\]/g, '').replace(/\s+/g,
-                        ' ')
-                    .replace(/[^a-z0-9- ]/gi, '').replace(/-+/g, '-').replace(/\s/g, '-'));
-            });
-        });
-
-        window.addEventListener('load', function() {
-
-            var files = [];
-            @forelse($brand_logo as $image)
-                files.push({
-                    source: '{{ $image->getFullUrl() }}',
-                });
-            @empty
-            @endforelse
-
-            console.log(files);
-
-            FilePond.create(document.getElementById('brand_image'), {
-                files: files,
-                styleButtonRemoveItemPosition: 'right',
-                imageCropAspectRatio: '1:1',
-                acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
-                maxFileSize: '536KB',
-                ignoredFiles: ['.ds_store', 'thumbs.db', 'desktop.ini'],
-                storeAsFile: true,
-                // allowMultiple: true,
-                // maxFiles: 2,
-                checkValidity: true,
-                credits: {
-                    label: '',
-                    url: ''
-                }
-            });
-
-        });
-    </script>
+    @include('admin.homepage.sliders.form-fields-js', ['source' => 'edit'])
 @endsection

@@ -27,7 +27,7 @@ class SlidersDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->editColumn('check', fn ($slider) => $slider)
-            ->editColumn('logo_image', fn ($slider) => editImageColumn($slider->getFirstMediaUrl('brands')))
+            ->editColumn('logo_image', fn ($slider) => editImageColumn($slider->getFirstMediaUrl('sliders')))
             ->editColumn('created_at', fn ($slider) => editDateTimeColumn($slider->created_at))
             ->editColumn('actions', fn ($slider) => view('admin.homepage.sliders.actions', ['id' => $slider->id]))
             ->setRowId('id')
