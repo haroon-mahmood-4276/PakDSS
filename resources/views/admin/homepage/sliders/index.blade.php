@@ -54,10 +54,10 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Are you sure you want to delete the selected brands?',
+                    text: 'Are you sure you want to delete the selected sliders?',
                     showCancelButton: true,
                     cancelButtonText: 'No',
-                    confirmButtonText: 'Yes (' + selectedCheckboxes + ' brands)',
+                    confirmButtonText: 'Yes (' + selectedCheckboxes + ' sliders)',
                     confirmButtonClass: 'btn-danger',
                     buttonsStyling: false,
                     customClass: {

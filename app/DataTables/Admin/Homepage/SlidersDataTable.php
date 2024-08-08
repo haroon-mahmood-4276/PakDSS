@@ -139,7 +139,7 @@ class SlidersDataTable extends DataTable
             $checkColumn,
             Column::computed('logo_image')->width(60)->addClass($columnClass),
             Column::make('name')->title('Name')->addClass($columnClass),
-            // Column::make('slug')->title('Slug')->addClass($columnClass),
+            // Column::make('link')->title('Link')->addClass($columnClass),
             Column::make('created_at')->addClass($columnClass),
             Column::computed('actions')->exportable(false)->printable(false)->width(60)->addClass($columnClass),
         ];

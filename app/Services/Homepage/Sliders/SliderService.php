@@ -28,7 +28,7 @@ class SliderService implements SliderInterface
     public function destroy($inputs)
     {
         return DB::transaction(fn () => $this->model()->whereIn('id', $inputs)->get()->each(function ($slider) {
-            $slider->clearMediaCollection('sliders');
+            // $slider->clearMediaCollection('sliders');
             $slider->delete();
         }));
     }
@@ -37,7 +37,7 @@ class SliderService implements SliderInterface
     {
         $slider = $this->model()->updateOrCreate(
             ['id' => $id],
-            ['name' => $inputs['name'], 'collection_name' => 'banner_slider']
+            ['name' => $inputs['name'], 'collection_name' => 'banner_sliders', 'link' => $inputs['link']]
         );
 
         $slider->clearMediaCollection('sliders');

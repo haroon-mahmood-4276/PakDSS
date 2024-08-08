@@ -82,79 +82,27 @@
     <section class="bg-white">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row mb-4">
-                <div class="col-8">
+                <div class="col-lg-8 col-sm-12">
                     <div class="swiper banner-swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="bg-banner"
-                                    style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner.png)">
-                                    <span class="font-sm text-uppercase">Hot Right Now</span>
-                                    <h2 class="mt-10">Sale Up to 50% Off</h2>
-                                    <h1>Mobile Devices</h1>
-                                    <div class="row">
-                                        <div class="col-lg-5 col-md-7 col-sm-12">
-                                            <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
-                                                efficitur
-                                                quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
-                                                Curabitur
-                                                blandit tempus consectetur.</p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-30">
-                                        <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
-                                        <a class="btn" href="shop-grid.html">Learn more</a>
-                                    </div>
+                            @foreach ($bannerSliders as $slider)
+                                <div class="swiper-slide">
+                                    @if ($slider->link)
+                                        <a href="{{ $slider->link }}">
+                                            <img src="{{ $slider->getFirstMediaUrl('sliders') }}"
+                                                class="img-fluid rounded-3" alt="{{ $slider->name }}">
+                                        </a>
+                                    @else
+                                        <img src="{{ $slider->getFirstMediaUrl('sliders') }}" class="img-fluid rounded-3"
+                                            alt="{{ $slider->name }}">
+                                    @endif
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="bg-banner"
-                                    style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner-hero-2.png)">
-                                    <span class="font-sm text-uppercase">Hot Right Now</span>
-                                    <h2 class="mt-10">Sale Up to 50% Off</h2>
-                                    <h1>Mobile Devices</h1>
-                                    <div class="row">
-                                        <div class="col-lg-5 col-md-7 col-sm-12">
-                                            <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
-                                                efficitur
-                                                quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
-                                                Curabitur
-                                                blandit tempus consectetur.</p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-30">
-                                        <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
-                                        <a class="btn" href="shop-grid.html">Learn more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="bg-banner"
-                                    style="background-image: url({{ asset('user-assets') }}/imgs/page/homepage1/banner-hero-3.png)">
-                                    <span class="font-sm text-uppercase">Hot Right Now</span>
-                                    <h2 class="mt-10">Sale Up to 50% Off</h2>
-                                    <h1>Mobile Devices</h1>
-                                    <div class="row">
-                                        <div class="col-lg-5 col-md-7 col-sm-12">
-                                            <p class="font-sm color-brand-3">Curabitur id lectus in felis hendrerit
-                                                efficitur
-                                                quis quis lectus. Donec sollicitudin elit eu ipsum maximus blandit.
-                                                Curabitur
-                                                blandit tempus consectetur.</p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-30">
-                                        <a class="btn btn-primary" href="shop-grid.html">Shop now</a>
-                                        <a class="btn" href="shop-grid.html">Learn more</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                        {{-- <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div> --}}
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-sm-12">
                     <div class="row gap-3">
                         <div class="col-lg-12 col-md-6 col-sm-12">
                             <div class="background-image-1 p-4">
@@ -207,7 +155,7 @@
     {{-- Categories Swiper --}}
     <section class="bg-white pb-4">
         <div class="container-xxl flex-grow-1">
-            @foreach ($categories_products as $catrgory_name => $products)
+            @foreach ($categoriesProducts as $catrgory_name => $products)
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="d-flex align-items-center mb-3">
@@ -238,8 +186,7 @@
                                             <a
                                                 href="{{ route('user.products.index', ['product' => $product->permalink]) }}">
                                                 <div class="card shadow-none border h-100" style="border-radius: 15px">
-                                                    <div class="text-center position-relative"
-                                                        style="border-radius: 15px">
+                                                    <div class="text-center position-relative" style="border-radius: 15px">
                                                         <div class="p-1">
                                                             @if ($product?->media->count())
                                                                 <div class="swiper productImageSwipper">
@@ -278,7 +225,7 @@
                                                                 <span
                                                                     class="fw-bolder">{{ currencyParser($product->discounted_price > 0 ? $product->discounted_price : $product->price, symbol: 'Rs.') }}</span>
                                                                 @if ($product->discounted_price > 0)
-                                                                <br>
+                                                                    <br>
                                                                     <small
                                                                         class="text-body-secondary"><s>{{ currencyParser($product->price, symbol: 'Rs.') }}</s></small>
                                                                 @endif
@@ -393,17 +340,11 @@
             new Swiper(".banner-swiper", {
                 spaceBetween: 10,
                 autoplay: {
-                    delay: 150000,
-                    disableOnInteraction: false,
+                    delay: 15000,
                 },
                 pagination: {
                     el: ".banner-swiper .swiper-pagination",
-                    // dynamicBullets: true,
                     clickable: true,
-                },
-                navigation: {
-                    nextEl: ".banner-swiper .swiper-button-next",
-                    prevEl: ".banner-swiper .swiper-button-prev",
                 },
             });
 
@@ -416,7 +357,7 @@
                 },
             });
 
-            @foreach ($categories_products as $catrgory_name => $product_chunks)
+            @foreach ($categoriesProducts as $catrgory_name => $product_chunks)
                 new Swiper(".parent-categories-swiper-{{ $catrgory_name }}", {
                     spaceBetween: 15,
                     slidesPerView: 6,

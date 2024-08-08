@@ -18,6 +18,10 @@ trait ServiceShared
         if ($withCount) {
             $model = $model->withCount($relationships);
         }
+        
+        if (count($relationships) > 0) {
+            $model = $model->with($relationships);
+        }
 
         if ($withPagination) {
             $model = $model->paginate($perPage);
