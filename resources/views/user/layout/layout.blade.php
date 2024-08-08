@@ -138,6 +138,14 @@
             background-color: #171925
         }
     </style>
+
+    <style>
+        @media (min-width: 992px) {
+            .margin-lg-58 {
+                margin-top: 58px;
+            }
+        }
+    </style>
     @yield('page-css')
     @livewireStyles
 </head>
@@ -154,7 +162,7 @@
 
                     @include('user.layout.topbar')
 
-                    <div style="margin-top: 58px">
+                    <div class="margin-lg-58">
                         @yield('content')
                     </div>
 
@@ -256,7 +264,7 @@
                 $(element).closest('tr').removeClass('table-danger');
             }
         }
-        
+
         "undefined" != typeof $ && $(function() {
             window.Helpers.initSidebarToggle();
             var t, a, e, s = $(".search-toggler"),
@@ -388,9 +396,18 @@
     @yield('page-js')
     @livewireScripts
     <script>
-        Livewire.hook('commit', ({ component, commit, respond, succeed, fail }) => {
+        Livewire.hook('commit', ({
+            component,
+            commit,
+            respond,
+            succeed,
+            fail
+        }) => {
             showBlockUI();
-            succeed(({ snapshot, effect }) => {
+            succeed(({
+                snapshot,
+                effect
+            }) => {
                 hideBlockUI();
             })
             fail(() => {

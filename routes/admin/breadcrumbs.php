@@ -164,3 +164,25 @@ Breadcrumbs::for('admin.settings.tab_admin.index', function (BreadcrumbTrail $tr
     $trail->parent('admin.settings.index', $tab);
     $trail->push('Admin', route('admin.settings.index', ['tab' => $tab]));
 });
+
+// Homepage Sliders Breadcrumbs
+Breadcrumbs::for('admin.homepage.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Homepage', route('admin.homepage.sliders.index'));
+});
+
+Breadcrumbs::for('admin.homepage.sliders.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.homepage.index');
+    $trail->push('Sliders', route('admin.homepage.sliders.index'));
+});
+
+Breadcrumbs::for('admin.homepage.sliders.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.homepage.index');
+    $trail->push('Create Slider');
+});
+
+
+Breadcrumbs::for('admin.homepage.sliders.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.homepage.index');
+    $trail->push('Edit Slider');
+});
